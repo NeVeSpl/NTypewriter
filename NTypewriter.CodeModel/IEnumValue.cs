@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace NTypewriter.CodeModel
+{
+    /// <summary>
+    /// Represents a named constant which is a member of an enum.
+    /// </summary>
+    public interface IEnumValue
+    {
+        /// <summary>
+        /// The name of the enum member
+        /// </summary>
+        string Name { get; }
+
+        /// <summary>
+        /// The value of the enum member
+        /// </summary>
+        object Value { get; }      
+    }
+}

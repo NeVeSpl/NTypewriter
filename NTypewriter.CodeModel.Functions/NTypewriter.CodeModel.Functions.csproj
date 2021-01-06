@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.0.1</Version>
+    <Authors>NeVeSpl</Authors>
+    <Copyright>(c) NTypewriter</Copyright>
+    <PackageProjectUrl>https://github.com/NeVeSpl/NTypewriter</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/NeVeSpl/NTypewriter</RepositoryUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>obj\Debug\netstandard2.0\NTypewriter.CodeModel.Functions.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>obj\Release\netstandard2.0\NTypewriter.CodeModel.Functions.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>
