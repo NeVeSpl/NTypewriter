@@ -9,7 +9,7 @@
     <RepositoryUrl>https://github.com/NeVeSpl/NTypewriter</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>xKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
