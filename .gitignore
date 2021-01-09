@@ -5,3 +5,5 @@ NTypewriter.CodeModel/obj/
 NTypewriter.CodeModel.Functions/bin/
 NTypewriter.CodeModel.Roslyn/obj/
 NTypewriter.CodeModel.Roslyn/bin/
+NTypewriter/bin/
+NTypewriter/obj/
