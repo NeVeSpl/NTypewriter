@@ -1,9 +1,11 @@
 .vs/
-NTypewriter.CodeModel.Functions/obj/
 NTypewriter.CodeModel/bin/
 NTypewriter.CodeModel/obj/
+NTypewriter.CodeModel.Functions/obj/
 NTypewriter.CodeModel.Functions/bin/
 NTypewriter.CodeModel.Roslyn/obj/
 NTypewriter.CodeModel.Roslyn/bin/
 NTypewriter/bin/
 NTypewriter/obj/
+NTypewriter.Editor.Config/bin/
+NTypewriter.Editor.Config/obj/

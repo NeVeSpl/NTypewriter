@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>xKey.snk</AssemblyOriginatorKeyFile>
+    <Version>0.0.1</Version>
+    <Authors>NeVeSpl</Authors>
+    <Company>NeVeSpl</Company>
+    <Copyright>(c) NTypewriter</Copyright>
+    <PackageProjectUrl>https://github.com/NeVeSpl/NTypewriter</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/NeVeSpl/NTypewriter</RepositoryUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+</Project>
