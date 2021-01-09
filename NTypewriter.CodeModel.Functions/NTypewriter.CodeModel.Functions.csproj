@@ -20,4 +20,8 @@
     <DocumentationFile>obj\Release\netstandard2.0\NTypewriter.CodeModel.Functions.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NTypewriter.CodeModel\NTypewriter.CodeModel.csproj" />
+  </ItemGroup>
+
 </Project>
