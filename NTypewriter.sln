@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter", "NTypewriter\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter.Editor.Config", "NTypewriter.Editor.Config\NTypewriter.Editor.Config.csproj", "{08CDD3EF-49A6-4F75-A976-235E68198874}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter.CodeModel.Tests", "NTypewriter.CodeModel.Tests\NTypewriter.CodeModel.Tests.csproj", "{08084CA3-7FAC-4B23-A6DE-6755AE14E2FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{08CDD3EF-49A6-4F75-A976-235E68198874}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08CDD3EF-49A6-4F75-A976-235E68198874}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08CDD3EF-49A6-4F75-A976-235E68198874}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08084CA3-7FAC-4B23-A6DE-6755AE14E2FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08084CA3-7FAC-4B23-A6DE-6755AE14E2FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08084CA3-7FAC-4B23-A6DE-6755AE14E2FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08084CA3-7FAC-4B23-A6DE-6755AE14E2FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

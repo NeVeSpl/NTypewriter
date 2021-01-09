@@ -1,0 +1,7 @@
+﻿SampleClass1
+    DebuggerDisplay : [value : Test]
+    Sample : []
+SampleClass2
+    Sample : [arrayOfInts : System.Object[]]
+SampleAttribute
+    AttributeUsage : [validOn : AttributeTargets.All, Inherited : False]

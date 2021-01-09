@@ -1,0 +1,6 @@
+﻿SampleClass1
+    DebuggerDisplay
+    Sample
+SampleClass2
+SampleAttribute
+    AttributeUsage

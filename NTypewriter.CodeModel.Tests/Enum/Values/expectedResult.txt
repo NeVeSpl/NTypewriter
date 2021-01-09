@@ -1,0 +1,4 @@
+﻿OutsideEnum
+    [One, Two] 
+InsideEnum
+    [Zero, One] 

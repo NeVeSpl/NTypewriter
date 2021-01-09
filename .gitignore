@@ -9,3 +9,5 @@ NTypewriter/bin/
 NTypewriter/obj/
 NTypewriter.Editor.Config/bin/
 NTypewriter.Editor.Config/obj/
+NTypewriter.CodeModel.Tests/obj/
+NTypewriter.CodeModel.Tests/bin/

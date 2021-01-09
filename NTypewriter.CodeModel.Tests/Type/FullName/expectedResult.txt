@@ -1,0 +1,5 @@
+﻿System.Int32
+System.Int32?
+System.Int32[]
+System.Collections.Generic.List<System.Int32>
+System.String

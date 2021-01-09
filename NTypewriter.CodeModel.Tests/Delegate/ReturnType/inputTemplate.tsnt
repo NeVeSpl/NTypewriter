@@ -1,0 +1,7 @@
+﻿{{- capture captured}}
+{{- for delegate in data.Delegates | Symbols.WhereNamespaceStartsWith "NTypewriter.Tests.CodeModel"}}
+{{- delegate.Name }}
+    {{ delegate.#PropertyName#}} 
+{{ end }}
+{{- end }}
+{{- Save captured "result" }}

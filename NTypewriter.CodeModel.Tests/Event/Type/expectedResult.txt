@@ -1,0 +1,5 @@
+﻿Action<int>
+Func<int?>
+Action<int[]>
+Func<List<int>?>
+MyCusDel

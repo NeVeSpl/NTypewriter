@@ -1,0 +1,5 @@
+﻿[int par, string par1]
+[]
+[int[] par]
+[int par]
+[TPar par]

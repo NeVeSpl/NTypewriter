@@ -1,0 +1,8 @@
+﻿{{- capture captured}}
+{{- for class in data.Classes | Symbols.WhereNamespaceStartsWith "NTypewriter.Tests.CodeModel"}}
+{{- for event in class.Events }}
+{{-  event.IsEvent }}
+{{ end }}
+{{- end }}
+{{- end }}
+{{- Save captured "result" }}

@@ -1,0 +1,5 @@
+﻿
+SampleClass
+
+SampleGenericClass<T>
+SampleGenericClass<T>

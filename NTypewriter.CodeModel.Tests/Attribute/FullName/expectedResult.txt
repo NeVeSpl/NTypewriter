@@ -1,0 +1,6 @@
+﻿SampleClass1
+    System.Diagnostics.DebuggerDisplayAttribute
+    NTypewriter.Tests.CodeModel.SampleAttribute
+SampleClass2
+SampleAttribute
+    System.AttributeUsageAttribute

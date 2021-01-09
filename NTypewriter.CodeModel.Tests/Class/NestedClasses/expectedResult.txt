@@ -1,0 +1,6 @@
+﻿SampleClass
+    NestedClassInSampleClass
+NestedClassInSampleClass
+SampleBaseClass<T>
+    NestedClassInSampleBaseClass<T>
+NestedClassInSampleBaseClass<T>

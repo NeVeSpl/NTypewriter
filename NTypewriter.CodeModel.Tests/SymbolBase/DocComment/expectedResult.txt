@@ -1,0 +1,14 @@
+﻿<member name="F:NTypewriter.Tests.CodeModel.SampleClass.integer">
+    <summary>
+    S1
+    </summary>
+</member>
+
+<member name="F:NTypewriter.Tests.CodeModel.SampleClass.array">
+    <summary>
+    S2
+    </summary>
+    <returns>R2</returns>
+</member>
+
+<member></member>

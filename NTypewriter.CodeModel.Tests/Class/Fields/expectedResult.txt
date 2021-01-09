@@ -1,0 +1,5 @@
+﻿SampleClass
+    SampleClassField
+SampleBaseClass
+    SampleBaseClassPrivateStaticReadonlyField
+    SampleBaseClassField

@@ -1,0 +1,9 @@
+﻿{{- capture captured}}
+{{- for class in data.Classes | Symbols.WhereNamespaceStartsWith "NTypewriter.Tests.CodeModel"}}
+{{- class.Name }}
+    {{- for member in class.#PropertyName#}}
+    {{ member}}
+    {{- end }}
+{{ end }}
+{{- end }}
+{{- Save captured "result" }}

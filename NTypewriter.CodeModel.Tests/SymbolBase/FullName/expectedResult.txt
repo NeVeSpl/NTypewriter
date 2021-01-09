@@ -1,0 +1,5 @@
+﻿NTypewriter.Tests.CodeModel.SampleClass
+NTypewriter.Tests.CodeModel.SampleClass.SampleNestedClass
+NTypewriter.Tests.CodeModel.SampleGenericClass<T>
+NTypewriter.Tests.CodeModel.SampleGenericClass<T>.SampleNestedClassInGeneric
+NTypewriter.Tests.CodeModel.SampleGenericClass<T>.SampleNestedGenericClass<T1>

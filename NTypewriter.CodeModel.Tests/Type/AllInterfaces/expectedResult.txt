@@ -1,0 +1,4 @@
+﻿[IComparable, IConvertible, IFormattable, IComparable<int>, IEquatable<int>, ISpanFormattable]
+[INested]
+[IBase<int>, INested]
+[IList<int>, ICollection<int>, IList, ICollection, IReadOnlyList<int>, IReadOnlyCollection<int>, IEnumerable<int>, IEnumerable]
