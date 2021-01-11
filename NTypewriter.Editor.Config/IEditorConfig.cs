@@ -6,6 +6,6 @@ namespace NTypewriter.Editor
 {
     public interface IEditorConfig : IHaveCustomFunctions
     {
-       
+        IEnumerable<string> GetNamespacesToBeSearched();
     }
 }

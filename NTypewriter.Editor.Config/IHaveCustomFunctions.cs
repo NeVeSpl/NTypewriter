@@ -6,6 +6,6 @@ namespace NTypewriter.Editor
 {
     public interface IHaveCustomFunctions
     {
-        IEnumerable<Type> GetTypesThatContainsStaticFunctionsToImport();        
+        IEnumerable<Type> GetTypesWithCustomFunctions();        
     }
 }
