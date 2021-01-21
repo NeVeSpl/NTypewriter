@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,17 +16,19 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptType_Simple
        
         bool boolType;
         //void voidType;
-        int integer;
+        int integer;    
         int? nullableInteger;
         string str;
         string? nullableStr;
         MyEnum enumik;
         MyEnum? nullableEnumik;
         Task<int> task;
-        
-        
+        [Required]
+        int? nullableInteger2;
 
-      
+
+
+
 
     }
 

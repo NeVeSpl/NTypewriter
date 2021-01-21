@@ -4,8 +4,8 @@ using System.Text;
 
 namespace NTypewriter.Editor.Config
 {
-    public interface IEditorConfig : IHaveCustomFunctions, IConstrainSearchedNamespaces
+    public interface IConstrainSearchedNamespaces
     {
-       
+        IEnumerable<string> GetNamespacesToBeSearched();
     }
 }

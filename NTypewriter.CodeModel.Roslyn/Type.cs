@@ -4,9 +4,10 @@ using Microsoft.CodeAnalysis;
 
 namespace NTypewriter.CodeModel.Roslyn
 {
-    internal class Type : SymbolBase, IType
+    internal class Type : SymbolBase, IType, ITypeReferencedByMember
     {
         private readonly ITypeSymbol symbol;
+        private ISymbolBase parent;
 
         public IType BaseType => NTypewriter.CodeModel.Roslyn.Type.CreateBaseType(symbol.BaseType);
         public bool IsAnonymousType => symbol.IsAnonymousType;
@@ -59,6 +60,7 @@ namespace NTypewriter.CodeModel.Roslyn
             }
         }
 
+        ISymbolBase ITypeReferencedByMember.Parent => parent;
 
         private protected Type(ITypeSymbol symbol) : base(symbol)
         {
@@ -74,11 +76,25 @@ namespace NTypewriter.CodeModel.Roslyn
             }
             return null;
         }
-        public static Type Create(ITypeSymbol symbol)
+        public static Type Create(ITypeSymbol symbol, ISymbolBase parent = null)
         {
             if (symbol != null)
             {
-                return new Type(symbol);
+                Type createdType = null;
+
+                switch (symbol)
+                {
+                    case INamedTypeSymbol namedTypeSymbol when namedTypeSymbol.TypeKind == TypeKind.Class && namedTypeSymbol.SpecialType == SpecialType.None:
+                        createdType = Class.Create(namedTypeSymbol);
+                        break;
+                    default:
+                        createdType = new Type(symbol);
+                        break;
+                }
+
+
+                createdType.parent = parent;
+                return createdType;
             }
             return null;
         }

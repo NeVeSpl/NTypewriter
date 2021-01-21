@@ -6,7 +6,7 @@ namespace NTypewriter.CodeModel.Roslyn
     {
         private readonly IFieldSymbol symbol;      
 
-        public IType Type => NTypewriter.CodeModel.Roslyn.Type.Create(symbol.Type);
+        public IType Type => NTypewriter.CodeModel.Roslyn.Type.Create(symbol.Type, this);
         public bool IsConst => symbol.IsConst;
         public bool IsReadOnly => symbol.IsReadOnly;
         public bool HasConstantValue => symbol.HasConstantValue;

@@ -7,9 +7,10 @@ namespace NTypewriter
 {
     public class Result
     {
+        private readonly List<MessageItem> messages = new List<MessageItem>();
+        private readonly List<RenderedItem> renderedItems = new List<RenderedItem>();
         private bool hasErrors;
-        private List<MessageItem> messages = new List<MessageItem>();
-        private List<RenderedItem> renderedItems = new List<RenderedItem>();
+       
 
         public bool HasErrors
         {

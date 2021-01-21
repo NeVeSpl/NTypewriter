@@ -41,7 +41,8 @@ string
 string | null
 MyEnum
 MyEnum | null
-Promise<number>";
+Promise<number>
+number";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
 
@@ -92,6 +93,7 @@ false
 null
 0
 null
+0
 """"
 null
 0

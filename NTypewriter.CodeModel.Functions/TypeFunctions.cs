@@ -16,7 +16,7 @@ namespace NTypewriter.CodeModel.Functions
             var postfix = String.Empty;
             if (type.IsNullable)
             {
-                if (!type.Attributes.Any(x => x.Name == "Required"))
+                if (!((type is ITypeReferencedByMember typeReference) && (typeReference.Parent?.Attributes.Any(x => x.Name == "Required") == true)))
                 {
                     postfix = " | null";
                 }
@@ -111,9 +111,16 @@ namespace NTypewriter.CodeModel.Functions
         /// </summary>
         public static string ToTypeScriptDefault(this IType type)
         {
-            if ((type.IsNullable) && (!type.Attributes.Any(x => x.Name == "Required")))
+            if (type.IsNullable)
             {
-                return "null";
+                if (!((type is ITypeReferencedByMember typeReference) && (typeReference.Parent?.Attributes.Any(x => x.Name == "Required")) == true))
+                {
+                    return "null";                   
+                }
+                else
+                {
+                    type = type.TypeArguments.FirstOrDefault() ?? type;
+                }
             }
             if (type.IsEnum)
             {

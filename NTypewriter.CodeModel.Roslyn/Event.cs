@@ -6,7 +6,7 @@ namespace NTypewriter.CodeModel.Roslyn
     {
         private readonly IEventSymbol symbol;      
 
-        public IType Type => NTypewriter.CodeModel.Roslyn.Type.Create(symbol.Type);
+        public IType Type => NTypewriter.CodeModel.Roslyn.Type.Create(symbol.Type, this);
        
 
         private Event(IEventSymbol symbol) : base(symbol)
