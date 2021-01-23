@@ -12,6 +12,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptType_Complex
 #pragma warning disable CS0169
     class ToTypeScriptType_Complex
     {
+        IEnumerable<int> myEnumerable;
         MyGeneric<int> mygeneric;
         int[] array;
         List<int> list;

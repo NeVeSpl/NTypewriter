@@ -58,11 +58,11 @@ namespace NTypewriter.CodeModel.Tests
         }
 
 
-        private async Task<NTypewriter.CodeModel.Roslyn.CodeModel> CreateCodeModel(CodeModelConfiguration config, params string[] code)
+        private async Task<global::NTypewriter.CodeModel.Roslyn.CodeModel> CreateCodeModel(CodeModelConfiguration config, params string[] code)
         {
             var project = CreateRoslynProjectFromCode(code);
             var compilation = await project.GetCompilationAsync();
-            var codeModel = new NTypewriter.CodeModel.Roslyn.CodeModel(compilation, config);
+            var codeModel = new global::NTypewriter.CodeModel.Roslyn.CodeModel(compilation, config);
             return codeModel;
         }
         private Project CreateRoslynProjectFromCode(params string[] code)

@@ -15,14 +15,14 @@ namespace NTypewriter.Tests.CodeModel
         /// <summary>very short summary</summary>
         /// <param name="a">p1</param>
         /// <param name="b">p2</param>
-        /// <returns>RR</returns>
+        /// <returns>RR</returns>    
         int Foo(int a, int b)
         {
             return a + b;
         }
 
-        /// <summary>very short summary 3</summary>       
-         int FooB(int a, int b)
+        /// <summary>very short summary 3 <see cref="GeometryFieldType"/></summary>       
+        int FooB(int a, int b)
         {
             return a + b;
         }

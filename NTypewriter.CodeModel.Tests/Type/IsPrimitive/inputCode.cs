@@ -14,6 +14,7 @@ namespace NTypewriter.Tests.CodeModel
         List<int>? list2;
         string str;
         Enumik enumik;
+        int[] array;
     }
 
     enum Enumik { First }

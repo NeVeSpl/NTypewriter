@@ -1,0 +1,37 @@
+﻿{{-
+capture output }}
+
+### NTypewriter
+
+{{   for class in data.Classes | Symbols.WhereNamespaceMatches "NTypewriter.CodeModel.Functions" | Symbols.WhereNameEndsWith "Functions"
+}}
+
+#### {{ class.Name }}
+
+Method | Description | Returns
+-------|-------------|---------
+{{- for function in class.Methods | Symbols.ThatArePublic }}
+{{    function.Name }} | {{ function.DocComment.Summary | String.StripNewlines }}  |  `{{function.ReturnType.Name }}`   
+
+{{- end }}
+{{- end }}
+
+### Scriban
+
+{{ for class in data.Classes | Symbols.WhereNamespaceMatches "Scriban.Functions" }}
+   {{ if !Custom.IsScribanFunctionSetAvailble class; continue; end;}}
+#### {{ class.Name }}
+
+Method | Description | Returns
+-------|-------------|---------
+{{- for function in class.Methods | Symbols.ThatArePublic | Symbols.ThatAreStatic  }}
+{{    function.Name }} | {{ function.DocComment.Summary | String.StripNewlines }}  |  `{{function.ReturnType.Name }}`   
+
+{{- end }}
+
+{{ end }}
+
+{{
+end
+Save output "../Documentation/BuiltInFunctions.md"
+-}}

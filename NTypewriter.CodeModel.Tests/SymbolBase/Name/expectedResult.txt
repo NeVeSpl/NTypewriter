@@ -1,3 +1,15 @@
-﻿Foo
+﻿Classes
+SampleClass
+SampleNestedClass
+SampleGenericClass<T>
+SampleNestedClassInGeneric
+SampleNestedGenericClass<TT>
+
+Methods
 Foo1
-Foo2
+Foo2<T2>
+Foo3
+Foo4
+Foo5<T5>
+Foo6
+Foo7

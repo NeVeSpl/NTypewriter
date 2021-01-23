@@ -1,5 +1,15 @@
-﻿NTypewriter.Tests.CodeModel.SampleClass
+﻿Classes
+NTypewriter.Tests.CodeModel.SampleClass
 NTypewriter.Tests.CodeModel.SampleClass.SampleNestedClass
 NTypewriter.Tests.CodeModel.SampleGenericClass<T>
 NTypewriter.Tests.CodeModel.SampleGenericClass<T>.SampleNestedClassInGeneric
-NTypewriter.Tests.CodeModel.SampleGenericClass<T>.SampleNestedGenericClass<T1>
+NTypewriter.Tests.CodeModel.SampleGenericClass<T>.SampleNestedGenericClass<TT>
+
+Methods
+void SampleClass.Foo1(void par1)
+void SampleClass.Foo2<T2>()
+void SampleNestedClass.Foo3()
+void SampleGenericClass<T>.Foo4()
+void SampleGenericClass<T>.Foo5<T5>()
+void SampleNestedClassInGeneric.Foo6()
+void SampleNestedGenericClass<TT>.Foo7()

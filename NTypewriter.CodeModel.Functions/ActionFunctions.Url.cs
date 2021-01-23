@@ -1,84 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace NTypewriter.CodeModel.Functions
 {
     /// <summary>
-    /// Method functions
+    /// Action functions
     /// </summary>
-    public static class MethodFunctions
+    public static partial class ActionFunctions
     {
-        private static readonly string[] httpVerbs = { "get", "post", "put", "delete", "patch", "head", "options", "connect", "trace" };
-
-
-        /// <summary>
-        /// Returns the http method used with a webapi action.
-        /// The http method is extracted from Http* or AcceptVerbs attribute or by naming convention if no attributes are specified.
-        /// </summary>
-        public static string ActionHttpMethod(this IMethod method)
-        {
-            // HTTP method can be specified with an attribute: AcceptVerbs, HttpDelete, HttpGet, HttpHead, HttpOptions, HttpPatch, HttpPost, or HttpPut.
-            // Otherwise, if the name of the controller method starts with one of the httpVerbs, then by convention the action supports that HTTP method. 
-            // If none of the above, the method supports POST.
-
-            var httpAttributes = method.Attributes.Where(a => a.Name.StartsWith("Http"));
-            var acceptAttribute = method.Attributes.FirstOrDefault(a => a.Name == "AcceptVerbs");
-
-            var verbs = httpAttributes.Select(a => a.Name.Remove(0, "Http".Length).ToLowerInvariant()).ToList();
-            if (acceptAttribute != null)
-            {
-                var args = acceptAttribute.Arguments.First().Value as object[];
-                verbs.AddRange(args.Select(x => x.ToString().ToLowerInvariant()));
-            }
-
-            // Prefer POST if multiple verbs are specified
-            if (verbs.Contains("post"))
-            {
-                return "post";
-            }
-
-            if (verbs.Any())
-            {
-                return verbs.First();
-            }
-
-            var methodName = method.Name.ToLowerInvariant();
-            return httpVerbs.FirstOrDefault(v => methodName.StartsWith(v)) ?? "post";
-        }
-
-
-        /// <summary>
-        /// Returns type name of the parameter that is sent to a webapi action in a request body.
-        /// </summary>
-        public static string ActionTypeSentByBody(this IMethod method)
-        {
-            var parameterTypeBlackList = new[] { "CancellationToken" };
-            var parameterAttributeBlackList = new[] { "FromHeader", "FromQuery", "FromRoute" , "FromServices" };
-
-            // CancellationToken will never be send from TypeScript, filter them out before generating RequestData
-            var dataParameters = method.Parameters
-                .Where(x => !parameterTypeBlackList.Contains(x.Type.Name))
-                .Where(x => !x.Type.IsPrimitive || x.Attributes.Any(y => y.Name == "FromBody"))
-                .Where(x => x.Attributes.All(y => !parameterAttributeBlackList.Contains(y.Name)))
-                .ToList();
-
-            if (dataParameters.Any())
-            {
-                return dataParameters.First().Type.Name;
-            }
-
-            return "";
-        }
-
-
         /// <summary>
         /// Returns the url for the Web API action based on route attributes (or the supplied convention route if no attributes are present).
         /// Route parameters are converted to TypeScript string interpolation syntax by prefixing all parameters with $ e.g. ${id}.
         /// Optional parameters are added as QueryString parameters for GET and HEAD requests.
         /// </summary>
-        public static string ActionUrl(this IMethod method)
+        public static string Url(this IMethod method)
         {
             var prefix = GetRouteFromTypeAttributes(method.ContainingType);
             var postfix = GetRouteFromMethodAttributes(method);
@@ -101,6 +39,7 @@ namespace NTypewriter.CodeModel.Functions
             route = ReplaceSpecialParameters(method, route);
             route = ConvertRouteParameters(route);
             route = AppendQueryString(method, route);
+            route = AppendFromQuery(method, route);
 
             return route;
         }
@@ -126,13 +65,13 @@ namespace NTypewriter.CodeModel.Functions
         }
         private static string ReplaceSpecialParameters(IMethod method, string route)
         {
-            string controllerName =  method.ContainingType.BareName;
-            controllerName = controllerName.EndsWith("Controller") ? controllerName.Substring(0, controllerName.Length -"Controller".Length) : controllerName;
+            string controllerName = method.ContainingType.BareName;
+            controllerName = controllerName.EndsWith("Controller") ? controllerName.Substring(0, controllerName.Length - "Controller".Length) : controllerName;
             route = route.Replace("{controller}", controllerName).Replace("[controller]", controllerName);
 
             var action = method.Attributes.FirstOrDefault(a => a.Name == "ActionName")?.Arguments.FirstOrDefault(x => x.Name == "name")?.Value.ToString();
             string actionName = action ?? method.BareName;
-            route = route.Replace("{action}", actionName).Replace("[action]", actionName);            
+            route = route.Replace("{action}", actionName).Replace("[action]", actionName);
 
             return route;
         }
@@ -140,27 +79,66 @@ namespace NTypewriter.CodeModel.Functions
         private static readonly Regex RouteParameterRegex = new Regex(@"\{(\w+).*?\}", RegexOptions.Singleline | RegexOptions.Compiled);
         private static string ConvertRouteParameters(string route)
         {
-            return RouteParameterRegex.Replace(route,  m => $"${{{m.Groups[1].Value}}}");
+            return RouteParameterRegex.Replace(route, m => $"${{{m.Groups[1].Value}}}");
         }
         private static string AppendQueryString(IMethod method, string route)
         {
             var parameterAttributeBlackList = new[] { "FromHeader", "FromBody", "FromRoute", "FromServices" };
-
-            var prefix = route.Contains("?") ? "&" : "?";
             var queryParameters = new List<string>();
 
             foreach (var parameter in method.Parameters.Where(p => p.Type.IsPrimitive && p.Attributes.All(x => !parameterAttributeBlackList.Contains(x.Name))))
             {
                 if (!route.Contains($"${{{parameter.BareName}}}"))
                 {
-                    queryParameters.Add($"{parameter.BareName}=${{{parameter.BareName}}}");
+                    if (parameter.Type.Name == "string")
+                    {
+                        queryParameters.Add($"{parameter.BareName}=${{encodeURIComponent({parameter.BareName})}}");
+                    }
+                    else
+                    {
+                        queryParameters.Add($"{parameter.BareName}=${{{parameter.BareName}}}");
+                    }
+                    
                 }
             }
             if (queryParameters.Any())
             {
+                var prefix = route.Contains("?") ? "&" : "?";
                 route += $"{prefix}{String.Join("&", queryParameters)}";
             }
             return route;
+        }
+
+
+
+        private static string AppendFromQuery(IMethod method, string route)
+        {
+            string connector = route.Contains("?") ? "&" : "?";
+            var builder = new StringBuilder();
+            foreach (IParameter parameter in method.Parameters)
+            {
+                if ((!parameter.Type.IsPrimitive) && parameter.Attributes.Any(x => x.Name == "FromQuery"))
+                {
+                    if (parameter.Type is IClass @class)
+                    {                   
+                        foreach (var prop in @class.Properties)
+                        {
+                            builder.Append(connector);
+                            if (parameter.Type.Name == "string")
+                            {
+                                builder.Append($"{prop.BareName.ToLowerFirst()}=${{encodeURIComponent({parameter.BareName}.{prop.BareName.ToLowerFirst()})}}");
+                            }
+                            else
+                            {
+                                builder.Append($"{prop.BareName.ToLowerFirst()}=${{{parameter.BareName}.{prop.BareName.ToLowerFirst()}}}");
+                            }
+                            connector = "&";
+                        }
+                    }
+                }
+            }
+            var postfix = builder.ToString();
+            return route + postfix;
         }
     }
 }

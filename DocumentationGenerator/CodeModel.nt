@@ -1,0 +1,25 @@
+{{-
+capture output
+-}}
+![NTypewriter CodeModel](NTypewriter.CodeModel.png)
+
+{{ for item in data.Interfaces | Symbols.WhereNamespaceMatches "NTypewriter.CodeModel" }}
+      
+#### {{item.Name}}
+
+{{item.DocComment.Summary | String.Strip }}
+
+Property | Description | Returns
+--------|---------|-----------
+{{ for prop in item.Properties -}}
+   {{prop.Name}} | {{ prop.DocComment.Summary | String.StripNewlines }} | `{{ prop.Type.Name }}`  
+{{ end }}
+
+---
+{{ end }}
+
+
+{{-
+end
+Save output "../Documentation/CodeModel.md"
+-}}

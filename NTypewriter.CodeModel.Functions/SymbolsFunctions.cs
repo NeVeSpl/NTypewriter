@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace NTypewriter.CodeModel.Functions
 {
     /// <summary>
-    /// Symbols functions
+    /// Symbols functions/filters
     /// </summary>
     public static class SymbolsFunctions
     {
@@ -86,6 +86,15 @@ namespace NTypewriter.CodeModel.Functions
         public static IEnumerable<ISymbolBase> ThatArePublic(this IEnumerable<ISymbolBase> symbols)
         {
             var result = symbols.Where(x => x.IsPublic);
+            return result;
+        }
+
+        /// <summary>
+        /// Filters symbols by the static modifier
+        /// </summary>
+        public static IEnumerable<ISymbolBase> ThatAreStatic(this IEnumerable<ISymbolBase> symbols)
+        {
+            var result = symbols.Where(x => x.IsStatic);
             return result;
         }
     }

@@ -19,5 +19,7 @@ namespace NTypewriter.Tests.CodeModel
             get { return arr[i]; }
             set { arr[i] = value; }
         }
+
+        (int a, bool b) ValueTuple { get; set; }
     }
 }

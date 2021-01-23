@@ -11,6 +11,7 @@ namespace NTypewriter.CodeModel.Roslyn
         private Lazy<AttributeArgumentCollection> arguments;
 
         public IEnumerable<IAttributeArgument> Arguments => arguments.Value;
+        public IClass AttributeClass => Class.Create(attributeData.AttributeClass);
         public string FullName => attributeData.AttributeClass.ToDisplayString();
         public string Name
         { 

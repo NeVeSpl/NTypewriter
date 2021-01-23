@@ -12,5 +12,6 @@ namespace NTypewriter.Tests.CodeModel
         int? integer2;
         List<int> list;
         List<int>? list2;     
+        string? @string;
     }
 }

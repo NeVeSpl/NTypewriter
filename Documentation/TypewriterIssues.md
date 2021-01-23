@@ -1,0 +1,342 @@
+﻿
+- [x] [Enable filtering of implemented interfaces and base classes #1](https://github.com/frhagn/Typewriter/issues/1). 
+- [ ] ~~[Save project file when adding output file(s) #2](https://github.com/frhagn/Typewriter/issues/2)~~
+- [ ] ~~[Set default tab mode to 'insert spaces' when installing Typewriter #3](https://github.com/frhagn/Typewriter/issues/3)~~
+- [ ] ~~[Enable 'Smart indenting' for *.tst #4](https://github.com/frhagn/Typewriter/issues/4)~~
+- [x] [Delete unmodified files when saving a template #5](https://github.com/frhagn/Typewriter/issues/5)
+- [x] [Transform template with context menu instead of when saving the template #6](https://github.com/frhagn/Typewriter/issues/6)
+- [x] [Add support for 'or' in filters #7](https://github.com/frhagn/Typewriter/issues/7)
+- [ ] ~~[Add item templates for common scenarios #8](https://github.com/frhagn/Typewriter/issues/8)~~
+- [ ] ~~[Suspend transformation on build #9](https://github.com/frhagn/Typewriter/issues/9)~~
+- [x] [Create README.md #10](https://github.com/frhagn/Typewriter/issues/10)
+- [x] [Create getting started guide #11](https://github.com/frhagn/Typewriter/issues/11)
+- [ ] ~~[Add support for Visual Studio 2015 #12](https://github.com/frhagn/Typewriter/issues/12)~~
+- [ ] **[Add support for Linq filter expressions #13](https://github.com/frhagn/Typewriter/issues/13)**
+- [x] [Add support for custom extension methods](https://github.com/frhagn/Typewriter/issues/14)
+- [ ] ~~[Bug: Move file adds (1) to the rendered filename #15](https://github.com/frhagn/Typewriter/issues/15)~~
+- [ ] ~~[Add IsDate property #16](https://github.com/frhagn/Typewriter/issues/16)~~
+- [x] [Add support for extension method parameters #17](https://github.com/frhagn/Typewriter/issues/17)
+- [x] [Add support for template variables #18](https://github.com/frhagn/Typewriter/issues/18)
+- [x] [add support for using generics when using $Type #19](https://github.com/frhagn/Typewriter/issues/19)
+- [ ] ~~[initial tests and changes to handle generic types. #20](https://github.com/frhagn/Typewriter/issues/20)~~
+- [x] [Add support for ASP.NET vNext applications #21](https://github.com/frhagn/Typewriter/issues/21)
+- [x] [Optional type #22](https://github.com/frhagn/Typewriter/issues/22)
+- [x] [Generic lists #23](https://github.com/frhagn/Typewriter/issues/23)
+- [x] [render tests, generic tests and generic support for classes #24](https://github.com/frhagn/Typewriter/issues/24)
+- [x] [Add IntelliSense för custom methods #25](https://github.com/frhagn/Typewriter/issues/25)
+- [x] [Add declared custom methods to statement completion list #26](https://github.com/frhagn/Typewriter/issues/26)
+- [x] [Routing #27](https://github.com/frhagn/Typewriter/issues/27)
+- [x] [BaseClass returns "Object" for all classes #28](https://github.com/frhagn/Typewriter/issues/28)
+- [x] [Guid should return "string" when mapping to TypeScript type #29](https://github.com/frhagn/Typewriter/issues/29)
+- [x] [Add support for nested classes #30](https://github.com/frhagn/Typewriter/issues/30)
+- [x] [Add support for containing class #31](https://github.com/frhagn/Typewriter/issues/31)
+- [x] [Add support for dot syntax #32](https://github.com/frhagn/Typewriter/issues/32)
+- [x] [Use standard c# method syntax for custom extensions methods #33](https://github.com/frhagn/Typewriter/issues/33)
+- [x] [Remove type shortcuts from constants, fields, properties and methods #34](https://github.com/frhagn/Typewriter/issues/34)
+- [ ] **[Add support for external extensions #35](https://github.com/frhagn/Typewriter/issues/35)**
+- [x] [Inheritance #36](https://github.com/frhagn/Typewriter/issues/36)
+- [ ] ~~[Roslyn based IntelliSense, CodeModel refactoring #37](https://github.com/frhagn/Typewriter/issues/37)~~
+- [ ] ~~[Improve error handling #38](https://github.com/frhagn/Typewriter/issues/38)~~
+- [ ] ~~[Highlight syntax errors in the template editor #39](https://github.com/frhagn/Typewriter/issues/39)~~
+- [ ] ~~[Make the TemplateCodeParser context aware #40](https://github.com/frhagn/Typewriter/issues/40)~~
+- [ ] ~~[Visual Studio RTM #41](https://github.com/frhagn/Typewriter/issues/41)~~
+- [x] [Reserved word C# @... syntax needs @ removed #42](https://github.com/frhagn/Typewriter/issues/42)
+- [x] [Convert dynamic properties to any? #43](https://github.com/frhagn/Typewriter/issues/43)
+- [x] [Return "any" type for properties of type System.Object or dynamic. #44](https://github.com/frhagn/Typewriter/issues/44)
+- [x] [Generic type bug fixes #45](https://github.com/frhagn/Typewriter/issues/45)
+- [ ] ~~[Improve the WebApiController.tst template #46](https://github.com/frhagn/Typewriter/issues/46)~~
+- [x] [Add support for events and delegates #47](https://github.com/frhagn/Typewriter/issues/47)
+- [x] [Add support for creating definition files *.d.ts #48](https://github.com/frhagn/Typewriter/issues/48)
+- [x] [Render all classes in solution #49](https://github.com/frhagn/Typewriter/issues/49)
+- [ ] **[Add a preview pane to the template editor #50](https://github.com/frhagn/Typewriter/issues/50)**
+- [x] [Add extensions for ASP.NET MVC Controllers #51](https://github.com/frhagn/Typewriter/issues/51)
+- [x] [Add $Dependencies that references all dependent classes #52](https://github.com/frhagn/Typewriter/issues/52)
+- [ ] ~~[Add extensions for Nancy Modules #53](https://github.com/frhagn/Typewriter/issues/53)~~
+- [x] [Support for delegates and events #54](https://github.com/frhagn/Typewriter/issues/54)
+- [x] [Add support for creating TypeScript JSX #55](https://github.com/frhagn/Typewriter/issues/55)
+- [x] [Array.IsPrimitive with Roslyn throws nullreference exception #56](https://github.com/frhagn/Typewriter/issues/56)
+- [x] [handle IArrayTypeSymbol when getting FullName in Roslyn #57](https://github.com/frhagn/Typewriter/issues/57)
+- [ ] ~~[Debugging templates #58](https://github.com/frhagn/Typewriter/issues/58)~~
+- [ ] ~~[Some of the templates are not working #59](https://github.com/frhagn/Typewriter/issues/59)~~
+- [x] [Add support for output file name configuration #60](https://github.com/frhagn/Typewriter/issues/60)
+- [x] [Best way to keep templates out of source control #61](https://github.com/frhagn/Typewriter/issues/61)
+- [ ] ~~[Cannot use custom method in $Parameters collection #62](https://github.com/frhagn/Typewriter/issues/62)~~
+- [x] [Support for none reference projects #63](https://github.com/frhagn/Typewriter/issues/63)
+- [ ] ~~[Add support for OData Controllers #64](https://github.com/frhagn/Typewriter/issues/64)~~
+- [ ] ~~[Fixed incorrect build action for Models and WebApiController templates #65](https://github.com/frhagn/Typewriter/issues/65)~~
+- [ ] ~~[Steps to contributing #66](https://github.com/frhagn/Typewriter/issues/66)~~
+- [ ] ~~[Concurrency fixes #67](https://github.com/frhagn/Typewriter/issues/67)~~
+- [x] [Utilize an existing templating engine vs. a new custom one #68](https://github.com/frhagn/Typewriter/issues/68)
+- [x] [No generation for public neasted class #69](https://github.com/frhagn/Typewriter/issues/69)
+- [x] [Suggestion: add support for comments #70](https://github.com/frhagn/Typewriter/issues/70)
+- [ ] ~~[when using .. in Template constructor to output files to another folder, a .. folder is created in the project inside VS #71](https://github.com/frhagn/Typewriter/issues/71)~~
+- [x] [Add support for Attribute properties/values #72](https://github.com/frhagn/Typewriter/issues/72)
+- [ ] ~~[Does not work in Windows Class Library #73](https://github.com/frhagn/Typewriter/issues/73)~~
+- [x] [Option to force template rendering #74](https://github.com/frhagn/Typewriter/issues/74)
+- [x] [Output multiple types to single TS file? #75](https://github.com/frhagn/Typewriter/issues/75)
+- [ ] ~~[ASP.NET 5 Support #76](https://github.com/frhagn/Typewriter/issues/76)~~
+- [x] [Set the path of the generated ts files #77](https://github.com/frhagn/Typewriter/issues/77)
+- [x] [Error rendering template ... if enum is type of byte #78](https://github.com/frhagn/Typewriter/issues/78)
+- [ ] **[Update CamelCase helper to support abbreviation-prefixed property names #79](https://github.com/frhagn/Typewriter/issues/79)**
+- [x] [OutputFilenameFactory no longer supports changing path #80](https://github.com/frhagn/Typewriter/issues/80)
+- [ ] **[Set Build Action for the generated files #81](https://github.com/frhagn/Typewriter/issues/81)**
+- [ ] ~~[Object reference not set to an instance of an object. Template:... #82](https://github.com/frhagn/Typewriter/issues/82)~~
+- [x] [IncludeReferencedProjects not working? #83](https://github.com/frhagn/Typewriter/issues/83)
+- [x] [Added Option to force template rendering #74 #84](https://github.com/frhagn/Typewriter/issues/84)
+- [ ] ~~[How do you use this template? #85](https://github.com/frhagn/Typewriter/issues/85)~~
+- [x] [Stop Typewriter rendering templates when a file is saved #86](https://github.com/frhagn/Typewriter/issues/86)
+- [x] [Add support for generics <T> #87](https://github.com/frhagn/Typewriter/issues/87)
+- [x] [Generating .cs files #88](https://github.com/frhagn/Typewriter/issues/88)
+- [x] [Add Support for referenced libraries #89](https://github.com/frhagn/Typewriter/issues/89)
+- [ ] ~~['Default' is not defined in 'Type' #90](https://github.com/frhagn/Typewriter/issues/90)~~
+- [ ] ~~[Added option feature to don't render the template when a file is saved. #91](https://github.com/frhagn/Typewriter/issues/91)~~
+- [ ] ~~[Only one source file can be active for any one template file in the case multiple templates need types from a single source file #92](https://github.com/frhagn/Typewriter/issues/92)~~
+- [x] [Add support for field values #93](https://github.com/frhagn/Typewriter/issues/93)
+- [ ] ~~[Error processing queue #94](https://github.com/frhagn/Typewriter/issues/94)~~
+- [X] [Multiple selections? Blacklisting? #95](https://github.com/frhagn/Typewriter/issues/95)
+- [X] [Supported conditional operations in Template .tst! #96](https://github.com/frhagn/Typewriter/issues/96)
+- [ ] ~~[Convert wildcard parameters #97](https://github.com/frhagn/Typewriter/issues/97)~~
+- [x] [Web API Extension Urls include routename #98](https://github.com/frhagn/Typewriter/issues/98)
+- [ ] ~~[can you add gulp support for typewriter #99](https://github.com/frhagn/Typewriter/issues/99)~~
+- [x] [ability to convert enums #100](https://github.com/frhagn/Typewriter/issues/100)
+- [x] [Get constant's value #101](https://github.com/frhagn/Typewriter/issues/101)
+- [x] [Get constant's value #102](https://github.com/frhagn/Typewriter/issues/102)
+- [x] [Classes from Nuget package #103](https://github.com/frhagn/Typewriter/issues/103)
+- [x] [Bugfix: skip non-compile files during rendering #104](https://github.com/frhagn/Typewriter/issues/104)
+- [ ] ~~[Feature: log thrown exception #105](https://github.com/frhagn/Typewriter/issues/105)~~
+- [x] [Configure output directory #106](https://github.com/frhagn/Typewriter/issues/106)
+- [ ] ~~[Help for Milestone 2.0 #107](https://github.com/frhagn/Typewriter/issues/107)~~
+- [ ] ~~[Suppress errors until a filter is matched #108](https://github.com/frhagn/Typewriter/issues/108)~~
+- [x] [cannot access names of static properties of a class #109](https://github.com/frhagn/Typewriter/issues/109)
+- [ ] ~~[remove module on code generation. #110](https://github.com/frhagn/Typewriter/issues/110)~~
+- [x] [Support classes in assemblies using reflection #111](https://github.com/frhagn/Typewriter/issues/111)
+- [ ] ~~[typewriter doesn't handle nested RESTful routes properly #112](https://github.com/frhagn/Typewriter/issues/112)~~
+- [ ] **[FR: have Typewriter extension save the .ts files it generates #113](https://github.com/frhagn/Typewriter/issues/113)**
+- [x] [Do the attributes parameters capture data validation attributes? #114](https://github.com/frhagn/Typewriter/issues/114)
+- [ ] **[Web API extensions for ASP.NET Core 1.0 #115](https://github.com/frhagn/Typewriter/issues/115)**
+- [ ] ~~[ASP.NET WebAPI 2 Error Processing Queue Object Reference Exception #116](https://github.com/frhagn/Typewriter/issues/116)~~
+- [ ] ~~[How can I type a method #117](https://github.com/frhagn/Typewriter/issues/117)~~
+- [ ] ~~[a bug with $Url not picking up a parameter #118](https://github.com/frhagn/Typewriter/issues/118)~~
+- [ ] ~~[Code in comments break parser #119](https://github.com/frhagn/Typewriter/issues/119)~~
+- [ ] ~~[Method.Parent (Class) is of the Wrong Type #120](https://github.com/frhagn/Typewriter/issues/120)~~
+- [ ] ~~[how do you debug a tst file? #121](https://github.com/frhagn/Typewriter/issues/121)~~
+- [x] [Genrate barrel with the created files #122](https://github.com/frhagn/Typewriter/issues/122)
+- [ ] ~~[Map Property Types #123](https://github.com/frhagn/Typewriter/issues/123)~~
+- [ ] [Trigger file generation from outside source eg. gulp or ... #124](https://github.com/frhagn/Typewriter/issues/124)
+- [ ] ~~[change $Type in &Properies by condition. #125](https://github.com/frhagn/Typewriter/issues/125)~~
+- [x] [Keep/create folder structure #126](https://github.com/frhagn/Typewriter/issues/126)
+- [x] [Partial C# classes result in multiple conflicting TS classes #127](https://github.com/frhagn/Typewriter/issues/127)
+- [ ] ~~[File generation not working for Typescript projects (HTML Application with Typescript) #128](https://github.com/frhagn/Typewriter/issues/128)~~
+- [ ] ~~[Interpolated strings cause template render error. #129](https://github.com/frhagn/Typewriter/issues/129)~~
+- [ ] ~~[make ko.observable* calls include generic type #130](https://github.com/frhagn/Typewriter/issues/130)~~
+- [ ] ~~[C# Collection type as any[] #131](https://github.com/frhagn/Typewriter/issues/131)~~
+- [ ] ~~[property.Type.OriginalName returns empty string if type is byte[] #132](https://github.com/frhagn/Typewriter/issues/132)~~
+- [x] **[Command line support #133](https://github.com/frhagn/Typewriter/issues/133)**
+- [ ] ~~[match nested classes and classes at the same time (want to use the same body) #134](https://github.com/frhagn/Typewriter/issues/134)~~
+- [ ] ~~[Broaden install targets to include VS15 Preview #135](https://github.com/frhagn/Typewriter/issues/135)~~
+- [ ] ~~[Error rendering template #136](https://github.com/frhagn/Typewriter/issues/136)~~
+- [ ] ~~[VB is not supported #137](https://github.com/frhagn/Typewriter/issues/137)~~
+- [ ] ~~[KeyValuePair<T,T> not rendered #138](https://github.com/frhagn/Typewriter/issues/138)~~
+- [ ] ~~[Added the ability to differentiate b/t DateTime & DateTimeOffset #139](https://github.com/frhagn/Typewriter/issues/139)~~
+- [ ] ~~[Namespace as module name #140](https://github.com/frhagn/Typewriter/issues/140)~~
+- [x] [Pull commonalities between Interface, Class and Type into a C# Interface #141](https://github.com/frhagn/Typewriter/issues/141)
+- [ ] ~~[Dont overwrite input files #142](https://github.com/frhagn/Typewriter/issues/142)~~
+- [ ] ~~[Use System.ComponentModel.DataAnnotations.* in .tst Templates #143](https://github.com/frhagn/Typewriter/issues/143)~~
+- [ ] ~~[Newtonsoft.Json.Linq.JObject parameter crashes Visual Studio 2015 #144](https://github.com/frhagn/Typewriter/issues/144)~~
+- [x] [Filter CancellationToken before generating RequestData #145](https://github.com/frhagn/Typewriter/issues/145)
+- [ ] ~~[CamelCase bug #146](https://github.com/frhagn/Typewriter/issues/146)~~
+- [ ] ~~[Bug? if only enum is selected no TS file output? #147](https://github.com/frhagn/Typewriter/issues/147)~~
+- [ ] ~~[Double quotes in char break parser #148](https://github.com/frhagn/Typewriter/issues/148)~~
+- [ ] ~~[right clicking and selecting Render template crashing #149](https://github.com/frhagn/Typewriter/issues/149)~~
+- [x] [Ability to loop through classes without creating files #150](https://github.com/frhagn/Typewriter/issues/150)
+- [ ] ~~[Lambda Filtering on custom List<Property> #151](https://github.com/frhagn/Typewriter/issues/151)~~
+- [ ] ~~[Visual Studio 2017 Support #152](https://github.com/frhagn/Typewriter/issues/152)~~
+- [ ] ~~[Generic base class type parameter not correct #153](https://github.com/frhagn/Typewriter/issues/153)~~
+- [ ] ~~[Arbitary C# Method definition breaks custom extension expression evaluation #154](https://github.com/frhagn/Typewriter/issues/154)~~
+- [x] [Abstract classes? #155](https://github.com/frhagn/Typewriter/issues/155)
+- [ ] **[is there way to render all templates in a project during the build ? #156](https://github.com/frhagn/Typewriter/issues/156)**
+- [ ] ~~[Extract Value from EnumMemberAttribute on EnumValue #157](https://github.com/frhagn/Typewriter/issues/157)~~
+- [ ] ~~[It does not install in Visual Studio 2017 RC #158](https://github.com/frhagn/Typewriter/issues/158)~~
+- [ ] ~~[Template in website #159](https://github.com/frhagn/Typewriter/issues/159)~~
+- [ ] ~~[how can i exclude namespace from conversion? #160](https://github.com/frhagn/Typewriter/issues/160)~~
+- [ ] ~~[Only class own's properties are available #161](https://github.com/frhagn/Typewriter/issues/161)~~
+- [ ] ~~[Support for function overloading #162](https://github.com/frhagn/Typewriter/issues/162)~~
+- [ ] ~~[Error when trying to render the template #163](https://github.com/frhagn/Typewriter/issues/163)~~
+- [ ] ~~[Model generation/rendering doesn't work on Visual Studio.NET 2017 RC4 #164](https://github.com/frhagn/Typewriter/issues/164)~~
+- [x] [Default Guid = "00000000-0000-0000-0000-000000000000" #165](https://github.com/frhagn/Typewriter/issues/165)
+- [ ] ~~[Generating Imports for custom Types #166](https://github.com/frhagn/Typewriter/issues/166)~~
+- [ ] ~~[how can I get the filename of a base class? #167](https://github.com/frhagn/Typewriter/issues/167)~~
+- [ ] ~~[Unloaded projects break Render Template #168](https://github.com/frhagn/Typewriter/issues/168)~~
+- [ ] ~~[Add default value for Date type #169](https://github.com/frhagn/Typewriter/issues/169)~~
+- [x] [static methods #170](https://github.com/frhagn/Typewriter/issues/170)
+- [x] [Enable generating code for referenced external DLLs #171](https://github.com/frhagn/Typewriter/issues/171)
+- [ ] ~~[Parameters in the Url are not encoded #172](https://github.com/frhagn/Typewriter/issues/172)~~
+- [ ] ~~[Reusing TST files across multiple web projects #173](https://github.com/frhagn/Typewriter/issues/173)~~
+- [ ] **[Code model and Filter for `struct`s #174](https://github.com/frhagn/Typewriter/issues/174)**
+- [ ] ~~[Initial ASP.Net Core support #175](https://github.com/frhagn/Typewriter/issues/175)~~
+- [ ] ~~[Please add support for <inheritdoc /> #176](https://github.com/frhagn/Typewriter/issues/176)~~
+- [ ] ~~[Unable to format constant value as a typescript literal #177](https://github.com/frhagn/Typewriter/issues/177)~~
+- [x] [Broken international characters: the file is written as UTF-8 and read as ANSI by Visual Studio #178](https://github.com/frhagn/Typewriter/issues/178)
+- [ ] ~~[Requisites for building the project should be included in readme.md #179](https://github.com/frhagn/Typewriter/issues/179)~~
+- [ ] **[Provide a way to manually stop rendering #180](https://github.com/frhagn/Typewriter/issues/180)**
+- [x] [Prefix property type with namespace #181](https://github.com/frhagn/Typewriter/issues/181)
+- [ ] ~~[Fixes #179 missing references and libraries that break the solution build. #182](https://github.com/frhagn/Typewriter/issues/182)~~
+- [ ] ~~[Fixes #178 by writing UTF8 BOM in generated files #183](https://github.com/frhagn/Typewriter/issues/183)~~
+- [x] [Indexers #184](https://github.com/frhagn/Typewriter/issues/184)
+- [ ] ~~[Visual Sutdio 2017 Add New Item doesn't show TypeScript Template #185](https://github.com/frhagn/Typewriter/issues/185)~~
+- [x] **[Programmatically Render Templates #186](https://github.com/frhagn/Typewriter/issues/186)**
+- [x] [Does not see files added to solution as a link. #187](https://github.com/frhagn/Typewriter/issues/187)
+- [ ] ~~[Exclude folder of selected folder. #188](https://github.com/frhagn/Typewriter/issues/188)~~
+- [x] [Support for default parameters #189](https://github.com/frhagn/Typewriter/issues/189)
+- [x] [Attribute value behavior changes on single parameter #190](https://github.com/frhagn/Typewriter/issues/190)
+- [ ] ~~[webapi - added support for default route on class and routes in Http-… #191](https://github.com/frhagn/Typewriter/issues/191)~~
+- [ ] ~~[Type Writer for Visual Studio Code #192](https://github.com/frhagn/Typewriter/issues/192)~~
+- [x] [Output separate files per class #193](https://github.com/frhagn/Typewriter/issues/193)
+- [ ] ~~[$RequestData needs special handling for array parameters #194](https://github.com/frhagn/Typewriter/issues/194)~~
+- [ ] ~~[VS Pro 2017 v15.2 (26430.16 release) error when running Typewriter - not implemented #195](https://github.com/frhagn/Typewriter/issues/195)~~
+- [ ] **[CLI interface #196](https://github.com/frhagn/Typewriter/issues/196)**
+- [ ] ~~[Encoding number parameters in Url #197](https://github.com/frhagn/Typewriter/issues/197)~~
+- [ ] ~~[$RequestData renders incorrectly #198](https://github.com/frhagn/Typewriter/issues/198)~~
+- [ ] ~~[Encoding parameters in Url #199](https://github.com/frhagn/Typewriter/issues/199)~~
+- [ ] ~~[$RequestData should return undefined instead of null for get and delete http requests #200](https://github.com/frhagn/Typewriter/issues/200)~~
+- [ ] ~~[Web API extensions for ASP.NET Core 2.0 #201](https://github.com/frhagn/Typewriter/issues/201)~~
+- [x] [Support for special charactes in comments #202](https://github.com/frhagn/Typewriter/issues/202)
+- [ ] ~~[Support for special characters in C# comments. #203](https://github.com/frhagn/Typewriter/issues/203)~~
+- [ ] ~~[TypeWriter does not render tst after update visual studio to 15.3 #204](https://github.com/frhagn/Typewriter/issues/204)~~
+- [x] [Support for public static readonly fields #205](https://github.com/frhagn/Typewriter/issues/205)
+- [ ] ~~[How to post ajax data in body rather than url #206](https://github.com/frhagn/Typewriter/issues/206)~~
+- [ ] ~~[Binary type #207](https://github.com/frhagn/Typewriter/issues/207)~~
+- [ ] ~~[Any way to extract enums embedded in a class? #208](https://github.com/frhagn/Typewriter/issues/208)~~
+- [ ] ~~[added some unit test to support action route as per comment from fran… #209](https://github.com/frhagn/Typewriter/issues/209)~~
+- [x] [Have functions outside of $Classes #210](https://github.com/frhagn/Typewriter/issues/210)
+- [x] [List of all attributes #211](https://github.com/frhagn/Typewriter/issues/211)
+- [ ] ~~[If output file is deleted, it is not automatically regerated #212](https://github.com/frhagn/Typewriter/issues/212)~~
+- [x] [Generate for dependencies of specific classes #213](https://github.com/frhagn/Typewriter/issues/213)
+- [ ] ~~[Added render all menu item #214](https://github.com/frhagn/Typewriter/issues/214)~~
+- [ ] ~~[Support for IsAbstract in Method #215](https://github.com/frhagn/Typewriter/issues/215)~~
+- [ ] ~~[Version 1.13 not available for download? #216](https://github.com/frhagn/Typewriter/issues/216)~~
+- [ ] ~~[DocComments only works when saving the .tst file #217](https://github.com/frhagn/Typewriter/issues/217)~~
+- [ ] ~~[$url generates empty string with version 1.13 #218](https://github.com/frhagn/Typewriter/issues/218)~~
+- [ ] ~~[1.14.0 VSIX won't install in VS 2017 Pro, previous versions work fine. #219](https://github.com/frhagn/Typewriter/issues/219)~~
+- [ ] ~~[#218 if routeprefix on class is empty, check for routeprefix on base class #220](https://github.com/frhagn/Typewriter/issues/220)~~
+- [ ] ~~[Type.BaseClass vs base "Type" #221](https://github.com/frhagn/Typewriter/issues/221)~~
+- [ ] ~~[Default route with method attribute returned wrong url #222](https://github.com/frhagn/Typewriter/issues/222)~~
+- [ ] ~~[Type.Default() does not correctly detect collections or dictionaries #223](https://github.com/frhagn/Typewriter/issues/223)~~
+- [ ] ~~[[FR]: Substitute 'any' for properties of unknown type #224](https://github.com/frhagn/Typewriter/issues/224)~~
+- [ ] ~~[Exposing Type on Class #225](https://github.com/frhagn/Typewriter/issues/225)~~
+- [ ] ~~[Work for Inner Classes and Include Base Classes #226](https://github.com/frhagn/Typewriter/issues/226)~~
+- [ ] ~~[Class.Interfaces always empty #227](https://github.com/frhagn/Typewriter/issues/227)~~
+- [ ] ~~[Do we have support to Json.net? #228](https://github.com/frhagn/Typewriter/issues/228)~~
+- [ ] ~~[Typewriter doesn't work with project type "Website" #229](https://github.com/frhagn/Typewriter/issues/229)~~
+- [ ] ~~[Attribute.Value is empty #230](https://github.com/frhagn/Typewriter/issues/230)~~
+- [x] [ValueTuple not recognized #231](https://github.com/frhagn/Typewriter/issues/231)
+- [ ] **[Using 3rd party assembly routines in Custom Methods #232](https://github.com/frhagn/Typewriter/issues/232)**
+- [ ] **[$DocComment work with /// <inheritdoc /> #233](https://github.com/frhagn/Typewriter/issues/233)**
+- [x] [DocComment cannot contain & #234](https://github.com/frhagn/Typewriter/issues/234)
+- [ ] ~~[Try to write some information to a external file #235](https://github.com/frhagn/Typewriter/issues/235)~~
+- [ ] ~~[do we have something for vs code #236](https://github.com/frhagn/Typewriter/issues/236)~~
+- [ ] ~~[Create model per API method #237](https://github.com/frhagn/Typewriter/issues/237)~~
+- [ ] ~~[Handling date parameter for angular service #238](https://github.com/frhagn/Typewriter/issues/238)~~
+- [ ] ~~[How can i include multiple projects via Settings.IncludeProject() ? #239](https://github.com/frhagn/Typewriter/issues/239)~~
+- [ ] ~~[How to generate System.Type to TS？ #240](https://github.com/frhagn/Typewriter/issues/240)~~
+- [ ] ~~[Error processing queue: Did not find new element in the hierarchy for item ... #241](https://github.com/frhagn/Typewriter/issues/241)~~
+- [x] [Added option feature to don't add generated files to VS project #242](https://github.com/frhagn/Typewriter/issues/242)
+- [ ] ~~[Typewriter throws exception: rror processing queue: Object reference not set to an instance of an object. #243](https://github.com/frhagn/Typewriter/issues/243)~~
+- [ ] ~~[Can't get the default value for Type #244](https://github.com/frhagn/Typewriter/issues/244)~~
+- [ ] ~~[Render from another non-referenced project in same solution #245](https://github.com/frhagn/Typewriter/issues/245)~~
+- [ ] ~~[Fix GetRoutePrefix issue #246](https://github.com/frhagn/Typewriter/issues/246)~~
+- [x] [Custom function that returns an enumerable? #247](https://github.com/frhagn/Typewriter/issues/247)
+- [ ] ~~[Allow some kind of cache for a single run #248](https://github.com/frhagn/Typewriter/issues/248)~~
+- [x] [Error rendering template ... if enum is type of long #249](https://github.com/frhagn/Typewriter/issues/249)
+- [ ] ~~[Parameter Type BaseClass; Object reference not set to an instance of an object #250](https://github.com/frhagn/Typewriter/issues/250)~~
+- [ ] ~~[use StringBuilder #251](https://github.com/frhagn/Typewriter/issues/251)~~
+- [ ] ~~[string.Replace with char parameters breaks the template #252](https://github.com/frhagn/Typewriter/issues/252)~~
+- [ ] ~~[1.17 - 1.18 not working in VS 2017 15.5 #253](https://github.com/frhagn/Typewriter/issues/253)~~
+- [ ] ~~[Convert Int64 to string #254](https://github.com/frhagn/Typewriter/issues/254)~~
+- [ ] ~~[Infer return type from [Produces(Type)] attribute #255](https://github.com/frhagn/Typewriter/issues/255)~~
+- [ ] ~~[Issue with Enumerable with type of Enum #256](https://github.com/frhagn/Typewriter/issues/256)~~
+- [ ] ~~[How to get classes within a specific folder instead of with a prefix/suffix? #257](https://github.com/frhagn/Typewriter/issues/257)~~
+- [ ] **[Render templates during build #258](https://github.com/frhagn/Typewriter/issues/258)**
+- [ ] ~~[WebApi / DTO Proxy generator for C# #259](https://github.com/frhagn/Typewriter/issues/259)~~
+- [x] [FR: only save generated file if it is different from existing file #260](https://github.com/frhagn/Typewriter/issues/260)
+- [ ] ~~[RouteArea wasn't resolved as a part of URL #261](https://github.com/frhagn/Typewriter/issues/261)~~
+- [ ] ~~[Wrong method type when method name has a name 'Delete' #262](https://github.com/frhagn/Typewriter/issues/262)~~
+- [ ] ~~[Potential bug in C# comment parser on single-quotes #263](https://github.com/frhagn/Typewriter/issues/263)~~
+- [ ] ~~[Getting actual Type of an Enumerable #264](https://github.com/frhagn/Typewriter/issues/264)~~
+- [ ] ~~[Alternative to Attribute for decorating properties for partials #265](https://github.com/frhagn/Typewriter/issues/265)~~
+- [ ] ~~[Is there any way to keep few custom fields in generated type scripts classes from c# model classes that is not available in model class? #266](https://github.com/frhagn/Typewriter/issues/266)~~
+- [x] [Is there a way to determine if a class property is a virtual one? #267](https://github.com/frhagn/Typewriter/issues/267)
+- [x] [Put some common properties into `Item` class #268](https://github.com/frhagn/Typewriter/issues/268)
+- [ ] ~~[How can I get the assembly name of a class? #269](https://github.com/frhagn/Typewriter/issues/269)~~
+- [ ] ~~[How to determine if a BaseClass already exists in the file #270](https://github.com/frhagn/Typewriter/issues/270)~~
+- [ ] ~~[FromatDocDocument and new lines #271](https://github.com/frhagn/Typewriter/issues/271)~~
+- [ ] ~~[Question: How to remove parameter in Typewritter #272](https://github.com/frhagn/Typewriter/issues/272)~~
+- [ ] ~~[Question: Typewriter across projects? #273](https://github.com/frhagn/Typewriter/issues/273)~~
+- [ ] ~~[Support for referencing external assemblies in template code #274](https://github.com/frhagn/Typewriter/issues/274)~~
+- [ ] ~~[Namespace import issue angular #275](https://github.com/frhagn/Typewriter/issues/275)~~
+- [x] [Share Custom Methods #276](https://github.com/frhagn/Typewriter/issues/276)
+- [ ] ~~[How to run on build server #277](https://github.com/frhagn/Typewriter/issues/277)~~
+- [ ] ~~[If a property Type is enum, how to get the Enum object of it? #278](https://github.com/frhagn/Typewriter/issues/278)~~
+- [x] [If a type is an array of T, how can I get the T type from it? #279](https://github.com/frhagn/Typewriter/issues/279)
+- [ ] ~~[using custom extension method from outside typewriter #280](https://github.com/frhagn/Typewriter/issues/280)~~
+- [ ] ~~[Added the ability to get type arguments passed to attribute #281](https://github.com/frhagn/Typewriter/issues/281)~~
+- [ ] ~~[Import Custom Types from Dictionary? #282](https://github.com/frhagn/Typewriter/issues/282)~~
+- [x] [attribute.Arguments name missing #283](https://github.com/frhagn/Typewriter/issues/283)
+- [x] [Create a standard, cleaner imports/inheritence #284](https://github.com/frhagn/Typewriter/issues/284)
+- [ ] **[Apply specific project file attributes #285](https://github.com/frhagn/Typewriter/issues/285)**
+- [x] [Support for visual studio 2019 #286](https://github.com/frhagn/Typewriter/issues/286)
+- [ ] ~~[Setting to build the templates with symbols to enable debugging? #287](https://github.com/frhagn/Typewriter/issues/287)~~
+- [ ] ~~[$BaseInterface missing? #288](https://github.com/frhagn/Typewriter/issues/288)~~
+- [ ] ~~[Typewriter locks onto #reference DLL #289](https://github.com/frhagn/Typewriter/issues/289)~~
+- [ ] ~~[Typewriter active development? #290](https://github.com/frhagn/Typewriter/issues/290)~~
+- [ ] ~~[Fixes a few spelling errors in comments and error message #291](https://github.com/frhagn/Typewriter/issues/291)~~
+- [ ] ~~[Update manifest for VS2019 #292](https://github.com/frhagn/Typewriter/issues/292)~~
+- [ ] ~~[temporary brute force alternative till vNext #293](https://github.com/frhagn/Typewriter/issues/293)~~
+- [ ] ~~[(deleted) #294](https://github.com/frhagn/Typewriter/issues/294)~~
+- [ ] ~~[Module should be a namespace #295](https://github.com/frhagn/Typewriter/issues/295)~~
+- [ ] ~~[Combined filters #296](https://github.com/frhagn/Typewriter/issues/296)~~
+- [x] [Generated code should be free of excess lines and whitespace #297](https://github.com/frhagn/Typewriter/issues/297)
+- [x] [Check if Type is interface #298](https://github.com/frhagn/Typewriter/issues/298)
+- [x] [Use TypeWriter to generate .NET Interfaces #299](https://github.com/frhagn/Typewriter/issues/299)
+- [ ] ~~[Get the default value from the model #300](https://github.com/frhagn/Typewriter/issues/300)~~
+- [ ] **[Add methods collapse, regions and tst file as library #301](https://github.com/frhagn/Typewriter/issues/301)**
+- [x] [Add Property.IsIndexer property and indexer parameters #302](https://github.com/frhagn/Typewriter/issues/302)
+- [ ] ~~[Wrong property type when rendering a $Type #303](https://github.com/frhagn/Typewriter/issues/303)~~
+- [ ] **[Non VS support #304](https://github.com/frhagn/Typewriter/issues/304)**
+- [x] [Option to stop including the generated files in the current project #305](https://github.com/frhagn/Typewriter/issues/305)
+- [ ] ~~[Fix typo #306](https://github.com/frhagn/Typewriter/issues/306)~~
+- [x] [Question: How to remove API method parameters of type Interface #307](https://github.com/frhagn/Typewriter/issues/307)
+- [ ] ~~[Newtonson.Json refererence #308](https://github.com/frhagn/Typewriter/issues/308)~~
+- [ ] ~~[Render template on external update #309](https://github.com/frhagn/Typewriter/issues/309)~~
+- [x] [Nullable support #310](https://github.com/frhagn/Typewriter/issues/310)
+- [x] [FR: ability to rollup or generate an index of generated files #311](https://github.com/frhagn/Typewriter/issues/311)
+- [ ] ~~[generate import for custom type from another file #312](https://github.com/frhagn/Typewriter/issues/312)~~
+- [ ] ~~[Ignores the Assembler if versions are equals. #313](https://github.com/frhagn/Typewriter/issues/313)~~
+- [ ] **[Custom Extension Library #314](https://github.com/frhagn/Typewriter/issues/314)**
+- [ ] ~~[Get Project Name #315](https://github.com/frhagn/Typewriter/issues/315)~~
+- [ ] ~~[Run typewriter manually #316](https://github.com/frhagn/Typewriter/issues/316)~~
+- [ ] ~~[Typewriter 2.0 release date? #317](https://github.com/frhagn/Typewriter/issues/317)~~
+- [ ] ~~[Is there a way to access the C# Type instead of the Typewriter Type, or its assembly data? #318](https://github.com/frhagn/Typewriter/issues/318)~~
+- [x] [Is there any way to sync deleted or renamed C# classes with typescript one? #319](https://github.com/frhagn/Typewriter/issues/319)
+- [ ] ~~[How to get current class in base Method #320](https://github.com/frhagn/Typewriter/issues/320)~~
+- [ ] **[Support for generic type constraints? #321](https://github.com/frhagn/Typewriter/issues/321)**
+- [ ] ~~[Upgraded to VS2019 SDK csproj #322](https://github.com/frhagn/Typewriter/issues/322)~~
+- [ ] ~~[Split unique file classes into 1-1 file class #323](https://github.com/frhagn/Typewriter/issues/323)~~
+- [x] [Handling Class Constructors? #324](https://github.com/frhagn/Typewriter/issues/324)
+- [ ] ~~[Custom methods not triggered when having File as a parameter #325](https://github.com/frhagn/Typewriter/issues/325)~~
+- [ ] ~~[Generate ts files that import dependent classes? #326](https://github.com/frhagn/Typewriter/issues/326)~~
+- [ ] **[Url parameters of type DateTime[Offset] should be urlencoded #327](https://github.com/frhagn/Typewriter/issues/327)**
+- [ ] ~~[Fixes issue #327 #328](https://github.com/frhagn/Typewriter/issues/328)~~
+- [ ] ~~[Added IsVirtual to Property metadata (fixes #267) #329](https://github.com/frhagn/Typewriter/issues/329)~~
+- [ ] **[Integration with CI/CD pipeline #330](https://github.com/frhagn/Typewriter/issues/330)**
+- [x] [Square brackets added to nullable string #331](https://github.com/frhagn/Typewriter/issues/331)
+- [x] [IsNullable == false for nullable reference types #332](https://github.com/frhagn/Typewriter/issues/332)
+- [ ] ~~[It's time to rewrite all TypeWriter project #333](https://github.com/frhagn/Typewriter/issues/333)~~
+- [ ] ~~[Did typewriter stop working in VS 16.7.0? #334](https://github.com/frhagn/Typewriter/issues/334)~~
+- [ ] ~~[Typewriter Extension is not working anymore #335](https://github.com/frhagn/Typewriter/issues/335)~~
+- [ ] ~~[Angular service with multiple response types (ASP.NET CORE) #336](https://github.com/frhagn/Typewriter/issues/336)~~
+- [x] [$Classes cannot find record classes #337](https://github.com/frhagn/Typewriter/issues/337)
+
+
+Stack Overflow
+https://stackoverflow.com/questions/tagged/typewriter/

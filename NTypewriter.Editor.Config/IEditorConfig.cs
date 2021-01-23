@@ -4,8 +4,13 @@ using System.Text;
 
 namespace NTypewriter.Editor.Config
 {
-    public interface IEditorConfig : IHaveCustomFunctions, IConstrainSearchedNamespaces
+    public interface IEditorConfig :
+        IConstrainSearchedNamespaces,
+        IConstrainSearchedProjects,
+        IHaveCustomFunctions,
+        ISearchInReferencedProjects
+
     {
-       
+       bool AddGeneratedFilesToVSProject { get; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Serialization;
 using Microsoft.CodeAnalysis;
@@ -11,10 +13,11 @@ namespace NTypewriter.CodeModel.Roslyn
     {      
         private readonly string xml;
         private readonly Lazy<RootNode> rootNode;
+        private static readonly Regex rg = new Regex(@"(\<(param|summary|returns).*?\>)(.*?)(\<\/\2\>)", RegexOptions.Multiline | RegexOptions.Compiled);
 
-        public string Summary => rootNode.Value.Summary;
-        public string Returns => rootNode.Value.Returns;
-        public IEnumerable<IDocumentationCommentXmlParam> Params => rootNode.Value.Params;
+        public string Summary => XmlConvert.DecodeName(rootNode.Value.Summary)?.Trim();
+        public string Returns => XmlConvert.DecodeName(rootNode.Value.Returns)?.Trim();
+        public IEnumerable<IDocumentationCommentXmlParam> Params => rootNode.Value.Params.Select(x => new Param() {Name = x.Name, Value = XmlConvert.DecodeName(x.Value)?.Trim() });
         
 
         private DocumentationCommentXml(string xml)
@@ -31,6 +34,9 @@ namespace NTypewriter.CodeModel.Roslyn
             {
                 xml = $"<member>{xml}</member>";
             }
+
+            xml = rg.Replace(xml, m => $"{m.Groups[1].Value}{XmlConvert.EncodeName(m.Groups[3].Value)}{m.Groups[4].Value}");
+
             return new DocumentationCommentXml(xml);
         }
 

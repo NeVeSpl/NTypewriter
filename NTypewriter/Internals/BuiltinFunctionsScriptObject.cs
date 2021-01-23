@@ -12,17 +12,19 @@ namespace NTypewriter.Internals
         private BuiltinFunctionsScriptObject()
         {
             this["Array"] = CreateScriptObject(typeof(ArrayFunctions));
+            this["Date"] = CreateScriptObject(typeof(DateTimeFunctions));
             //this["empty"] = CreateScriptObject(typeof(EmptyScriptObject)); 
             this["Html"] = CreateScriptObject(typeof(HtmlFunctions)); 
             this["Math"] = CreateScriptObject(typeof(MathFunctions)); 
             //this["object"] = CreateScriptObject(typeof(ObjectFunctions)); 
-            this["Regex"] = CreateScriptObject(typeof(RegexFunctions)); 
-            this["String"] = CreateScriptObject(typeof(StringFunctions), typeof(NTypewriter.CodeModel.Functions.StringFunctions)); 
+            this["Regex"] = CreateScriptObject(typeof(RegexFunctions));
+            this["Parameters"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.ParametersFunctions));
+            this["String"] = CreateScriptObject(typeof(StringFunctions), typeof(global::NTypewriter.CodeModel.Functions.StringFunctions)); 
             this["Timespan"] = CreateScriptObject(typeof(TimeSpanFunctions));
-            this["Method"] = CreateScriptObject(typeof(NTypewriter.CodeModel.Functions.MethodFunctions));
-            this["Type"] = CreateScriptObject(typeof(NTypewriter.CodeModel.Functions.TypeFunctions));
-            this["Types"] = CreateScriptObject(typeof(NTypewriter.CodeModel.Functions.TypesFunctions));
-            this["Symbols"] = CreateScriptObject(typeof(NTypewriter.CodeModel.Functions.SymbolsFunctions));
+            this["Action"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.ActionFunctions));
+            this["Type"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.TypeFunctions));
+            this["Types"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.TypesFunctions));
+            this["Symbols"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.SymbolsFunctions));
             this.Import(typeof(SaveFunction), renamer: MemberRenamer);
         }
 

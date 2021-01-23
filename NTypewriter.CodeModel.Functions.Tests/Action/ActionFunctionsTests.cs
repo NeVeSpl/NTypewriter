@@ -9,7 +9,7 @@ using NTypewriter.CodeModel.Roslyn;
 namespace NTypewriter.CodeModel.Functions.Tests.Method
 {
     [TestClass]
-    public class MethodFunctionsTests : BaseFixture
+    public class ActionFunctionsTests : BaseFixture
     {
         ICodeModel data;
         Configuration settings;
@@ -24,12 +24,12 @@ namespace NTypewriter.CodeModel.Functions.Tests.Method
 
 
         [TestMethod]
-        public async Task ActionHttpMethod()
+        public async Task HttpMethod()
         {
             var template = @"{{- capture result }}
                                 {{- for class in data.Classes | Types.ThatInheritFrom ""ControllerBase"" }}
                                    {{- for method in class.Methods }}                            
-                                      [{{- method.Name }} : {{- method | Method.ActionHttpMethod }}]
+                                      [{{- method.Name }} : {{- method | Action.HttpMethod }}]
                                    {{- end }}
                                 {{- end }}
                              {{- end }}
@@ -44,12 +44,12 @@ namespace NTypewriter.CodeModel.Functions.Tests.Method
 
 
         [TestMethod]
-        public async Task ActionTypeSentByBody()
+        public async Task BodyParameter()
         {
             var template = @"{{- capture result }}
                                 {{- for class in data.Classes | Types.ThatInheritFrom ""ControllerBase"" }}
                                    {{- for method in class.Methods }}                            
-                                      [{{- method.Name }} : {{- method | Method.ActionTypeSentByBody }}]
+                                      [{{- method.Name }} : {{- method | Action.BodyParameter }}]
                                    {{- end }}
                                 {{- end }}
                              {{- end }}
@@ -58,18 +58,18 @@ namespace NTypewriter.CodeModel.Functions.Tests.Method
             var result = await NTypeWriter.Render(template, data, settings);
             var actual = RemoveWhitespace(result.Items.First().Content);
 
-            var expected = "[GetData:int][SomeAsync:InputDTO][SomeAsync2:InputDTO]";
+            var expected = "[GetData:intbody][SomeAsync:InputDTObody][SomeAsync2:InputDTObody]";
             Assert.AreEqual(expected, actual);
         }
 
 
         [TestMethod]
-        public async Task ActionUrl()
+        public async Task Url()
         {
             var template = @"{{- capture result
                                  for class in data.Classes | Types.ThatInheritFrom ""ControllerBase"" 
                                      for method in class.Methods }}                       
-                                      [{{- method.Name }} : {{- method | Method.ActionUrl }}]
+                                      [{{- method.Name }} : {{- method | Action.Url }}]
                                    {{- end
                                  end 
                                  end 
@@ -78,7 +78,8 @@ namespace NTypewriter.CodeModel.Functions.Tests.Method
             var result = await NTypeWriter.Render(template, data, settings);
             var actual = RemoveWhitespace(result.Items.First().Content);
 
-            var expected = "[GetData:WeatherForecast/hkk][SomeAsync:sd][SomeAsync2:WeatherForecast/akacja/${par1}/${par2}/${par3}?par4=${par4}&par5=${par5}]";
+            var expected = "[GetData:WeatherForecast/hkk][SomeAsync:sd?page=${pagg.page}&limit=${pagg.limit}][SomeAsync2:WeatherForecast/akacja/${par1}/${par2}/${par3}?par4=${par4}&par5=${par5}]";
+                          
             Assert.AreEqual(expected, actual);
         }
 

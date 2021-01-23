@@ -17,7 +17,7 @@ namespace NTypewriter.Tests.CodeModel
         /// </summary>
         /// <param name="a">p1</param>
         /// <param name="b">p2</param>
-        /// <returns>RR</returns>
+        /// <returns>RR</returns>        
         int Foo(int a, int b)
         {
             return a + b;

@@ -10,7 +10,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Types
     [TestClass]
     public class TypesFunctionsTests : BaseFixture
     {
-        NTypewriter.CodeModel.ICodeModel data;
+        global::NTypewriter.CodeModel.ICodeModel data;
 
         [TestInitialize]
         public async Task Initialize()

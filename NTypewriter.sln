@@ -9,17 +9,34 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.CodeModel.Funct
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.CodeModel.Roslyn", "NTypewriter.CodeModel.Roslyn\NTypewriter.CodeModel.Roslyn.csproj", "{47F85493-283B-4336-B0D7-E27F11337AF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter", "NTypewriter\NTypewriter.csproj", "{66C21BBF-D448-4109-A102-1573F3185110}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter", "NTypewriter\NTypewriter.csproj", "{66C21BBF-D448-4109-A102-1573F3185110}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter.Editor.Config", "NTypewriter.Editor.Config\NTypewriter.Editor.Config.csproj", "{08CDD3EF-49A6-4F75-A976-235E68198874}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.Editor.Config", "NTypewriter.Editor.Config\NTypewriter.Editor.Config.csproj", "{08CDD3EF-49A6-4F75-A976-235E68198874}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter.CodeModel.Tests", "NTypewriter.CodeModel.Tests\NTypewriter.CodeModel.Tests.csproj", "{08084CA3-7FAC-4B23-A6DE-6755AE14E2FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.CodeModel.Tests", "NTypewriter.CodeModel.Tests\NTypewriter.CodeModel.Tests.csproj", "{08084CA3-7FAC-4B23-A6DE-6755AE14E2FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter.CodeModel.Functions.Tests", "NTypewriter.CodeModel.Functions.Tests\NTypewriter.CodeModel.Functions.Tests.csproj", "{49CCB4DB-6767-4660-8474-47ED44FD93A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.CodeModel.Functions.Tests", "NTypewriter.CodeModel.Functions.Tests\NTypewriter.CodeModel.Functions.Tests.csproj", "{49CCB4DB-6767-4660-8474-47ED44FD93A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Assets.WebApi", "Tests.Assets.WebApi\Tests.Assets.WebApi.csproj", "{002A25D9-33FB-434A-878E-E5E6942CE8C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Assets.WebApi", "Tests.Assets.WebApi\Tests.Assets.WebApi.csproj", "{002A25D9-33FB-434A-878E-E5E6942CE8C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Assets.Referenced", "Tests.Assets.Referenced\Tests.Assets.Referenced.csproj", "{ED81A10A-7E9E-4F9A-9EA9-2398EE030B4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Assets.Referenced", "Tests.Assets.Referenced\Tests.Assets.Referenced.csproj", "{ED81A10A-7E9E-4F9A-9EA9-2398EE030B4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ECF63459-19D9-4F09-8291-2DC27EC175C9}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{F24BDC3D-245E-4E4C-B57D-CB6C06E58286}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\BuiltInFunctions.md = Documentation\BuiltInFunctions.md
+		Documentation\CLI.md = Documentation\CLI.md
+		Documentation\CodeModel.md = Documentation\CodeModel.md
+		Documentation\Configuration.md = Documentation\Configuration.md
+		Documentation\NameVariants.md = Documentation\NameVariants.md
+		Documentation\TypewriterIssues.md = Documentation\TypewriterIssues.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentationGenerator", "DocumentationGenerator\DocumentationGenerator.csproj", "{584B0FDD-B073-4223-AA51-D56B6087B59B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +80,10 @@ Global
 		{ED81A10A-7E9E-4F9A-9EA9-2398EE030B4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED81A10A-7E9E-4F9A-9EA9-2398EE030B4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED81A10A-7E9E-4F9A-9EA9-2398EE030B4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{584B0FDD-B073-4223-AA51-D56B6087B59B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{584B0FDD-B073-4223-AA51-D56B6087B59B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{584B0FDD-B073-4223-AA51-D56B6087B59B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{584B0FDD-B073-4223-AA51-D56B6087B59B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

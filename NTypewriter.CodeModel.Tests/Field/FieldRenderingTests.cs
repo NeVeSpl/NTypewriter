@@ -39,5 +39,11 @@ namespace NTypewriter.CodeModel.Tests.Field
         {
             await RunTestForProperty();
         }
+
+        [TestMethod]
+        public async Task Name()
+        {
+            await RunTestForProperty();
+        }
     }
 }

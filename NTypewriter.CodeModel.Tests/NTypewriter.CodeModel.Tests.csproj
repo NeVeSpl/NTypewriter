@@ -26,6 +26,7 @@
     <Compile Remove="Field\HasConstantValue\inputCode.cs" />
     <Compile Remove="Field\IsConst\inputCode.cs" />
     <Compile Remove="Field\IsReadOnly\inputCode.cs" />
+    <Compile Remove="Field\Name\inputCode.cs" />
     <Compile Remove="Field\Type\inputCode.cs" />
     <Compile Remove="Method\IsAsync\inputCode.cs" />
     <Compile Remove="Method\IsGeneric\inputCode.cs" />
@@ -102,6 +103,8 @@
     <None Remove="Field\IsConst\inputTemplate.tsnt" />
     <None Remove="Field\IsReadOnly\expectedResult.txt" />
     <None Remove="Field\IsReadOnly\inputTemplate.tsnt" />
+    <None Remove="Field\Name\expectedResult.txt" />
+    <None Remove="Field\Name\inputTemplate.tsnt" />
     <None Remove="Field\Type\expectedResult.txt" />
     <None Remove="Field\Type\inputTemplate.tsnt" />
     <None Remove="Method\IsAsync\expectedResult.txt" />
@@ -232,6 +235,9 @@
     <EmbeddedResource Include="Field\IsReadOnly\expectedResult.txt" />
     <EmbeddedResource Include="Field\IsReadOnly\inputCode.cs" />
     <EmbeddedResource Include="Field\IsReadOnly\inputTemplate.tsnt" />
+    <EmbeddedResource Include="Field\Name\expectedResult.txt" />
+    <EmbeddedResource Include="Field\Name\inputCode.cs" />
+    <EmbeddedResource Include="Field\Name\inputTemplate.tsnt" />
     <EmbeddedResource Include="Field\Type\expectedResult.txt" />
     <EmbeddedResource Include="Field\Type\inputCode.cs" />
     <EmbeddedResource Include="Field\Type\inputTemplate.tsnt" />

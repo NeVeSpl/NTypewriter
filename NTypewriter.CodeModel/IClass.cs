@@ -8,8 +8,7 @@ namespace NTypewriter.CodeModel
     public interface IClass : INamedType
     {
         /// <summary>
-        /// The declared base class of this class, or null.
-        /// Returns null if the class inherits from System.Object.
+        /// The declared base class of this class, or null. Returns null if the class inherits from System.Object.
         /// </summary>
         IClass BaseClass { get; }
 

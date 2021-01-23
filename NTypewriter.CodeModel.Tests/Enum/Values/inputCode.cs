@@ -18,8 +18,8 @@ namespace NTypewriter.Tests.CodeModel
     {
         enum InsideEnum
         {
-            Zero,
-            One
+            Zero = 0x01,
+            One = 0x02
         }
     }
 

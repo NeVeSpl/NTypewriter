@@ -10,8 +10,7 @@ namespace NTypewriter.CodeModel
     public interface IType : ISymbolBase
     {
         /// <summary>
-        /// The declared base type of this type, or null.
-        /// Returns null if the class inherits from System.Object or if the type is a value type.
+        /// The declared base type of this type, or null. Returns null if the class inherits from System.Object or if the type is a value type.
         /// </summary>
         IType BaseType { get; }
 

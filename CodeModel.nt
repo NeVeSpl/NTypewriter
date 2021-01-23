@@ -1,0 +1,8 @@
+{{
+capture output
+}}
+![NTypewriter CodeModel](NTypewriter.CodeModel.png)
+{{
+end
+Save output "CodeModel.md"
+}}

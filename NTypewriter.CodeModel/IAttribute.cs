@@ -10,6 +10,11 @@ namespace NTypewriter.CodeModel
     public interface IAttribute
     {
         /// <summary>
+        /// The attribute class.
+        /// </summary>
+        IClass AttributeClass { get; }
+
+        /// <summary>
         /// The full original name of the attribute including namespace and containing class names.
         /// </summary>
         string FullName { get; }

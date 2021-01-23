@@ -17,3 +17,5 @@ Tests.Assets.Referenced/obj/
 Tests.Assets.WebApi/obj/
 Tests.Assets.WebApi/bin/
 Tests.Assets.Referenced/bin/
+DocumentationGenerator/bin/
+DocumentationGenerator/obj/

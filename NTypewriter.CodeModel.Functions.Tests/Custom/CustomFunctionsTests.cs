@@ -19,7 +19,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Custom
             var expectedResult = "Hello World!";
             var codeModelConfig = new CodeModelConfiguration();
             var dataProvider = await CreateCodeModelFromProject(codeModelConfig, "Tests.Assets.WebApi");
-            var settings = new Configuration().AddCustomFunctions(typeof(MyCustomFunctions));
+            var settings = new Configuration().AddCustomFunctions(typeof(MyCustomFunctionsAreHere));
             var result = await NTypeWriter.Render(template, dataProvider, settings);
             var finalResult = result.Items.First().Content;
 
@@ -28,7 +28,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Custom
 
 
 
-        public static class MyCustomFunctions
+        public static class MyCustomFunctionsAreHere
         {
             public static string MyFunction()
             {

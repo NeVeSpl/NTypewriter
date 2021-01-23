@@ -5,13 +5,14 @@ namespace NTypewriter.CodeModel.Roslyn
 {
     internal class SymbolBase : ISymbolBase
     {
-        private static readonly SymbolDisplayFormat symbolDisplayFormat = SymbolDisplayFormat.FullyQualifiedFormat.WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.OmittedAsContaining).WithMiscellaneousOptions(SymbolDisplayMiscellaneousOptions.None);
+        private protected static readonly SymbolDisplayFormat symbolDisplayFormat = SymbolDisplayFormat.FullyQualifiedFormat.WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.OmittedAsContaining).WithMiscellaneousOptions(SymbolDisplayMiscellaneousOptions.None);
         private readonly ISymbol symbol;
 
         public IEnumerable<IAttribute> Attributes => AttributeCollection.Create(symbol);
         public INamedType ContainingType => NamedType.Create(symbol.ContainingType);
         public IDocumentationCommentXml DocComment => DocumentationCommentXml.Create(symbol);
         public bool IsAbstract => symbol.IsAbstract;
+        public bool IsVirtual => symbol.IsVirtual;
         public bool IsArray => symbol.Kind == SymbolKind.ArrayType;
         public bool IsEvent => symbol.Kind == SymbolKind.Event;
         public bool IsField => symbol.Kind == SymbolKind.Field;
@@ -19,7 +20,9 @@ namespace NTypewriter.CodeModel.Roslyn
         public bool IsProperty => symbol.Kind == SymbolKind.Property;
         public bool IsPublic => symbol.DeclaredAccessibility == Accessibility.Public;
         public bool IsStatic => symbol.IsStatic;
-        public bool IsTypeParameter => symbol.Kind == SymbolKind.TypeParameter;       
+        public bool IsTypeParameter => symbol.Kind == SymbolKind.TypeParameter;      
+        
+
         public string BareName
         {
             get
@@ -42,11 +45,12 @@ namespace NTypewriter.CodeModel.Roslyn
         public virtual string Name
         {
             get 
-            {               
+            {              
+
                 return symbol.Name;
             }
         }
-        public string FullName => symbol.ToDisplayString(symbolDisplayFormat);
+        public virtual string FullName => symbol.ToDisplayString(symbolDisplayFormat);
         public string Namespace => symbol.ContainingNamespace.ToString();
        
 

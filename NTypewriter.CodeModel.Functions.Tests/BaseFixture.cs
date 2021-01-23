@@ -21,7 +21,7 @@ namespace NTypewriter.CodeModel.Functions.Tests
 
 
 
-        public static async Task<NTypewriter.CodeModel.Roslyn.CodeModel> CreateCodeModelFromProject(CodeModelConfiguration config, string projectName)
+        public static async Task<global::NTypewriter.CodeModel.Roslyn.CodeModel> CreateCodeModelFromProject(CodeModelConfiguration config, string projectName)
         {
             var assembly = Assembly.GetExecutingAssembly();
             var srcPath = Path.Combine(Path.GetDirectoryName(assembly.Location), @$"..\..\..\..\{projectName}\{projectName}.csproj");
@@ -29,7 +29,7 @@ namespace NTypewriter.CodeModel.Functions.Tests
 
             var project = await LoadProject(srcPath);
             var compilation = await project.GetCompilationAsync();
-            var codeModel = new NTypewriter.CodeModel.Roslyn.CodeModel(compilation, config);
+            var codeModel = new global::NTypewriter.CodeModel.Roslyn.CodeModel(compilation, config);
             return codeModel;
 
         }

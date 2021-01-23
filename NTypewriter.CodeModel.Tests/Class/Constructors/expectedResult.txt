@@ -1,4 +1,4 @@
 ﻿SampleClass
-    .ctor
+    SampleClass
 SampleBaseClass
-    .ctor
+    SampleBaseClass

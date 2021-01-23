@@ -13,7 +13,23 @@ namespace NTypewriter.CodeModel.Roslyn
         public IEnumerable<IParameter> Parameters => ParameterCollection.Create(symbol);
         public IType ReturnType => Type.Create(symbol.ReturnType);
         public bool IsAsync => symbol.IsAsync;
-   
+
+        public override string Name
+        {
+            get
+            {
+                return symbol.ToDisplayString(symbolDisplayFormat);
+            }
+        }
+
+        public override string FullName
+        {
+            get
+            {
+                return symbol.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat);
+            }
+        }
+
 
         private Method(IMethodSymbol symbol) : base(symbol)
         {

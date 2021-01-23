@@ -52,11 +52,7 @@ namespace NTypewriter.CodeModel.Roslyn
         {
             get
             {
-                //if ((!symbol.IsDefinition) || (symbol is IArrayTypeSymbol) || IsPrimitive)
-                //{
-                    return symbol.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat);
-                //}
-                //return base.Name;
+                return symbol.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat);                
             }
         }
 

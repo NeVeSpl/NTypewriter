@@ -9,20 +9,26 @@ namespace NTypewriter.Tests.CodeModel
 {
     class SampleClass
     {
+        void Foo1(void par1) { };
+        void Foo2<T2>() { };
+
         class SampleNestedClass
         {
-
+            void Foo3() { };
         }
     }
     class SampleGenericClass<T>
     {
+        void Foo4() { };
+        void Foo5<T5>() { };
+
         class SampleNestedClassInGeneric
         {
-
+            void Foo6() { };
         }
-        class SampleNestedGenericClass<T1>
+        class SampleNestedGenericClass<TT>
         {
-
+            void Foo7() { };
         }
     }
 }

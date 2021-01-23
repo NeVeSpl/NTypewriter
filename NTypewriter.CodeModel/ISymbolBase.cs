@@ -25,6 +25,11 @@ namespace NTypewriter.CodeModel
         bool IsAbstract { get; }
 
         /// <summary>
+        /// Determines if the symbol is virtual
+        /// </summary>
+        bool IsVirtual { get; }
+
+        /// <summary>
         /// Determines if the symbol is an array
         /// </summary>
         bool IsArray { get; }

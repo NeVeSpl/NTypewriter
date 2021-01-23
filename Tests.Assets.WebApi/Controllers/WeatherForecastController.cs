@@ -20,6 +20,7 @@ namespace Tests.Assets.WebApi.Controllers
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
+           
             _logger = logger;
         }
 
@@ -38,7 +39,7 @@ namespace Tests.Assets.WebApi.Controllers
 
 
         [AcceptVerbs("put", "get")]
-        [Route("~/sd")]
+        [Route("~/sd", Name ="some_name")]
         public async Task<IEnumerable<WeatherForecast>> SomeAsync(InputDTO body, [FromQuery] Paggination pagg)
         {
             return await Task.FromResult(GetData(null, 7));

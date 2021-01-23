@@ -16,7 +16,7 @@ namespace NTypewriter.Tests.CodeModel
 
         }
 
-        int? Met2()
+        static int? Met2()
         {
 
         }

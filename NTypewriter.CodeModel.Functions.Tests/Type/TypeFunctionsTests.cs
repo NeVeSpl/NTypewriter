@@ -20,6 +20,35 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type
 
 
         [TestMethod]
+        public async Task AllReferencedTypes()
+        {
+            var template = @"{{- capture output
+                                     for class in data.Classes | Symbols.WhereNameStartsWith ""AllReferencedTypes""
+                                         for type in class | Type.AllReferencedTypes
+                                             type.Name | String.Append ""\r\n""
+                                         end 
+                                      end 
+                                  end
+                                  Save output ""Some name"" }}
+                            ";
+            var result = await NTypeWriter.Render(template, data, null);
+            var actual = result.Items.First().Content;
+            var expected = @"
+PropertyType
+MethodReturnType
+ParameterType
+MethodReturnType2
+FieldType
+EnumType
+EnumerableType
+GenericType<int>
+BaseType
+";
+            Assert.AreEqual(expected.Trim(), actual.Trim());
+        }
+
+
+            [TestMethod]
         public async Task ToTypeScriptType_Simple()
         {
             var template = @"{{- capture output
@@ -42,7 +71,8 @@ string | null
 MyEnum
 MyEnum | null
 Promise<number>
-number";
+number
+any";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
 
@@ -61,6 +91,7 @@ number";
             var result = await NTypeWriter.Render(template, data, null);
             var actual = result.Items.First().Content;
             var expected = @"
+number[]
 MyGeneric<number>
 number[]
 number[]

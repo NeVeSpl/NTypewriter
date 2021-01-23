@@ -1,6 +1,13 @@
-﻿{{- capture captured}}
-{{- for class in data.Classes | Symbols.WhereNamespaceStartsWith "NTypewriter.Tests.CodeModel"}}
-{{-  class.#PropertyName# }}
-{{ end }}
-{{- end }}
-{{- Save captured "result" }}
+﻿{{- capture captured -}}
+Classes
+{{  for class in data.Classes | Symbols.WhereNamespaceStartsWith "NTypewriter.Tests.CodeModel"
+       class.#PropertyName# | String.Append "\r\n"
+    end }}
+Methods
+{{  for class in data.Classes | Symbols.WhereNamespaceStartsWith "NTypewriter.Tests.CodeModel"
+        for method in class.Methods
+            method.#PropertyName# | String.Append "\r\n"
+        end 
+    end 
+end 
+Save captured "result" }}

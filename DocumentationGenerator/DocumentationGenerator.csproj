@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Buildalyzer" Version="3.2.0" />
+    <PackageReference Include="Buildalyzer.Workspaces" Version="3.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NTypewriter.CodeModel.Roslyn\NTypewriter.CodeModel.Roslyn.csproj" />
+    <ProjectReference Include="..\NTypewriter.Editor.Config\NTypewriter.Editor.Config.csproj" />
+    <ProjectReference Include="..\NTypewriter\NTypewriter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="BuiltInFunctions.nt">
+      <CustomToolNamespace>908d25a9-1efd-4411-b55c-4b23ec597465</CustomToolNamespace>
+    </None>
+  </ItemGroup>
+
+	<Target Name="InludeXMLDocumentationInOutput" BeforeTargets="Build">
+		<ItemGroup>
+			<DocumentationFiles Include="%(Reference.RelativeDir)%(Reference.Filename).xml" />
+		</ItemGroup>
+		<Copy SourceFiles="@(DocumentationFiles)" DestinationFolder="$(OutputPath)" Condition="Exists('%(RootDir)%(Directory)%(Filename)%(Extension)')" />
+	</Target>
+
+</Project>

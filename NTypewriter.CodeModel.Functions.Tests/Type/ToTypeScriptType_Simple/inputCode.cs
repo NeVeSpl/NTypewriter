@@ -25,7 +25,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptType_Simple
         Task<int> task;
         [Required]
         int? nullableInteger2;
-
+        dynamic dynamic;
 
 
 
