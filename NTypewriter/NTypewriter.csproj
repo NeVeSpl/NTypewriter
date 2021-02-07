@@ -11,6 +11,7 @@
     <PackageProjectUrl>https://github.com/NeVeSpl/NTypewriter</PackageProjectUrl>
     <RepositoryUrl>https://github.com/NeVeSpl/NTypewriter</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
