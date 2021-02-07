@@ -1,33 +1,67 @@
-﻿{{-
-capture output }}
+﻿{{- capture output 
+   ntypewriterClasses = data.Classes | Symbols.WhereNamespaceMatches "NTypewriter.CodeModel.Functions" | Symbols.WhereNameEndsWith "Functions"
+   scribanClasses = data.Classes | Symbols.WhereNamespaceMatches "Scriban.Functions" | Custom.FilterScribanFunctionSets
+}}
+{{ for class in ntypewriterClasses}}
 
-### NTypewriter
+{{ class.Name }}
+{{    for function in class.Methods | Symbols.ThatArePublic }}
+* [{{function.Name}}](#{{function.BareName}})
+{{-    end
+   end  
+}}
+{{ for class in scribanClasses}}
 
-{{   for class in data.Classes | Symbols.WhereNamespaceMatches "NTypewriter.CodeModel.Functions" | Symbols.WhereNameEndsWith "Functions"
+{{ class.Name }}
+{{    for function in class.Methods | Symbols.ThatArePublic }}
+* [{{function.Name}}](#{{function.BareName}})
+{{-    end
+   end  
 }}
 
-#### {{ class.Name }}
 
-Method | Description | Returns
--------|-------------|---------
+# NTypewriter functions
+
+{{ for class in ntypewriterClasses }}
+
+## {{ class.Name }}
+
 {{- for function in class.Methods | Symbols.ThatArePublic }}
-{{    function.Name }} | {{ function.DocComment.Summary | String.StripNewlines }}  |  `{{function.ReturnType.Name }}`   
+
+#### {{ function.BareName }}
+
+```csharp
+{{function.FullName | String.Replace "Functions" ""}}
+```
+{{ function.DocComment.Summary | String.StripNewlines }} 
 
 {{- end }}
-{{- end }}
 
-### Scriban
-
-{{ for class in data.Classes | Symbols.WhereNamespaceMatches "Scriban.Functions" }}
-   {{ if !Custom.IsScribanFunctionSetAvailble class; continue; end;}}
-#### {{ class.Name }}
-
-Method | Description | Returns
--------|-------------|---------
-{{- for function in class.Methods | Symbols.ThatArePublic | Symbols.ThatAreStatic  }}
-{{    function.Name }} | {{ function.DocComment.Summary | String.StripNewlines }}  |  `{{function.ReturnType.Name }}`   
+----
 
 {{- end }}
+
+# Scriban functions
+
+Below functions comes from Scriban, and you can read more about them in [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md)
+
+{{ for class in scribanClasses }}
+
+### {{ class.Name }}
+
+{{- for function in class.Methods | Symbols.ThatArePublic }}
+
+#### {{ function.BareName }}
+
+```csharp
+{{function.FullName | String.Replace "Functions" ""}}
+```
+{{ function.DocComment.Summary | String.StripNewlines }} 
+[Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#{{class.BareName | String.Replace "Functions" "" | String.Downcase}}{{function.BareName | Custom.ToLiquidId}})
+
+{{- end }}
+
+----
 
 {{ end }}
 

@@ -57,8 +57,8 @@ Syntax   | typewriter syntax | [scriban scripting language](https://github.com/s
 Lambda filters | present | not available yet
 Render template on save| yes (opt-out possible)| not available, only manual
 Auto-render when C# files changes| yes (opt-out possible)| not available, only manual
-Add generated files to VS project | yes (opt-out possible) | yes
-can be used from CLI | nope | yes
+Add generated files to VS project | yes (opt-out possible) | yes (opt-out possible)
+can be used from CLI | nope | yes 
 Supported versions of Visual Studio | 2015+ | 2019+
 Custom functions | separate for every template | shared between templates
 Full control over whitespaces | nope | yup
@@ -84,7 +84,7 @@ module App {
     export class {{ class.Name }} {
             {{- for property in class.Properties | Symbols.ThatArePublic }}
         public {{ property.Name | String.ToCamelCase }}: {{ property.Type | Type.ToTypeScriptType }};
-            {{-  end }}
+            {{- end }}
     }
 }
     {{- end 
@@ -147,7 +147,7 @@ NTypewriter does not have own a lexer/parser as Typewriter has, and uses Scriban
 
 Ntypwriter does not listen for changes in your custom config file with custom functions. The Config file is read only once when you open a new editor window in VS. This will be changed in the future, but is not a priority.
 
-Not all built in scriban functions are available in templates.
+Not all built in Scriban functions are available in templates.
 
 
 ### Change log

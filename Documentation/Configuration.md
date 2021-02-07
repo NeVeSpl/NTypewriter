@@ -98,7 +98,7 @@ namespace ConsoleApp
 
 #### GetProjectsToBeSearched
 
-By default code model is populated with symbols from all projects in solution. With this option you can limit scope to only given projects.
+By default code model is populated with symbols from all projects in solution. With this option, you can limit the scope to only given 
 
 ```csharp
 using System;
@@ -123,7 +123,7 @@ namespace ConsoleApp
 
 This option allows getting access to symbols defined in all referenced assemblies, even System symbols. Thus it should only be used with very limited code model by GetProjectsToBeSearched and/or GetNamespacesToBeSearched, otherwise, your code model will contain thousands of symbols.
 
-Also, have in mind that symbols from the same assembly but referenced from different projects are treated as different symbols. The best way to avoid duplication it is to use this option enabled only when GetProjectsToBeSearched returns limited number projects without references to the same assembly.
+Also, have in mind that symbols from the same assembly but referenced from different projects are treated as different symbols. The best way to avoid duplication it is to use this option enabled only when GetProjectsToBeSearched returns limited number of projects without references to the same assembly.
 
 
 ```csharp

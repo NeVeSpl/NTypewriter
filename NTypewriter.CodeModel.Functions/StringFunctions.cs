@@ -13,7 +13,7 @@ namespace NTypewriter.CodeModel.Functions
         /// </summary>
         public static string ToCamelCase(this string text)
         {
-            var words = text.SplitStringIntoSeparateWords();
+            var words = text.SplitIntoSeparateWords();
             return string.Join("", words.Select(x => x.ToLower().ToUpperFirst())).ToLowerFirst();
         }
 
@@ -49,34 +49,34 @@ namespace NTypewriter.CodeModel.Functions
 
 
 
-        private static IEnumerable<string> SplitStringIntoSeparateWords(this string selectedText)
+        public static IEnumerable<string> SplitIntoSeparateWords(this string text)
         {
             int wordFirstIndex = 0;
-            for (int i = 0; i < selectedText.Length; ++i)
+            for (int i = 0; i < text.Length; ++i)
             {
-                if (!char.IsLetterOrDigit(selectedText[i]))
+                if (!char.IsLetterOrDigit(text[i]))
                 {
                     int wordLength = i - wordFirstIndex;
                     if (wordLength > 0)
                     {
-                        yield return selectedText.Substring(wordFirstIndex, wordLength);
+                        yield return text.Substring(wordFirstIndex, wordLength);
                     }
                     wordFirstIndex = i + 1;
                 }
-                if (char.IsUpper(selectedText[i]))
+                if (char.IsUpper(text[i]))
                 {
                     int wordLength = i - wordFirstIndex;
                     if (wordLength > 0)
                     {
-                        yield return selectedText.Substring(wordFirstIndex, wordLength);
+                        yield return text.Substring(wordFirstIndex, wordLength);
                     }
                     wordFirstIndex = i;
                 }
             }
-            int remainderLength = selectedText.Length - wordFirstIndex;
+            int remainderLength = text.Length - wordFirstIndex;
             if (remainderLength > 0)
             {
-                yield return selectedText.Substring(wordFirstIndex, remainderLength);
+                yield return text.Substring(wordFirstIndex, remainderLength);
             }
         }
     }

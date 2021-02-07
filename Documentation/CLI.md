@@ -3,6 +3,7 @@ There is no official CLI version of NTypewriter, but you can build your own easi
 To do that you will need a few nugets:
 
 https://www.nuget.org/packages/NTypewriter/
+
 https://www.nuget.org/packages/NTypewriter.CodeModel.Roslyn/
 
 And how to do that you can see here:

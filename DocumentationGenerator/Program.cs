@@ -40,7 +40,7 @@ namespace DocumentationGenerator
             ntypewriterConfig.AddCustomFunctions(typeof(NTEConfig));
 
             // 7) Render
-            var result = await NTypewriter.NTypeWriter.Render(template, codeModel, ntypewriterConfig);
+            var result = await NTypeWriter.Render(template, codeModel, ntypewriterConfig);
 
             if (!result.HasErrors)
             {
