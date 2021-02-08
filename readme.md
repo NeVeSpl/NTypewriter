@@ -42,7 +42,7 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
        * [AddGeneratedFilesToVSProject](Documentation/Configuration.md#AddGeneratedFilesToVSProject)
        * [GetNamespacesToBeSearched](Documentation/Configuration.md#GetNamespacesToBeSearched)
        * [GetProjectsToBeSearched](Documentation/Configuration.md#GetProjectsToBeSearched)  
-       * [SearchInReferencedProjects](Documentation/Configuration.md#SearchInReferencedProjects)   
+       * [SearchInReferencedProjectsAndAssemblies](Documentation/Configuration.md#SearchInReferencedProjectsAndAssemblies)   
 * [Known issues](#Known-issues)
 * [Status of typewriter issues](Documentation/TypewriterIssues.md)
 * [Change log](#Change-log)

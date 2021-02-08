@@ -119,7 +119,7 @@ namespace ConsoleApp
 }
 ```
 
-#### SearchInReferencedProjects
+#### SearchInReferencedProjectsAndAssemblies
 
 This option allows getting access to symbols defined in all referenced assemblies, even System symbols. Thus it should only be used with very limited code model by GetProjectsToBeSearched and/or GetNamespacesToBeSearched, otherwise, your code model will contain thousands of symbols.
 
@@ -136,7 +136,7 @@ namespace ConsoleApp
     [NTEditorFile]
     class NTEConfig : EditorConfig
     {
-        public override bool SearchInReferencedProjects => false;
+        public override bool SearchInReferencedProjectsAndAssemblies => false;
     }
 }
 ```

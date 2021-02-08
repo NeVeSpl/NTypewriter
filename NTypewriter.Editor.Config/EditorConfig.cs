@@ -7,7 +7,7 @@ namespace NTypewriter.Editor.Config
 {
     public class EditorConfig : IEditorConfig
     {   
-        public virtual bool SearchInReferencedProjects => false;
+        public virtual bool SearchInReferencedProjectsAndAssemblies => false;
 
         public virtual bool AddGeneratedFilesToVSProject => true;
 

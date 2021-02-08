@@ -8,7 +8,7 @@ namespace NTypewriter.Editor.Config
         IConstrainSearchedNamespaces,
         IConstrainSearchedProjects,
         IHaveCustomFunctions,
-        ISearchInReferencedProjects
+        ISearchInReferencedProjectsAndAssemblies
 
     {
        bool AddGeneratedFilesToVSProject { get; }

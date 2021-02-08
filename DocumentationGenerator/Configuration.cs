@@ -17,7 +17,7 @@ namespace DocumentationGenerator
 
         public override bool AddGeneratedFilesToVSProject => false;
 
-        public override bool SearchInReferencedProjects => true;
+        public override bool SearchInReferencedProjectsAndAssemblies => true;
 
         public override IEnumerable<string> GetProjectsToBeSearched()
         {
