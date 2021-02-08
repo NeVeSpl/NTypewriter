@@ -23,6 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Assets.Referenced", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ECF63459-19D9-4F09-8291-2DC27EC175C9}"
 	ProjectSection(SolutionItems) = preProject
+		license.md = license.md
 		readme.md = readme.md
 	EndProjectSection
 EndProject
@@ -36,7 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\TypewriterIssues.md = Documentation\TypewriterIssues.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentationGenerator", "DocumentationGenerator\DocumentationGenerator.csproj", "{584B0FDD-B073-4223-AA51-D56B6087B59B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentationGenerator", "DocumentationGenerator\DocumentationGenerator.csproj", "{584B0FDD-B073-4223-AA51-D56B6087B59B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -11,7 +11,8 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>xKey.snk</AssemblyOriginatorKeyFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageLicenseFile>license.md</PackageLicenseFile>
+
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -21,12 +22,5 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>obj\Release\netstandard2.0\NTypewriter.CodeModel.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="..\license.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
 
 </Project>
