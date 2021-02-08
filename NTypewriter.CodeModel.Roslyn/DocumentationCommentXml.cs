@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Serialization;
@@ -13,11 +11,12 @@ namespace NTypewriter.CodeModel.Roslyn
     {      
         private readonly string xml;
         private readonly Lazy<RootNode> rootNode;
-        private static readonly Regex rg = new Regex(@"(\<(param|summary|returns).*?\>)(.*?)(\<\/\2\>)", RegexOptions.Multiline | RegexOptions.Compiled);
+        private static readonly Regex ExtractElementRegex = new Regex(@"(\<(param|summary|returns)(.*?)\>)(.*?)(\<\/\2\>)", RegexOptions.Multiline | RegexOptions.Compiled);
+        private static readonly Regex ExtractNameRegex = new Regex("name=\"(.*?)\"", RegexOptions.Singleline | RegexOptions.Compiled);
 
-        public string Summary => XmlConvert.DecodeName(rootNode.Value.Summary)?.Trim();
-        public string Returns => XmlConvert.DecodeName(rootNode.Value.Returns)?.Trim();
-        public IEnumerable<IDocumentationCommentXmlParam> Params => rootNode.Value.Params.Select(x => new Param() {Name = x.Name, Value = XmlConvert.DecodeName(x.Value)?.Trim() });
+        public string Summary => rootNode.Value.Summary;
+        public string Returns => rootNode.Value.Returns;
+        public IEnumerable<IDocumentationCommentXmlParam> Params => rootNode.Value.Params;
         
 
         private DocumentationCommentXml(string xml)
@@ -30,13 +29,6 @@ namespace NTypewriter.CodeModel.Roslyn
         public static DocumentationCommentXml Create(ISymbol symbol)
         {
             var xml = symbol.GetDocumentationCommentXml();
-            if (!xml.Contains("</member>"))
-            {
-                xml = $"<member>{xml}</member>";
-            }
-
-            xml = rg.Replace(xml, m => $"{m.Groups[1].Value}{XmlConvert.EncodeName(m.Groups[3].Value)}{m.Groups[4].Value}");
-
             return new DocumentationCommentXml(xml);
         }
 
@@ -48,17 +40,38 @@ namespace NTypewriter.CodeModel.Roslyn
 
         private RootNode Deserialize(string xml)
         {
+            var result = new RootNode(); 
+
             if (string.IsNullOrEmpty(xml))
             {
-                return new RootNode();
+                return result;
             }
 
-            RootNode result = null;
-            var serializer = new XmlSerializer(typeof(RootNode)); 
-            using (TextReader reader = new StringReader(xml))
-            { 
-                result = serializer.Deserialize(reader) as RootNode;             
+            var matches = ExtractElementRegex.Matches(xml);
+            foreach (Match match in matches)
+            {
+                var elementName = match.Groups[2].Value;
+                var value = match.Groups[4].Value.Trim();
+
+                switch (elementName)
+                {
+                    case "summary":
+                        result.Summary = value;
+                        break;
+                    case "returns":
+                        result.Returns = value;
+                        break;
+                    case "param":
+                        var param = new Param();
+                        param.Value = value;
+                        var arguments = match.Groups[3].Value;
+                        var nameMatch = ExtractNameRegex.Match(arguments);
+                        param.Name = nameMatch.Groups[1].Value.Trim();                        
+                        result.Params.Add(param);
+                        break;
+                }
             }
+
 
             return result;
         }
@@ -72,7 +85,7 @@ namespace NTypewriter.CodeModel.Roslyn
         [XmlElement(elementName: "returns")]
         public string Returns { get; set; }
         [XmlElement(elementName: "param")]
-        public List<Param> Params { get; set; }
+        public List<Param> Params { get; set; } = new List<Param>();
     }
 
     public class Param : IDocumentationCommentXmlParam
