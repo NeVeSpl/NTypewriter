@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.0.1-alpha</Version>
+    <Version>0.0.2-alpha</Version>
     <Authors>NeVeSpl</Authors>
     <Company>NeVeSpl</Company>
     <Copyright>(c) NTypewriter</Copyright>
@@ -13,6 +13,12 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  
+    <AssemblyVersion>0.0.2.0</AssemblyVersion>
+  
+    <FileVersion>0.0.2.0</FileVersion>
+  
+    <PackageIcon>nt.128.128.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +27,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NTypewriter.CodeModel\NTypewriter.CodeModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Documentation\nt.128.128.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
