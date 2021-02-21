@@ -358,7 +358,7 @@ Filters types based on if a type inherits directly from given type
 
 # Scriban functions
 
-Below functions comes from Scriban, and you can read more about them in [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md)
+Below functions come from Scriban, and you can read more about them in [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md)
 
 
 
