@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Collections.Generic;
+using Microsoft.CodeAnalysis;
 
 namespace NTypewriter.CodeModel.Roslyn
 {
@@ -8,6 +9,7 @@ namespace NTypewriter.CodeModel.Roslyn
 
         public object Value => symbol.ConstantValue;
         public string Name => symbol.Name;
+        public IEnumerable<IAttribute> Attributes => AttributeCollection.Create(symbol);
 
 
         private EnumValue(IFieldSymbol symbol)

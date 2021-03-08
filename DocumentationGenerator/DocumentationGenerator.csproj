@@ -20,6 +20,9 @@
     <None Update="BuiltInFunctions.nt">
       <CustomToolNamespace>908d25a9-1efd-4411-b55c-4b23ec597465</CustomToolNamespace>
     </None>
+    <None Update="CodeModel.nt">
+      <CustomToolNamespace>a08c1efe-ae28-44b5-8450-963778c77df3</CustomToolNamespace>
+    </None>
   </ItemGroup>
 
 	<Target Name="InludeXMLDocumentationInOutput" BeforeTargets="Build">
