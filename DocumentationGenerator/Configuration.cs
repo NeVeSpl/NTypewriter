@@ -46,7 +46,7 @@ namespace DocumentationGenerator
         public static string ToLiquidId(string text)
         {
             var words = text.SplitIntoSeparateWords();
-            var id = String.Join('_', words.Select(x => x.ToLower()));           
+            var id = String.Join("_", words.Select(x => x.ToLower()));           
             return id;
         }
     }
