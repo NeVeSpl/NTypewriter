@@ -543,7 +543,7 @@ Removes any HTML tags from the input string
 ```csharp
 string Html.Escape(string text)
 ```
-Escapes a HTML input string (replacing `&` by `&amp;`) 
+Escapes a HTML input string (replacing `&amp;` by `&amp;amp;`) 
 [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#htmlescape)
 
 #### UrlEncode
