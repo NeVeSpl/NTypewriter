@@ -17,6 +17,11 @@ namespace NTypewriter.CodeModel
         /// <summary>
         /// The value of the enum member
         /// </summary>
-        object Value { get; }      
+        object Value { get; }
+
+        /// <summary>
+        /// All attributes declared on the enum value.
+        /// </summary>
+        IEnumerable<IAttribute> Attributes { get; }
     }
 }
