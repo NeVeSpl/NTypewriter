@@ -11,7 +11,7 @@ namespace NTypewriter.CodeModel.Roslyn
     {      
         private readonly string xml;
         private readonly Lazy<RootNode> rootNode;
-        private static readonly Regex ExtractElementRegex = new Regex(@"(\<(param|summary|returns)(.*?)\>)(.*?)(\<\/\2\>)", RegexOptions.Multiline | RegexOptions.Compiled);
+        private static readonly Regex ExtractElementRegex = new Regex(@"(\<(param|summary|returns)(.*?)\>)([\S\s]*?)(\<\/\2\>)", RegexOptions.Multiline | RegexOptions.Compiled);
         private static readonly Regex ExtractNameRegex = new Regex("name=\"(.*?)\"", RegexOptions.Singleline | RegexOptions.Compiled);
 
         public string Summary => rootNode.Value.Summary;
