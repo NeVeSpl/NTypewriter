@@ -7,16 +7,30 @@ using System.Threading.Tasks;
 
 namespace NTypewriter.Tests.CodeModel
 {
+    class Main
+    {
+        SampleClass f1;
+        SampleClass.SampleNestedClass f2;
+        SampleGenericClass<int> f3;
+        SampleGenericClass<>.SampleNestedClassInGeneric f4;
+        int[] f5;
+
+    }
+
+
+
+
+
     class SampleClass
     {
-        class SampleNestedClass
+        public class SampleNestedClass
         {
 
         }
     }
     class SampleGenericClass<T>
     {
-        class SampleNestedClassInGeneric
+        public class SampleNestedClassInGeneric
         {
 
         }
