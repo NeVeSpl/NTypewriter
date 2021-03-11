@@ -201,7 +201,7 @@ Returns the url for the Web API action based on route attributes (or the supplie
 #### ToTypeScript
 
 ```csharp
-IEnumerable<string> Parameters.ToTypeScript(IEnumerable<IParameter> parameters)
+IEnumerable<string> Parameters.ToTypeScript(IEnumerable<IParameter> parameters, string nullableType = "null")
 ```
 
 
@@ -325,7 +325,7 @@ The default value of the type.            (Dictionary types returns {}, enumerab
 #### ToTypeScriptType
 
 ```csharp
-string Type.ToTypeScriptType(IType type, string nullablePostfix = " | null")
+string Type.ToTypeScriptType(IType type, string nullableType = null)
 ```
 Converts type name to typescript type name
 
