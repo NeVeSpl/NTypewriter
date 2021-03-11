@@ -11,39 +11,39 @@ namespace NTypewriter.CodeModel.Functions
         /// <summary>
         /// Converts type name to typescript type name
         /// </summary>
-        public static string ToTypeScriptType(this IType type, string nullablePostfix = " | null")
+        public static string ToTypeScriptType(this IType type, string nullableType = "null")
         {
             if (type == null)
             {
                 return null;
             }
             var postfix = String.Empty;
-            if (type.IsNullable && postfix != nullablePostfix)
+            if (type.IsNullable && nullableType != String.Empty)
             {
                 if (!((type is ITypeReferencedByMember typeReference) && (typeReference.Parent?.Attributes.Any(x => x.Name == "Required") == true)))
                 {
-                    postfix = nullablePostfix;
+                    postfix = " | " + (nullableType ?? "null");
                 }
             }
-            return ToTypeScriptTypePhase2(type, nullablePostfix) + postfix;
+            return ToTypeScriptTypePhase2(type, nullableType) + postfix;
         }
 
-        private static string ToTypeScriptTypePhase2(IType type, string nullablePostfix)
+        private static string ToTypeScriptTypePhase2(IType type, string nullableType)
         {
             if (type.IsArray)
             {
                 // Array : int[]
 
-                if (type.ArrayType.IsNullable && nullablePostfix != String.Empty)
+                if (type.ArrayType.IsNullable && nullableType != String.Empty)
                 {
-                    return $"({ToTypeScriptType(type.ArrayType, nullablePostfix)})[]";
+                    return $"({ToTypeScriptType(type.ArrayType, nullableType)})[]";
                 }
 
-                return ToTypeScriptType(type.ArrayType, nullablePostfix) + "[]";
+                return ToTypeScriptType(type.ArrayType, nullableType) + "[]";
             }
             if (type.IsGeneric)
             {
-                var arguments = type.TypeArguments.Select(x => ToTypeScriptType(x, nullablePostfix)).ToList();
+                var arguments = type.TypeArguments.Select(x => ToTypeScriptType(x, nullableType)).ToList();
 
                 if (type.IsNullable && type.IsValueType)
                 {
@@ -59,7 +59,7 @@ namespace NTypewriter.CodeModel.Functions
 
                         var firstArgument = arguments.First();
 
-                        if (nullablePostfix != String.Empty && firstArgument.EndsWith(nullablePostfix))
+                        if (firstArgument.Contains("|"))
                         {
                             return $"({firstArgument})[]";
                         }

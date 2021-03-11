@@ -106,12 +106,12 @@ MyGeneric<number | null> | null
         }
 
         [TestMethod]
-        public async Task ToTypeScriptType_Simple_CustomNullablePostfix()
+        public async Task ToTypeScriptType_Simple_CustomNullableType()
         {
             var template = @"{{- capture output
                                      for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptType_Simple""
                                          for field in class.Fields
-                                             field.Type | Type.ToTypeScriptType "" | undefined"" | String.Append ""\r\n""
+                                             field.Type | Type.ToTypeScriptType ""undefined"" | String.Append ""\r\n""
                                          end
                                       end
                                   end
@@ -134,12 +134,12 @@ any";
         }
 
         [TestMethod]
-        public async Task ToTypeScriptType_Complex_CustomNullablePostfix()
+        public async Task ToTypeScriptType_Complex_CustomNullableType()
         {
             var template = @"{{- capture output
                                      for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptType_Complex""
                                          for field in class.Fields
-                                             field.Type | Type.ToTypeScriptType "" | undefined"" | String.Append ""\r\n""
+                                             field.Type | Type.ToTypeScriptType ""undefined"" | String.Append ""\r\n""
                                          end
                                       end
                                   end
@@ -163,7 +163,7 @@ MyGeneric<number | undefined> | undefined
         }
 
         [TestMethod]
-        public async Task ToTypeScriptType_Simple_EmptyNullablePostfix()
+        public async Task ToTypeScriptType_Simple_EmptyNullableType()
         {
             var template = @"{{- capture output
                                      for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptType_Simple""
@@ -191,7 +191,7 @@ any";
         }
 
         [TestMethod]
-        public async Task ToTypeScriptType_Complex_EmptyNullablePostfix()
+        public async Task ToTypeScriptType_Complex_EmptyNullableType()
         {
             var template = @"{{- capture output
                                      for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptType_Complex""
