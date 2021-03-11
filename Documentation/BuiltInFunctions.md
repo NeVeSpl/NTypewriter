@@ -325,7 +325,7 @@ The default value of the type.            (Dictionary types returns {}, enumerab
 #### ToTypeScriptType
 
 ```csharp
-string Type.ToTypeScriptType(IType type, string nullableType = null)
+string Type.ToTypeScriptType(IType type, string nullableType = "null")
 ```
 Converts type name to typescript type name
 
