@@ -26,8 +26,8 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type
                                      for class in data.Classes | Symbols.WhereNameStartsWith ""AllReferencedTypes""
                                          for type in class | Type.AllReferencedTypes
                                              type.Name | String.Append ""\r\n""
-                                         end 
-                                      end 
+                                         end
+                                      end
                                   end
                                   Save output ""Some name"" }}
                             ";
@@ -48,19 +48,19 @@ BaseType
         }
 
 
-            [TestMethod]
+        [TestMethod]
         public async Task ToTypeScriptType_Simple()
         {
             var template = @"{{- capture output
                                      for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptType_Simple""
-                                         for field in class.Fields 
+                                         for field in class.Fields
                                              field.Type | Type.ToTypeScriptType | String.Append ""\r\n""
-                                         end 
-                                      end 
+                                         end
+                                      end
                                   end
                                   Save output ""Some name"" }}
                             ";
-            var result = await NTypeWriter.Render(template, data, null);          
+            var result = await NTypeWriter.Render(template, data, null);
             var actual = result.Items.First().Content;
             var expected = @"
 boolean
@@ -81,10 +81,10 @@ any";
         {
             var template = @"{{- capture output
                                      for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptType_Complex""
-                                         for field in class.Fields 
+                                         for field in class.Fields
                                              field.Type | Type.ToTypeScriptType | String.Append ""\r\n""
-                                         end 
-                                      end 
+                                         end
+                                      end
                                   end
                                   Save output ""Some name"" }}
                             ";
@@ -96,24 +96,139 @@ MyGeneric<number>
 number[]
 number[]
 MyGeneric<number | null>
-number | null[]
-number | null[]
+(number | null)[]
+(number | null)[]
 MyGeneric<number | null> | null
-number | null[] | null
-number | null[] | null
+(number | null)[] | null
+(number | null)[] | null
 { [key: string]: number }";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
+
+        [TestMethod]
+        public async Task ToTypeScriptType_Simple_CustomNullableType()
+        {
+            var template = @"{{- capture output
+                                     for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptType_Simple""
+                                         for field in class.Fields
+                                             field.Type | Type.ToTypeScriptType ""undefined"" | String.Append ""\r\n""
+                                         end
+                                      end
+                                  end
+                                  Save output ""Some name"" }}
+                            ";
+            var result = await NTypeWriter.Render(template, data, null);
+            var actual = result.Items.First().Content;
+            var expected = @"
+boolean
+number
+number | undefined
+string
+string | undefined
+MyEnum
+MyEnum | undefined
+Promise<number>
+number
+any";
+            Assert.AreEqual(expected.Trim(), actual.Trim());
+        }
+
+        [TestMethod]
+        public async Task ToTypeScriptType_Complex_CustomNullableType()
+        {
+            var template = @"{{- capture output
+                                     for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptType_Complex""
+                                         for field in class.Fields
+                                             field.Type | Type.ToTypeScriptType ""undefined"" | String.Append ""\r\n""
+                                         end
+                                      end
+                                  end
+                                  Save output ""Some name"" }}
+                            ";
+            var result = await NTypeWriter.Render(template, data, null);
+            var actual = result.Items.First().Content;
+            var expected = @"
+number[]
+MyGeneric<number>
+number[]
+number[]
+MyGeneric<number | undefined>
+(number | undefined)[]
+(number | undefined)[]
+MyGeneric<number | undefined> | undefined
+(number | undefined)[] | undefined
+(number | undefined)[] | undefined
+{ [key: string]: number }";
+            Assert.AreEqual(expected.Trim(), actual.Trim());
+        }
+
+        [TestMethod]
+        public async Task ToTypeScriptType_Simple_EmptyNullableType()
+        {
+            var template = @"{{- capture output
+                                     for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptType_Simple""
+                                         for field in class.Fields
+                                             field.Type | Type.ToTypeScriptType """" | String.Append ""\r\n""
+                                         end
+                                      end
+                                  end
+                                  Save output ""Some name"" }}
+                            ";
+            var result = await NTypeWriter.Render(template, data, null);
+            var actual = result.Items.First().Content;
+            var expected = @"
+boolean
+number
+number
+string
+string
+MyEnum
+MyEnum
+Promise<number>
+number
+any";
+            Assert.AreEqual(expected.Trim(), actual.Trim());
+        }
+
+        [TestMethod]
+        public async Task ToTypeScriptType_Complex_EmptyNullableType()
+        {
+            var template = @"{{- capture output
+                                     for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptType_Complex""
+                                         for field in class.Fields
+                                             field.Type | Type.ToTypeScriptType """" | String.Append ""\r\n""
+                                         end
+                                      end
+                                  end
+                                  Save output ""Some name"" }}
+                            ";
+            var result = await NTypeWriter.Render(template, data, null);
+            var actual = result.Items.First().Content;
+            var expected = @"
+number[]
+MyGeneric<number>
+number[]
+number[]
+MyGeneric<number>
+number[]
+number[]
+MyGeneric<number>
+number[]
+number[]
+{ [key: string]: number }";
+            Assert.AreEqual(expected.Trim(), actual.Trim());
+        }
+
 
         [TestMethod]
         public async Task ToTypeScriptDefault()
         {
             var template = @"{{- capture output
                                      for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptDefault""
-                                         for field in class.Fields 
+                                         for field in class.Fields
                                              field.Type | Type.ToTypeScriptDefault | String.Append ""\r\n""
-                                         end 
-                                      end 
+                                         end
+                                      end
                                   end
                                   Save output ""Some name"" }}
                             ";

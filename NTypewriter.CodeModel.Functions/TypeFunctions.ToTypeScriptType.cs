@@ -11,33 +11,39 @@ namespace NTypewriter.CodeModel.Functions
         /// <summary>
         /// Converts type name to typescript type name
         /// </summary>
-        public static string ToTypeScriptType(this IType type)
+        public static string ToTypeScriptType(this IType type, string nullableType = "null")
         {
             if (type == null)
             {
                 return null;
             }
             var postfix = String.Empty;
-            if (type.IsNullable)
+            if (type.IsNullable && nullableType != String.Empty)
             {
                 if (!((type is ITypeReferencedByMember typeReference) && (typeReference.Parent?.Attributes.Any(x => x.Name == "Required") == true)))
                 {
-                    postfix = " | null";
+                    postfix = " | " + (nullableType ?? "null");
                 }
             }
-            return ToTypeScriptTypePhase2(type) + postfix;
+            return ToTypeScriptTypePhase2(type, nullableType) + postfix;
         }
 
-        private static string ToTypeScriptTypePhase2(IType type)
+        private static string ToTypeScriptTypePhase2(IType type, string nullableType)
         {
             if (type.IsArray)
             {
                 // Array : int[]
-                return ToTypeScriptType(type.ArrayType) + "[]";
+
+                if (type.ArrayType.IsNullable && nullableType != String.Empty)
+                {
+                    return $"({ToTypeScriptType(type.ArrayType, nullableType)})[]";
+                }
+
+                return ToTypeScriptType(type.ArrayType, nullableType) + "[]";
             }
             if (type.IsGeneric)
             {
-                var arguments = type.TypeArguments.Select(x => ToTypeScriptType(x)).ToList();
+                var arguments = type.TypeArguments.Select(x => ToTypeScriptType(x, nullableType)).ToList();
 
                 if (type.IsNullable && type.IsValueType)
                 {
@@ -50,7 +56,15 @@ namespace NTypewriter.CodeModel.Functions
                     if (arguments.Count() == 1)
                     {
                         // List : List<int>
-                        return arguments.First() + "[]";
+
+                        var firstArgument = arguments.First();
+
+                        if (firstArgument.Contains("|"))
+                        {
+                            return $"({firstArgument})[]";
+                        }
+
+                        return firstArgument + "[]";
                     }
                     if (arguments.Count() == 2)
                     {
@@ -59,7 +73,7 @@ namespace NTypewriter.CodeModel.Functions
                     }
                 }
 
-                // common generic : MyGeneric<int,string> 
+                // common generic : MyGeneric<int,string>
                 var name = TranslateNameToTypeScriptName(type);
                 return $"{name}<{ String.Join(",", arguments) }>";
             }
@@ -103,6 +117,6 @@ namespace NTypewriter.CodeModel.Functions
             }
 
             return type.BareName;
-        }       
+        }
     }
 }
