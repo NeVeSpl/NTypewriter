@@ -11,39 +11,39 @@ namespace NTypewriter.CodeModel.Functions
         /// <summary>
         /// Converts type name to typescript type name
         /// </summary>
-        public static string ToTypeScriptType(this IType type, string nullableType = "null")
+        public static string ToTypeScriptType(this IType type, string nullableTypePostfix = "null")
         {
             if (type == null)
             {
                 return null;
             }
             var postfix = String.Empty;
-            if (type.IsNullable && nullableType != String.Empty)
+            if (type.IsNullable && !String.IsNullOrEmpty(nullableTypePostfix))
             {
                 if (!((type is ITypeReferencedByMember typeReference) && (typeReference.Parent?.Attributes.Any(x => x.Name == "Required") == true)))
                 {
-                    postfix = " | " + (nullableType ?? "null");
+                    postfix = " | " + (nullableTypePostfix ?? "null");
                 }
             }
-            return ToTypeScriptTypePhase2(type, nullableType) + postfix;
+            return ToTypeScriptTypePhase2(type, nullableTypePostfix) + postfix;
         }
 
-        private static string ToTypeScriptTypePhase2(IType type, string nullableType)
+        private static string ToTypeScriptTypePhase2(IType type, string nullableTypePostfix)
         {
             if (type.IsArray)
             {
                 // Array : int[]
 
-                if (type.ArrayType.IsNullable && nullableType != String.Empty)
+                if (type.ArrayType.IsNullable && !String.IsNullOrEmpty(nullableTypePostfix))
                 {
-                    return $"({ToTypeScriptType(type.ArrayType, nullableType)})[]";
+                    return $"({ToTypeScriptType(type.ArrayType, nullableTypePostfix)})[]";
                 }
 
-                return ToTypeScriptType(type.ArrayType, nullableType) + "[]";
+                return ToTypeScriptType(type.ArrayType, nullableTypePostfix) + "[]";
             }
             if (type.IsGeneric)
             {
-                var arguments = type.TypeArguments.Select(x => ToTypeScriptType(x, nullableType)).ToList();
+                var arguments = type.TypeArguments.Select(x => ToTypeScriptType(x, nullableTypePostfix)).ToList();
 
                 if (type.IsNullable && type.IsValueType)
                 {
