@@ -26,6 +26,8 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptType_Simple
         [Required]
         int? nullableInteger2;
         dynamic dynamic;
+        TimeSpan timeSpan;
+        TimeSpan? optionalTimeSpan;
 
 
 

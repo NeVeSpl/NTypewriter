@@ -104,6 +104,8 @@ namespace NTypewriter.CodeModel.Functions
                 case "System.DateTime":
                 case "System.DateTimeOffset":
                     return "Date";
+                case "System.TimeSpan":
+                    return "string";
                 case "System.Void":
                     return "void";
                 case "System.Object":
