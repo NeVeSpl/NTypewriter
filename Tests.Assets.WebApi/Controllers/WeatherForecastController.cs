@@ -37,7 +37,7 @@ namespace Tests.Assets.WebApi.Controllers
             .ToArray();
         }
 
-
+        [HttpPut]
         [AcceptVerbs("put", "get")]
         [Route("~/sd", Name ="some_name")]
         public async Task<IEnumerable<WeatherForecast>> SomeAsync(InputDTO body, [FromQuery] Paggination pagg)

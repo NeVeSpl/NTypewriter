@@ -48,7 +48,7 @@ namespace NTypewriter.CodeModel.Functions
         private static string GetRouteFromTypeAttributes(IType type)
         {
             var routeAttribute = type.Attributes.FirstOrDefault(a => a.Name == "RoutePrefix" || a.Name == "Route");
-            var route = routeAttribute?.Arguments.Where(x => x.Name == "template").Select(x => x.Value.ToString()).FirstOrDefault();
+            var route = routeAttribute?.Arguments.Where(x => x.Name == "template" || x.Name == "prefix").Select(x => x.Value.ToString()).FirstOrDefault();
 
             if (String.IsNullOrEmpty(route) && type.BaseType != null)
             {
@@ -59,8 +59,8 @@ namespace NTypewriter.CodeModel.Functions
         }
         private static string GetRouteFromMethodAttributes(IMethod method)
         {
-            var routeAttribute = method.Attributes.FirstOrDefault(a => a.Name == "Route" || a.Name.StartsWith("Http"));
-            var route = routeAttribute?.Arguments.Where(x => x.Name == "template").FirstOrDefault()?.Value.ToString();
+            var routeAttributes = method.Attributes.Where(a => a.Name == "Route" || a.Name.StartsWith("Http"));
+            var route = routeAttributes.SelectMany(x => x.Arguments).Where(x => x.Name == "template").Select(x => x.Value).Where(x => x != null).FirstOrDefault()?.ToString();
             return route;
         }
         private static string ReplaceSpecialParameters(IMethod method, string route)
