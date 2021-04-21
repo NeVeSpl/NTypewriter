@@ -21,7 +21,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptDefault
         GenericType<int> genericField;
         long? longType;
         Func<string> funcType;
-
+        ArrayType[] arrayField;
         PropertyType property { get; set; }
 
         MethodReturnType Method(ParameterType type)
@@ -80,6 +80,10 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptDefault
     }
 
     class GenericType<T>
+    {
+
+    }
+    class ArrayType
     {
 
     }

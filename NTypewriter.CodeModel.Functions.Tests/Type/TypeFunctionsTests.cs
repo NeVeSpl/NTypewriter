@@ -42,6 +42,7 @@ FieldType
 EnumType
 EnumerableType
 GenericType<int>
+ArrayType
 BaseType
 ";
             Assert.AreEqual(expected.Trim(), actual.Trim());

@@ -63,10 +63,15 @@ namespace NTypewriter.CodeModel.Functions
                     InspectType(foundTypes, typeArgument);
                 }
             }
+            if (type.IsArray)
+            {
+                InspectType(foundTypes, type.ArrayType);
+                return;
+            }
             if (type.IsNullable)
             {
                 return;
-            }
+            }            
             if (type.Namespace.StartsWith("System.") || type.Namespace.StartsWith("Microsoft.") ||
                 type.Namespace.Equals("System") || type.Namespace.Equals("Microsoft")
                 )
