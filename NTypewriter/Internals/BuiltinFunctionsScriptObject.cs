@@ -11,6 +11,7 @@ namespace NTypewriter.Internals
 
         private BuiltinFunctionsScriptObject()
         {
+            SetValue("empty", EmptyScriptObject.Default, true);
             this["Array"] = CreateScriptObject(typeof(ArrayFunctions));
             this["Date"] = CreateScriptObject(typeof(DateTimeFunctions));
             //this["empty"] = CreateScriptObject(typeof(EmptyScriptObject)); 
