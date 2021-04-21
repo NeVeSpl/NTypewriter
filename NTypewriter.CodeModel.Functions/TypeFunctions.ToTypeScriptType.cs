@@ -11,7 +11,7 @@ namespace NTypewriter.CodeModel.Functions
         /// <summary>
         /// Converts type name to typescript type name
         /// </summary>
-        public static string ToTypeScriptType(this IType type, string nullableTypePostfix = "null")
+        public static string ToTypeScriptType(this IType type, string nullableTypePostfix = "null", string customDateType = "")
         {
             if (type == null)
             {
@@ -25,10 +25,14 @@ namespace NTypewriter.CodeModel.Functions
                     postfix = " | " + (nullableTypePostfix ?? "null");
                 }
             }
-            return ToTypeScriptTypePhase2(type, nullableTypePostfix) + postfix;
+            if (string.IsNullOrWhiteSpace(customDateType))
+            {
+                customDateType = "Date";
+            }
+            return ToTypeScriptTypePhase2(type, nullableTypePostfix, customDateType) + postfix;
         }
 
-        private static string ToTypeScriptTypePhase2(IType type, string nullableTypePostfix)
+        private static string ToTypeScriptTypePhase2(IType type, string nullableTypePostfix, string dateType)
         {
             if (type.IsArray)
             {
@@ -43,7 +47,7 @@ namespace NTypewriter.CodeModel.Functions
             }
             if (type.IsGeneric)
             {
-                var arguments = type.TypeArguments.Select(x => ToTypeScriptType(x, nullableTypePostfix)).ToList();
+                var arguments = type.TypeArguments.Select(x => ToTypeScriptType(x, nullableTypePostfix, dateType)).ToList();
 
                 if (type.IsNullable && type.IsValueType)
                 {
@@ -74,13 +78,13 @@ namespace NTypewriter.CodeModel.Functions
                 }
 
                 // common generic : MyGeneric<int,string>
-                var name = TranslateNameToTypeScriptName(type);
+                var name = TranslateNameToTypeScriptName(type, dateType);
                 return $"{name}<{ String.Join(",", arguments) }>";
             }
 
-            return TranslateNameToTypeScriptName(type);
+            return TranslateNameToTypeScriptName(type, dateType);
         }
-        private static string TranslateNameToTypeScriptName(IType type)
+        private static string TranslateNameToTypeScriptName(IType type, string dateType)
         {
             switch (type.FullName)
             {
@@ -103,7 +107,7 @@ namespace NTypewriter.CodeModel.Functions
                     return "number";
                 case "System.DateTime":
                 case "System.DateTimeOffset":
-                    return "Date";
+                    return dateType;
                 case "System.TimeSpan":
                     return "string";
                 case "System.Void":
