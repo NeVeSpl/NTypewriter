@@ -1,24 +1,14 @@
-
+﻿
 
 
 ActionFunctions
 
 * [BodyParameter](#BodyParameter)
-* [HttpMethod](#HttpMethod)
-* [Parameters](#Parameters)
-* [ReturnType](#ReturnType)
 * [Url](#Url)
-
-ParametersFunctions
-
-* [ToTypeScript](#ToTypeScript)
-
-StringFunctions
-
-* [ToCamelCase](#ToCamelCase)
-* [ToUpperFirst](#ToUpperFirst)
-* [ToLowerFirst](#ToLowerFirst)
-* [SplitIntoSeparateWords](#SplitIntoSeparateWords)
+* [ReturnType](#ReturnType)
+* [HttpMethod](#HttpMethod)
+* [UrlParameters](#UrlParameters)
+* [Parameters](#Parameters)
 
 SymbolsFunctions
 
@@ -32,17 +22,28 @@ SymbolsFunctions
 * [ThatArePublic](#ThatArePublic)
 * [ThatAreStatic](#ThatAreStatic)
 
-TypeFunctions
+ParametersFunctions
 
-* [AllReferencedTypes](#AllReferencedTypes)
-* [ToTypeScriptDefault](#ToTypeScriptDefault)
-* [ToTypeScriptType](#ToTypeScriptType)
-* [Unwrap](#Unwrap)
+* [ToTypeScript](#ToTypeScript)
 
 TypesFunctions
 
 * [ThatImplement](#ThatImplement)
 * [ThatInheritFrom](#ThatInheritFrom)
+
+TypeFunctions
+
+* [ToTypeScriptDefault](#ToTypeScriptDefault)
+* [Unwrap](#Unwrap)
+* [AllReferencedTypes](#AllReferencedTypes)
+* [ToTypeScriptType](#ToTypeScriptType)
+
+StringFunctions
+
+* [ToCamelCase](#ToCamelCase)
+* [ToUpperFirst](#ToUpperFirst)
+* [ToLowerFirst](#ToLowerFirst)
+* [SplitIntoSeparateWords](#SplitIntoSeparateWords)
 
 
 ArrayFunctions
@@ -166,19 +167,12 @@ IParameter Action.BodyParameter(IMethod method)
 ```
 Returns parameter that receives content sent to a webapi action in a request body.
 
-#### HttpMethod
+#### Url
 
 ```csharp
-string Action.HttpMethod(IMethod method)
+string Action.Url(IMethod method)
 ```
-Returns the http method used with a webapi action.            The http method is extracted from Http* or AcceptVerbs attribute or by naming convention if no attributes are specified.
-
-#### Parameters
-
-```csharp
-IEnumerable<IParameter> Action.Parameters(IMethod method)
-```
-Returns parameters that receive content sent to a webapi action.
+Returns the url for the Web API action based on route attributes (or the supplied convention route if no attributes are present).    Route parameters are converted to TypeScript string interpolation syntax by prefixing all parameters with $ e.g. ${id}.    Optional parameters are added as QueryString parameters for GET and HEAD requests.
 
 #### ReturnType
 
@@ -187,55 +181,26 @@ IType Action.ReturnType(IMethod method)
 ```
 Returns type that is returned from action unwrapped from Task and ActionResult generics
 
-#### Url
+#### HttpMethod
 
 ```csharp
-string Action.Url(IMethod method)
+string Action.HttpMethod(IMethod method)
 ```
-Returns the url for the Web API action based on route attributes (or the supplied convention route if no attributes are present).            Route parameters are converted to TypeScript string interpolation syntax by prefixing all parameters with $ e.g. ${id}.            Optional parameters are added as QueryString parameters for GET and HEAD requests.
+Returns the http method used with a webapi action.    The http method is extracted from Http* or AcceptVerbs attribute or by naming convention if no attributes are specified.
 
-----
-
-## ParametersFunctions
-
-#### ToTypeScript
+#### UrlParameters
 
 ```csharp
-IEnumerable<string> Parameters.ToTypeScript(IEnumerable<IParameter> parameters, string nullableType = "null")
+IEnumerable<IParameter> Action.UrlParameters(IMethod method)
 ```
+Returns parameters of the webapi action that are required to produce the Url for the action
 
-
-----
-
-## StringFunctions
-
-#### ToCamelCase
+#### Parameters
 
 ```csharp
-string String.ToCamelCase(string text)
+IEnumerable<IParameter> Action.Parameters(IMethod method)
 ```
-Converts text case to CamelCase
-
-#### ToUpperFirst
-
-```csharp
-string String.ToUpperFirst(string text)
-```
-Converts first letter of the given string to upper case
-
-#### ToLowerFirst
-
-```csharp
-string String.ToLowerFirst(string text)
-```
-Converts first letter of the given string to lower case
-
-#### SplitIntoSeparateWords
-
-```csharp
-IEnumerable<string> String.SplitIntoSeparateWords(string text)
-```
-
+Returns parameters that receive content sent to a webapi action.
 
 ----
 
@@ -306,35 +271,14 @@ Filters symbols by the static modifier
 
 ----
 
-## TypeFunctions
+## ParametersFunctions
 
-#### AllReferencedTypes
-
-```csharp
-IEnumerable<IType> Type.AllReferencedTypes(IType type)
-```
-
-
-#### ToTypeScriptDefault
+#### ToTypeScript
 
 ```csharp
-string Type.ToTypeScriptDefault(IType type)
+IEnumerable<string> Parameters.ToTypeScript(IEnumerable<IParameter> parameters, string nullableType = "null")
 ```
-The default value of the type.            (Dictionary types returns {}, enumerable types returns [],            boolean types returns false, numeric types returns 0, void returns void(0),            Guid types return empty guid string, Date types return new Date(0),            all other types return null)
 
-#### ToTypeScriptType
-
-```csharp
-string Type.ToTypeScriptType(IType type, string nullableTypePostfix = "null")
-```
-Converts type name to typescript type name
-
-#### Unwrap
-
-```csharp
-IType Type.Unwrap(IType type)
-```
-Returns the first TypeArgument of a generic type or the type itself if it's not generic.
 
 ----
 
@@ -353,6 +297,70 @@ Filters types based on if a type implements given interface (directly or indirec
 IEnumerable<IType> Types.ThatInheritFrom(IEnumerable<IType> types, string baseTypeName)
 ```
 Filters types based on if a type inherits directly from given type
+
+----
+
+## TypeFunctions
+
+#### ToTypeScriptDefault
+
+```csharp
+string Type.ToTypeScriptDefault(IType type)
+```
+The default value of the type.    (Dictionary types returns {}, enumerable types returns [],    boolean types returns false, numeric types returns 0, void returns void(0),    Guid types return empty guid string, Date types return new Date(0),    all other types return null)
+
+#### Unwrap
+
+```csharp
+IType Type.Unwrap(IType type)
+```
+Returns the first TypeArgument of a generic type or the type itself if it's not generic.
+
+#### AllReferencedTypes
+
+```csharp
+IEnumerable<IType> Type.AllReferencedTypes(IType type)
+```
+
+
+#### ToTypeScriptType
+
+```csharp
+string Type.ToTypeScriptType(IType type, string nullableTypePostfix = "null")
+```
+Converts type name to typescript type name
+
+----
+
+## StringFunctions
+
+#### ToCamelCase
+
+```csharp
+string String.ToCamelCase(string text)
+```
+Converts text case to CamelCase
+
+#### ToUpperFirst
+
+```csharp
+string String.ToUpperFirst(string text)
+```
+Converts first letter of the given string to upper case
+
+#### ToLowerFirst
+
+```csharp
+string String.ToLowerFirst(string text)
+```
+Converts first letter of the given string to lower case
+
+#### SplitIntoSeparateWords
+
+```csharp
+IEnumerable<string> String.SplitIntoSeparateWords(string text)
+```
+
 
 ----
 
