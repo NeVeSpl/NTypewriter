@@ -201,7 +201,7 @@ Returns the url for the Web API action based on route attributes (or the supplie
 #### ToTypeScript
 
 ```csharp
-IEnumerable<string> Parameters.ToTypeScript(IEnumerable<IParameter> parameters, string nullableType = "null", string customDateType = "Date")
+IEnumerable<string> Parameters.ToTypeScript(IEnumerable<IParameter> parameters, string nullableType = "null")
 ```
 
 
@@ -325,38 +325,9 @@ The default value of the type.            (Dictionary types returns {}, enumerab
 #### ToTypeScriptType
 
 ```csharp
-string Type.ToTypeScriptType(IType type, string nullableTypePostfix = "null", string customDateType = "Date")
+string Type.ToTypeScriptType(IType type, string nullableTypePostfix = "null")
 ```
-Converts type name to typescript type name.
-If you specify the argument after the type, you can specify the type that will be used for optional types. For instance, if your C# code looks like:
-
-```csharp
-public int? prop
-```
-
-by default this will turn into
-
-```JS
-number | null
-```
-
-but you can specify a different type like "undefined" using:
-
-```JS
-type | Type.ToTypeScriptType "undefined"
-```
-
-Or you can remove the optionality completely by specifying an empty string for the nullable type like this:
-
-```JS
-type | Type.ToTypeScriptType ""
-```
-
-For DateTime and DateTimeOffset types in your C# code, the default type used is JS's Date object. Sometimes it is much easier to deal with these data types as strings since that is typically what is passed back and forth between the front end and the back end. You can change the behaviour by specifying a parameter after the nullable type parameter. like this:
-
-```JS
-type | Type.ToTypeScriptType "null" "string"
-```
+Converts type name to typescript type name
 
 #### Unwrap
 

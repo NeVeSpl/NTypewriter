@@ -11,9 +11,9 @@ namespace NTypewriter.CodeModel.Functions
         /// <summary>
         ///
         /// </summary>
-        public static IEnumerable<string> ToTypeScript(this IEnumerable<IParameter> parameters, string nullableType = "null", string customDateType = "")
+        public static IEnumerable<string> ToTypeScript(this IEnumerable<IParameter> parameters, string nullableType = "null")
         {
-            return parameters.Select(x => $"{x.BareName}: {x.Type.ToTypeScriptType(nullableType, customDateType)}");
+            return parameters.Select(x => $"{x.BareName}: {x.Type.ToTypeScriptType(nullableType)}");
         }
     }
 }

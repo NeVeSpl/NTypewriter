@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptType_Simple
@@ -25,10 +28,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptType_Simple
         dynamic dynamic;
         TimeSpan timeSpan;
         TimeSpan? optionalTimeSpan;
-        DateTime date;
-        DateTime? optionalDate;
-        DateTimeOffset dateOffset;
-        DateTimeOffset? optionalDateOffset;
+
 
 
 

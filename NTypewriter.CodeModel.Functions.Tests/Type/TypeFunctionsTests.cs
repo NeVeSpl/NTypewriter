@@ -75,11 +75,7 @@ Promise<number>
 number
 any
 string
-string | null
-Date
-Date | null
-Date
-Date | null";
+string | null";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
 
@@ -138,11 +134,7 @@ Promise<number>
 number
 any
 string
-string | undefined
-Date
-Date | undefined
-Date
-Date | undefined";
+string | undefined";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
 
@@ -201,11 +193,7 @@ Promise<number>
 number
 any
 string
-string
-Date
-Date
-Date
-Date";
+string";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
 
@@ -238,107 +226,6 @@ number[]
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
 
-        [TestMethod]
-        public async Task ToTypeScriptType_Simple_CustomDateType()
-        {
-            var template = @"{{- capture output
-                                     for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptType_Simple""
-                                         for field in class.Fields
-                                             field.Type | Type.ToTypeScriptType ""null"" ""custom"" | String.Append ""\r\n""
-                                         end
-                                      end
-                                  end
-                                  Save output ""Some name"" }}
-                            ";
-            var result = await NTypeWriter.Render(template, data, null);
-            var actual = result.Items.First().Content;
-            var expected = @"
-boolean
-number
-number | null
-string
-string | null
-MyEnum
-MyEnum | null
-Promise<number>
-number
-any
-string
-string | null
-custom
-custom | null
-custom
-custom | null";
-            Assert.AreEqual(expected.Trim(), actual.Trim());
-        }
-
-        [TestMethod]
-        public async Task ToTypeScriptType_Simple_EmptyDateType()
-        {
-            var template = @"{{- capture output
-                                     for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptType_Simple""
-                                         for field in class.Fields
-                                             field.Type | Type.ToTypeScriptType ""null"" """" | String.Append ""\r\n""
-                                         end
-                                      end
-                                  end
-                                  Save output ""Some name"" }}
-                            ";
-            var result = await NTypeWriter.Render(template, data, null);
-            var actual = result.Items.First().Content;
-            var expected = @"
-boolean
-number
-number | null
-string
-string | null
-MyEnum
-MyEnum | null
-Promise<number>
-number
-any
-string
-string | null
-Date
-Date | null
-Date
-Date | null";
-            Assert.AreEqual(expected.Trim(), actual.Trim());
-        }
-
-        [TestMethod]
-        public async Task ToTypeScriptType_Simple_CustomNullableType_CustomDateType()
-        {
-            var template = @"{{- capture output
-                                     for class in data.Classes | Symbols.WhereNameStartsWith ""ToTypeScriptType_Simple""
-                                         for field in class.Fields
-                                             field.Type | Type.ToTypeScriptType ""undefined"" ""custom"" | String.Append ""\r\n""
-                                         end
-                                      end
-                                  end
-                                  Save output ""Some name"" }}
-                            ";
-            var result = await NTypeWriter.Render(template, data, null);
-            var actual = result.Items.First().Content;
-            var expected = @"
-boolean
-number
-number | undefined
-string
-string | undefined
-MyEnum
-MyEnum | undefined
-Promise<number>
-number
-any
-string
-string | undefined
-custom
-custom | undefined
-custom
-custom | undefined";
-            Assert.AreEqual(expected.Trim(), actual.Trim());
-        }
 
         [TestMethod]
         public async Task ToTypeScriptDefault()
