@@ -86,7 +86,7 @@ namespace NTypewriter.CodeModel.Functions
             var parameterAttributeBlackList = new[] { "FromHeader", "FromBody", "FromRoute", "FromServices" };
             var queryParameters = new List<string>();
 
-            foreach (var parameter in method.Parameters.Where(p => p.Type.IsPrimitive && p.Attributes.All(x => !parameterAttributeBlackList.Contains(x.Name))))
+            foreach (var parameter in method.Parameters.Where(p => p.Type.IsSimple() && p.Attributes.All(x => !parameterAttributeBlackList.Contains(x.Name))))
             {
                 if (!route.Contains($"${{{parameter.BareName}}}"))
                 {
@@ -117,7 +117,7 @@ namespace NTypewriter.CodeModel.Functions
             var builder = new StringBuilder();
             foreach (IParameter parameter in method.Parameters)
             {
-                if ((!parameter.Type.IsPrimitive) && parameter.Attributes.Any(x => x.Name == "FromQuery"))
+                if ((!parameter.Type.IsSimple()) && parameter.Attributes.Any(x => x.Name == "FromQuery"))
                 {
                     if (parameter.Type is IClass @class)
                     {                   
