@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using NTypewriter.CodeModel.Roslyn;
 
 namespace Microsoft.CodeAnalysis
 {
@@ -15,10 +14,6 @@ namespace Microsoft.CodeAnalysis
                 {
                     return $"{symbol.Name}.{value.Name}";
                 }
-            }
-            if (defaultConstantValue is INamedTypeSymbol namedTypeSymbol)
-            {
-                return Class.Create(namedTypeSymbol);
             }
             return defaultConstantValue?.ToString();
         }
