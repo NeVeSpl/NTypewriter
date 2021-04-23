@@ -37,19 +37,6 @@ namespace Tests.Assets.WebApi.Controllers
             .ToArray();
         }
 
-        [HttpGet("hkk/{url}")]
-        public IEnumerable<WeatherForecast> GetDataNoBody([FromServices] ILogger<WeatherForecastController> logger, int url)
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
-        }
-
         [HttpPut]
         [AcceptVerbs("put", "get")]
         [Route("~/sd", Name ="some_name")]
