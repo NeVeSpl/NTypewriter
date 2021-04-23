@@ -51,6 +51,11 @@ namespace Tests.Assets.WebApi.Controllers
         {
             return await Task.FromResult(GetData(null, 666));
         }
+
+        public void ActionWithEnumParam(Numbers numbers, int? optional, DateTime date)
+        {
+
+        }
     }
 
     public class InputDTO
@@ -62,5 +67,11 @@ namespace Tests.Assets.WebApi.Controllers
     {
         public int Page { get; set; }
         public int Limit { get; set; }
+    }
+
+    public enum Numbers 
+    {
+        Five,
+        Seven,
     }
 }

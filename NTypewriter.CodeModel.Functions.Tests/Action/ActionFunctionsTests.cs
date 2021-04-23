@@ -38,7 +38,11 @@ namespace NTypewriter.CodeModel.Functions.Tests.Method
             var result = await NTypeWriter.Render(template, data, settings);
             var actual = RemoveWhitespace(result.Items.First().Content);
 
-            var expected = "[GetData:get][SomeAsync:put][SomeAsync2:delete]";
+            var expected = RemoveWhitespace(
+                           @"[GetData:get]
+                             [SomeAsync:put]
+                             [SomeAsync2:delete]
+                             [ActionWithEnumParam:post]");
             Assert.AreEqual(expected, actual);
         }
 
@@ -58,7 +62,11 @@ namespace NTypewriter.CodeModel.Functions.Tests.Method
             var result = await NTypeWriter.Render(template, data, settings);
             var actual = RemoveWhitespace(result.Items.First().Content);
 
-            var expected = "[GetData:intbody][SomeAsync:InputDTObody][SomeAsync2:InputDTObody]";
+            var expected = RemoveWhitespace(
+                              @"[GetData:intbody]
+                                [SomeAsync:InputDTObody]
+                                [SomeAsync2:InputDTObody]
+                                [ActionWithEnumParam:]");
             Assert.AreEqual(expected, actual);
         }
 
@@ -78,7 +86,11 @@ namespace NTypewriter.CodeModel.Functions.Tests.Method
             var result = await NTypeWriter.Render(template, data, settings);
             var actual = RemoveWhitespace(result.Items.First().Content);
 
-            var expected = "[GetData:WeatherForecast/hkk][SomeAsync:sd?page=${pagg.page}&limit=${pagg.limit}][SomeAsync2:WeatherForecast/akacja/${par1}/${par2}/${par3}?par4=${par4}&par5=${par5}]";
+            var expected = RemoveWhitespace(
+                           @"[GetData:WeatherForecast/hkk]
+                             [SomeAsync:sd?page=${pagg.page}&limit=${pagg.limit}]
+                             [SomeAsync2:WeatherForecast/akacja/${par1}/${par2}/${par3}?par4=${par4}&par5=${par5}]
+                             [ActionWithEnumParam:WeatherForecast?numbers=${numbers}&optional=${optional}&date=${date}]");
                           
             Assert.AreEqual(expected, actual);
         }

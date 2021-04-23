@@ -18,7 +18,7 @@ namespace NTypewriter.CodeModel.Functions
            
             var dataParameters = method.Parameters
                 .Where(x => !parameterTypeBlackList.Contains(x.Type.Name))
-                .Where(x => !x.Type.IsPrimitive || x.Attributes.Any(y => y.Name == "FromBody"))
+                .Where(x => !x.Type.IsSimple() || x.Attributes.Any(y => y.Name == "FromBody"))
                 .Where(x => x.Attributes.All(y => !parameterAttributeBlackList.Contains(y.Name)))
                 .ToList();
 
