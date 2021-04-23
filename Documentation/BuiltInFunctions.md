@@ -176,9 +176,9 @@ Returns the http method used with a webapi action.            The http method is
 #### Parameters
 
 ```csharp
-IEnumerable<IParameter> Action.Parameters(IMethod method)
+IEnumerable<IParameter> Action.Parameters(IMethod method, bool withoutBodyParameter = false)
 ```
-Returns parameters that receive content sent to a webapi action.
+Returns parameters that receive content sent to a webapi action.            If _withoutBodyParameter_ is specified as true, then the Parameter list returned will not include the parameter that is being sent in the body of the request.
 
 #### ReturnType
 
