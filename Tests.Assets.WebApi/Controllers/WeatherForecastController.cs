@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -38,7 +39,8 @@ namespace Tests.Assets.WebApi.Controllers
         }
 
         [HttpGet("hkk/{url}")]
-        public IEnumerable<WeatherForecast> GetDataNoBody([FromServices] ILogger<WeatherForecastController> logger, int url)
+
+        public ActionResult<IEnumerable<WeatherForecast>> GetDataNoBody([FromServices] ILogger<WeatherForecastController> logger, int url)
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -59,15 +61,18 @@ namespace Tests.Assets.WebApi.Controllers
         }
 
         [HttpDelete("[action]/{par1:double}/{par2=false}/{par3?}")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ActionName("akacja")]
-        public async Task<IEnumerable<WeatherForecast>> SomeAsync2(int par3, InputDTO body, double par1, bool par2, int par4, int par5)
+        public async Task<ActionResult<IEnumerable<WeatherForecast>>> SomeAsync2(int par3, InputDTO body, double par1, bool par2, int par4, int par5)
         {
-            return await Task.FromResult(GetData(null, 666));
+            await Task.FromResult(5);
+            return Ok(GetData(null, 666));
         }
 
-        public void ActionWithEnumParam(Numbers numbers, int? optional, DateTime date)
+        //[ProducesResponseType(typeof(WeatherForecast), StatusCodes.Status200OK)]
+        public IActionResult ActionWithEnumParam(Numbers numbers, int? optional, DateTime date)
         {
-
+            return Ok(GetData(null, 666).FirstOrDefault());
         }
     }
 

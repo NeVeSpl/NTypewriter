@@ -69,6 +69,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Method
             Assert.AreEqual(expected, actual);
         }
 
+
         [TestMethod]
         public async Task Parameters()
         {
@@ -141,6 +142,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Method
             Assert.AreEqual(expected, actual);
         }
 
+
         [TestMethod]
         public async Task Url()
         {
@@ -166,6 +168,52 @@ namespace NTypewriter.CodeModel.Functions.Tests.Method
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public async Task ReturnType()
+        {
+            var template = @"{{- capture result
+                                 for class in data.Classes | Types.ThatInheritFrom ""ControllerBase"" 
+                                     for method in class.Methods }}                       
+                                      [{{- method.Name }} : {{- method | Action.ReturnType }}]
+                                   {{- end
+                                 end 
+                                 end 
+                                 Save result ""Some name"" }}
+                            ";
+            var result = await NTypeWriter.Render(template, data, settings);
+            var actual = RemoveWhitespace(result.Items.First().Content);
 
+            var expected = RemoveWhitespace(
+                            @"[GetData:IEnumerable<WeatherForecast>]
+                              [GetDataNoBody:IEnumerable<WeatherForecast>]
+                              [SomeAsync:IEnumerable<WeatherForecast>]
+                              [SomeAsync2:IEnumerable<WeatherForecast>]
+                              [ActionWithEnumParam:IActionResult]");
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public async Task ReturnType_with_uwrap()
+        {
+            var template = @"{{- capture result
+                                 for class in data.Classes | Types.ThatInheritFrom ""ControllerBase"" 
+                                     for method in class.Methods }}                       
+                                      [{{- method.Name }} : {{- method | Action.ReturnType | Type.Unwrap }}]
+                                   {{- end
+                                 end 
+                                 end 
+                                 Save result ""Some name"" }}
+                            ";
+            var result = await NTypeWriter.Render(template, data, settings);
+            var actual = RemoveWhitespace(result.Items.First().Content);
+
+            var expected = RemoveWhitespace(
+                            @"[GetData:WeatherForecast]
+                              [GetDataNoBody:WeatherForecast]
+                              [SomeAsync:WeatherForecast]
+                              [SomeAsync2:WeatherForecast]
+                              [ActionWithEnumParam:IActionResult]");
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
