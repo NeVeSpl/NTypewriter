@@ -18,7 +18,7 @@ namespace Microsoft.CodeAnalysis
             }
             if (defaultConstantValue is INamedTypeSymbol namedTypeSymbol)
             {
-                return Class.Create(namedTypeSymbol);
+                return NamedType.Create(namedTypeSymbol);
             }
             return defaultConstantValue?.ToString();
         }
