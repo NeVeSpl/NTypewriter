@@ -1,0 +1,5 @@
+﻿Simple:IEnumerable<WeatherForecast>
+TaskAndActionResult:IEnumerable<WeatherForecast>
+ActionResult:IEnumerable<WeatherForecast>
+Task:IEnumerable<WeatherForecast>
+ProducesResponseType:IEnumerable<WeatherForecast>

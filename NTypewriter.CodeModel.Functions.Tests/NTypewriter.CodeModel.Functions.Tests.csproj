@@ -7,6 +7,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Action\BodyParamete\**" />
+    <EmbeddedResource Remove="Action\BodyParamete\**" />
+    <None Remove="Action\BodyParamete\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Action\BodyParameter\expectedResult.txt" />
+    <None Remove="Action\BodyParameter\inputTemplate.nt" />
+    <None Remove="Action\HttpMethod\expectedResult.txt" />
+    <None Remove="Action\HttpMethod\inputTemplate.nt" />
+    <None Remove="Action\Parameters\expectedResult.txt" />
+    <None Remove="Action\Parameters\inputTemplate.nt" />
+    <None Remove="Action\ReturnType\expectedResult.txt" />
+    <None Remove="Action\ReturnType\inputTemplate.nt" />
+    <None Remove="Action\Url\expectedResult.txt" />
+    <None Remove="Action\Url\inputTemplate.nt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Action\BodyParameter\expectedResult.txt" />
+    <EmbeddedResource Include="Action\BodyParameter\inputTemplate.nt" />
+    <EmbeddedResource Include="Action\HttpMethod\expectedResult.txt" />
+    <EmbeddedResource Include="Action\HttpMethod\inputTemplate.nt" />
+    <EmbeddedResource Include="Action\Parameters\expectedResult.txt" />
+    <EmbeddedResource Include="Action\Parameters\inputTemplate.nt" />
+    <EmbeddedResource Include="Action\ReturnType\expectedResult.txt" />
+    <EmbeddedResource Include="Action\ReturnType\inputTemplate.nt" />
+    <EmbeddedResource Include="Action\Url\expectedResult.txt" />
+    <EmbeddedResource Include="Action\Url\inputTemplate.nt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Build.Locator" Version="1.3.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="3.8.0" />
@@ -17,12 +49,18 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Shouldly" Version="4.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NTypewriter.CodeModel.Functions\NTypewriter.CodeModel.Functions.csproj" />
     <ProjectReference Include="..\NTypewriter.CodeModel.Roslyn\NTypewriter.CodeModel.Roslyn.csproj" />
     <ProjectReference Include="..\NTypewriter\NTypewriter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Action\BodyParameter\expectedResult.txt" />
+    <Resource Include="Action\BodyParameter\inputTemplate.nt" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,9 @@
+﻿{{- 
+capture result
+    for class in data.Classes | Symbols.WhereNameMatches "HttpMethodController" 
+        for method in class.Methods                             
+           method.Name;  ":";  method | Action.HttpMethod; "\r\n";
+        end 
+    end 
+end 
+Save result "Some name" -}}

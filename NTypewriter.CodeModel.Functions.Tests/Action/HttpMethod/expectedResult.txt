@@ -1,0 +1,4 @@
+﻿Default:post
+Get:get
+Put:put
+Delete:delete

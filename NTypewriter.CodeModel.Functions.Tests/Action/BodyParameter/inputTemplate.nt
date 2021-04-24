@@ -1,0 +1,9 @@
+﻿{{- 
+capture result
+    for class in data.Classes | Symbols.WhereNameMatches "BodyParameterController" 
+        for method in class.Methods                             
+           method.Name;  ":";  method | Action.BodyParameter; "\r\n";
+        end 
+    end 
+end 
+Save result "Some name" -}}

@@ -1,0 +1,8 @@
+﻿WithFromServicesAttr:
+WithPrimitiveTypeInBody:int body
+WithPrimitiveType:
+WithSimpleType:
+WithSimpleTypeInBody:DateTime body
+WithCompexTypeInQuery:
+WithCompexType:InputDTO body
+SomeComplexTest:InputDTO body

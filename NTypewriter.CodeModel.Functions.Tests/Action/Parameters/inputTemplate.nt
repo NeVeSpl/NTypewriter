@@ -1,0 +1,10 @@
+﻿{{- 
+capture result
+    for class in data.Classes | Symbols.WhereNameMatches "ParamtersController" 
+        for method in class.Methods                             
+           method.Name;  ":";  method | Action.Parameters; "\r\n";
+           method.Name;  ":";  method | Action.Parameters false; "\r\n";
+        end 
+    end 
+end 
+Save result "Some name" -}}

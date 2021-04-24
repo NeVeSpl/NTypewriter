@@ -1,0 +1,7 @@
+﻿WithSimpleTypeInBody:Url/foo
+WithParameterInPath:Url/foo/${url}
+WithComplexTypeInQuery:Url/foo?page=${pagg.page}&limit=${pagg.limit}
+WithRouteAttribute:sd
+SomeComplexTest:Url/akacja/${par1}/${par2}/${par3}?par4=${par4}&par5=${par5}
+WithEnumParam:Url?numbers=${numbers}
+WithOptionalParam:Url?optional=${optional}

@@ -16,11 +16,6 @@ namespace NTypewriter.CodeModel.Functions.Tests
 {
     public class BaseFixture
     {
-
-
-
-
-
         public static async Task<global::NTypewriter.CodeModel.Roslyn.CodeModel> CreateCodeModelFromProject(CodeModelConfiguration config, string projectName)
         {
             var assembly = Assembly.GetExecutingAssembly();
@@ -79,7 +74,34 @@ namespace NTypewriter.CodeModel.Functions.Tests
         }
 
 
+        protected (string template, string expectedResult) LoadResources(string typeName, string functionName)
+        {
+            var path = $"{typeName}.{functionName}";
+            string template = LoadResource(path, "inputTemplate.nt");            
+            string expectedResult = LoadResource(path, "expectedResult.txt");        
+            return (template, expectedResult);
+        }
 
+        private string LoadResource(string folders, string fileName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = $"NTypewriter.CodeModel.Functions.Tests.{folders}.{fileName}";
+
+            string result = System.String.Empty;
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            {
+                if (stream is not null)
+                {
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        result = reader.ReadToEnd();
+                    }
+                }
+            }
+
+            return result;
+        }
 
         protected string RemoveWhitespace(string str)
         {
