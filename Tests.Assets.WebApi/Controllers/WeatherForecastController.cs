@@ -39,6 +39,7 @@ namespace Tests.Assets.WebApi.Controllers
         }
 
         [HttpGet("hkk/{url}")]
+
         public ActionResult<IEnumerable<WeatherForecast>> GetDataNoBody([FromServices] ILogger<WeatherForecastController> logger, int url)
         {
             var rng = new Random();

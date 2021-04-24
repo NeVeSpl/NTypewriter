@@ -23,7 +23,7 @@ namespace NTypewriter.CodeModel.Functions
             {
                 return responseTypeArgument.Value as IType;
             }
-
+            
             while (result != null && (result.BareName == "Task" || result.BareName == "ActionResult"))
             {
                 if (result.IsGeneric)
