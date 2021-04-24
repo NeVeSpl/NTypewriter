@@ -100,7 +100,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Method
             var template = @"{{- capture result }}
                                 {{- for class in data.Classes | Types.ThatInheritFrom ""ControllerBase"" }}
                                    {{- for method in class.Methods }}                            
-                                      [{{- method.Name }} : {{- method | Action.Parameters true }}]
+                                      [{{- method.Name }} : {{- method | Action.Parameters false }}]
                                    {{- end }}
                                 {{- end }}
                              {{- end }}
@@ -124,7 +124,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Method
             var template = @"{{- capture result }}
                                 {{- for class in data.Classes | Types.ThatInheritFrom ""ControllerBase"" }}
                                    {{- for method in class.Methods }}                            
-                                      [{{- method.Name }} : {{- method | Action.Parameters false }}]
+                                      [{{- method.Name }} : {{- method | Action.Parameters true }}]
                                    {{- end }}
                                 {{- end }}
                              {{- end }}

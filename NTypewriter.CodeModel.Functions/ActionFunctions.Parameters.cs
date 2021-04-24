@@ -7,9 +7,9 @@ namespace NTypewriter.CodeModel.Functions
     {
         /// <summary>
         /// Returns parameters that receive content sent to a webapi action.
-        /// If _withoutBodyParameter_ is specified as true, then the Parameter list returned will not include the parameter that is being sent in the body of the request.
+        /// If _includeBodyParameter_ is specified as false, then the Parameter list returned will not include the parameter that is being sent in the body of the request.
         /// </summary>
-        public static IEnumerable<IParameter> Parameters(this IMethod method, bool withoutBodyParameter = false)
+        public static IEnumerable<IParameter> Parameters(this IMethod method, bool includeBodyParameter = true)
         {
             var parameterTypeBlackList = new[] { "CancellationToken" };
             var parameterAttributeBlackList = new[] { "FromServices" };
@@ -20,7 +20,7 @@ namespace NTypewriter.CodeModel.Functions
                 .Where(x => x.Attributes.All(y => !parameterAttributeBlackList.Contains(y.Name)))
                 .ToList();           
 
-            if (withoutBodyParameter)
+            if (!includeBodyParameter)
             {
                 var bodyParameter = method.BodyParameter();
                 if (bodyParameter != null)
