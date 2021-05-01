@@ -1,6 +1,8 @@
 {{-
 capture output
 -}}
+> This file was auto generated from template : [CodeModel.nt](https://github.com/NeVeSpl/NTypewriter/blob/master/DocumentationGenerator/CodeModel.nt)
+
 ![NTypewriter CodeModel](NTypewriter.CodeModel.png)
 
 {{ for item in data.Interfaces | Symbols.WhereNamespaceMatches "NTypewriter.CodeModel" }}

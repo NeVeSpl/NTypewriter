@@ -1,4 +1,6 @@
-﻿![NTypewriter CodeModel](NTypewriter.CodeModel.png)
+﻿> This file was auto generated from template : [CodeModel.nt](https://github.com/NeVeSpl/NTypewriter/blob/master/DocumentationGenerator/CodeModel.nt)
+
+![NTypewriter CodeModel](NTypewriter.CodeModel.png)
 
 
       

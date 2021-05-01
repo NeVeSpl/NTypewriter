@@ -1,4 +1,6 @@
 
+> This file was auto generated from template : [BuiltInFunctions.nt](https://github.com/NeVeSpl/NTypewriter/blob/master/DocumentationGenerator/BuiltInFunctions.nt)
+
 
 
 ActionFunctions
@@ -88,6 +90,8 @@ MathFunctions
 * [Plus](#Plus)
 * [Round](#Round)
 * [Times](#Times)
+* [Uuid](#Uuid)
+* [Random](#Random)
 
 RegexFunctions
 
@@ -655,6 +659,22 @@ object Math.Times(TemplateContext context, SourceSpan span, object value, object
 ```
 Performs the multiplication of the input value with the `with` value 
 [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#mathtimes)
+
+#### Uuid
+
+```csharp
+string Math.Uuid()
+```
+Creates a new UUID 
+[Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#mathuuid)
+
+#### Random
+
+```csharp
+object Math.Random(TemplateContext context, SourceSpan span, int minValue, int maxValue)
+```
+Creates a random number 
+[Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#mathrandom)
 
 ----
 

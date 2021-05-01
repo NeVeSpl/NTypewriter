@@ -2,6 +2,8 @@
    ntypewriterClasses = data.Classes | Symbols.WhereNamespaceMatches "NTypewriter.CodeModel.Functions" | Symbols.WhereNameEndsWith "Functions"
    scribanClasses = data.Classes | Symbols.WhereNamespaceMatches "Scriban.Functions" | Custom.FilterScribanFunctionSets
 }}
+> This file was auto generated from template : [BuiltInFunctions.nt](https://github.com/NeVeSpl/NTypewriter/blob/master/DocumentationGenerator/BuiltInFunctions.nt)
+
 {{ for class in ntypewriterClasses}}
 
 {{ class.Name }}
@@ -33,7 +35,7 @@
 ```csharp
 {{function.FullName | String.Replace "Functions" ""}}
 ```
-{{ function.DocComment.Summary | String.StripNewlines }} 
+{{ function.DocComment.Summary | String.StripNewlines }}
 
 {{- end }}
 
