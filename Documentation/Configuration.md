@@ -98,7 +98,7 @@ namespace ConsoleApp
 
 #### GetProjectsToBeSearched
 
-By default code model is populated with symbols from all projects in solution. With this option, you can limit the scope to only specified projects. When you have a lot of projects in your solution, using this option can significantly improve performance (see #29).
+By default code model is populated with symbols from all projects in solution. With this option, you can limit the scope to only specified projects. When you have a lot of projects in your solution, using this option can significantly improve performance (see [#29](https://github.com/NeVeSpl/NTypewriter/issues/29#issue-867875186) ).
 
 ```csharp
 using System;
