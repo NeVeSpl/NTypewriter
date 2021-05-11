@@ -152,5 +152,5 @@ Not all built in Scriban functions are available in templates.
 
 ### Change log
 
-0.1.0 - introduce local configuration that can be used inside template file, to achieve that some breaking changes were made to the structure of global configuration file
+0.1.0 - introduces local configuration that can be used inside template file, to achieve that some breaking changes were made to the structure of global configuration file
  
