@@ -6,6 +6,6 @@ namespace NTypewriter.Editor.Config
 {
     public interface IConstrainSearchedProjects
     {
-        IEnumerable<string> GetProjectsToBeSearched();
+        IEnumerable<string> ProjectsToBeSearched { get; set; }
     }
 }

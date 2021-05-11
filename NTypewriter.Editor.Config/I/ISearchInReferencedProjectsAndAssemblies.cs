@@ -6,6 +6,6 @@ namespace NTypewriter.Editor.Config
 {
     public interface ISearchInReferencedProjectsAndAssemblies
     {
-        bool SearchInReferencedProjectsAndAssemblies { get;  }
+        bool SearchInReferencedProjectsAndAssemblies { get; set; }
     }
 }

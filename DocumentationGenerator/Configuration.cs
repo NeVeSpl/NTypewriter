@@ -10,18 +10,24 @@ namespace DocumentationGenerator
     [NTEditorFile]
     class NTEConfig : EditorConfig
     {
-        public override IEnumerable<Type> GetTypesThatContainCustomFunctions()
+        public override IEnumerable<Type> TypesThatContainCustomFunctions
         {
-            yield return typeof(NTEConfig);
+            get
+            {
+                yield return typeof(NTEConfig);
+            }
         }
 
         public override bool AddGeneratedFilesToVSProject => false;
 
         public override bool SearchInReferencedProjectsAndAssemblies => true;
 
-        public override IEnumerable<string> GetProjectsToBeSearched()
+        public override IEnumerable<string> ProjectsToBeSearched
         {
-            yield return "NTypewriter";
+            get
+            {
+                yield return "NTypewriter";
+            }
         }
 
 

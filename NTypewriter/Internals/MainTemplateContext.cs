@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Scriban;
+using Scriban.Runtime;
 
 namespace NTypewriter.Internals
 {
@@ -16,6 +17,9 @@ namespace NTypewriter.Internals
             
             PushGlobal(customScriptObject);
             PushGlobal(mainScriptObject);
+            var configDummy = new ScriptObject();
+            configDummy["config"] = new ScriptObject();
+            PushGlobal(configDummy);
         }
 
 

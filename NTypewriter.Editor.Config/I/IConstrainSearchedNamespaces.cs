@@ -6,6 +6,6 @@ namespace NTypewriter.Editor.Config
 {
     public interface IConstrainSearchedNamespaces
     {
-        IEnumerable<string> GetNamespacesToBeSearched();
+        IEnumerable<string> NamespacesToBeSearched { get; set; }
     }
 }

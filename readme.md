@@ -40,8 +40,8 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
        * [Install](Documentation/Configuration.md#Install)
        * [Custom functions](Documentation/Configuration.md#Custom-functions)      
        * [AddGeneratedFilesToVSProject](Documentation/Configuration.md#AddGeneratedFilesToVSProject)
-       * [GetNamespacesToBeSearched](Documentation/Configuration.md#GetNamespacesToBeSearched)
-       * [GetProjectsToBeSearched](Documentation/Configuration.md#GetProjectsToBeSearched)  
+       * [NamespacesToBeSearched](Documentation/Configuration.md#NamespacesToBeSearched)
+       * [ProjectsToBeSearched](Documentation/Configuration.md#ProjectsToBeSearched)  
        * [SearchInReferencedProjectsAndAssemblies](Documentation/Configuration.md#SearchInReferencedProjectsAndAssemblies)   
 * [Known issues](#Known-issues)
 * [Status of typewriter issues](Documentation/TypewriterIssues.md)
@@ -151,3 +151,6 @@ Not all built in Scriban functions are available in templates.
 
 
 ### Change log
+
+0.1.0 - introduce local configuration that can be used inside template file, to achieve that some breaking changes were made to the structure of global configuration file
+ 

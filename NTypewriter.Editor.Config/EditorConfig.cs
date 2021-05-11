@@ -7,23 +7,28 @@ namespace NTypewriter.Editor.Config
 {
     public class EditorConfig : IEditorConfig
     {   
-        public virtual bool SearchInReferencedProjectsAndAssemblies => false;
+        public virtual bool SearchInReferencedProjectsAndAssemblies { get; set; } = false;
 
-        public virtual bool AddGeneratedFilesToVSProject => true;
+        public virtual bool AddGeneratedFilesToVSProject { get; set; } = true;
 
-        public virtual IEnumerable<string> GetNamespacesToBeSearched()
+        public virtual IEnumerable<string> NamespacesToBeSearched { get; set; } = Enumerable.Empty<string>();
+
+        public virtual IEnumerable<string> ProjectsToBeSearched { get; set; } = Enumerable.Empty<string>();
+
+        public virtual IEnumerable<Type> TypesThatContainCustomFunctions { get; set; } = Enumerable.Empty<Type>();
+
+
+        public EditorConfig()
         {
-            return Enumerable.Empty<string>();
+
         }
-
-        public virtual IEnumerable<string> GetProjectsToBeSearched()
+        public EditorConfig(IEditorConfig editorConfig)
         {
-            return Enumerable.Empty<string>();
-        }
-
-        public virtual IEnumerable<Type> GetTypesThatContainCustomFunctions()
-        {
-            return Enumerable.Empty<Type>();
+            SearchInReferencedProjectsAndAssemblies = editorConfig.SearchInReferencedProjectsAndAssemblies;
+            AddGeneratedFilesToVSProject = editorConfig.AddGeneratedFilesToVSProject;
+            NamespacesToBeSearched = editorConfig.NamespacesToBeSearched;
+            ProjectsToBeSearched = editorConfig.ProjectsToBeSearched;
+            TypesThatContainCustomFunctions = editorConfig.TypesThatContainCustomFunctions;
         }
     }
 }

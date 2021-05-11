@@ -1,6 +1,13 @@
+#### Local vs Global configuration
+
+Almost all available here options you can set in two ways: 
+ - in separate c# file that will be used by all templates in given project (global configuration)
+ - inside *.nt template (local configuration)
+
+
 #### Install
 
-To create configuration for your template you will need at least one nuget:
+To create global configuration for your templates you will need at least one nuget:
 
 https://www.nuget.org/packages/NTypewriter.Editor.Config/
 
@@ -58,6 +65,7 @@ All defined custom functions are available in template with "Custom" prefix:
 
 By default, all created files are added to project in which template is located. 
 
+Global configuration
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -68,15 +76,21 @@ namespace ConsoleApp
     [NTEditorFile]
     class NTEConfig : EditorConfig
     {
-        public override bool AddGeneratedFilesToVSProject => true;
+        public override bool AddGeneratedFilesToVSProject { get => true; }
     }
 }
 ```
 
-#### GetNamespacesToBeSearched
+Local configuration
+```
+{{ config.AddGeneratedFilesToVSProject = true }}
+```
+
+#### NamespacesToBeSearched
 
 Only types located in given namespaces will be available in code model. 
 
+Global configuration
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -85,9 +99,9 @@ using NTypewriter.Editor.Config;
 namespace ConsoleApp
 {
     [NTEditorFile]
-    class NTEConfig : EditorConfig
+    public override IEnumerable<string> NamespacesToBeSearched
     {
-        public override IEnumerable<string> GetNamespacesToBeSearched()
+        get
         {
             yield return "MediatR";
             yield return "Scriban";
@@ -95,11 +109,16 @@ namespace ConsoleApp
     }
 }
 ```
+Local configuration
+```
+{{ config.NamespacesToBeSearched = ["MediatR", "Scriban"] }}
+```
 
-#### GetProjectsToBeSearched
+#### ProjectsToBeSearched
 
 By default code model is populated with symbols from all projects in solution. With this option, you can limit the scope to only specified projects. When you have a lot of projects in your solution, using this option can significantly improve performance (see [#29](https://github.com/NeVeSpl/NTypewriter/issues/29#issue-867875186) ).
 
+Global configuration
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -110,14 +129,22 @@ namespace ConsoleApp
     [NTEditorFile]
     class NTEConfig : EditorConfig
     {
-        public override IEnumerable<string> GetProjectsToBeSearched()
+        public override IEnumerable<string> ProjectsToBeSearched
         {
-            yield return "NTypewriter.CodeModel";
-            yield return "Scriban";
+            get
+            {
+                yield return "NTypewriter.CodeModel";
+                yield return "Scriban";
+            }
         }
     }
 }
 ```
+Local configuration
+```
+{{ config.ProjectsToBeSearched = ["NTypewriter.CodeModel", "Scriban"] }}
+```
+
 
 #### SearchInReferencedProjectsAndAssemblies
 
@@ -125,7 +152,7 @@ This option allows getting access to symbols defined in all referenced assemblie
 
 Also, have in mind that symbols from the same assembly but referenced from different projects are treated as different symbols. The best way to avoid duplication it is to use this option enabled only when GetProjectsToBeSearched returns limited number of projects without references to the same assembly.
 
-
+Global configuration
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -140,6 +167,12 @@ namespace ConsoleApp
     }
 }
 ```
+
+Local configuration
+```
+{{ config.SearchInReferencedProjectsAndAssemblies = false }}
+```
+
 
 
 

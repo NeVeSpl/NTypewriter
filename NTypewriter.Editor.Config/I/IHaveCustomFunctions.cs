@@ -6,6 +6,6 @@ namespace NTypewriter.Editor.Config
 {
     public interface IHaveCustomFunctions
     {
-        IEnumerable<Type> GetTypesThatContainCustomFunctions();        
+        IEnumerable<Type> TypesThatContainCustomFunctions { get; set; }    
     }
 }
