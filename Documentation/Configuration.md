@@ -2,8 +2,10 @@
 
 Almost all available here options you can set in two ways: 
  - in separate c# file that will be used by all templates in given project (global configuration)
- - inside *.nt template (local configuration)
+ - inside *.nt template (local configuration),
 
+Local configuration should be used only at the beginning of the template, before any other template code. 
+If both configuration options are used, the local configuration will overwrite things set in the global configuration.
 
 #### Install
 
@@ -99,12 +101,15 @@ using NTypewriter.Editor.Config;
 namespace ConsoleApp
 {
     [NTEditorFile]
-    public override IEnumerable<string> NamespacesToBeSearched
+    class NTEConfig : EditorConfig
     {
-        get
+        public override IEnumerable<string> NamespacesToBeSearched
         {
-            yield return "MediatR";
-            yield return "Scriban";
+            get
+            {
+                yield return "MediatR";
+                yield return "Scriban";
+            }
         }
     }
 }
