@@ -53,13 +53,13 @@ namespace Tests.Assets.WebApi.Controllers
         [HttpGet("Foo6")]
         public async Task<IEnumerable<WeatherForecast>> WithCompexTypeInQuery([FromQuery] Paggination pagg)
         {
-            return null;
+            return await Task.FromResult<IEnumerable<WeatherForecast>>(null);
         }
 
         [HttpGet("Foo7")]
         public async Task<IEnumerable<WeatherForecast>> WithCompexType(InputDTO body)
         {
-            return null;
+            return await Task.FromResult<IEnumerable<WeatherForecast>>(null);
         }
 
 
@@ -68,7 +68,7 @@ namespace Tests.Assets.WebApi.Controllers
         [ActionName("akacja")]
         public async Task<ActionResult<IEnumerable<WeatherForecast>>> SomeComplexTest(int par3, InputDTO body, double par1, bool par2, int par4, int par5)
         {
-            return null;
+            return await Task.FromResult<ActionResult<IEnumerable<WeatherForecast>>>(null);
         }
     }
 }

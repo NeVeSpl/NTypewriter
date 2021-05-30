@@ -17,9 +17,6 @@ namespace NTypewriter.Internals
             
             PushGlobal(customScriptObject);
             PushGlobal(mainScriptObject);
-            var configDummy = new ScriptObject();
-            configDummy["config"] = new ScriptObject();
-            PushGlobal(configDummy);
         }
 
 

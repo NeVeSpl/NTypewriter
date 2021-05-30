@@ -47,7 +47,7 @@ namespace Tests.Assets.WebApi.Controllers
         [Route("~/sd", Name ="some_name")]
         public async Task<IEnumerable<WeatherForecast>> WithRouteAttribute(InputDTO body)
         {
-            return null;
+            return await System.Threading.Tasks.Task.FromResult<IEnumerable<WeatherForecast>>(null);
         }
 
 
@@ -56,7 +56,7 @@ namespace Tests.Assets.WebApi.Controllers
         [ActionName("akacja")]
         public async Task<ActionResult<IEnumerable<WeatherForecast>>> SomeComplexTest(int par3, InputDTO body, double par1, bool par2, int par4, int par5)
         {
-            return null;
+            return await System.Threading.Tasks.Task.FromResult<ActionResult<IEnumerable<WeatherForecast>>>(null);
         }
         
         public IActionResult WithEnumParam(NumbersEnum numbers)

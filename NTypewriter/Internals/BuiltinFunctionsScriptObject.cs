@@ -13,8 +13,7 @@ namespace NTypewriter.Internals
         {
             SetValue("empty", EmptyScriptObject.Default, true);
             this["Array"] = CreateScriptObject(typeof(ArrayFunctions));
-            this["Date"] = CreateScriptObject(typeof(DateTimeFunctions));
-            //this["empty"] = CreateScriptObject(typeof(EmptyScriptObject)); 
+            this["Date"] = CreateScriptObject(typeof(DateTimeFunctions));           
             this["Html"] = CreateScriptObject(typeof(HtmlFunctions)); 
             this["Math"] = CreateScriptObject(typeof(MathFunctions)); 
             //this["object"] = CreateScriptObject(typeof(ObjectFunctions)); 

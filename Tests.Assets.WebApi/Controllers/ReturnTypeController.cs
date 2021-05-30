@@ -22,7 +22,7 @@ namespace Tests.Assets.WebApi.Controllers
         [HttpDelete]
         public async Task<ActionResult<IEnumerable<WeatherForecast>>> TaskAndActionResult()
         {
-            return null;
+            return await System.Threading.Tasks.Task.FromResult<ActionResult<IEnumerable<WeatherForecast>>>(null);
         }
 
         [HttpPut]
@@ -34,14 +34,14 @@ namespace Tests.Assets.WebApi.Controllers
         [HttpPost]
         public async Task<IEnumerable<WeatherForecast>> Task()
         {
-            return null;
+            return await System.Threading.Tasks.Task.FromResult<IEnumerable<WeatherForecast>>(null);
         }
 
         [HttpGet("RouteB")]
         [ProducesResponseType(typeof(IEnumerable<WeatherForecast>), StatusCodes.Status200OK)]
         public async Task<IEnumerable<WeatherForecast>> ProducesResponseType()
         {
-            return null;
+            return await System.Threading.Tasks.Task.FromResult<IEnumerable<WeatherForecast>>(null);
         }
     }
 }

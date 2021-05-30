@@ -48,7 +48,9 @@ namespace NTypewriter.CodeModel.Functions
         }
 
 
-
+        /// <summary>
+        /// It tries to extract separate words from string
+        /// </summary>
         public static IEnumerable<string> SplitIntoSeparateWords(this string text)
         {
             int wordFirstIndex = 0;

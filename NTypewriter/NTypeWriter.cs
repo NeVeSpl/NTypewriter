@@ -1,16 +1,13 @@
-﻿using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using NTypewriter.Internals;
 using Scriban;
 using Scriban.Syntax;
-
-
 
 namespace NTypewriter
 {
     public class NTypeWriter
     {
-        public static async Task<Result> Render(string template, object dataModel, Configuration configuration = null)
+        public static async Task<Result> Render(string template, object dataModel, Configuration configuration = null, object configModel = null)
         {
             var result = new Result();
             var scribanTemplate = Template.Parse(template);
@@ -22,7 +19,7 @@ namespace NTypewriter
                 return result;            
             }          
            
-            var mainScriptObject = new MainScriptObject(dataModel);
+            var mainScriptObject = new MainScriptObject(dataModel, configModel);
             var userScriptObject = new CustomFunctionsScriptObject(configuration?.typesWithCustomFuntions);
             var context = new MainTemplateContext(mainScriptObject, userScriptObject);
 

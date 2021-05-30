@@ -29,7 +29,7 @@ namespace Tests.Assets.WebApi.Controllers
         [Route("~/sd", Name = "some_name")]
         public async Task<IEnumerable<WeatherForecast>> Put(InputDTO body, [FromQuery] Paggination pagg)
         {
-            return null;
+            return await Task.FromResult<IEnumerable<WeatherForecast>>(null);
         }
 
         [HttpDelete("[action]/{par1:double}/{par2=false}/{par3?}")]
@@ -37,7 +37,7 @@ namespace Tests.Assets.WebApi.Controllers
         [ActionName("akacja")]
         public async Task<ActionResult<IEnumerable<WeatherForecast>>> Delete(int par3, InputDTO body, double par1, bool par2, int par4, int par5)
         {
-            return null;
+            return await Task.FromResult<ActionResult<IEnumerable<WeatherForecast>>>(null);
         }
     }
 }
