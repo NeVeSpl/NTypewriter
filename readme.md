@@ -1,5 +1,7 @@
 # NTypewriter
 
+[![ci](https://github.com/NeVeSpl/NTypewriter/actions/workflows/CI.yml/badge.svg)](https://github.com/NeVeSpl/NTypewriter/actions/workflows/CI.yml)
+
 <ins>For those who do not know Typewriter</ins>:
 
 NTypewriter is files generator from text templates populated with meta-data about your C# code. It is like a specialized and more convenient T4 design-time template.
