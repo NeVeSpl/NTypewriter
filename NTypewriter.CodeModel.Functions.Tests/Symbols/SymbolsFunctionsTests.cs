@@ -26,7 +26,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Symbols
         public void WhereNamespaceStartsWith()
         {
             var result = SymbolsFunctions.WhereNamespaceStartsWith(data.Classes, "Tests.Assets.Referenced.Domain");
-            Assert.AreEqual(3, result.Count());
+            Assert.AreEqual(4, result.Count());
         }
 
         [TestMethod]
@@ -41,6 +41,13 @@ namespace NTypewriter.CodeModel.Functions.Tests.Symbols
         {
             var result = SymbolsFunctions.WhereNameStartsWith(data.Classes, "Fru");
             Assert.AreEqual("Fruit", result.First().Name);
+        }
+
+        [TestMethod]
+        public void WhereNameEndsWith()
+        {
+            var result = SymbolsFunctions.WhereNameEndsWith(data.Classes, "Fruit");
+            Assert.AreEqual(2, result.Count());
         }
 
         [TestMethod]

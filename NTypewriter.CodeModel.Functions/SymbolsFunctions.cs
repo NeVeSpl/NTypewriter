@@ -45,7 +45,7 @@ namespace NTypewriter.CodeModel.Functions
         /// </summary>
         public static IEnumerable<ISymbolBase> WhereNameStartsWith(this IEnumerable<ISymbolBase> symbols, string prefix)
         {
-            var result = symbols.Where(x => x.Name.StartsWith(prefix));
+            var result = symbols.Where(x => x.BareName.StartsWith(prefix));
             return result;
         }
 
@@ -55,7 +55,7 @@ namespace NTypewriter.CodeModel.Functions
         /// </summary>
         public static IEnumerable<ISymbolBase> WhereNameEndsWith(this IEnumerable<ISymbolBase> symbols, string prefix)
         {
-            var result = symbols.Where(x => x.Name.EndsWith(prefix));
+            var result = symbols.Where(x => x.BareName.EndsWith(prefix));
             return result;
         }
 
