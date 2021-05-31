@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Scriban.Signed" Version="3.6.0" />
+    <PackageReference Include="Scriban.Signed" Version="3.9.0" />
   </ItemGroup>
 
   <ItemGroup>
