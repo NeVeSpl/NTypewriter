@@ -16,6 +16,12 @@ namespace NTypewriter.CodeModel.Tests.Type
         }
 
         [TestMethod]
+        public async Task IsCollection()
+        {
+            await RunTestForProperty();
+        }
+
+        [TestMethod]
         public async Task IsEnum()
         {
             await RunTestForProperty();

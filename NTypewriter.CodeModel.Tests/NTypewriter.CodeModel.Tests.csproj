@@ -56,6 +56,7 @@
     <Compile Remove="Type\FullName\inputCode.cs" />
     <Compile Remove="Type\Interfaces\inputCode.cs" />
     <Compile Remove="Type\IsAnonymousType\inputCode.cs" />
+    <Compile Remove="Type\IsCollection\inputCode.cs" />
     <Compile Remove="Type\IsEnumerable\inputCode.cs" />
     <Compile Remove="Type\IsEnum\inputCode.cs" />
     <Compile Remove="Type\IsGeneric\inputCode.cs" />
@@ -164,6 +165,8 @@
     <None Remove="Type\Interfaces\inputTemplate.tsnt" />
     <None Remove="Type\IsAnonymousType\expectedResult.txt" />
     <None Remove="Type\IsAnonymousType\inputTemplate.tsnt" />
+    <None Remove="Type\IsCollection\expectedResult.txt" />
+    <None Remove="Type\IsCollection\inputTemplate.tsnt" />
     <None Remove="Type\IsEnumerable\expectedResult.txt" />
     <None Remove="Type\IsEnumerable\inputTemplate.tsnt" />
     <None Remove="Type\IsEnum\expectedResult.txt" />
@@ -328,6 +331,9 @@
     <EmbeddedResource Include="Type\IsAnonymousType\expectedResult.txt" />
     <EmbeddedResource Include="Type\IsAnonymousType\inputCode.cs" />
     <EmbeddedResource Include="Type\IsAnonymousType\inputTemplate.tsnt" />
+    <EmbeddedResource Include="Type\IsCollection\expectedResult.txt" />
+    <EmbeddedResource Include="Type\IsCollection\inputCode.cs" />
+    <EmbeddedResource Include="Type\IsCollection\inputTemplate.tsnt" />
     <EmbeddedResource Include="Type\IsEnumerable\expectedResult.txt" />
     <EmbeddedResource Include="Type\IsEnumerable\inputCode.cs" />
     <EmbeddedResource Include="Type\IsEnumerable\inputTemplate.tsnt" />

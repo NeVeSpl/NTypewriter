@@ -20,6 +20,11 @@ namespace NTypewriter.CodeModel
         bool IsAnonymousType { get; }
 
         /// <summary>
+        /// Determines if the type is a collection
+        /// </summary>
+        bool IsCollection { get; }
+
+        /// <summary>
         /// Determines if the type is a delegate
         /// </summary>
         bool IsDelegate { get; }
