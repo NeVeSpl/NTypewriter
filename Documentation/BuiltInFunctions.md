@@ -120,6 +120,7 @@ StringFunctions
 * [Prepend](#Prepend)
 * [Remove](#Remove)
 * [RemoveFirst](#RemoveFirst)
+* [RemoveLast](#RemoveLast)
 * [Replace](#Replace)
 * [ReplaceFirst](#ReplaceFirst)
 * [RStrip](#RStrip)
@@ -239,7 +240,7 @@ Converts first letter of the given string to lower case
 ```csharp
 IEnumerable<string> String.SplitIntoSeparateWords(string text)
 ```
-
+It tries to extract separate words from string
 
 ----
 
@@ -317,7 +318,7 @@ Filters symbols by the static modifier
 ```csharp
 IEnumerable<IType> Type.AllReferencedTypes(IType type)
 ```
-
+Returns all types that are used to define a given type.
 
 #### ToTypeScriptDefault
 
@@ -625,7 +626,7 @@ Returns a boolean indicating if the input value is a number
 ```csharp
 object Math.Minus(TemplateContext context, SourceSpan span, object value, object with)
 ```
-Substracts from the input value the `with` value 
+Subtracts from the input value the `with` value 
 [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#mathminus)
 
 #### Modulo
@@ -864,6 +865,14 @@ string String.RemoveFirst(string text, string remove)
 Removes the first occurrence of a substring from a string. 
 [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#stringremove_first)
 
+#### RemoveLast
+
+```csharp
+string String.RemoveLast(string text, string remove)
+```
+Removes the last occurrence of a substring from a string. 
+[Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#stringremove_last)
+
 #### Replace
 
 ```csharp
@@ -875,7 +884,7 @@ Replaces all occurrences of a string with a substring.
 #### ReplaceFirst
 
 ```csharp
-string String.ReplaceFirst(string text, string match, string replace)
+string String.ReplaceFirst(string text, string match, string replace, bool fromEnd = false)
 ```
 Replaces the first occurrence of a string with a substring. 
 [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#stringreplace_first)

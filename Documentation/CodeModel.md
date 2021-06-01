@@ -81,6 +81,7 @@ Property | Description | Returns
 --------|---------|-----------
 BaseType | The declared base type of this type, or null. Returns null if the class inherits from System.Object or if the type is a value type. | `IType`  
 IsAnonymousType | Determines if the type is anonymous | `bool`  
+IsCollection | Determines if the type is a collection | `bool`  
 IsDelegate | Determines if the type is a delegate | `bool`  
 IsInterface | Determines if the type is an interface | `bool`  
 IsEnum | Determines if the type is an enum | `bool`  
