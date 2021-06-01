@@ -12,5 +12,9 @@ namespace NTypewriter.Tests.CodeModel
         int[] array;
         List<int> list;
         string stringField;
+        IEnumerable<int> iGenericEnumerable;
+        System.Collections.IEnumerable iEnumerable;
+        ICollection<int> iGenericCollection;
+        System.Collections.ICollection iCollection;
     }
 }

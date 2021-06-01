@@ -11,10 +11,10 @@ namespace NTypewriter.CodeModel.Roslyn
 
         public IType BaseType => NTypewriter.CodeModel.Roslyn.Type.CreateBaseType(symbol.BaseType);
         public bool IsAnonymousType => symbol.IsAnonymousType;
-        public bool IsEnumerable => symbol.AllInterfaces.Any(x => x.ToString() == "System.Collections.IEnumerable");
+        public bool IsEnumerable => symbol.AllInterfaces.Any(x => x.ToString() == "System.Collections.IEnumerable") || this.FullName == "System.Collections.IEnumerable";
         public bool IsDelegate => symbol.TypeKind == TypeKind.Delegate;
         public bool IsEnum => symbol.TypeKind == TypeKind.Enum;
-        public bool IsCollection => symbol.AllInterfaces.Any(x => x.ToString() == "System.Collections.ICollection");
+        public bool IsCollection => symbol.AllInterfaces.Any(x => x.ToString() == "System.Collections.ICollection" || this.FullName.StartsWith("System.Collections.Generic.ICollection") || this.FullName == "System.Collections.ICollection");
         public bool IsGeneric => (symbol is INamedTypeSymbol x) && x.IsGenericType;
         public bool IsInterface => symbol.TypeKind == TypeKind.Interface;
         public bool IsNullable => symbol.NullableAnnotation == NullableAnnotation.Annotated;      
