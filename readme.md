@@ -24,6 +24,7 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
 ### Index
 
 * [Typewriter vs NTypewriter](#Typewriter-vs-NTypewriter)
+* [Examples](#Examples)
 * Getting started
    * [NTypewriter editor for Visual Studio](#Getting-started-with-NTypewriter-editor-for-Visual-Studio)
        * [Install](#Install)
@@ -56,7 +57,7 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
 ----------|------------ | -------------
 Template file extension | *.tst | *.nt
 Syntax   | typewriter syntax | [scriban scripting language](https://github.com/scriban/scriban/blob/master/doc/language.md)
-Lambda filters | present | not available yet
+Lambda filters | present | not available 
 Render template on save| yes (opt-out possible)| not available, only manual
 Auto-render when C# files changes| yes (opt-out possible)| not available, only manual
 Add generated files to VS project | yes (opt-out possible) | yes (opt-out possible)
@@ -106,15 +107,21 @@ module App {
 }
 ```
 
+### Examples
+
 All examples available on [Typewriter page](https://frhagn.github.io/Typewriter/pages/examples.html) are also available in NTypewriter version:
 
-example | Typewriter | NTypewriter
+example | NTypewriter | Typewriter
 --------|------------|------------
 CreateYourFirstTemplate | [CreateYourFirstTemplate.nt](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/CreateYourFirstTemplate/nt/CreateYourFirstTemplate.nt) | [CreateYourFirstTemplate.tst](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/CreateYourFirstTemplate/tst/CreateYourFirstTemplate.tst)
 Extensions | [Extensions.nt](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/Extensions/nt/Extensions.nt) | [Extensions.tst](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/Extensions/tst/Extensions.tst)
 ModelInterfaces | [ModelInterfaces.nt](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/ModelInterfaces/nt/ModelInterfaces.nt) | [ModelInterfaces.tst](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/ModelInterfaces/tst/ModelInterfaces.tst)
 KnockoutModels | [KnockoutModels.nt](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/KnockoutModels/nt/KnockoutModels.nt) | [KnockoutModels.tst](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/KnockoutModels/tst/KnockoutModels.tst)
 AngularWebAPIService | [AngularWebAPIService.nt](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/AngularWebAPIService/nt/AngularWebAPIService.nt) | [AngularWebAPIService.tst](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/AngularWebAPIService/tst/AngularWebAPIService.tst)
+
+
+
+
 
 ### Getting started with NTypewriter editor for Visual Studio
 
