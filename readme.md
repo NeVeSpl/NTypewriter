@@ -6,9 +6,13 @@
 
 NTypewriter is files generator from text templates populated with meta-data about your C# code. It is like a specialized and more convenient T4 design-time template.
 
+With NTypewriter you can:
+- auto-generate documentation for your C# code
+- create a typed TypeScript API client for your ASP.net web API
+
 <ins>For those who know Typewriter</ins>:
 
-NTypewriter is a younger and more immature brother of beloved [Typewriter](https://github.com/frhagn/Typewriter). They share the same ideas, but with a completely different implementation. NTypwriter uses [Scriban](https://github.com/scriban/scriban) as a template engine, thus templates files are completely not interchangeable. While code model api is about 95% compatible between them, there are some differences. NTypewriter code model is 100% pure, without any amenities that helps generate TS files.
+NTypewriter is a younger and more immature brother of beloved [Typewriter](https://github.com/frhagn/Typewriter). They share the same ideas, but with a completely different implementation. NTypwriter uses [Scriban](https://github.com/scriban/scriban) as a template engine, thus templates files are completely not interchangeable. While code model api is about 95% compatible between them, there are some differences. NTypewriter code model is 100% pure, without any amenities that helps generate TS files. All things that help  generate TypeScript from ASP.NET are located in built-in functions: [Action](https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/BuiltInFunctions.md#actionfunctions), [Type](https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/BuiltInFunctions.md#typefunctions).
 
 Oh, did I forget to mention that NTypewriter also solves most of the awaited issues of the Typewriter that were promised for 2.0 version:
 - support for attribute properties/values, statics, indexers, default parameters, nullable, records, constructors
@@ -18,7 +22,7 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
 - sharable custom functions
 - full control over whitespaces
 - CLI is possible
-- built-in support for getting all types referenced in class declaration
+- built-in support for getting all types used in class declaration ([Type.AllReferencedTypes](https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/BuiltInFunctions.md#allreferencedtypes))
 
  
 ### Index
@@ -118,8 +122,6 @@ Extensions | [Extensions.nt](https://github.com/NeVeSpl/NTypewriter.Examples/blo
 ModelInterfaces | [ModelInterfaces.nt](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/ModelInterfaces/nt/ModelInterfaces.nt) | [ModelInterfaces.tst](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/ModelInterfaces/tst/ModelInterfaces.tst)
 KnockoutModels | [KnockoutModels.nt](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/KnockoutModels/nt/KnockoutModels.nt) | [KnockoutModels.tst](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/KnockoutModels/tst/KnockoutModels.tst)
 AngularWebAPIService | [AngularWebAPIService.nt](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/AngularWebAPIService/nt/AngularWebAPIService.nt) | [AngularWebAPIService.tst](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/AngularWebAPIService/tst/AngularWebAPIService.tst)
-
-
 
 
 

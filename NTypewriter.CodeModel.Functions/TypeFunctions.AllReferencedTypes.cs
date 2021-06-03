@@ -8,7 +8,7 @@ namespace NTypewriter.CodeModel.Functions
     public static partial class TypeFunctions
     {
         /// <summary>
-        /// Returns all types that are used to define a given type.
+        /// Returns all types that are used in definition of a given type.
         /// </summary>
         public static IEnumerable<IType> AllReferencedTypes(this IType type)
         {
