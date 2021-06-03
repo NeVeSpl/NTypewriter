@@ -155,12 +155,22 @@ namespace NTypewriter.CodeModel.Functions
             return result;
         }
 
+
         /// <summary>
         /// Filters symbols by the static modifier
         /// </summary>
         public static IEnumerable<ISymbolBase> ThatAreStatic(this IEnumerable<ISymbolBase> symbols)
         {
             var result = symbols.Where(x => x.IsStatic);
+            return result;
+        }
+
+        /// <summary>
+        /// Filters symbols by the static modifier
+        /// </summary>
+        public static IEnumerable<ISymbolBase> ThatAreNotStatic(this IEnumerable<ISymbolBase> symbols)
+        {
+            var result = symbols.Where(x => !x.IsStatic);
             return result;
         }
     }
