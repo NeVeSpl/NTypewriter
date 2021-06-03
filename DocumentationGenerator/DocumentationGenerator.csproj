@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Buildalyzer" Version="3.2.0" />
-    <PackageReference Include="Buildalyzer.Workspaces" Version="3.2.0" />
+    <PackageReference Include="Buildalyzer" Version="3.2.2" />
+    <PackageReference Include="Buildalyzer.Workspaces" Version="3.2.2" />
   </ItemGroup>
 
   <ItemGroup>
