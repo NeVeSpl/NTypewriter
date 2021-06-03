@@ -22,6 +22,10 @@ StringFunctions
 * [ToLowerFirst](#ToLowerFirst)
 * [SplitIntoSeparateWords](#SplitIntoSeparateWords)
 
+SymbolFunctions
+
+* [HasAttribute](#HasAttribute)
+
 SymbolsFunctions
 
 * [WhereNamespaceStartsWith](#WhereNamespaceStartsWith)
@@ -40,6 +44,7 @@ SymbolsFunctions
 * [ThatDoNotHaveAttribute](#ThatDoNotHaveAttribute)
 * [ThatArePublic](#ThatArePublic)
 * [ThatAreStatic](#ThatAreStatic)
+* [ThatAreNotStatic](#ThatAreNotStatic)
 
 TypeFunctions
 
@@ -251,6 +256,17 @@ It tries to extract separate words from string
 
 ----
 
+## SymbolFunctions
+
+#### HasAttribute
+
+```csharp
+bool Symbol.HasAttribute(ISymbolBase symbol, string attributeName)
+```
+Checks if symbol is decorated with an attribute
+
+----
+
 ## SymbolsFunctions
 
 #### WhereNamespaceStartsWith
@@ -362,6 +378,13 @@ Filters symbols by the public access modifier
 
 ```csharp
 IEnumerable<ISymbolBase> Symbols.ThatAreStatic(IEnumerable<ISymbolBase> symbols)
+```
+Filters symbols by the static modifier
+
+#### ThatAreNotStatic
+
+```csharp
+IEnumerable<ISymbolBase> Symbols.ThatAreNotStatic(IEnumerable<ISymbolBase> symbols)
 ```
 Filters symbols by the static modifier
 
