@@ -65,6 +65,13 @@ namespace NTypewriter.CodeModel.Functions.Tests.Symbols
         }
 
         [TestMethod]
+        public void ThatDoNotHaveAttribute()
+        {
+            var result = SymbolsFunctions.ThatDoNotHaveAttribute(data.Classes, "DebuggerDisplay");
+            Assert.AreEqual(6, result.Count());
+        }
+
+        [TestMethod]
         public void ThatArePublic()
         {
             var result = SymbolsFunctions.ThatArePublic(data.Classes);

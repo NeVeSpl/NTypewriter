@@ -25,12 +25,19 @@ StringFunctions
 SymbolsFunctions
 
 * [WhereNamespaceStartsWith](#WhereNamespaceStartsWith)
+* [WhereNamespaceDoesNotStartWith](#WhereNamespaceDoesNotStartWith)
 * [WhereNamespaceEndsWith](#WhereNamespaceEndsWith)
+* [WhereNamespaceDoesNotEndWith](#WhereNamespaceDoesNotEndWith)
 * [WhereNamespaceMatches](#WhereNamespaceMatches)
+* [WhereNamespaceDoesNotMatch](#WhereNamespaceDoesNotMatch)
 * [WhereNameStartsWith](#WhereNameStartsWith)
+* [WhereNameDoesNotStartWith](#WhereNameDoesNotStartWith)
 * [WhereNameEndsWith](#WhereNameEndsWith)
+* [WhereNameDoesNotEndWith](#WhereNameDoesNotEndWith)
 * [WhereNameMatches](#WhereNameMatches)
+* [WhereNameDoesNotMatch](#WhereNameDoesNotMatch)
 * [ThatHaveAttribute](#ThatHaveAttribute)
+* [ThatDoNotHaveAttribute](#ThatDoNotHaveAttribute)
 * [ThatArePublic](#ThatArePublic)
 * [ThatAreStatic](#ThatAreStatic)
 
@@ -253,10 +260,24 @@ IEnumerable<ISymbolBase> Symbols.WhereNamespaceStartsWith(IEnumerable<ISymbolBas
 ```
 Filters symbols by the beginning of their namespace
 
+#### WhereNamespaceDoesNotStartWith
+
+```csharp
+IEnumerable<ISymbolBase> Symbols.WhereNamespaceDoesNotStartWith(IEnumerable<ISymbolBase> symbols, string prefix)
+```
+Filters symbols by the beginning of their namespace
+
 #### WhereNamespaceEndsWith
 
 ```csharp
-IEnumerable<ISymbolBase> Symbols.WhereNamespaceEndsWith(IEnumerable<ISymbolBase> symbols, string prefix)
+IEnumerable<ISymbolBase> Symbols.WhereNamespaceEndsWith(IEnumerable<ISymbolBase> symbols, string postfix)
+```
+Filters symbols by the end of their namespace
+
+#### WhereNamespaceDoesNotEndWith
+
+```csharp
+IEnumerable<ISymbolBase> Symbols.WhereNamespaceDoesNotEndWith(IEnumerable<ISymbolBase> symbols, string postfix)
 ```
 Filters symbols by the end of their namespace
 
@@ -267,6 +288,13 @@ IEnumerable<ISymbolBase> Symbols.WhereNamespaceMatches(IEnumerable<ISymbolBase> 
 ```
 Filters symbols by regex pattern
 
+#### WhereNamespaceDoesNotMatch
+
+```csharp
+IEnumerable<ISymbolBase> Symbols.WhereNamespaceDoesNotMatch(IEnumerable<ISymbolBase> symbols, string pattern)
+```
+Filters symbols by regex pattern
+
 #### WhereNameStartsWith
 
 ```csharp
@@ -274,10 +302,24 @@ IEnumerable<ISymbolBase> Symbols.WhereNameStartsWith(IEnumerable<ISymbolBase> sy
 ```
 Filters symbols by the beginning of their name
 
+#### WhereNameDoesNotStartWith
+
+```csharp
+IEnumerable<ISymbolBase> Symbols.WhereNameDoesNotStartWith(IEnumerable<ISymbolBase> symbols, string prefix)
+```
+Filters symbols by the beginning of their name
+
 #### WhereNameEndsWith
 
 ```csharp
-IEnumerable<ISymbolBase> Symbols.WhereNameEndsWith(IEnumerable<ISymbolBase> symbols, string prefix)
+IEnumerable<ISymbolBase> Symbols.WhereNameEndsWith(IEnumerable<ISymbolBase> symbols, string postfix)
+```
+Filters symbols by the end of their name
+
+#### WhereNameDoesNotEndWith
+
+```csharp
+IEnumerable<ISymbolBase> Symbols.WhereNameDoesNotEndWith(IEnumerable<ISymbolBase> symbols, string postfix)
 ```
 Filters symbols by the end of their name
 
@@ -288,12 +330,26 @@ IEnumerable<ISymbolBase> Symbols.WhereNameMatches(IEnumerable<ISymbolBase> symbo
 ```
 Filters symbols by a regex pattern
 
+#### WhereNameDoesNotMatch
+
+```csharp
+IEnumerable<ISymbolBase> Symbols.WhereNameDoesNotMatch(IEnumerable<ISymbolBase> symbols, string pattern)
+```
+Filters symbols by a regex pattern
+
 #### ThatHaveAttribute
 
 ```csharp
 IEnumerable<ISymbolBase> Symbols.ThatHaveAttribute(IEnumerable<ISymbolBase> symbols, string attributeName)
 ```
 Filters symbols by the presence of an attribute
+
+#### ThatDoNotHaveAttribute
+
+```csharp
+IEnumerable<ISymbolBase> Symbols.ThatDoNotHaveAttribute(IEnumerable<ISymbolBase> symbols, string attributeName)
+```
+Filters symbols by the absence of an attribute
 
 #### ThatArePublic
 
@@ -318,7 +374,7 @@ Filters symbols by the static modifier
 ```csharp
 IEnumerable<IType> Type.AllReferencedTypes(IType type)
 ```
-Returns all types that are used to define a given type.
+Returns all types that are used in definition of a given type.
 
 #### ToTypeScriptDefault
 

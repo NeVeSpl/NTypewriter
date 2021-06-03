@@ -18,13 +18,31 @@ namespace NTypewriter.CodeModel.Functions
             return result;
         }
 
+        /// <summary>
+        /// Filters symbols by the beginning of their namespace
+        /// </summary>
+        public static IEnumerable<ISymbolBase> WhereNamespaceDoesNotStartWith(this IEnumerable<ISymbolBase> symbols, string prefix)
+        {
+            var result = symbols.Where(x => !x.Namespace.StartsWith(prefix));
+            return result;
+        }
+
 
         /// <summary>
         /// Filters symbols by the end of their namespace
         /// </summary>
-        public static IEnumerable<ISymbolBase> WhereNamespaceEndsWith(this IEnumerable<ISymbolBase> symbols, string prefix)
+        public static IEnumerable<ISymbolBase> WhereNamespaceEndsWith(this IEnumerable<ISymbolBase> symbols, string postfix)
         {
-            var result = symbols.Where(x => x.Namespace.EndsWith(prefix));
+            var result = symbols.Where(x => x.Namespace.EndsWith(postfix));
+            return result;
+        }
+
+        /// <summary>
+        /// Filters symbols by the end of their namespace
+        /// </summary>
+        public static IEnumerable<ISymbolBase> WhereNamespaceDoesNotEndWith(this IEnumerable<ISymbolBase> symbols, string postfix)
+        {
+            var result = symbols.Where(x => !x.Namespace.EndsWith(postfix));
             return result;
         }
 
@@ -39,6 +57,16 @@ namespace NTypewriter.CodeModel.Functions
             return result;
         }
 
+        /// <summary>
+        /// Filters symbols by regex pattern
+        /// </summary>
+        public static IEnumerable<ISymbolBase> WhereNamespaceDoesNotMatch(this IEnumerable<ISymbolBase> symbols, string pattern)
+        {
+            var regex = new Regex(pattern, RegexOptions.Singleline | RegexOptions.Compiled);
+            var result = symbols.Where(x => !regex.IsMatch(x.Namespace));
+            return result;
+        }
+
 
         /// <summary>
         /// Filters symbols by the beginning of their name
@@ -49,13 +77,31 @@ namespace NTypewriter.CodeModel.Functions
             return result;
         }
 
+        /// <summary>
+        /// Filters symbols by the beginning of their name
+        /// </summary>
+        public static IEnumerable<ISymbolBase> WhereNameDoesNotStartWith(this IEnumerable<ISymbolBase> symbols, string prefix)
+        {
+            var result = symbols.Where(x => !x.BareName.StartsWith(prefix));
+            return result;
+        }
+
 
         /// <summary>
         /// Filters symbols by the end of their name
         /// </summary>
-        public static IEnumerable<ISymbolBase> WhereNameEndsWith(this IEnumerable<ISymbolBase> symbols, string prefix)
+        public static IEnumerable<ISymbolBase> WhereNameEndsWith(this IEnumerable<ISymbolBase> symbols, string postfix)
         {
-            var result = symbols.Where(x => x.BareName.EndsWith(prefix));
+            var result = symbols.Where(x => x.BareName.EndsWith(postfix));
+            return result;
+        }
+
+        /// <summary>
+        /// Filters symbols by the end of their name
+        /// </summary>
+        public static IEnumerable<ISymbolBase> WhereNameDoesNotEndWith(this IEnumerable<ISymbolBase> symbols, string postfix)
+        {
+            var result = symbols.Where(x => !x.BareName.EndsWith(postfix));
             return result;
         }
 
@@ -71,11 +117,31 @@ namespace NTypewriter.CodeModel.Functions
         }
 
         /// <summary>
+        /// Filters symbols by a regex pattern
+        /// </summary>
+        public static IEnumerable<ISymbolBase> WhereNameDoesNotMatch(this IEnumerable<ISymbolBase> symbols, string pattern)
+        {
+            var regex = new Regex(pattern, RegexOptions.Singleline | RegexOptions.Compiled);
+            var result = symbols.Where(x => !regex.IsMatch(x.Name));
+            return result;
+        }
+
+
+        /// <summary>
         /// Filters symbols by the presence of an attribute
         /// </summary>
         public static IEnumerable<ISymbolBase> ThatHaveAttribute(this IEnumerable<ISymbolBase> symbols, string attributeName)
         {
             var result = symbols.Where(x => x.Attributes.Any(y => y.Name == attributeName));
+            return result;
+        }
+
+        /// <summary>
+        /// Filters symbols by the absence of an attribute
+        /// </summary>
+        public static IEnumerable<ISymbolBase> ThatDoNotHaveAttribute(this IEnumerable<ISymbolBase> symbols, string attributeName)
+        {
+            var result = symbols.Where(x => !x.Attributes.Any(y => y.Name == attributeName));
             return result;
         }
 
