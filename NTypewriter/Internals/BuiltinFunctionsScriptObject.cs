@@ -23,11 +23,12 @@ namespace NTypewriter.Internals
             this["Timespan"] = CreateScriptObject(typeof(TimeSpanFunctions));
             this["Action"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.ActionFunctions));
             this["Type"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.TypeFunctions));
+            this["SearchIn"] = CreateScriptObjectFromEnum(typeof(global::NTypewriter.CodeModel.Functions.SearchIn));
             this["Types"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.TypesFunctions));
             this["Symbol"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.SymbolFunctions));
             this["Symbols"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.SymbolsFunctions));           
             this.Import(typeof(SaveFunction), renamer: MemberRenamer);
-        }
+        }        
 
         private ScriptObject CreateScriptObject(params Type[] types)
         {
@@ -36,6 +37,19 @@ namespace NTypewriter.Internals
             foreach (var type in types)
             {
                 scriptObject.Import(type, renamer: MemberRenamer);
+            }
+
+            return scriptObject;
+        }
+
+        private object CreateScriptObjectFromEnum(Type type)
+        {          
+            var scriptObject = new ScriptObject();
+
+            foreach(var value in Enum.GetValues(type))
+            {
+                var key = value.ToString();
+                scriptObject[key] = (int)value;
             }
 
             return scriptObject;

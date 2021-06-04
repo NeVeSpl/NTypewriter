@@ -24,7 +24,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type
         {
             var template = @"{{- capture output
                                      for class in data.Classes | Symbols.WhereNameStartsWith ""AllReferencedTypes""
-                                         for type in class | Type.AllReferencedTypes
+                                         for type in class | Type.AllReferencedTypes SearchIn.All
                                              type.Name + ""\r\n""
                                          end
                                       end

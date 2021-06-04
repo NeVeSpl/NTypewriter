@@ -395,7 +395,7 @@ Filters symbols by the static modifier
 #### AllReferencedTypes
 
 ```csharp
-IEnumerable<IType> Type.AllReferencedTypes(IType type)
+IEnumerable<IType> Type.AllReferencedTypes(IType type, SearchIn searchIn = SearchIn.All)
 ```
 Returns all types that are used in definition of a given type.
 

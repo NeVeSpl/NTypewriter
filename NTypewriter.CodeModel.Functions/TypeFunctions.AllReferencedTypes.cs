@@ -5,39 +5,64 @@ using System.Text;
 
 namespace NTypewriter.CodeModel.Functions
 {
+    [Flags]
+    public enum SearchIn
+    {
+        Properties = 1,
+        Methods = 2,
+        Fields = 4,
+        BaseClass = 8,
+        All = 127
+    }
+
     public static partial class TypeFunctions
     {
+
+
+
         /// <summary>
         /// Returns all types that are used in definition of a given type.
         /// </summary>
-        public static IEnumerable<IType> AllReferencedTypes(this IType type)
+        public static IEnumerable<IType> AllReferencedTypes(this IType type, SearchIn searchIn = SearchIn.All)
         {
             var foundTypes = new HashSet<IType>(new TypeComparer());
 
             if (type is IClass @class)
             {
-                foreach (var property in @class.Properties)
+                if (searchIn.HasFlag(SearchIn.Properties))
                 {
-                    InspectType(foundTypes, property.Type);
-                }
-                foreach (var method in @class.Methods)
-                {
-                    InspectType(foundTypes, method.ReturnType);
-                    foreach (var parameter in method.Parameters)
+                    foreach (var property in @class.Properties)
                     {
-                        if (IsNotFromServices(parameter))
+                        InspectType(foundTypes, property.Type);
+                    }
+                }
+                if (searchIn.HasFlag(SearchIn.Methods))
+                {
+                    foreach (var method in @class.Methods)
+                    {
+                        InspectType(foundTypes, method.ReturnType);
+                        foreach (var parameter in method.Parameters)
                         {
-                            InspectType(foundTypes, parameter.Type);
+                            if (IsNotFromServices(parameter))
+                            {
+                                InspectType(foundTypes, parameter.Type);
+                            }
                         }
                     }
                 }
-                foreach (var field in @class.Fields)
+                if (searchIn.HasFlag(SearchIn.Fields))
                 {
-                    InspectType(foundTypes, field.Type);
+                    foreach (var field in @class.Fields)
+                    {
+                        InspectType(foundTypes, field.Type);
+                    }
                 }
-                if (@class.HasBaseClass)
+                if (searchIn.HasFlag(SearchIn.BaseClass))
                 {
-                    InspectType(foundTypes, @class.BaseClass);
+                    if (@class.HasBaseClass)
+                    {
+                        InspectType(foundTypes, @class.BaseClass);
+                    }
                 }
             }
 
