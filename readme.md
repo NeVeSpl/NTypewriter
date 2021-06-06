@@ -1,6 +1,7 @@
 # NTypewriter
 
 [![ci](https://github.com/NeVeSpl/NTypewriter/actions/workflows/CI.yml/badge.svg)](https://github.com/NeVeSpl/NTypewriter/actions/workflows/CI.yml)
+[![](https://img.shields.io/visual-studio-marketplace/i/NeVeS.NTypewriterEditorForVisualStudio)](https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio)
 
 <ins>For those who do not know Typewriter</ins>:
 
