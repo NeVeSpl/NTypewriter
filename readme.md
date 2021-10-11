@@ -45,7 +45,8 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
    * [Built-in functions](Documentation/BuiltInFunctions.md)   
    * [Name vs BareName vs FullName](Documentation/NameVariants.md)
    * Editor Configuration
-       * [Install](Documentation/Configuration.md#Install)
+       * [Local vs Global configuration](Documentation/Configuration.md#local-vs-global-configuration)
+       * [Nugets for global configuration](Documentation/Configuration.md#nugets-for-global-configuration)
        * [Custom functions](Documentation/Configuration.md#Custom-functions)      
        * [AddGeneratedFilesToVSProject](Documentation/Configuration.md#AddGeneratedFilesToVSProject)
        * [NamespacesToBeSearched](Documentation/Configuration.md#NamespacesToBeSearched)

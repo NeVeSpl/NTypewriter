@@ -14,9 +14,9 @@ namespace NTypewriter
         }
 
 
-        public Configuration AddCustomFunctions(params Type[] typeCustomFuntions)
+        public Configuration AddCustomFunctions(params Type[] typeWithCustomFuntions)
         {
-            typesWithCustomFuntions.AddRange(typeCustomFuntions);
+            typesWithCustomFuntions.AddRange(typeWithCustomFuntions);
             return this;
         }
     }

@@ -7,7 +7,7 @@ Almost all available here options you can set in two ways:
 Local configuration should be used only at the beginning of the template, before any other template code. 
 If both configuration options are used, the local configuration will overwrite things set in the global configuration.
 
-#### Install
+#### Nugets for global configuration
 
 To create global configuration for your templates you will need at least one nuget:
 

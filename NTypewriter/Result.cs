@@ -43,7 +43,7 @@ namespace NTypewriter
 
         internal void AddMsgFromScribanException(ScriptRuntimeException exception)
         {
-            hasErrors |= true;
+            hasErrors = true;
             messages.Add(new MessageItem(exception));
         }
 

@@ -7,7 +7,7 @@ namespace NTypewriter
 {
     public class NTypeWriter
     {
-        public static async Task<Result> Render(string template, object dataModel, Configuration configuration = null, object configModel = null)
+        public static async Task<Result> Render(string template, object dataModel, Configuration configuration = null, object localConfigModel = null)
         {
             var result = new Result();
             var scribanTemplate = Template.Parse(template);
@@ -19,7 +19,7 @@ namespace NTypewriter
                 return result;            
             }          
            
-            var mainScriptObject = new MainScriptObject(dataModel, configModel);
+            var mainScriptObject = new MainScriptObject(dataModel, localConfigModel);
             var userScriptObject = new CustomFunctionsScriptObject(configuration?.typesWithCustomFuntions);
             var context = new MainTemplateContext(mainScriptObject, userScriptObject);
 

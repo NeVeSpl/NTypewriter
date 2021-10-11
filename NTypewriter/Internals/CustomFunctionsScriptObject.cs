@@ -26,6 +26,7 @@ namespace NTypewriter.Internals
                     scriptObject.Import(functionType, renamer: MemberRenamer);
                 }
             }
+
             return scriptObject;
         }
     }

@@ -45,7 +45,7 @@ namespace DocumentationGenerator
             if (!result.HasErrors)
             {
                 var renderedItem = result.Items.First();
-                var path = Path.Combine(@"..\..\..\" + renderedItem.Name);
+                var path = Path.Combine(@"..\..\..\", renderedItem.Name);
                 File.WriteAllText(path, renderedItem.Content);
             }
             else
@@ -59,10 +59,10 @@ namespace DocumentationGenerator
 
         private static Project AddXmlDocumentation(Project project, Type type)
         {
-            var abstractionsAssemblyPath = type.Assembly.Location;
-            var abstractionsAssemblyXmlDocPath = Path.ChangeExtension(abstractionsAssemblyPath, "xml");
-            var abstractionsAssemblyDocProvider = XmlDocumentationProvider.CreateFromFile(abstractionsAssemblyXmlDocPath);
-            project = project.AddMetadataReference(MetadataReference.CreateFromFile(abstractionsAssemblyPath, documentation: abstractionsAssemblyDocProvider));
+            var assemblyPath = type.Assembly.Location;
+            var assemblyXmlDocPath = Path.ChangeExtension(assemblyPath, "xml");
+            var assemblyDocProvider = XmlDocumentationProvider.CreateFromFile(assemblyXmlDocPath);
+            project = project.AddMetadataReference(MetadataReference.CreateFromFile(assemblyPath, documentation: assemblyDocProvider));
             return project;
         }
     }

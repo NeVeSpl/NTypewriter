@@ -46,7 +46,7 @@ namespace NTypewriter.Internals
         {          
             var scriptObject = new ScriptObject();
 
-            foreach(var value in Enum.GetValues(type))
+            foreach (var value in Enum.GetValues(type))
             {
                 var key = value.ToString();
                 scriptObject[key] = (int)value;
