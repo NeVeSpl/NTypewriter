@@ -53,7 +53,7 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
        * [SearchInReferencedProjectsAndAssemblies](Documentation/Configuration.md#SearchInReferencedProjectsAndAssemblies)   
 * [Known issues](#Known-issues)
 * [Status of typewriter issues](Documentation/TypewriterIssues.md)
-* [Change log](#Change-log)
+
 
 
 ### Typewriter vs NTypewriter
@@ -169,9 +169,3 @@ NTypewriter does not have own a lexer/parser as Typewriter has, and uses Scriban
 Ntypwriter does not listen for changes in your custom config file with custom functions. The Config file is read only once when you open a new editor window in VS. This will be changed in the future, but is not a priority.
 
 Not all built in Scriban functions are available in templates.
-
-
-### Change log
-
-0.1.0 - introduces local configuration that can be used inside template file, to achieve that some breaking changes were made to the structure of global configuration file
- 
