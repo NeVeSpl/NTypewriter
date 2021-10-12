@@ -11,6 +11,7 @@ namespace NTypewriter.Editor.Config
         ISearchInReferencedProjectsAndAssemblies
 
     {
-       bool AddGeneratedFilesToVSProject { get; }
+        bool AddGeneratedFilesToVSProject { get; }
+        bool RenderWhenTemplateIsSaved { get; }
     }
 }

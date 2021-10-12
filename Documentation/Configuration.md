@@ -67,7 +67,7 @@ All defined custom functions are available in template with "Custom" prefix:
 
 By default, all created files are added to project in which template is located. 
 
-Global configuration
+_Global configuration_
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -83,7 +83,7 @@ namespace ConsoleApp
 }
 ```
 
-Local configuration
+_Local configuration_
 ```
 {{ config.AddGeneratedFilesToVSProject = true }}
 ```
@@ -92,7 +92,7 @@ Local configuration
 
 Only types located in given namespaces will be available in code model. 
 
-Global configuration
+_Global configuration_
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -114,7 +114,7 @@ namespace ConsoleApp
     }
 }
 ```
-Local configuration
+_Local configuration_
 ```
 {{ config.NamespacesToBeSearched = ["MediatR", "Scriban"] }}
 ```
@@ -123,7 +123,7 @@ Local configuration
 
 By default code model is populated with symbols from all projects in solution. With this option, you can limit the scope to only specified projects. When you have a lot of projects in your solution, using this option can significantly improve performance (see [#29](https://github.com/NeVeSpl/NTypewriter/issues/29#issue-867875186) ).
 
-Global configuration
+_Global configuration_
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -145,7 +145,7 @@ namespace ConsoleApp
     }
 }
 ```
-Local configuration
+_Local configuration_
 ```
 {{ config.ProjectsToBeSearched = ["NTypewriter.CodeModel", "Scriban"] }}
 ```
@@ -157,7 +157,7 @@ This option allows getting access to symbols defined in all referenced assemblie
 
 Also, have in mind that symbols from the same assembly but referenced from different projects are treated as different symbols. The best way to avoid duplication it is to use this option enabled only when GetProjectsToBeSearched returns limited number of projects without references to the same assembly.
 
-Global configuration
+_Global configuration_
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -173,9 +173,34 @@ namespace ConsoleApp
 }
 ```
 
-Local configuration
+_Local configuration_
 ```
 {{ config.SearchInReferencedProjectsAndAssemblies = false }}
+```
+
+#### RenderWhenTemplateIsSaved
+
+With this option, you can decide if you want to automatically render a template always when it is saved.
+
+_Global configuration_
+```csharp
+using System;
+using System.Collections.Generic;
+using NTypewriter.Editor.Config;
+
+namespace ConsoleApp
+{
+    [NTEditorFile]
+    class NTEConfig : EditorConfig
+    {
+        public override bool RenderWhenTemplateIsSaved { get => false; }
+    }
+}
+```
+
+_Local configuration_
+```
+not available yet
 ```
 
 
