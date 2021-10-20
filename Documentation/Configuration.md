@@ -38,9 +38,12 @@ namespace ConsoleApp
     [NTEditorFile]
     class NTEConfig : EditorConfig
     {
-        public override IEnumerable<Type> GetTypesThatContainCustomFunctions()
+        public override IEnumerable<Type> TypesThatContainCustomFunctions
         {
-            yield return typeof(NTEConfig);
+            get
+            {
+                yield return typeof(NTEConfig);
+            }
         }
 
         public static string MyCustomFunction(IClass @class)
