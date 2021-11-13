@@ -69,7 +69,7 @@ Render template on save| yes (opt-out is possible)| [yes (opt-in is possible)](D
 Auto-render when C# file changes| yes (opt-out is possible)| not available, only manual
 Add generated files to VS project | yes (opt-out is possible) | [yes (opt-out is possible)](Documentation/Configuration.md#addgeneratedfilestovsproject)
 can be used from CLI | nope | yes 
-Supported versions of Visual Studio | 2015, 2017, 2019 | 2019, 2022(soon)
+Supported versions of Visual Studio | 2015, 2017, 2019 | 2019, 2022
 Custom functions | separate for every template | shared between templates
 Full control over whitespaces | nope | yup
 Mapping | one input always produces one output file | you can generate as many files as you want
