@@ -19,3 +19,5 @@ Tests.Assets.WebApi/bin/
 Tests.Assets.Referenced/bin/
 DocumentationGenerator/bin/
 DocumentationGenerator/obj/
+NTypewriter.Runtime/bin/
+NTypewriter.Runtime/obj/
