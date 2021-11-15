@@ -142,9 +142,14 @@ namespace NTypewriter.Runtime.Configuration
 
             };
             var references = refTypes.Select(x => MetadataReference.CreateFromFile(x.Assembly.Location)).ToList();
+
             var netstandardAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.GetName().Name == "netstandard");
             var netstandardAssembly = netstandardAssemblies.OrderByDescending(x => x.GetName().Version).FirstOrDefault();
             references.Add(MetadataReference.CreateFromFile(netstandardAssembly.Location));
+
+            var runtimeDir = System.Runtime.InteropServices.RuntimeEnvironment.GetRuntimeDirectory();
+            var runtimeDllPath = Path.Combine(runtimeDir, "System.Runtime.dll");
+            references.Add(MetadataReference.CreateFromFile(runtimeDllPath));
 
             var compilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary);
             var compilation = CSharpCompilation.Create($"NTDynamic{configurationName}Assembly", syntaxTrees: syntaxTreesToCompile, references: references, compilationOptions);

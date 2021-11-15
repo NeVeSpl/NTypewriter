@@ -21,3 +21,7 @@ DocumentationGenerator/bin/
 DocumentationGenerator/obj/
 NTypewriter.Runtime/bin/
 NTypewriter.Runtime/obj/
+NTypewriter.Runtime.Tests/bin/
+NTypewriter.Runtime.Tests/obj/
+Tests.Assets.WebApi2022/obj/
+Tests.Assets.WebApi2022/bin/

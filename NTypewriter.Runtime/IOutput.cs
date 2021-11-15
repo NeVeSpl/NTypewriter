@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NTypewriter.Runtime.Configuration
+namespace NTypewriter.Runtime
 {
     public interface IOutput
     {
