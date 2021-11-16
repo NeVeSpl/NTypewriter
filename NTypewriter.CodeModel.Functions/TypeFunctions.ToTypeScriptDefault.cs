@@ -38,7 +38,7 @@ namespace NTypewriter.CodeModel.Functions
                 case "System.String":
                     return "\"\"";
                 case "System.Guid":
-                    return "00000000-0000-0000-0000-000000000000";
+                    return "\"00000000-0000-0000-0000-000000000000\"";
                 case "System.Byte":
                 case "System.SByte":
                 case "System.Int16":
