@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NTypewriter.CodeModel.Functions\NTypewriter.CodeModel.Functions.csproj" />
+    <ProjectReference Include="..\NTypewriter.CodeModel.Roslyn\NTypewriter.CodeModel.Roslyn.csproj" />
     <ProjectReference Include="..\NTypewriter.CodeModel\NTypewriter.CodeModel.csproj" />
     <ProjectReference Include="..\NTypewriter.Editor.Config\NTypewriter.Editor.Config.csproj" />
   </ItemGroup>
