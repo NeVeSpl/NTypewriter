@@ -23,11 +23,16 @@ namespace NTypewriter.Runtime.Tests
         {
             stringBuilder.AppendLine(msg);
         }
-
+        public void Write(string message, bool isError)
+        {
+            stringBuilder.AppendLine(message);
+        }
 
         public override string ToString()
         {
             return stringBuilder.ToString();
         }
+
+        
     }
 }
