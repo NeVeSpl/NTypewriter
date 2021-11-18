@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using NTypewriter.Editor.Config;
+using Scriban.Runtime;
+
+namespace NTypewriter.Runtime.Rendering.Internals
+{
+    internal class EditorConfigAdapterForScriban
+    {
+        public readonly EditorConfig editorConfig;
+
+
+        public EditorConfigAdapterForScriban(EditorConfig editorConfig)
+        {
+            this.editorConfig = editorConfig;
+        }
+
+
+        public bool SearchInReferencedProjectsAndAssemblies
+        {
+            get => editorConfig.SearchInReferencedProjectsAndAssemblies;
+            set => editorConfig.SearchInReferencedProjectsAndAssemblies = value;
+        }
+        public bool AddGeneratedFilesToVSProject
+        {
+            get => editorConfig.AddGeneratedFilesToVSProject;
+            set => editorConfig.AddGeneratedFilesToVSProject = value;
+        }
+        public ScriptArray NamespacesToBeSearched
+        {
+            get
+            {
+                return new ScriptArray(editorConfig.NamespacesToBeSearched);
+            }
+            set
+            {
+                editorConfig.NamespacesToBeSearched = value.OfType<string>().ToList();
+            }
+        }
+        public ScriptArray ProjectsToBeSearched
+        {
+            get
+            {
+                return new ScriptArray(editorConfig.ProjectsToBeSearched);
+            }
+            set
+            {
+                editorConfig.ProjectsToBeSearched = value.OfType<string>().ToList();
+            }
+        }
+
+
+        public override string ToString()
+        {
+            return editorConfig.ToString();
+        }
+    }
+}
