@@ -7,6 +7,6 @@ namespace NTypewriter.Runtime
 {
     public interface ISolutionItemsManager
     {
-        Task UpdateSolution(string filePath, IEnumerable<string> createdFiles);
+        Task UpdateSolution(string templateFilePath, IEnumerable<string> createdFiles);
     }
 }

@@ -52,6 +52,8 @@ namespace NTypewriter.Runtime
 
         public async Task Execute(Solution solution, IList<TemplateToRender> templates, RenderingContext renderingContext = RenderingContext.CommandExecution)
         {
+            await status.Update("Rendering", 0, templates.Count);
+
             for (int i = 0; i < templates.Count; ++i)
             {
                 var template = templates[i];

@@ -4,7 +4,27 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>xKey.snk</AssemblyOriginatorKeyFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>0.2.5</Version>
+    <Authors>NeVeSpl</Authors>
+    <Copyright>(c) NTypewriter</Copyright>
+    <PackageProjectUrl>https://github.com/NeVeSpl/NTypewriter</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/NeVeSpl/NTypewriter</RepositoryUrl>
+    <PackageIcon>nt.128.128.png</PackageIcon>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\Documentation\nt.128.128.png" Link="nt.128.128.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Documentation\nt.128.128.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.11.0" />
