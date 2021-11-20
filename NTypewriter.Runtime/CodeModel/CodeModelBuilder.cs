@@ -23,6 +23,10 @@ namespace NTypewriter.Runtime.CodeModel
             {
                 Project project = solution.GetProject(projectId);
                 bool isProjectOnTheList = projectsToBeSearched.Contains(project.Name);
+                if (projectsToBeSearched.Any() == false)
+                {
+                    isProjectOnTheList = true;
+                }
 
                 if ((project.SupportsCompilation) && (isProjectOnTheList))
                 {

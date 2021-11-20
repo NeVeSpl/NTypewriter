@@ -1,0 +1,7 @@
+﻿{{ capture output
+       for class in data.Classes | Array.Sort "FullName"
+           class.FullName | String.Append "\r\n"
+      end
+   end
+   Save output "RenderTemplatesCommand_HappyPath.txt"
+}}  

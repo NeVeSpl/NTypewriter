@@ -1,0 +1,3 @@
+﻿Tests.Assets.WebApi2022.Controllers.WeatherForecastController
+Tests.Assets.WebApi2022.SampleConfig
+Tests.Assets.WebApi2022.WeatherForecast
