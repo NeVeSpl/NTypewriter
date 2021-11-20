@@ -26,7 +26,7 @@ namespace NTypewriter.Runtime.CodeModel
 
                 if ((project.SupportsCompilation) && (isProjectOnTheList))
                 {
-                    var codeModel = await CreateCodeModel(project, editorConfig.NamespacesToBeSearched, editorConfig.SearchInReferencedProjectsAndAssemblies);
+                    var codeModel = await CreateCodeModel(project, editorConfig.NamespacesToBeSearched, editorConfig.SearchInReferencedProjectsAndAssemblies).ConfigureAwait(true);
                     compositeCodeModel.Add(codeModel);
                 }
             }
@@ -43,7 +43,7 @@ namespace NTypewriter.Runtime.CodeModel
                 codeModelConfig.FilterByNamespace(namespacesToBeSearched.ToArray());
             }
 
-            var compilation = await project.GetCompilationAsync();
+            var compilation = await project.GetCompilationAsync().ConfigureAwait(true);
             var diagnostics = compilation.GetDiagnostics();
             foreach (var diagnostic in diagnostics)
             {

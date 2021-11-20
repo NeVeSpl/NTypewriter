@@ -26,7 +26,7 @@ namespace NTypewriter.Runtime.Configuration
 
         public async Task<IEditorConfig> LoadConfigurationForGivenProject(Solution solution, string projectFilePath)
         {
-            output.Info("Loading global configuration");
+            output.Info($"Looking for global configuration in {Path.GetFileName(projectFilePath)}");
 
             var project = solution.Projects.FirstOrDefault(x => x.FilePath == projectFilePath);
 
@@ -50,11 +50,11 @@ namespace NTypewriter.Runtime.Configuration
 
                     if (globalConfigType == null)
                     {
-                        output.Info($"Class with global configuration is missing, using default global configuration instead");
+                        output.Info($"Class with global configuration was not found, using default global configuration instead");
                         return new EditorConfig();
                     }
 
-                    output.Info($"Found global configuration class : {globalConfigType.Name}");
+                    output.Info($"Class with global configuration was found : {globalConfigType.Name}");
 
                     var globalConfigInstance = Activator.CreateInstance(globalConfigType);
                     var config = globalConfigInstance as IEditorConfig;
@@ -69,17 +69,17 @@ namespace NTypewriter.Runtime.Configuration
                 }
                 else
                 {
-                    output.Error("Failed to compile global configuration");
-                    
+                    var listOfErrors = new List<string>() { "Failed to compile global configuration" };
+
                     foreach (var diagnostic in emitResult.Diagnostics)
                     {
                         if (diagnostic.Severity == DiagnosticSeverity.Error)
                         {
-                            output.Error(diagnostic.ToString());
+                            listOfErrors.Add(diagnostic.ToString());
                         }
                     }
 
-                    return null;
+                    throw new Exception(String.Join(Environment.NewLine, listOfErrors));
                 }
             }
         }

@@ -15,6 +15,7 @@ namespace NTypewriter.Runtime.Rendering
         private readonly IErrorList errorList;
         private readonly IOutput output;
 
+
         public TemplateRenderer(IErrorList errorList, IOutput output)
         {
             this.errorList = errorList;
