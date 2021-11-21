@@ -30,8 +30,8 @@ namespace NTypewriter.Runtime.Tests.RenderTemplatesCommand
             var status = new IStatusMock();
 
             var cmd = new NTypewriter.Runtime.RenderTemplatesCommand(errorList, output, fileReaderWriter, sourceControl, status, solutionItemsManager);
-            var inputTemplate = Path.Combine(Path.GetDirectoryName(project.FilePath), "RenderTemplatesCommand_HappyPathTemplate.nt");
-            var expectedOutputFile = Path.Combine(Path.GetDirectoryName(project.FilePath), "RenderTemplatesCommand_HappyPath.txt");
+            var inputTemplate = Path.Combine(Path.GetDirectoryName(project.FilePath)!, "RenderTemplatesCommand_HappyPathTemplate.nt");
+            var expectedOutputFile = Path.Combine(Path.GetDirectoryName(project.FilePath)!, "RenderTemplatesCommand_HappyPath.txt");
             var expectedOutput = await fileReaderWriter.Read(expectedOutputFile);
             var input = new List<TemplateToRender>() { new TemplateToRender(inputTemplate, project.FilePath) };
             await cmd.Execute(workspace.CurrentSolution, input);

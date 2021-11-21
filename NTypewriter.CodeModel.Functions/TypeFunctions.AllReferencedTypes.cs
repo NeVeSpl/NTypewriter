@@ -5,21 +5,36 @@ using System.Text;
 
 namespace NTypewriter.CodeModel.Functions
 {
+    /// <summary>
+    /// Areas of the search
+    /// </summary>
     [Flags]
     public enum SearchIn
     {
+        /// <summary>
+        /// Properties
+        /// </summary>
         Properties = 1,
+        /// <summary>
+        /// Methods
+        /// </summary>
         Methods = 2,
+        /// <summary>
+        /// Fields
+        /// </summary>
         Fields = 4,
+        /// <summary>
+        /// BaseClass
+        /// </summary>
         BaseClass = 8,
+        /// <summary>
+        /// All
+        /// </summary>
         All = 127
     }
 
     public static partial class TypeFunctions
     {
-
-
-
         /// <summary>
         /// Returns all types that are used in definition of a given type.
         /// </summary>

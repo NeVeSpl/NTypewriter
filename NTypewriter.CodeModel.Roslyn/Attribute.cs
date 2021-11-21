@@ -8,7 +8,7 @@ namespace NTypewriter.CodeModel.Roslyn
     internal sealed class Attribute : IAttribute
     {
         private readonly AttributeData attributeData;
-        private Lazy<AttributeArgumentCollection> arguments;
+        private readonly Lazy<AttributeArgumentCollection> arguments;
 
         public IEnumerable<IAttributeArgument> Arguments => arguments.Value;
         public IClass AttributeClass => Class.Create(attributeData.AttributeClass);

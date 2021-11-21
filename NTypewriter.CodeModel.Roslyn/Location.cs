@@ -7,8 +7,8 @@ namespace NTypewriter.CodeModel.Roslyn
 {
     internal sealed class Location : ILocation 
     {
-        private Microsoft.CodeAnalysis.Location location;
-        private FileLinePositionSpan fileLinePositionSpan;
+        private readonly Microsoft.CodeAnalysis.Location location;
+        private readonly FileLinePositionSpan fileLinePositionSpan;
 
         public bool IsInSource => location.IsInSource;
         public string Path => fileLinePositionSpan.Path;
