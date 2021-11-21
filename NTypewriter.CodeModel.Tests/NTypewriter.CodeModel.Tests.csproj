@@ -29,6 +29,8 @@
     <Compile Remove="Field\IsReadOnly\inputCode.cs" />
     <Compile Remove="Field\Name\inputCode.cs" />
     <Compile Remove="Field\Type\inputCode.cs" />
+    <Compile Remove="Location\Path\inputCode.cs" />
+    <Compile Remove="Location\StartLinePosition\inputCode.cs" />
     <Compile Remove="Method\IsAsync\inputCode.cs" />
     <Compile Remove="Method\IsGeneric\inputCode.cs" />
     <Compile Remove="Method\Parameters\inputCode.cs" />
@@ -111,6 +113,10 @@
     <None Remove="Field\Name\inputTemplate.tsnt" />
     <None Remove="Field\Type\expectedResult.txt" />
     <None Remove="Field\Type\inputTemplate.tsnt" />
+    <None Remove="Location\Path\expectedResult.txt" />
+    <None Remove="Location\Path\inputTemplate.tsnt" />
+    <None Remove="Location\StartLinePosition\expectedResult.txt" />
+    <None Remove="Location\StartLinePosition\inputTemplate.tsnt" />
     <None Remove="Method\IsAsync\expectedResult.txt" />
     <None Remove="Method\IsAsync\inputTemplate.tsnt" />
     <None Remove="Method\IsGeneric\expectedResult.txt" />
@@ -250,6 +256,16 @@
     <EmbeddedResource Include="Field\Type\expectedResult.txt" />
     <EmbeddedResource Include="Field\Type\inputCode.cs" />
     <EmbeddedResource Include="Field\Type\inputTemplate.tsnt" />
+    <EmbeddedResource Include="Location\Path\expectedResult.txt" />
+    <EmbeddedResource Include="Location\Path\inputCode.cs" />
+    <EmbeddedResource Include="Location\Path\inputTemplate.tsnt">
+      <CustomToolNamespace>70dcc7b8-f715-433e-89b2-f2cfd4f8d404</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Location\StartLinePosition\expectedResult.txt" />
+    <EmbeddedResource Include="Location\StartLinePosition\inputCode.cs" />
+    <EmbeddedResource Include="Location\StartLinePosition\inputTemplate.tsnt">
+      <CustomToolNamespace>70dcc7b8-f715-433e-89b2-f2cfd4f8d404</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Method\IsAsync\expectedResult.txt" />
     <EmbeddedResource Include="Method\IsAsync\inputCode.cs" />
     <EmbeddedResource Include="Method\IsAsync\inputTemplate.tsnt" />

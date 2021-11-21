@@ -52,7 +52,8 @@ namespace NTypewriter.CodeModel.Roslyn
         }
         public virtual string FullName => symbol.ToDisplayString(symbolDisplayFormat);
         public string Namespace => symbol.ContainingNamespace?.ToString();
-       
+
+        public IEnumerable<ILocation> Locations => LocationCollection.Create(symbol.Locations);
 
         private protected SymbolBase(ISymbol symbol)
         {

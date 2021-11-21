@@ -93,5 +93,10 @@ namespace NTypewriter.CodeModel
         /// The nearest enclosing namespace for the symbol.
         /// </summary>
         string Namespace { get; }
+
+        /// <summary>
+        /// Gets the locations where the symbol was originally defined, either in source or metadata. Some symbols (for example, partial classes) may be defined in more than one location.
+        /// </summary>
+        IEnumerable<ILocation> Locations { get; }
     }
 }
