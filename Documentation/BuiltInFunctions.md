@@ -182,7 +182,7 @@ TimeSpanFunctions
 IParameter Action.BodyParameter(IMethod method)
 ```
 Returns parameter that receives content sent to a webapi action in a request body.
-[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.BodyParameter.cs#L13)
+[[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.BodyParameter.cs#L13)]
 
 #### HttpMethod
 
@@ -190,7 +190,7 @@ Returns parameter that receives content sent to a webapi action in a request bod
 string Action.HttpMethod(IMethod method)
 ```
 Returns the http method used with a webapi action.    The http method is extracted from Http* or AcceptVerbs attribute or by naming convention if no attributes are specified.
-[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.HttpMethod.cs#L16)
+[[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.HttpMethod.cs#L16)]
 
 #### Parameters
 
@@ -198,7 +198,7 @@ Returns the http method used with a webapi action.    The http method is extract
 IEnumerable<IParameter> Action.Parameters(IMethod method, bool includeBodyParameter = true)
 ```
 Returns parameters that receive content sent to a webapi action.    If _includeBodyParameter_ is specified as false, then the Parameter list returned will not include the parameter that is being sent in the body of the request.
-[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.Parameters.cs#L12)
+[[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.Parameters.cs#L12)]
 
 #### ReturnType
 
@@ -206,7 +206,7 @@ Returns parameters that receive content sent to a webapi action.    If _includeB
 IType Action.ReturnType(IMethod method)
 ```
 Returns type that is returned from action unwrapped from Task and ActionResult generics
-[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.ReturnType.cs#L16)
+[[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.ReturnType.cs#L16)]
 
 #### Url
 
@@ -214,7 +214,7 @@ Returns type that is returned from action unwrapped from Task and ActionResult g
 string Action.Url(IMethod method)
 ```
 Returns the url for the Web API action based on route attributes (or the supplied convention route if no attributes are present).    Route parameters are converted to TypeScript string interpolation syntax by prefixing all parameters with $ e.g. ${id}.    Optional parameters are added as QueryString parameters for GET and HEAD requests.
-[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.Url.cs#L19)
+[[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.Url.cs#L19)]
 
 ----
 
@@ -226,7 +226,7 @@ Returns the url for the Web API action based on route attributes (or the supplie
 IEnumerable<string> Parameters.ToTypeScript(IEnumerable<IParameter> parameters, string nullableType = "null")
 ```
 
-[source code](/NTypewriter.CodeModel.Functions/ParametersFunctions.cs#L14)
+[[source code](/NTypewriter.CodeModel.Functions/ParametersFunctions.cs#L14)]
 
 ----
 
@@ -238,7 +238,7 @@ IEnumerable<string> Parameters.ToTypeScript(IEnumerable<IParameter> parameters, 
 IEnumerable<string> String.SplitIntoSeparateWords(string text)
 ```
 It tries to extract separate words from string
-[source code](/NTypewriter.CodeModel.Functions/StringFunctions.cs#L54)
+[[source code](/NTypewriter.CodeModel.Functions/StringFunctions.cs#L54)]
 
 #### ToCamelCase
 
@@ -246,7 +246,7 @@ It tries to extract separate words from string
 string String.ToCamelCase(string text)
 ```
 Converts text case to CamelCase
-[source code](/NTypewriter.CodeModel.Functions/StringFunctions.cs#L14)
+[[source code](/NTypewriter.CodeModel.Functions/StringFunctions.cs#L14)]
 
 #### ToLowerFirst
 
@@ -254,7 +254,7 @@ Converts text case to CamelCase
 string String.ToLowerFirst(string text)
 ```
 Converts first letter of the given string to lower case
-[source code](/NTypewriter.CodeModel.Functions/StringFunctions.cs#L39)
+[[source code](/NTypewriter.CodeModel.Functions/StringFunctions.cs#L39)]
 
 #### ToUpperFirst
 
@@ -262,7 +262,7 @@ Converts first letter of the given string to lower case
 string String.ToUpperFirst(string text)
 ```
 Converts first letter of the given string to upper case
-[source code](/NTypewriter.CodeModel.Functions/StringFunctions.cs#L24)
+[[source code](/NTypewriter.CodeModel.Functions/StringFunctions.cs#L24)]
 
 ----
 
@@ -274,7 +274,7 @@ Converts first letter of the given string to upper case
 bool Symbol.HasAttribute(ISymbolBase symbol, string attributeName)
 ```
 Checks if symbol is decorated with an attribute
-[source code](/NTypewriter.CodeModel.Functions/SymbolFunctions.HasAttribute.cs#L16)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolFunctions.HasAttribute.cs#L16)]
 
 ----
 
@@ -286,7 +286,7 @@ Checks if symbol is decorated with an attribute
 IEnumerable<ISymbolBase> Symbols.ThatAreNotStatic(IEnumerable<ISymbolBase> symbols)
 ```
 Filters symbols by the static modifier
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L171)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L171)]
 
 #### ThatArePublic
 
@@ -294,7 +294,7 @@ Filters symbols by the static modifier
 IEnumerable<ISymbolBase> Symbols.ThatArePublic(IEnumerable<ISymbolBase> symbols)
 ```
 Filters symbols by the public access modifier
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L152)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L152)]
 
 #### ThatAreStatic
 
@@ -302,7 +302,7 @@ Filters symbols by the public access modifier
 IEnumerable<ISymbolBase> Symbols.ThatAreStatic(IEnumerable<ISymbolBase> symbols)
 ```
 Filters symbols by the static modifier
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L162)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L162)]
 
 #### ThatDoNotHaveAttribute
 
@@ -310,7 +310,7 @@ Filters symbols by the static modifier
 IEnumerable<ISymbolBase> Symbols.ThatDoNotHaveAttribute(IEnumerable<ISymbolBase> symbols, string attributeName)
 ```
 Filters symbols by the absence of an attribute
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L142)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L142)]
 
 #### ThatHaveAttribute
 
@@ -318,7 +318,7 @@ Filters symbols by the absence of an attribute
 IEnumerable<ISymbolBase> Symbols.ThatHaveAttribute(IEnumerable<ISymbolBase> symbols, string attributeName)
 ```
 Filters symbols by the presence of an attribute
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L133)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L133)]
 
 #### WhereNameDoesNotEndWith
 
@@ -326,7 +326,7 @@ Filters symbols by the presence of an attribute
 IEnumerable<ISymbolBase> Symbols.WhereNameDoesNotEndWith(IEnumerable<ISymbolBase> symbols, string postfix)
 ```
 Filters symbols by the end of their name
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L102)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L102)]
 
 #### WhereNameDoesNotMatch
 
@@ -334,7 +334,7 @@ Filters symbols by the end of their name
 IEnumerable<ISymbolBase> Symbols.WhereNameDoesNotMatch(IEnumerable<ISymbolBase> symbols, string pattern)
 ```
 Filters symbols by a regex pattern
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L122)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L122)]
 
 #### WhereNameDoesNotStartWith
 
@@ -342,7 +342,7 @@ Filters symbols by a regex pattern
 IEnumerable<ISymbolBase> Symbols.WhereNameDoesNotStartWith(IEnumerable<ISymbolBase> symbols, string prefix)
 ```
 Filters symbols by the beginning of their name
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L83)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L83)]
 
 #### WhereNameEndsWith
 
@@ -350,7 +350,7 @@ Filters symbols by the beginning of their name
 IEnumerable<ISymbolBase> Symbols.WhereNameEndsWith(IEnumerable<ISymbolBase> symbols, string postfix)
 ```
 Filters symbols by the end of their name
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L93)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L93)]
 
 #### WhereNameMatches
 
@@ -358,7 +358,7 @@ Filters symbols by the end of their name
 IEnumerable<ISymbolBase> Symbols.WhereNameMatches(IEnumerable<ISymbolBase> symbols, string pattern)
 ```
 Filters symbols by a regex pattern
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L112)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L112)]
 
 #### WhereNamespaceDoesNotEndWith
 
@@ -366,7 +366,7 @@ Filters symbols by a regex pattern
 IEnumerable<ISymbolBase> Symbols.WhereNamespaceDoesNotEndWith(IEnumerable<ISymbolBase> symbols, string postfix)
 ```
 Filters symbols by the end of their namespace
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L43)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L43)]
 
 #### WhereNamespaceDoesNotMatch
 
@@ -374,7 +374,7 @@ Filters symbols by the end of their namespace
 IEnumerable<ISymbolBase> Symbols.WhereNamespaceDoesNotMatch(IEnumerable<ISymbolBase> symbols, string pattern)
 ```
 Filters symbols by regex pattern
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L63)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L63)]
 
 #### WhereNamespaceDoesNotStartWith
 
@@ -382,7 +382,7 @@ Filters symbols by regex pattern
 IEnumerable<ISymbolBase> Symbols.WhereNamespaceDoesNotStartWith(IEnumerable<ISymbolBase> symbols, string prefix)
 ```
 Filters symbols by the beginning of their namespace
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L24)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L24)]
 
 #### WhereNamespaceEndsWith
 
@@ -390,7 +390,7 @@ Filters symbols by the beginning of their namespace
 IEnumerable<ISymbolBase> Symbols.WhereNamespaceEndsWith(IEnumerable<ISymbolBase> symbols, string postfix)
 ```
 Filters symbols by the end of their namespace
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L34)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L34)]
 
 #### WhereNamespaceMatches
 
@@ -398,7 +398,7 @@ Filters symbols by the end of their namespace
 IEnumerable<ISymbolBase> Symbols.WhereNamespaceMatches(IEnumerable<ISymbolBase> symbols, string pattern)
 ```
 Filters symbols by regex pattern
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L53)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L53)]
 
 #### WhereNamespaceStartsWith
 
@@ -406,7 +406,7 @@ Filters symbols by regex pattern
 IEnumerable<ISymbolBase> Symbols.WhereNamespaceStartsWith(IEnumerable<ISymbolBase> symbols, string prefix)
 ```
 Filters symbols by the beginning of their namespace
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L15)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L15)]
 
 #### WhereNameStartsWith
 
@@ -414,7 +414,7 @@ Filters symbols by the beginning of their namespace
 IEnumerable<ISymbolBase> Symbols.WhereNameStartsWith(IEnumerable<ISymbolBase> symbols, string prefix)
 ```
 Filters symbols by the beginning of their name
-[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L74)
+[[source code](/NTypewriter.CodeModel.Functions/SymbolsFunctions.cs#L74)]
 
 ----
 
@@ -426,7 +426,7 @@ Filters symbols by the beginning of their name
 IEnumerable<IType> Type.AllReferencedTypes(IType type, SearchIn searchIn = SearchIn.All)
 ```
 Returns all types that are used in definition of a given type.
-[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.AllReferencedTypes.cs#L41)
+[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.AllReferencedTypes.cs#L41)]
 
 #### ToTypeScriptDefault
 
@@ -434,7 +434,7 @@ Returns all types that are used in definition of a given type.
 string Type.ToTypeScriptDefault(IType type)
 ```
 The default value of the type.    (Dictionary types returns {}, enumerable types returns [],    boolean types returns false, numeric types returns 0, void returns void(0),    Guid types return empty guid string, Date types return new Date(0),    all other types return null)
-[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.ToTypeScriptDefault.cs#L17)
+[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.ToTypeScriptDefault.cs#L17)]
 
 #### ToTypeScriptType
 
@@ -442,7 +442,7 @@ The default value of the type.    (Dictionary types returns {}, enumerable types
 string Type.ToTypeScriptType(IType type, string nullableTypePostfix = "null")
 ```
 Converts type name to typescript type name
-[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.ToTypeScriptType.cs#L14)
+[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.ToTypeScriptType.cs#L14)]
 
 #### Unwrap
 
@@ -450,7 +450,7 @@ Converts type name to typescript type name
 IType Type.Unwrap(IType type)
 ```
 Returns the first TypeArgument of a generic type or the type itself if it's not generic.
-[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.Unwrap.cs#L13)
+[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.Unwrap.cs#L13)]
 
 ----
 
@@ -462,7 +462,7 @@ Returns the first TypeArgument of a generic type or the type itself if it's not 
 IEnumerable<IType> Types.ThatImplement(IEnumerable<IType> types, string interfaceName)
 ```
 Filters types based on if a type implements given interface (directly or indirectly)
-[source code](/NTypewriter.CodeModel.Functions/TypesFunctions.cs#L14)
+[[source code](/NTypewriter.CodeModel.Functions/TypesFunctions.cs#L14)]
 
 #### ThatInheritFrom
 
@@ -470,7 +470,7 @@ Filters types based on if a type implements given interface (directly or indirec
 IEnumerable<IType> Types.ThatInheritFrom(IEnumerable<IType> types, string baseTypeName)
 ```
 Filters types based on if a type inherits directly from given type
-[source code](/NTypewriter.CodeModel.Functions/TypesFunctions.cs#L23)
+[[source code](/NTypewriter.CodeModel.Functions/TypesFunctions.cs#L23)]
 
 ----
 

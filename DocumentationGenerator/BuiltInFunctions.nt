@@ -36,7 +36,7 @@
 {{function.FullName | String.Replace "Functions" ""}}
 ```
 {{ function.DocComment.Summary | String.StripNewlines }}
-[source code]({{ Custom.GetGitHubPath(function) }})
+[[source code]({{ Custom.GetGitHubPath(function) }})]
 
 {{- end }}
 
