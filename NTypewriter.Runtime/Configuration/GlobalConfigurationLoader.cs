@@ -79,7 +79,7 @@ namespace NTypewriter.Runtime.Configuration
                         }
                     }
 
-                    throw new Exception(String.Join(Environment.NewLine, listOfErrors));
+                    throw new RuntimeException(String.Join(Environment.NewLine, listOfErrors));
                 }
             }
         }

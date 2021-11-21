@@ -44,7 +44,7 @@ namespace NTypewriter.Runtime.Rendering
             errorList.Publish();
             if (result.HasErrors)
             {
-                throw new Exception("Rendering template failed");
+                throw new RuntimeException("Rendering template failed");
             }
 
             output.Info("Template rendered successfully");
