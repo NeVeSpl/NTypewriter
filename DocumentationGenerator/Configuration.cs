@@ -55,5 +55,13 @@ namespace DocumentationGenerator
             var id = String.Join("_", words.Select(x => x.ToLower()));           
             return id;
         }
+        public static string GetGitHubPath(ISymbolBase symbol)
+        {
+            var location = symbol.Locations.FirstOrDefault();            
+            var indx = location.Path.IndexOf("\\NTypewriter.CodeModel");
+            var githubPath = location.Path.Substring(indx).Replace('\\', '/');
+            var line =  "#L" + location.StartLinePosition;
+            return githubPath + line;  
+        }
     }
 }

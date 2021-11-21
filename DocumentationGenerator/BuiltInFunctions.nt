@@ -1,13 +1,13 @@
 ﻿{{- capture output 
-   ntypewriterClasses = data.Classes | Symbols.WhereNamespaceMatches "NTypewriter.CodeModel.Functions" | Symbols.WhereNameEndsWith "Functions"
-   scribanClasses = data.Classes | Symbols.WhereNamespaceMatches "Scriban.Functions" | Custom.FilterScribanFunctionSets
+   ntypewriterClasses = data.Classes | Symbols.WhereNamespaceMatches "NTypewriter.CodeModel.Functions" | Symbols.WhereNameEndsWith "Functions" | Array.Sort "Name"
+   scribanClasses = data.Classes | Symbols.WhereNamespaceMatches "Scriban.Functions" | Custom.FilterScribanFunctionSets | Array.Sort "Name"
 }}
 > This file was auto generated from template : [BuiltInFunctions.nt](https://github.com/NeVeSpl/NTypewriter/blob/master/DocumentationGenerator/BuiltInFunctions.nt)
 
 {{ for class in ntypewriterClasses}}
 
 {{ class.Name }}
-{{    for function in class.Methods | Symbols.ThatArePublic }}
+{{    for function in class.Methods | Symbols.ThatArePublic | Array.Sort "Name" }}
 * [{{function.Name}}](#{{function.BareName}})
 {{-    end
    end  
@@ -15,7 +15,7 @@
 {{ for class in scribanClasses}}
 
 {{ class.Name }}
-{{    for function in class.Methods | Symbols.ThatArePublic }}
+{{    for function in class.Methods | Symbols.ThatArePublic | Array.Sort "Name"}}
 * [{{function.Name}}](#{{function.BareName}})
 {{-    end
    end  
@@ -28,7 +28,7 @@
 
 ## {{ class.Name }}
 
-{{- for function in class.Methods | Symbols.ThatArePublic }}
+{{- for function in class.Methods | Symbols.ThatArePublic | Array.Sort "Name" }}
 
 #### {{ function.BareName }}
 
@@ -36,6 +36,7 @@
 {{function.FullName | String.Replace "Functions" ""}}
 ```
 {{ function.DocComment.Summary | String.StripNewlines }}
+[source code]({{ Custom.GetGitHubPath(function) }})
 
 {{- end }}
 
@@ -51,7 +52,7 @@ Below functions come from Scriban, and you can read more about them in [Scriban 
 
 ### {{ class.Name }}
 
-{{- for function in class.Methods | Symbols.ThatArePublic }}
+{{- for function in class.Methods | Symbols.ThatArePublic | Array.Sort "Name"}}
 
 #### {{ function.BareName }}
 
