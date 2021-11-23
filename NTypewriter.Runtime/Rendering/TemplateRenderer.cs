@@ -32,7 +32,7 @@ namespace NTypewriter.Runtime.Rendering
             configuration.AddCustomFunctions(editorConfig.TypesThatContainCustomFunctions.ToArray());
 
             var configAdapter = new EditorConfigAdapterForScriban(editorConfig);
-            var result = await NTypeWriter.Render(template, codeModel, configuration, configAdapter);
+            var result = await NTypeWriter.Render(template, codeModel, configuration, configAdapter, new ExternalOutputAdapter(output));
 
             output.Info("Used configuration : " + editorConfig.ToString());
 

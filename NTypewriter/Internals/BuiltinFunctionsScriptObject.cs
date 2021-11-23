@@ -26,7 +26,8 @@ namespace NTypewriter.Internals
             this["SearchIn"] = CreateScriptObjectFromEnum(typeof(global::NTypewriter.CodeModel.Functions.SearchIn));
             this["Types"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.TypesFunctions));
             this["Symbol"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.SymbolFunctions));
-            this["Symbols"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.SymbolsFunctions));           
+            this["Symbols"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.SymbolsFunctions));
+            this["Debug"] = CreateScriptObject(typeof(global::NTypewriter.Internals.DebugFunctions));
             this.Import(typeof(SaveFunction), renamer: MemberRenamer);
         }        
 
