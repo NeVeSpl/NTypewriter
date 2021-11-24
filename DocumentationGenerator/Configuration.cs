@@ -59,9 +59,13 @@ namespace DocumentationGenerator
         {
             var location = symbol.Locations.FirstOrDefault();            
             var indx = location.Path.IndexOf("\\NTypewriter.CodeModel");
+            if (indx < 0)
+            {
+                indx = location.Path.IndexOf("\\NTypewriter\\Internals");
+            }
             var githubPath = location.Path.Substring(indx).Replace('\\', '/');
-            var line =  "#L" + location.StartLinePosition;
-            return githubPath + line;  
+            var line = "#L" + location.StartLinePosition;
+            return githubPath + line;    
         }
     }
 }

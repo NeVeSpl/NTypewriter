@@ -1,5 +1,7 @@
 ﻿{{- capture output 
-   ntypewriterClasses = data.Classes | Symbols.WhereNamespaceMatches "NTypewriter.CodeModel.Functions" | Symbols.WhereNameEndsWith "Functions" | Array.Sort "Name"
+   ntcodemodel = data.Classes | Symbols.WhereNamespaceMatches "NTypewriter.CodeModel.Functions" | Symbols.WhereNameEndsWith "Functions" 
+   ntspecials = data.Classes | Symbols.WhereNamespaceMatches "NTypewriter.Internals" | Symbols.WhereNameEndsWith "Functions"
+   ntypewriterClasses = ntcodemodel | Array.Concat ntspecials |  Array.Sort "Name"
    scribanClasses = data.Classes | Symbols.WhereNamespaceMatches "Scriban.Functions" | Custom.FilterScribanFunctionSets | Array.Sort "Name"
 }}
 > This file was auto generated from template : [BuiltInFunctions.nt](https://github.com/NeVeSpl/NTypewriter/blob/master/DocumentationGenerator/BuiltInFunctions.nt)

@@ -11,6 +11,11 @@ ActionFunctions
 * [ReturnType](#ReturnType)
 * [Url](#Url)
 
+DebugFunctions
+
+* [Throw](#Throw)
+* [WriteLine](#WriteLine)
+
 ParametersFunctions
 
 * [ToTypeScript](#ToTypeScript)
@@ -215,6 +220,26 @@ string Action.Url(IMethod method)
 ```
 Returns the url for the Web API action based on route attributes (or the supplied convention route if no attributes are present).    Route parameters are converted to TypeScript string interpolation syntax by prefixing all parameters with $ e.g. ${id}.    Optional parameters are added as QueryString parameters for GET and HEAD requests.
 [[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.Url.cs#L19)]
+
+----
+
+## DebugFunctions
+
+#### Throw
+
+```csharp
+void Debug.Throw(string message)
+```
+
+[[source code](/NTypewriter/Internals/DebugFunctions.cs#L10)]
+
+#### WriteLine
+
+```csharp
+void Debug.WriteLine(MainTemplateContext context, string text)
+```
+
+[[source code](/NTypewriter/Internals/DebugFunctions.cs#L5)]
 
 ----
 
