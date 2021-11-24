@@ -6,5 +6,10 @@
         {
             context.WriteOnExternalOutput(text);
         }
+
+        public static void Throw(string message)
+        {
+            throw new System.Exception(message);
+        }
     }
 }
