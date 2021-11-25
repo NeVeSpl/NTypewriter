@@ -28,7 +28,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.11.0" />
-    <PackageReference Include="Scriban.Signed" Version="4.1.0" />
+    <PackageReference Include="Scriban.Signed" Version="5.0.0" />
     <PackageReference Include="System.Text.Json" Version="6.0.0" />
   </ItemGroup>
 
