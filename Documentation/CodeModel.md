@@ -153,6 +153,7 @@ FullName | The Namespace + the name of the symbol | `string`
 Name | The name of the symbol | `string`  
 BareName | The prefix of the Name that consists only letters and digits. | `string`  
 Namespace | The nearest enclosing namespace for the symbol. | `string`  
+Locations | Gets the locations where the symbol was originally defined, either in source or metadata. Some symbols (for example, partial classes) may be defined in more than one location. | `IEnumerable<ILocation>`  
 
 
 ---
@@ -259,6 +260,21 @@ IsGeneric | Determines if the method is generic (it has any type parameters) | `
 Parameters | All parameters of the method. | `IEnumerable<IParameter>`  
 ReturnType | The return type of the method. | `IType`  
 TypeParameters | The type parameters of the method. If the method is not generic, returns an empty collection. | `IEnumerable<ITypeParameter>`  
+
+
+---
+
+      
+#### ILocation
+
+A program location in source code.
+
+Property | Description | Returns
+--------|---------|-----------
+IsInSource | Returns true if the location represents a specific location in a source code file. | `bool`  
+Path | Path, or null if the span represents an invalid value. | `string`  
+StartLinePosition | Gets the first line number | `int`  
+EndLinePosition | Gets the last line number | `int`  
 
 
 ---
