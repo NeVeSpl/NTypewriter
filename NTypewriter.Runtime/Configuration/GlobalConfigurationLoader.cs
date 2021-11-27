@@ -38,6 +38,7 @@ namespace NTypewriter.Runtime.Configuration
             await CheckUsedAssemblyVersions(project);
 
             var syntaxTreesToCompile = await GetDecoratedSyntaxTreesWithAttribute(project.Documents, nameof(NTEditorFileAttribute));
+            output.Info("Detected files that contain global configuration code : " + String.Join(",", syntaxTreesToCompile.Select(x => Path.GetFileName(x.FilePath))));
             var compilation = PrepareCompilation(syntaxTreesToCompile, "Configuration");
 
             using (var ms = new MemoryStream())
@@ -108,6 +109,15 @@ namespace NTypewriter.Runtime.Configuration
             foreach (var document in documents)
             {
                 var syntaxTree = await document.GetSyntaxTreeAsync();
+
+                // a new way of detecting files destined for compilation: by file extension
+                if (document.FilePath.EndsWith(".nt.cs"))
+                {
+                    syntaxTrees.Add(syntaxTree);
+                    goto outsideLoop;
+                }
+
+                // old way: by presence of the attribute
                 var rootNode = await syntaxTree.GetRootAsync();
                 var classes = rootNode.DescendantNodes().OfType<ClassDeclarationSyntax>();
                 foreach (var @class in classes)
