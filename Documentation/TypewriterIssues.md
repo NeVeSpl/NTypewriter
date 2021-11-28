@@ -154,7 +154,7 @@
 - [ ] ~~[Generic base class type parameter not correct #153](https://github.com/frhagn/Typewriter/issues/153)~~
 - [ ] ~~[Arbitary C# Method definition breaks custom extension expression evaluation #154](https://github.com/frhagn/Typewriter/issues/154)~~
 - [x] [Abstract classes? #155](https://github.com/frhagn/Typewriter/issues/155)
-- [ ] **[is there way to render all templates in a project during the build ? #156](https://github.com/frhagn/Typewriter/issues/156)**
+- [x] [is there way to render all templates in a project during the build ? #156](https://github.com/frhagn/Typewriter/issues/156)
 - [ ] ~~[Extract Value from EnumMemberAttribute on EnumValue #157](https://github.com/frhagn/Typewriter/issues/157)~~
 - [ ] ~~[It does not install in Visual Studio 2017 RC #158](https://github.com/frhagn/Typewriter/issues/158)~~
 - [ ] ~~[Template in website #159](https://github.com/frhagn/Typewriter/issues/159)~~
@@ -256,7 +256,7 @@
 - [ ] ~~[Infer return type from [Produces(Type)] attribute #255](https://github.com/frhagn/Typewriter/issues/255)~~
 - [ ] ~~[Issue with Enumerable with type of Enum #256](https://github.com/frhagn/Typewriter/issues/256)~~
 - [ ] ~~[How to get classes within a specific folder instead of with a prefix/suffix? #257](https://github.com/frhagn/Typewriter/issues/257)~~
-- [ ] **[Render templates during build #258](https://github.com/frhagn/Typewriter/issues/258)**
+- [x] [Render templates during build #258](https://github.com/frhagn/Typewriter/issues/258)
 - [ ] ~~[WebApi / DTO Proxy generator for C# #259](https://github.com/frhagn/Typewriter/issues/259)~~
 - [x] [FR: only save generated file if it is different from existing file #260](https://github.com/frhagn/Typewriter/issues/260)
 - [ ] ~~[RouteArea wasn't resolved as a part of URL #261](https://github.com/frhagn/Typewriter/issues/261)~~
