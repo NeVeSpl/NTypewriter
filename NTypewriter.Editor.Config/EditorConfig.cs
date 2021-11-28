@@ -13,6 +13,8 @@ namespace NTypewriter.Editor.Config
         
         public virtual bool RenderWhenTemplateIsSaved { get; set; } = false;
 
+        public virtual bool RenderWhenProjectBuildIsDone { get; set; } = false;
+
         public virtual IEnumerable<string> NamespacesToBeSearched { get; set; } = Enumerable.Empty<string>();
 
         public virtual IEnumerable<string> ProjectsToBeSearched { get; set; } = Enumerable.Empty<string>();
@@ -34,6 +36,7 @@ namespace NTypewriter.Editor.Config
             ProjectsToBeSearched = editorConfig.ProjectsToBeSearched;
             TypesThatContainCustomFunctions = editorConfig.TypesThatContainCustomFunctions;
             RenderWhenTemplateIsSaved = editorConfig.RenderWhenTemplateIsSaved;
+            RenderWhenProjectBuildIsDone = editorConfig.RenderWhenProjectBuildIsDone;
         }
 
         public override string ToString()
@@ -41,6 +44,7 @@ namespace NTypewriter.Editor.Config
             return $"{nameof(SearchInReferencedProjectsAndAssemblies)}: {SearchInReferencedProjectsAndAssemblies}; "+
                    $"{nameof(AddGeneratedFilesToVSProject)}: {AddGeneratedFilesToVSProject}; "+
                    $"{nameof(RenderWhenTemplateIsSaved)}: {RenderWhenTemplateIsSaved}; " +
+                   $"{nameof(RenderWhenProjectBuildIsDone)}: {RenderWhenProjectBuildIsDone}; " +
                    $"{nameof(NamespacesToBeSearched)}: [{String.Join(", ", NamespacesToBeSearched)}]; " +
                    $"{nameof(ProjectsToBeSearched)}: [{String.Join(", ", ProjectsToBeSearched)}]; " +
                    $"{nameof(TypesThatContainCustomFunctions)}: [{String.Join(", ", TypesThatContainCustomFunctions)}]; "

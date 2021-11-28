@@ -13,5 +13,6 @@ namespace NTypewriter.Editor.Config
     {
         bool AddGeneratedFilesToVSProject { get; }
         bool RenderWhenTemplateIsSaved { get; }
+        bool RenderWhenProjectBuildIsDone { get; }
     }
 }
