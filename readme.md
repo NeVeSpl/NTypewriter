@@ -68,12 +68,13 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
 Template file extension | *.tst | *.nt
 Syntax   | typewriter syntax | [scriban scripting language](https://github.com/scriban/scriban/blob/master/doc/language.md)
 Lambda filters | present | not available 
-Render template on save| yes (opt-out is possible)| [yes (opt-in is possible)](Documentation/Configuration.md#renderwhentemplateissaved)
-Auto-render when C# file changes| yes (opt-out is possible)| not available, only manual
+Auto-render template on save| yes (opt-out is possible)| [yes (opt-in is possible)](Documentation/Configuration.md#renderwhentemplateissaved)
+Auto-render when C# file changes| yes (opt-out is possible)| no
+Auto-render on build | no | [yes (opt-in is possible)](Documentation/Configuration.md#RenderWhenProjectBuildIsDone)
 Add generated files to VS project | yes (opt-out is possible) | [yes (opt-out is possible)](Documentation/Configuration.md#addgeneratedfilestovsproject)
-can be used from CLI | nope | yes 
+can be used from CLI | no | yes 
 Supported versions of Visual Studio | 2015, 2017, 2019 | 2019, 2022
-Custom functions | separate for every template | shared between templates
+Custom functions | separate for every template | shared between templates (*.nt.cs)
 Full control over whitespaces | nope | yup
 Mapping | one input always produces one output file | you can generate as many files as you want
 Sync deleted or renamed C# types with generated files | there is a part of the code that should do that  but it does not work anymore | yup
