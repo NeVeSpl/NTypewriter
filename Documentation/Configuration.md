@@ -203,7 +203,31 @@ namespace ConsoleApp
 
 _Local configuration_
 ```
-not available yet
+not available
+```
+
+#### RenderWhenProjectBuildIsDone
+
+With this option, you can decide if you want to automatically render all templates from a given project, when it is successfully built.
+
+_Global configuration (*.nt.cs file)_
+```csharp
+using System;
+using System.Collections.Generic;
+using NTypewriter.Editor.Config;
+
+namespace ConsoleApp
+{    
+    class Config : EditorConfig
+    {
+        public override bool RenderWhenProjectBuildIsDone { get => false; }
+    }
+}
+```
+
+_Local configuration_
+```
+not available
 ```
 
 

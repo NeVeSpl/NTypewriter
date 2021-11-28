@@ -55,6 +55,7 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
        * [ProjectsToBeSearched](Documentation/Configuration.md#ProjectsToBeSearched)  
        * [SearchInReferencedProjectsAndAssemblies](Documentation/Configuration.md#SearchInReferencedProjectsAndAssemblies)   
        * [RenderWhenTemplateIsSaved](Documentation/Configuration.md#renderwhentemplateissaved)
+       * [RenderWhenProjectBuildIsDone](Documentation/Configuration.md#RenderWhenProjectBuildIsDone)
 * [Known issues](#Known-issues)
 * [Status of typewriter issues](Documentation/TypewriterIssues.md)
 

@@ -57,6 +57,7 @@ namespace NTypewriter.Runtime
                 var template = templates[i];
 
                 output.Info(new String('-', 69));
+                output.Info("Rendering started : " + System.IO.Path.GetFileName(template.FilePath));
                 await status.Update("Rendering", i + 1, templates.Count);
 
                 var globalConfigurationLoader = new GlobalConfigurationLoader(output);
