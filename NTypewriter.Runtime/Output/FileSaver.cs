@@ -27,35 +27,38 @@ namespace NTypewriter.Runtime.Output
         {
             output.Info($"Saving output to disk (items : {renderedItems.Count()})");
 
-            int firstColmunWidth = renderedItems.Max(x => x.FilePath.Length) + 1;
-
-            foreach (var item in renderedItems)
+            if (renderedItems.Any())
             {
-                var filePathWithPadding = item.FilePath.PadRight(firstColmunWidth);
-                if (!item.IsFilePathValid)
-                {
-                    output.Error($"{filePathWithPadding} | File path is invalid");
-                    continue;
-                }
+                int firstColmunWidth = renderedItems.Max(x => x.FilePath.Length) + 1;
 
-                var hasContentChanged = await HasContentChanged(item);
+                foreach (var item in renderedItems)
+                {
+                    var filePathWithPadding = item.FilePath.PadRight(firstColmunWidth);
+                    if (!item.IsFilePathValid)
+                    {
+                        output.Error($"{filePathWithPadding} | File path is invalid");
+                        continue;
+                    }
 
-                if (hasContentChanged)
-                {
-                    output.Info($"{filePathWithPadding} | File content has changed, saving to disk");
-                    try
+                    var hasContentChanged = await HasContentChanged(item);
+
+                    if (hasContentChanged)
                     {
-                        sourceControl.Checkout(item.FilePath);
+                        output.Info($"{filePathWithPadding} | File content has changed, saving to disk");
+                        try
+                        {
+                            sourceControl.Checkout(item.FilePath);
+                        }
+                        catch (NotImplementedException ex)
+                        {
+                            output.Error(ex.Message);
+                        }
+                        await SaveToDisk(item);
                     }
-                    catch (NotImplementedException ex)
+                    else
                     {
-                        output.Error(ex.Message);
+                        output.Info($"{filePathWithPadding} | File content is the same. Skipping");
                     }
-                    await SaveToDisk(item);
-                }
-                else
-                {
-                    output.Info($"{filePathWithPadding} | File content is the same. Skipping");
                 }
             }
 

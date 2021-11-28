@@ -24,9 +24,7 @@ namespace NTypewriter.Runtime
             FilePath = filePath;
             ProjectPath = projectPath;
         }
-    }
-
-    public enum RenderingContext { CommandExecution, TemplateSaved }
+    }  
 
 
 
@@ -50,7 +48,7 @@ namespace NTypewriter.Runtime
         }
 
 
-        public async Task Execute(Solution solution, IList<TemplateToRender> templates, RenderingContext renderingContext = RenderingContext.CommandExecution)
+        public async Task Execute(Solution solution, IList<TemplateToRender> templates)
         {
             await status.Update("Rendering", 0, templates.Count);
 
@@ -63,13 +61,7 @@ namespace NTypewriter.Runtime
 
                 var globalConfigurationLoader = new GlobalConfigurationLoader(output);
                 var editorConfigSource = await globalConfigurationLoader.LoadConfigurationForGivenProject(solution, template.ProjectPath).ConfigureAwait(false);
-                var editorConfig = new EditorConfig(editorConfigSource);
-
-                if ((renderingContext == RenderingContext.TemplateSaved) && (editorConfig.RenderWhenTemplateIsSaved == false))
-                {
-                    await status.Update("Rendering on save is disabled");
-                    return;
-                }
+                var editorConfig = new EditorConfig(editorConfigSource);             
 
                 var codeModelBuilder = new CodeModelBuilder();
                 var codeModel = new LazyCodeModel(() => codeModelBuilder.Build(solution, editorConfig));
