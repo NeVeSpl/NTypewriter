@@ -31,7 +31,7 @@ You can extend your template with custom functions. Custom functions are defined
 - no external dependencies are allowed 
 - the file will be compiled with **.net Standard 2.0** regardless of the project settings in which it is placed
 
-Sample file with custom function and all necessary boilerplate code:
+Sample file (*.nt.cs) with custom function and all necessary boilerplate code:
 
 ```csharp
 using System;
@@ -41,16 +41,8 @@ using NTypewriter.CodeModel;
 
 namespace ConsoleApp
 {    
-    class NTEConfig : EditorConfig
-    {
-        public override IEnumerable<Type> TypesThatContainCustomFunctions
-        {
-            get
-            {
-                yield return typeof(NTEConfig);
-            }
-        }
-
+    class NameIsNotImportant : EditorConfig
+    { 
         public static string MyCustomFunction(IClass @class)
         {
             return $"Hello world from {@class.Name}";
@@ -59,7 +51,7 @@ namespace ConsoleApp
 }
 ```
 
-All defined custom functions are available in template with "Custom" prefix:
+All defined custom functions are available in template with "Custom" prefix. Only public static methods defined inside class are recognized as custom functions.
 
 ```
 {{- capture output

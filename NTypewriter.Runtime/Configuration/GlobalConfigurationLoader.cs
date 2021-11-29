@@ -65,6 +65,8 @@ namespace NTypewriter.Runtime.Configuration
                         return new EditorConfig();
                     }
 
+                    config.TypesThatContainCustomFunctions = configAssembly.GetTypes().Where(x => x.IsClass).Where(x => x.CustomAttributes.All(y => y.AttributeType.Name != "CompilerGeneratedAttribute")).ToList();
+
                     output.Info("Global configuration loaded successfully");
                     return config;
                 }
