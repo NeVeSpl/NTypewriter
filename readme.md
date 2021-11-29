@@ -142,7 +142,7 @@ AngularWebAPIService | [AngularWebAPIService.nt](https://github.com/NeVeSpl/NTyp
      class.FullName | String.Append "\r\n"
   end }}  
 ```
-4) <a name="Capture"></a>Now it is time to decide what part of our template will be saved to a file. We do that by using capture statement [`capture variableName; end`](https://github.com/scriban/scriban/blob/master/doc/language.md#94-capture-variable--end). For this example we want to generate one file with list of all classes defined in solution, thus we should use capture statement outside of the for loop.
+4) <a name="Capture"></a>Now it is time to decide what part of our template will be saved to a file. We do that by using capture statement [`capture variableName; end`](https://github.com/scriban/scriban/blob/master/doc/language.md#96-capture-variable--end). For this example we want to generate one file with list of all classes defined in solution, thus we should use capture statement outside of the for loop.
 ```
 {{ capture output
        for class in data.Classes 
