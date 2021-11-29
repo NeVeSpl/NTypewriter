@@ -6,18 +6,9 @@ using NTypewriter.Editor.Config;
 using NTypewriter.CodeModel.Functions;
 
 namespace DocumentationGenerator
-{
-    [NTEditorFile]
+{    
     class NTEConfig : EditorConfig
-    {
-        public override IEnumerable<Type> TypesThatContainCustomFunctions
-        {
-            get
-            {
-                yield return typeof(NTEConfig);
-            }
-        }
-
+    {  
         public override bool AddGeneratedFilesToVSProject => false;
 
         public override bool SearchInReferencedProjectsAndAssemblies => true;

@@ -6,6 +6,7 @@ using Buildalyzer;
 using Buildalyzer.Workspaces;
 using Microsoft.CodeAnalysis;
 using NTypewriter;
+using NTypewriter.CodeModel;
 using NTypewriter.CodeModel.Functions;
 using NTypewriter.CodeModel.Roslyn;
 
@@ -22,6 +23,7 @@ namespace DocumentationGenerator
             var project = workspace.CurrentSolution.Projects.Where(x => x.Name == "NTypewriter").First();
 
             // 2) Add xml documentation
+            project = AddXmlDocumentation(project, typeof(ICodeModel));
             project = AddXmlDocumentation(project, typeof(ActionFunctions));
             project = AddXmlDocumentation(project, typeof(Scriban.Functions.StringFunctions));
 
@@ -33,7 +35,7 @@ namespace DocumentationGenerator
             var codeModel = new CodeModel(compilation, codeModelConfiguration);
 
             // 5) Load template
-            string template = File.ReadAllText(@"..\..\..\BuiltInFunctions.nt");
+            string template = File.ReadAllText(@"..\..\..\CodeModel.nt");
 
             // 6) Add custom functions
             var ntypewriterConfig = new Configuration();
