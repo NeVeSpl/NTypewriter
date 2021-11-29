@@ -75,7 +75,7 @@ Add generated files to VS project | yes (opt-out is possible) | [yes (opt-out is
 can be used from CLI | no | yes 
 Supported versions of Visual Studio | 2015, 2017, 2019 | 2019, 2022
 Custom functions | separate for every template | shared between templates (*.nt.cs)
-Full control over whitespaces | nope | yup
+Full control over whitespaces | nope | [yup](https://github.com/scriban/scriban/blob/master/doc/language.md#14-whitespace-control)
 Mapping | one input always produces one output file | you can generate as many files as you want
 Sync deleted or renamed C# types with generated files | there is a part of the code that should do that  but it does not work anymore | yup
 Access modifiers | code model contains only public types | code model contains all types 
