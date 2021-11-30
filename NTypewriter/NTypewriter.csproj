@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NTypewriter.CodeModel.Functions\NTypewriter.CodeModel.Functions.csproj" />
-    <ProjectReference Include="..\NTypewriter.CodeModel\NTypewriter.CodeModel.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NTypewriter.CodeModel;
 using NTypewriter.Editor.Config;
+using NTypewriter.Internals;
 using NTypewriter.Runtime.Rendering.Internals;
 
 namespace NTypewriter.Runtime.Rendering
@@ -23,16 +24,22 @@ namespace NTypewriter.Runtime.Rendering
         }
 
 
-        public async Task<IEnumerable<RenderingResult>> RenderAsync(string templateFilePath, string template, ICodeModel codeModel, EditorConfig editorConfig)
+        public async Task<IEnumerable<RenderingResult>> RenderAsync(string templateFilePath, string template, ICodeModel codeModel, IEnumerable<Type> typesThatContainCustomFunctions, EditorConfig editorConfig)
         {
             errorList.Clear();  
             output.Info("Rendering template");
 
             var configuration = new NTypewriter.Configuration();
-            configuration.AddCustomFunctions(editorConfig.TypesThatContainCustomFunctions.ToArray());
+            configuration.AddCustomFunctions(typesThatContainCustomFunctions.ToArray());
 
             var configAdapter = new EditorConfigAdapterForScriban(editorConfig);
-            var result = await NTypeWriter.Render(template, codeModel, configuration, configAdapter, new ExternalOutputAdapter(output));
+
+            var dataModels = new Dictionary<string, object>();
+            dataModels[DataScriptObject.DataVariableName] = codeModel;
+            dataModels["codeModel"] = codeModel;
+            dataModels[DataScriptObject.ConfigVariableName] = configAdapter;
+
+            var result = await NTypeWriter.Render(template, dataModels, configuration, new ExternalOutputAdapter(output));
 
             output.Info("Used configuration : " + editorConfig.ToString());
 

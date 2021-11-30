@@ -7,9 +7,9 @@ using Microsoft.CodeAnalysis;
 using NTypewriter.Editor.Config;
 using NTypewriter.Runtime.CodeModel;
 using NTypewriter.Runtime.CodeModel.Internals;
-using NTypewriter.Runtime.Configuration;
 using NTypewriter.Runtime.Output;
 using NTypewriter.Runtime.Rendering;
+using NTypewriter.Runtime.UserCode;
 
 namespace NTypewriter.Runtime
 {
@@ -60,9 +60,9 @@ namespace NTypewriter.Runtime
                 output.Info("Rendering started : " + System.IO.Path.GetFileName(template.FilePath));
                 await status.Update("Rendering", i + 1, templates.Count);
 
-                var globalConfigurationLoader = new GlobalConfigurationLoader(output);
-                var editorConfigSource = await globalConfigurationLoader.LoadConfigurationForGivenProject(solution, template.ProjectPath).ConfigureAwait(false);
-                var editorConfig = new EditorConfig(editorConfigSource);             
+                var userCodeLoader = new UserCodeLoader(output);
+                var userCode = await userCodeLoader.LoadUserCodeForGivenProject(solution, template.ProjectPath).ConfigureAwait(false);
+                var editorConfig = new EditorConfig(userCode.Config);             
 
                 var codeModelBuilder = new CodeModelBuilder();
                 var codeModel = new LazyCodeModel(() => codeModelBuilder.Build(solution, editorConfig));
@@ -71,7 +71,7 @@ namespace NTypewriter.Runtime
                 var templateContent = await fileReaderWriter.Read(template.FilePath).ConfigureAwait(false);
 
                 var templateRenderer = new TemplateRenderer(errorList, output);
-                var renderedItems = await templateRenderer.RenderAsync(template.FilePath, templateContent, codeModel, editorConfig).ConfigureAwait(false);
+                var renderedItems = await templateRenderer.RenderAsync(template.FilePath, templateContent, codeModel, userCode.TypesThatMayContainCustomFunctions, editorConfig).ConfigureAwait(false);
 
                 var fileSaver = new FileSaver(output, sourceControl, fileReaderWriter);
                 await fileSaver.Save(renderedItems).ConfigureAwait(false);
@@ -79,7 +79,6 @@ namespace NTypewriter.Runtime
                 if (editorConfig.AddGeneratedFilesToVSProject)
                 {                    
                     output.Info("Updating VisualStudio solution");
-
                     await solutionItemsManager.UpdateSolution(template.FilePath, renderedItems.Select(x => x.FilePath)).ConfigureAwait(false);
                     output.Info("VisualStudio solution updated successfully");                   
                 }

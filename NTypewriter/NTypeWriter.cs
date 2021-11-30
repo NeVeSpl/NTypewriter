@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NTypewriter.Internals;
 using Scriban;
 using Scriban.Syntax;
@@ -7,7 +8,13 @@ namespace NTypewriter
 {
     public class NTypeWriter
     {
-        public static async Task<Result> Render(string template, object dataModel, Configuration configuration = null, object localConfigModel = null, IExternalOutput externalOutput = null)
+        public static async Task<Result> Render(string template, object dataModel, Configuration configuration = null, IExternalOutput externalOutput = null)
+        {
+            return await Render(template, new Dictionary<string, object>() { [DataScriptObject.DataVariableName] = dataModel }, configuration, externalOutput);
+        }
+
+
+        public static async Task<Result> Render(string template, Dictionary<string, object> dataModels, Configuration configuration = null, IExternalOutput externalOutput = null)
         {
             var result = new Result();
             var scribanTemplate = Template.Parse(template);
@@ -19,9 +26,9 @@ namespace NTypewriter
                 return result;            
             }          
            
-            var mainScriptObject = new MainScriptObject(dataModel, localConfigModel);
-            var userScriptObject = new CustomFunctionsScriptObject(configuration?.typesWithCustomFuntions);
-            var context = new MainTemplateContext(mainScriptObject, userScriptObject, externalOutput);
+            var dataScriptObject = new DataScriptObject(dataModels);
+            var userScriptObject = new CustomFunctionsScriptObject(configuration?.GetTypesWithCustomFuntions());
+            var context = new MainTemplateContext(dataScriptObject, userScriptObject, externalOutput);
 
             try
             {

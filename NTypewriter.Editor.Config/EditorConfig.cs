@@ -34,8 +34,7 @@ namespace NTypewriter.Editor.Config
             SearchInReferencedProjectsAndAssemblies = editorConfig.SearchInReferencedProjectsAndAssemblies;
             AddGeneratedFilesToVSProject = editorConfig.AddGeneratedFilesToVSProject;
             NamespacesToBeSearched = editorConfig.NamespacesToBeSearched;
-            ProjectsToBeSearched = editorConfig.ProjectsToBeSearched;
-            TypesThatContainCustomFunctions = editorConfig.TypesThatContainCustomFunctions;
+            ProjectsToBeSearched = editorConfig.ProjectsToBeSearched;           
             RenderWhenTemplateIsSaved = editorConfig.RenderWhenTemplateIsSaved;
             RenderWhenProjectBuildIsDone = editorConfig.RenderWhenProjectBuildIsDone;
         }
@@ -47,8 +46,7 @@ namespace NTypewriter.Editor.Config
                    $"{nameof(RenderWhenTemplateIsSaved)}: {RenderWhenTemplateIsSaved}; " +
                    $"{nameof(RenderWhenProjectBuildIsDone)}: {RenderWhenProjectBuildIsDone}; " +
                    $"{nameof(NamespacesToBeSearched)}: [{String.Join(", ", NamespacesToBeSearched)}]; " +
-                   $"{nameof(ProjectsToBeSearched)}: [{String.Join(", ", ProjectsToBeSearched)}]; " +
-                   $"{nameof(TypesThatContainCustomFunctions)}: [{String.Join(", ", TypesThatContainCustomFunctions)}]; "
+                   $"{nameof(ProjectsToBeSearched)}: [{String.Join(", ", ProjectsToBeSearched)}]; "                  
                    ;
         }
     }

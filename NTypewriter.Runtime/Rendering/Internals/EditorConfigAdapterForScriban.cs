@@ -17,7 +17,16 @@ namespace NTypewriter.Runtime.Rendering.Internals
             this.editorConfig = editorConfig;
         }
 
-
+        public bool RenderWhenTemplateIsSaved
+        {
+            get => editorConfig.RenderWhenTemplateIsSaved;
+            set => editorConfig.RenderWhenTemplateIsSaved = value;
+        }
+        public bool RenderWhenProjectBuildIsDone
+        {
+            get => editorConfig.RenderWhenProjectBuildIsDone;
+            set => editorConfig.RenderWhenProjectBuildIsDone = value;
+        }
         public bool SearchInReferencedProjectsAndAssemblies
         {
             get => editorConfig.SearchInReferencedProjectsAndAssemblies;

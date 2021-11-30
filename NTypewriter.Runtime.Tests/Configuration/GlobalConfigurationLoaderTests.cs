@@ -4,7 +4,7 @@ using Buildalyzer;
 using Buildalyzer.Workspaces;
 using Microsoft.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NTypewriter.Runtime.Configuration;
+using NTypewriter.Runtime.UserCode;
 using Shouldly;
 
 namespace NTypewriter.Runtime.Tests
@@ -20,9 +20,10 @@ namespace NTypewriter.Runtime.Tests
             AdhocWorkspace workspace = analyzer.GetWorkspace(false);
             var project = workspace.CurrentSolution.Projects.Where(x => x.Name == "Tests.Assets.WebApi2022").First();
             var output = new IOutputMock();
-            var loader = new GlobalConfigurationLoader(output);
+            var loader = new UserCodeLoader(output);
 
-            var config = await loader.LoadConfigurationForGivenProject(workspace.CurrentSolution, project.FilePath);
+            var userCode = await loader.LoadUserCodeForGivenProject(workspace.CurrentSolution, project.FilePath);
+            var config = userCode.Config;
 
             Assert.AreEqual(false, config.AddGeneratedFilesToVSProject);
             config.ProjectsToBeSearched.ShouldBe(new[] { "Tests.Assets.WebApi2022" });

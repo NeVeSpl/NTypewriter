@@ -5,12 +5,12 @@ namespace NTypewriter
 {
     public class Configuration
     {
-        internal readonly List<Type> typesWithCustomFuntions = new List<Type>();
+        private readonly List<Type> typesWithCustomFuntions;
 
 
-        public Configuration()
+        public Configuration(params Type[] typeWithCustomFuntions)
         {
-            
+            typesWithCustomFuntions = new List<Type>(typeWithCustomFuntions);
         }
 
 
@@ -18,6 +18,11 @@ namespace NTypewriter
         {
             typesWithCustomFuntions.AddRange(typeWithCustomFuntions);
             return this;
+        }
+
+        internal IEnumerable<Type> GetTypesWithCustomFuntions()
+        {
+            return typesWithCustomFuntions;
         }
     }
 }

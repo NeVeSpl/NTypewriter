@@ -3,76 +3,91 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Emit;
 using NTypewriter.CodeModel;
 using NTypewriter.CodeModel.Functions;
 using NTypewriter.Editor.Config;
 
-namespace NTypewriter.Runtime.Configuration
+namespace NTypewriter.Runtime.UserCode
 {
-    public class GlobalConfigurationLoader
+    public class Result
+    {
+        public IEditorConfig Config { get; set; } = new EditorConfig();
+        public IEnumerable<Type> TypesThatMayContainCustomFunctions = new List<Type>();
+    }
+
+
+    public class UserCodeLoader
     {        
         private readonly IOutput output;
 
 
-        public GlobalConfigurationLoader(IOutput output)
+        public UserCodeLoader(IOutput output)
         {
             this.output = output;
         }
 
 
-        public async Task<IEditorConfig> LoadConfigurationForGivenProject(Solution solution, string projectFilePath)
+        public async Task<Result> LoadUserCodeForGivenProject(Solution solution, string projectFilePath)
         {
-            output.Info($"Looking for global configuration in {Path.GetFileName(projectFilePath)}");
+            output.Info($"Looking for user code in {Path.GetFileName(projectFilePath)}");
 
+            var result = new Result();
             var project = solution.Projects.FirstOrDefault(x => x.FilePath == projectFilePath);
 
             if (project == null)
             {
-                return new EditorConfig();
+                return result;
             }
 
             await CheckUsedAssemblyVersions(project);
 
             var syntaxTreesToCompile = await GetDecoratedSyntaxTreesWithAttribute(project.Documents, nameof(NTEditorFileAttribute));
-            output.Info("Detected files that contain global configuration code : " + String.Join(",", syntaxTreesToCompile.Select(x => Path.GetFileName(x.FilePath))));
+            output.Info("Detected *.nt.cs files  : " + String.Join(",", syntaxTreesToCompile.Select(x => Path.GetFileName(x.FilePath))));
             var compilation = PrepareCompilation(syntaxTreesToCompile, "Configuration");
 
-            using (var ms = new MemoryStream())
+            using (MemoryStream ms = new MemoryStream(), ss = new MemoryStream())
             {
-                var emitResult = compilation.Emit(ms);
+                var emitOptions = new EmitOptions(false, DebugInformationFormat.PortablePdb);
+                var emitResult = compilation.Emit(ms, ss, options: emitOptions);
                 if (emitResult.Success)
                 {
-                    var configAssembly = Assembly.Load(ms.ToArray());
+                    var configAssembly = Assembly.Load(ms.ToArray(), ss.ToArray());
                     var globalConfigType = GetFirstTypeThatImplementsGivenInterface(configAssembly, nameof(IEditorConfig));
 
                     if (globalConfigType == null)
                     {
                         output.Info($"Class with global configuration was not found, using default global configuration instead");
-                        return new EditorConfig();
                     }
-
-                    output.Info($"Class with global configuration was found : {globalConfigType.Name}");
-
-                    var globalConfigInstance = Activator.CreateInstance(globalConfigType);
-                    var config = globalConfigInstance as IEditorConfig;
-                    if (config == null)
+                    else
                     {
-                        output.Error($"Class {globalConfigType.Name} does not implement IEditorConfig interface, using default global configuration instead");
-                        return new EditorConfig();
+                        output.Info($"Class with global configuration was found : {globalConfigType.Name}");
+
+                        var globalConfigInstance = Activator.CreateInstance(globalConfigType);
+                        var config = globalConfigInstance as IEditorConfig;
+                        if (config == null)
+                        {
+                            output.Error($"Class {globalConfigType.Name} does not implement IEditorConfig interface, using default global configuration instead");                            
+                        }
+                        else
+                        {
+                            result.Config = config;
+                        }
                     }
 
-                    config.TypesThatContainCustomFunctions = configAssembly.GetTypes().Where(x => x.IsClass).Where(x => x.CustomAttributes.All(y => y.AttributeType.Name != "CompilerGeneratedAttribute")).ToList();
+                    result.TypesThatMayContainCustomFunctions = configAssembly.GetTypes().Where(x => x.IsClass).Where(x => x.CustomAttributes.All(y => y.AttributeType.Name != "CompilerGeneratedAttribute")).ToList();
 
-                    output.Info("Global configuration loaded successfully");
-                    return config;
+                    output.Info("User code loaded successfully");
+                    return result;
                 }
                 else
                 {
-                    var listOfErrors = new List<string>() { "Failed to compile global configuration" };
+                    var listOfErrors = new List<string>() { "Failed to compile user code" };
 
                     foreach (var diagnostic in emitResult.Diagnostics)
                     {
@@ -110,12 +125,12 @@ namespace NTypewriter.Runtime.Configuration
 
             foreach (var document in documents)
             {
-                var syntaxTree = await document.GetSyntaxTreeAsync();
+                var syntaxTree = await document.GetSyntaxTreeAsync() as CSharpSyntaxTree;
 
                 // a new way of detecting files destined for compilation: by file extension
                 if (document.FilePath.EndsWith(".nt.cs"))
                 {
-                    syntaxTrees.Add(syntaxTree);
+                    syntaxTrees.Add(CSharpSyntaxTree.Create(syntaxTree.GetRoot(), path: syntaxTree.FilePath, encoding : Encoding.UTF8));
                     goto outsideLoop;
                 }
 
@@ -130,7 +145,7 @@ namespace NTypewriter.Runtime.Configuration
                         {
                             if (attributeName.StartsWith(attribute.Name.ToString()))
                             {
-                                syntaxTrees.Add(syntaxTree);
+                                syntaxTrees.Add(CSharpSyntaxTree.Create(syntaxTree.GetRoot(), path: syntaxTree.FilePath, encoding: Encoding.UTF8));
                                 goto outsideLoop;
                             }
                         }
@@ -146,7 +161,7 @@ namespace NTypewriter.Runtime.Configuration
             var refTypes = new[] {
                 typeof(object),
                 typeof(Enumerable),
-                typeof(NTEditorFileAttribute),
+                typeof(IEditorConfig),
                 typeof(ICodeModel),
                 typeof(ActionFunctions),
                 typeof(ISet<>),
@@ -163,7 +178,7 @@ namespace NTypewriter.Runtime.Configuration
             var runtimeDllPath = Path.Combine(runtimeDir, "System.Runtime.dll");
             references.Add(MetadataReference.CreateFromFile(runtimeDllPath));
 
-            var compilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary);
+            var compilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary).WithOptimizationLevel(OptimizationLevel.Debug);
             var compilation = CSharpCompilation.Create($"NTDynamic{configurationName}Assembly", syntaxTrees: syntaxTreesToCompile, references: references, compilationOptions);
 
             return compilation;
@@ -184,7 +199,7 @@ namespace NTypewriter.Runtime.Configuration
 
 
         #region
-        static GlobalConfigurationLoader()
+        static UserCodeLoader()
         {
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
         }

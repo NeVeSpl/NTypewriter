@@ -9,14 +9,14 @@ namespace NTypewriter.Internals
         private readonly List<RenderedItem> renderedItems = new List<RenderedItem>();
         private readonly IExternalOutput externalOutput;
 
-        public MainTemplateContext(MainScriptObject mainScriptObject, CustomFunctionsScriptObject customScriptObject, IExternalOutput externalOutput) : base(BuiltinFunctionsScriptObject.Singleton)
+        public MainTemplateContext(DataScriptObject dataScriptObject, CustomFunctionsScriptObject customScriptObject, IExternalOutput externalOutput) : base(BuiltinFunctionsScriptObject.Singleton)
         {
             LoopLimit = 66_666;
             MemberRenamer = member => member.Name;
             StrictVariables = true;
             
             PushGlobal(customScriptObject);
-            PushGlobal(mainScriptObject);
+            PushGlobal(dataScriptObject);
             this.externalOutput = externalOutput;
         }
 

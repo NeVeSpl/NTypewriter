@@ -4,10 +4,13 @@ using System.Text;
 
 namespace NTypewriter.Editor.Config
 {
-    public interface IEditorConfig : ILocalConfig, IHaveCustomFunctions
+    public interface IEditorConfig : IConstrainSearchedNamespaces,
+                                     IConstrainSearchedProjects,
+                                     ISearchInReferencedProjectsAndAssemblies,
+                                     IHaveCustomFunctions
     {
-        
-        bool RenderWhenTemplateIsSaved { get; }
-        bool RenderWhenProjectBuildIsDone { get; }
+        bool AddGeneratedFilesToVSProject { get; set; }
+        bool RenderWhenTemplateIsSaved { get; set; }
+        bool RenderWhenProjectBuildIsDone { get; set; }
     }
 }
