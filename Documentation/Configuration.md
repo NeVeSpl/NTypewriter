@@ -65,7 +65,7 @@ All defined custom functions are available in template with "Custom" prefix. Onl
 
 #### AddGeneratedFilesToVSProject
 
-By default, all created files are added to project in which template is located. 
+By default, all generated files are added to project in which template is located. 
 
 _Global configuration (*.nt.cs file)_
 ```csharp
@@ -150,7 +150,7 @@ _Local configuration_
 
 #### SearchInReferencedProjectsAndAssemblies
 
-This option allows getting access to symbols defined in all referenced assemblies, even System symbols. Thus it should only be used with very limited code model by GetProjectsToBeSearched and/or GetNamespacesToBeSearched, otherwise, your code model will contain thousands of symbols.
+This option allows getting access to symbols defined in all referenced assemblies, even System symbols. Thus it should only be used with very limited code model by GetProjectsToBeSearched and/or GetNamespacesToBeSearched options, otherwise, your code model will contain thousands of symbols.
 
 Also, have in mind that symbols from the same assembly but referenced from different projects are treated as different symbols. The best way to avoid duplication it is to use this option enabled only when GetProjectsToBeSearched returns limited number of projects without references to the same assembly.
 

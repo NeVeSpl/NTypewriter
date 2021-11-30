@@ -170,8 +170,4 @@ AngularWebAPIService | [AngularWebAPIService.nt](https://github.com/NeVeSpl/NTyp
 
 ### Known issues
 
-NTypewriter does not have own a lexer/parser as Typewriter has, and uses Scriban instead to do heavy work. Scriban works very well with fully correct templates,  but with incomplete templates during edition not so much. It is the source of the most glitches in the Editor.
-
-Ntypwriter does not listen for changes in your custom config file with custom functions. The Config file is read only once when you open a new editor window in VS. This will be changed in the future, but is not a priority.
-
-Not all built in Scriban functions are available in templates.
+NTypewriter does not have own a lexer/parser as Typewriter has, and uses Scriban instead to do heavy work. Scriban works very well with fully correct templates,  but with incomplete templates during edition not so much. It is the source of the most glitches in the Editor. Scriban language is also typeless, thus doing code completion is challenging.
