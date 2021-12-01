@@ -26,6 +26,7 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
 - full control over whitespaces
 - CLI is possible
 - built-in support for getting all types used in class declaration ([Type.AllReferencedTypes](https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/BuiltInFunctions.md#allreferencedtypes))
+- you can debug custom functions
 
  
 ### Index
@@ -46,16 +47,20 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
    * [Code model](Documentation/CodeModel.md)
    * [Built-in functions](Documentation/BuiltInFunctions.md)   
    * [Name vs BareName vs FullName](Documentation/NameVariants.md)
+   * Custom Functions
+       * [Nugets](Documentation/CustomFunctions.md#Nugets)
+       * [Custom functions](Documentation/CustomFunctions.md#Custom-functions)  
+       * [How to debug](Documentation/CustomFunctions.md#How-to-debug)
    * Editor Configuration
-       * [Local vs Global configuration](Documentation/Configuration.md#local-vs-global-configuration)
-       * [Nugets for global configuration](Documentation/Configuration.md#nugets-for-global-configuration)
-       * [Custom functions](Documentation/Configuration.md#Custom-functions)      
-       * [AddGeneratedFilesToVSProject](Documentation/Configuration.md#AddGeneratedFilesToVSProject)
-       * [NamespacesToBeSearched](Documentation/Configuration.md#NamespacesToBeSearched)
-       * [ProjectsToBeSearched](Documentation/Configuration.md#ProjectsToBeSearched)  
-       * [SearchInReferencedProjectsAndAssemblies](Documentation/Configuration.md#SearchInReferencedProjectsAndAssemblies)   
-       * [RenderWhenTemplateIsSaved](Documentation/Configuration.md#renderwhentemplateissaved)
-       * [RenderWhenProjectBuildIsDone](Documentation/Configuration.md#RenderWhenProjectBuildIsDone)
+       * [Nugets](Documentation/Configuration.md#Nugets)
+       * [Local vs Global configuration](Documentation/Configuration.md#local-vs-global-configuration)       
+       * Options    
+           * [AddGeneratedFilesToVSProject](Documentation/Configuration.md#AddGeneratedFilesToVSProject)
+           * [NamespacesToBeSearched](Documentation/Configuration.md#NamespacesToBeSearched)
+           * [ProjectsToBeSearched](Documentation/Configuration.md#ProjectsToBeSearched)  
+           * [SearchInReferencedProjectsAndAssemblies](Documentation/Configuration.md#SearchInReferencedProjectsAndAssemblies)   
+           * [RenderWhenTemplateIsSaved](Documentation/Configuration.md#renderwhentemplateissaved)
+           * [RenderWhenProjectBuildIsDone](Documentation/Configuration.md#RenderWhenProjectBuildIsDone)
 * [Known issues](#Known-issues)
 * [Status of typewriter issues](Documentation/TypewriterIssues.md)
 
@@ -63,24 +68,37 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
 
 ### Typewriter vs NTypewriter
 
-  ------- | Typewriter | NTypewriter
+&nbsp;| Typewriter | NTypewriter
 ----------|------------ | -------------
 Template file extension | *.tst | *.nt
 Syntax   | typewriter syntax | [scriban scripting language](https://github.com/scriban/scriban/blob/master/doc/language.md)
 Lambda filters | present | not available 
+can be used from CLI | no | yes 
+Full control over whitespaces | nope | [yup](https://github.com/scriban/scriban/blob/master/doc/language.md#14-whitespace-control)
+Mapping | one input always produces one output file | you can generate as many files as you want
+|||
+**Code model** | 
+Unit of work | file | there is no concept of a file in NTypewriter, you work on compiled symbols
+Access modifiers | code model contains only public types | code model contains all types 
+Partial classes | treated as separate units | all parts of the class are treated as a whole unit
+|||
+**Automation** | 
 Auto-render template on save| yes (opt-out is possible)| [yes (opt-in is possible)](Documentation/Configuration.md#renderwhentemplateissaved)
 Auto-render when C# file changes| yes (opt-out is possible)| no
 Auto-render on build | no | [yes (opt-in is possible)](Documentation/Configuration.md#RenderWhenProjectBuildIsDone)
-Add generated files to VS project | yes (opt-out is possible) | [yes (opt-out is possible)](Documentation/Configuration.md#addgeneratedfilestovsproject)
-can be used from CLI | no | yes 
+|||
+**Custom functions** | 
+Placement|inside template file (.tst)| in seperate file (*.nt.cs)|
+Can be shared|separate for every template| shared between templates inside a project |
+Can be debug|no| [yes](Documentation/CustomFunctions.md#How-to-debug) |
+Can be unit tested | no | yes
+|||
+**VS Integration** |
 Supported versions of Visual Studio | 2015, 2017, 2019 | 2019, 2022
-Custom functions | separate for every template | shared between templates (*.nt.cs)
-Full control over whitespaces | nope | [yup](https://github.com/scriban/scriban/blob/master/doc/language.md#14-whitespace-control)
-Mapping | one input always produces one output file | you can generate as many files as you want
-Sync deleted or renamed C# types with generated files | there is a part of the code that should do that  but it does not work anymore | yup
-Access modifiers | code model contains only public types | code model contains all types 
-Unit of work | file | there is no concept of a file in NTypewriter, you work on compiled symbols
-partial classes | treated as separate units | all parts of the class are treated as a whole unit
+Add generated files to VS project | yes (opt-out is possible) | [yes (opt-out is possible)](Documentation/Configuration.md#addgeneratedfilestovsproject)
+Sync deleted or renamed C# types with generated files | there is a part of the code that should do that  but it does not work anymore | yes 
+
+
 
 Typewriter template:
 ```

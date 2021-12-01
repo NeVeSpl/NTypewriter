@@ -33,6 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\CLI.md = Documentation\CLI.md
 		Documentation\CodeModel.md = Documentation\CodeModel.md
 		Documentation\Configuration.md = Documentation\Configuration.md
+		Documentation\CustomFunctions.md = Documentation\CustomFunctions.md
 		Documentation\NameVariants.md = Documentation\NameVariants.md
 		Documentation\TypewriterIssues.md = Documentation\TypewriterIssues.md
 	EndProjectSection

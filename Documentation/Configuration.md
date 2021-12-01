@@ -1,67 +1,26 @@
+#### Nugets
+
+To create global configuration for your templates you will need this one:
+
+https://www.nuget.org/packages/NTypewriter.Editor.Config/
+
 #### Local vs Global configuration
 
-Almost all available here options you can set in two ways: 
- - in separate c# file (with *.nt.cs extension) that will be used by all templates in given project (global configuration)
- - inside *.nt template (local configuration),
+All available here options you can set in two ways: 
+ - in separate c# file (with *.nt.cs extension) that will be used by all templates in the given project (aka global configuration)
+ - inside *.nt template (aka local configuration)
 
 Local configuration should be used only at the beginning of the template, before any other template code. 
 If both configuration options are used, the local configuration will overwrite things set in the global configuration.
 
 Files that contain global configuration are detected by file extension : *.nt.cs.
 
-How global configuration is discovered and compiled, you can see in [GlobalConfigurationLoader.cs](/NTypewriter.Runtime/Configuration/GlobalConfigurationLoader.cs)  
+How global configuration is discovered and compiled, you can see in [UserCodeLoader.cs](/NTypewriter.Runtime/UserCode/UserCodeLoader.cs)  
 
 ***[NTEditorFile] attribute is obsolete, and will be removed in the future. Please change the file extension to .nt.cs instead of using this attribute.***
 
-#### Nugets for global configuration
 
-To create global configuration for your templates you will need at least one nuget:
-
-https://www.nuget.org/packages/NTypewriter.Editor.Config/
-
-if you plan to create custom function you will need also this one:
-
-https://www.nuget.org/packages/NTypewriter.CodeModel/
-
-
-#### Custom functions
-
-You can extend your template with custom functions. Custom functions are defined in separate **.nt.cs** file that should be located in the same project as *.nt template file. It does not have to be csharp project though, since this file will be compiled outside of the project. This imposes  some constraints on the file:  
-
-- no external dependencies are allowed 
-- the file will be compiled with **.net Standard 2.0** regardless of the project settings in which it is placed
-
-Sample file (*.nt.cs) with custom function and all necessary boilerplate code:
-
-```csharp
-using System;
-using System.Collections.Generic;
-using NTypewriter.Editor.Config;
-using NTypewriter.CodeModel;
-
-namespace ConsoleApp
-{    
-    class NameIsNotImportant : EditorConfig
-    { 
-        public static string MyCustomFunction(IClass @class)
-        {
-            return $"Hello world from {@class.Name}";
-        }
-    }
-}
-```
-
-All defined custom functions are available in template with "Custom" prefix. Only public static methods defined inside class are recognized as custom functions.
-
-```
-{{- capture output
-       for class in data.Classes 
-           class | Custom.MyCustomFunction | String.Append "\n"
-      end
-   end
-   Save output "index.txt"
-   }}
-```
+***Property ```TypesThatContainCustomFunctions``` is also obsolete, it is not needed anymore, you can remove it.***
 
 #### AddGeneratedFilesToVSProject
 
@@ -75,7 +34,7 @@ using NTypewriter.Editor.Config;
 
 namespace ConsoleApp
 {    
-    class NTEConfig : EditorConfig
+    class NameDoesNotMatter : EditorConfig
     {
         public override bool AddGeneratedFilesToVSProject { get => true; }
     }
@@ -89,7 +48,7 @@ _Local configuration_
 
 #### NamespacesToBeSearched
 
-Only types located in given namespaces will be available in code model. 
+Only types located inside listed namespaces will be available in code model. If the list is empty, filtering is not applied.
 
 _Global configuration (*.nt.cs file)_
 ```csharp
@@ -107,6 +66,7 @@ namespace ConsoleApp
             {
                 yield return "MediatR";
                 yield return "Scriban";
+                yield return "NetArchTest";
             }
         }
     }
@@ -114,7 +74,7 @@ namespace ConsoleApp
 ```
 _Local configuration_
 ```
-{{ config.NamespacesToBeSearched = ["MediatR", "Scriban"] }}
+{{ config.NamespacesToBeSearched = ["MediatR", "Scriban", "NetArchTest"] }}
 ```
 
 #### ProjectsToBeSearched
@@ -195,7 +155,7 @@ namespace ConsoleApp
 
 _Local configuration_
 ```
-not available
+{{ config.RenderWhenTemplateIsSaved = false }}
 ```
 
 #### RenderWhenProjectBuildIsDone
@@ -219,7 +179,7 @@ namespace ConsoleApp
 
 _Local configuration_
 ```
-not available
+{{ config.RenderWhenProjectBuildIsDone = false }}
 ```
 
 
