@@ -73,26 +73,22 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
 Template file extension | *.tst | *.nt
 Syntax   | typewriter syntax | [scriban scripting language](https://github.com/scriban/scriban/blob/master/doc/language.md)
 Lambda filters | present | not available 
-can be used from CLI | no | yes 
+Can be used from CLI | no | yes 
 Full control over whitespaces | nope | [yup](https://github.com/scriban/scriban/blob/master/doc/language.md#14-whitespace-control)
 Mapping | one input always produces one output file | you can generate as many files as you want
-|||
 **Code model** | 
 Unit of work | file | there is no concept of a file in NTypewriter, you work on compiled symbols
 Access modifiers | code model contains only public types | code model contains all types 
 Partial classes | treated as separate units | all parts of the class are treated as a whole unit
-|||
 **Automation** | 
 Auto-render template on save| yes (opt-out is possible)| [yes (opt-in is possible)](Documentation/Configuration.md#renderwhentemplateissaved)
 Auto-render when C# file changes| yes (opt-out is possible)| no
 Auto-render on build | no | [yes (opt-in is possible)](Documentation/Configuration.md#RenderWhenProjectBuildIsDone)
-|||
 **Custom functions** | 
 Placement|inside template file (.tst)| in seperate file (*.nt.cs)|
 Can be shared|separate for every template| shared between templates inside a project |
 Can be debug|no| [yes](Documentation/CustomFunctions.md#How-to-debug) |
 Can be unit tested | no | yes
-|||
 **VS Integration** |
 Supported versions of Visual Studio | 2015, 2017, 2019 | 2019, 2022
 Add generated files to VS project | yes (opt-out is possible) | [yes (opt-out is possible)](Documentation/Configuration.md#addgeneratedfilestovsproject)
