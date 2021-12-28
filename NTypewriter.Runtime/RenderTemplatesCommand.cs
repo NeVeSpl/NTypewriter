@@ -15,6 +15,7 @@ namespace NTypewriter.Runtime
 {
     public class TemplateToRender
     {
+        public string Content { get; set; }
         public string FilePath { get; set; }
         public string ProjectPath { get; set; }
 
@@ -36,8 +37,9 @@ namespace NTypewriter.Runtime
         private readonly ISourceControl sourceControl;
         private readonly IStatus status;
         private readonly ISolutionItemsManager solutionItemsManager;
+        private readonly IFileSearcher fileSearcher;
 
-        public RenderTemplatesCommand(IErrorList errorList, IOutput output, IFileReaderWriter fileReaderWriter, ISourceControl sourceControl, IStatus status, ISolutionItemsManager solutionItemsManager)
+        public RenderTemplatesCommand(IErrorList errorList, IOutput output, IFileReaderWriter fileReaderWriter, ISourceControl sourceControl, IStatus status, ISolutionItemsManager solutionItemsManager, IFileSearcher fileSearcher)
         {
             this.errorList = errorList;
             this.output = output;
@@ -45,6 +47,7 @@ namespace NTypewriter.Runtime
             this.sourceControl = sourceControl;
             this.status = status;
             this.solutionItemsManager = solutionItemsManager;
+            this.fileSearcher = fileSearcher;
         }
 
 
@@ -60,7 +63,7 @@ namespace NTypewriter.Runtime
                 output.Info("Rendering started : " + System.IO.Path.GetFileName(template.FilePath));
                 await status.Update("Rendering", i + 1, templates.Count);
 
-                var userCodeLoader = new UserCodeLoader(output);
+                var userCodeLoader = new UserCodeLoader(output, fileSearcher);
                 var userCode = await userCodeLoader.LoadUserCodeForGivenProject(solution, template.ProjectPath).ConfigureAwait(false);
                 var editorConfig = new EditorConfig(userCode.Config);             
 
@@ -68,7 +71,7 @@ namespace NTypewriter.Runtime
                 var codeModel = new LazyCodeModel(() => codeModelBuilder.Build(solution, editorConfig));
 
                 output.Info($"Loading template : {template.FilePath}");
-                var templateContent = await fileReaderWriter.Read(template.FilePath).ConfigureAwait(false);
+                var templateContent = template.Content ?? await fileReaderWriter.Read(template.FilePath).ConfigureAwait(false);
 
                 var templateRenderer = new TemplateRenderer(errorList, output);
                 var renderedItems = await templateRenderer.RenderAsync(template.FilePath, templateContent, codeModel, userCode.TypesThatMayContainCustomFunctions, editorConfig).ConfigureAwait(false);

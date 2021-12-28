@@ -22,15 +22,18 @@ namespace NTypewriter.Runtime.UserCode
         public IEnumerable<Type> TypesThatMayContainCustomFunctions = new List<Type>();
     }
 
+    
 
     public class UserCodeLoader
-    {        
+    {
+        private static readonly Dictionary<string, CacheItem> cache = new Dictionary<string, CacheItem>();
         private readonly IOutput output;
+        private readonly IFileSearcher fileSearcher;
 
-
-        public UserCodeLoader(IOutput output)
+        public UserCodeLoader(IOutput output, IFileSearcher fileSearcher)
         {
             this.output = output;
+            this.fileSearcher = fileSearcher;
         }
 
 
@@ -46,14 +49,26 @@ namespace NTypewriter.Runtime.UserCode
                 return result;
             }
 
-            await CheckUsedAssemblyVersions(project);
-
+            await CheckUsedAssemblyVersions(project);           
+      
             var syntaxTreesFromRoslyn = await GetDecoratedSyntaxTreesWithAttribute(project.Documents, nameof(NTEditorFileAttribute));
-            var syntaxTreesFromFileSearch = GetSyntaxTreesFromFileSearch(projectFilePath);
+            var userCodeFilePaths = fileSearcher.FindPaths(projectFilePath, ".nt.cs");
+            var syntaxTreesFromFileSearch = GetSyntaxTrees(userCodeFilePaths).ToList();
             var syntaxTreesToCompile = JoinAndRemoveDuplicates(syntaxTreesFromRoslyn, syntaxTreesFromFileSearch);
-            output.Info("Detected *.nt.cs files  : " + String.Join(",", syntaxTreesToCompile.Select(x => Path.GetFileName(x.FilePath))));
-            var compilation = PrepareCompilation(syntaxTreesToCompile, "Configuration");
 
+            output.Info("Detected *.nt.cs files  : " + String.Join(",", syntaxTreesToCompile.Select(x => Path.GetFileName(x.FilePath))));
+
+            if (cache.TryGetValue(projectFilePath, out var cached))
+            {                
+                if (cached.AreTheSame(userCodeFilePaths))
+                {
+                    output.Info("Files that contain user code have not changed, skiping compilation, using version from cache");
+                    return cached.Result;
+                }
+            }
+
+            var compilation = PrepareCompilation(syntaxTreesToCompile, "Configuration");
+          
             using (MemoryStream ms = new MemoryStream(), ss = new MemoryStream())
             {
                 var emitOptions = new EmitOptions(false, DebugInformationFormat.PortablePdb);
@@ -86,6 +101,7 @@ namespace NTypewriter.Runtime.UserCode
                     result.TypesThatMayContainCustomFunctions = configAssembly.GetTypes().Where(x => x.IsClass).Where(x => x.CustomAttributes.All(y => y.AttributeType.Name != "CompilerGeneratedAttribute")).ToList();
 
                     output.Info("User code loaded successfully");
+                    cache[projectFilePath] = new CacheItem(userCodeFilePaths, result);
                     return result;
                 }
                 else
@@ -174,12 +190,10 @@ namespace NTypewriter.Runtime.UserCode
             }
 
             return syntaxTrees;
-        }
-        private IEnumerable<SyntaxTree> GetSyntaxTreesFromFileSearch(string projectFilePath)
-        {
-            var sourceDirectory = Path.GetDirectoryName(projectFilePath);
-            var configFiles = Directory.EnumerateFiles(sourceDirectory, "*.nt.cs", SearchOption.AllDirectories);
-            foreach(var filePath in configFiles)
+        }       
+        private IEnumerable<SyntaxTree> GetSyntaxTrees(IEnumerable<string> configFiles)
+        {           
+            foreach (var filePath in configFiles)
             {
                 using (var stream = File.OpenRead(filePath))
                 {
@@ -229,6 +243,36 @@ namespace NTypewriter.Runtime.UserCode
             return null;
         }
 
+        class CacheItem
+        {
+            public readonly Result Result;
+            public readonly long Hash;
+
+            public CacheItem(IEnumerable<string> paths, Result result)
+            {
+                Result = result;
+                Hash = CalulateHash(paths);
+
+            }
+
+            public bool AreTheSame(IEnumerable<string> paths)
+            {
+                var hash = CalulateHash(paths);
+                return hash == this.Hash;
+            }
+
+            private long CalulateHash(IEnumerable<string> paths)
+            {
+                long hash = 0;
+                foreach (var path in paths)
+                {
+                    var dateTime = File.GetLastWriteTime(path).Ticks / 10000000;
+                    hash += dateTime;
+                    hash %= ((2L << 60) - 1);
+                }
+                return hash;
+            }
+        }
 
         #region
         static UserCodeLoader()
