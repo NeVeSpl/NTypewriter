@@ -20,7 +20,7 @@ namespace NTypewriter.Runtime.Tests
             AdhocWorkspace workspace = analyzer.GetWorkspace(false);
             var project = workspace.CurrentSolution.Projects.Where(x => x.Name == "Tests.Assets.WebApi2022").First();
             var output = new IOutputMock();
-            var loader = new UserCodeLoader(output);
+            var loader = new UserCodeLoader(output, new IFileSearcherMock());
 
             var userCode = await loader.LoadUserCodeForGivenProject(workspace.CurrentSolution, project.FilePath);
             var config = userCode.Config;
