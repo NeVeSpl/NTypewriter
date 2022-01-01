@@ -14,7 +14,8 @@ namespace NTypewriter.Internals
             LoopLimit = 66_666;
             MemberRenamer = member => member.Name;
             StrictVariables = true;
-            
+            EnableRelaxedMemberAccess = false;
+
             PushGlobal(customScriptObject);
             PushGlobal(dataScriptObject);
             this.externalOutput = externalOutput;
