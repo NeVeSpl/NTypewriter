@@ -36,15 +36,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\CustomFunctions.md = Documentation\CustomFunctions.md
 		Documentation\NameVariants.md = Documentation\NameVariants.md
 		Documentation\TypewriterIssues.md = Documentation\TypewriterIssues.md
+		Documentation\VisualStudioConfiguration.md = Documentation\VisualStudioConfiguration.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentationGenerator", "DocumentationGenerator\DocumentationGenerator.csproj", "{584B0FDD-B073-4223-AA51-D56B6087B59B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.Runtime", "NTypewriter.Runtime\NTypewriter.Runtime.csproj", "{F6F0D943-6C76-4FDB-BEA0-A844FC8D3D8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Assets.WebApi2022", "Tests.Assets.WebApi2022\Tests.Assets.WebApi2022.csproj", "{84F6ACA3-DCDF-4483-BEE7-3D5EAA90A203}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Assets.WebApi2022", "Tests.Assets.WebApi2022\Tests.Assets.WebApi2022.csproj", "{84F6ACA3-DCDF-4483-BEE7-3D5EAA90A203}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter.Runtime.Tests", "NTypewriter.Runtime.Tests\NTypewriter.Runtime.Tests.csproj", "{0CEEC83F-DF5D-4C44-8EB0-8B0D274F5D21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.Runtime.Tests", "NTypewriter.Runtime.Tests\NTypewriter.Runtime.Tests.csproj", "{0CEEC83F-DF5D-4C44-8EB0-8B0D274F5D21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

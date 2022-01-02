@@ -51,7 +51,7 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
        * [Nugets](Documentation/CustomFunctions.md#Nugets)
        * [Custom functions](Documentation/CustomFunctions.md#Custom-functions)  
        * [How to debug](Documentation/CustomFunctions.md#How-to-debug)
-   * Editor Configuration
+   * Configuration
        * [Nugets](Documentation/Configuration.md#Nugets)
        * [Local vs Global configuration](Documentation/Configuration.md#local-vs-global-configuration)       
        * Options    
@@ -61,6 +61,9 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
            * [SearchInReferencedProjectsAndAssemblies](Documentation/Configuration.md#SearchInReferencedProjectsAndAssemblies)   
            * [RenderWhenTemplateIsSaved](Documentation/Configuration.md#renderwhentemplateissaved)
            * [RenderWhenProjectBuildIsDone](Documentation/Configuration.md#RenderWhenProjectBuildIsDone)
+   * [Visual Studio Configuration](Documentation/VisualStudioConfiguration.md)
+       * [Live preview](Documentation/VisualStudioConfiguration.md)
+        
 * [Known issues](#Known-issues)
 * [Status of typewriter issues](Documentation/TypewriterIssues.md)
 
@@ -76,6 +79,7 @@ Lambda filters | present | not available
 Can be used from CLI | no | yes 
 Full control over whitespaces | nope | [yup](https://github.com/scriban/scriban/blob/master/doc/language.md#14-whitespace-control)
 Mapping | one input always produces one output file | you can generate as many files as you want
+Live preview | no | yes
 **Code model** | 
 Unit of work | file | there is no concept of a file in NTypewriter, you work on compiled symbols
 Access modifiers | code model contains only public types | code model contains all types 
