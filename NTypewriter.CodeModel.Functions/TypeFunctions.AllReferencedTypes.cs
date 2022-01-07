@@ -33,6 +33,9 @@ namespace NTypewriter.CodeModel.Functions
         All = 127
     }
 
+    /// <summary>
+    /// Set of functions that operates on IType
+    /// </summary>
     public static partial class TypeFunctions
     {
         /// <summary>

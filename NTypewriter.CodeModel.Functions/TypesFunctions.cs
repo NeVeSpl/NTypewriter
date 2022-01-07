@@ -4,7 +4,7 @@ using System.Linq;
 namespace NTypewriter.CodeModel.Functions
 {
     /// <summary>
-    /// Types functions/filters
+    /// Set of filters that operates on IEnumerable&lt;IType&gt;
     /// </summary>
     public static class TypesFunctions
     {

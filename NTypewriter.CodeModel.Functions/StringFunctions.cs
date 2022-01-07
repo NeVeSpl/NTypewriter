@@ -4,7 +4,7 @@ using System.Linq;
 namespace NTypewriter.CodeModel.Functions
 {
     /// <summary>
-    /// String functions
+    /// Set of functions that operates on String
     /// </summary>
     public static class StringFunctions
     {

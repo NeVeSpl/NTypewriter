@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace NTypewriter.CodeModel.Functions
 {
+    /// <summary>
+    /// Set of functions that operates on IMethod
+    /// </summary>
     public static partial class ActionFunctions
     {
         /// <summary>

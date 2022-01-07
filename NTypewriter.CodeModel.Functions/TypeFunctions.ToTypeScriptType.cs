@@ -4,7 +4,7 @@ using System.Linq;
 namespace NTypewriter.CodeModel.Functions
 {
     /// <summary>
-    /// Type functions
+    /// Set of functions that operates on IType
     /// </summary>
     public static partial class TypeFunctions
     {

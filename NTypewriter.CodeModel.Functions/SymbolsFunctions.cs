@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace NTypewriter.CodeModel.Functions
 {
     /// <summary>
-    /// Symbols functions/filters
+    /// Set of filters that operates on IEnumerable&lt;ISymbolBase&gt;
     /// </summary>
     public static class SymbolsFunctions
     {

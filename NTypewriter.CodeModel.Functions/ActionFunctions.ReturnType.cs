@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace NTypewriter.CodeModel.Functions
 {
     /// <summary>
-    /// Action functions
+    /// Set of functions that operates on IMethod
     /// </summary>
     public static partial class ActionFunctions
     {

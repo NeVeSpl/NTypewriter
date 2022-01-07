@@ -187,7 +187,7 @@ TimeSpanFunctions
 IParameter Action.BodyParameter(IMethod method)
 ```
 Returns parameter that receives content sent to a webapi action in a request body.
-[[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.BodyParameter.cs#L13)]
+[[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.BodyParameter.cs#L16)]
 
 #### HttpMethod
 
@@ -195,7 +195,7 @@ Returns parameter that receives content sent to a webapi action in a request bod
 string Action.HttpMethod(IMethod method)
 ```
 Returns the http method used with a webapi action.    The http method is extracted from Http* or AcceptVerbs attribute or by naming convention if no attributes are specified.
-[[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.HttpMethod.cs#L16)]
+[[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.HttpMethod.cs#L19)]
 
 #### Parameters
 
@@ -203,7 +203,7 @@ Returns the http method used with a webapi action.    The http method is extract
 IEnumerable<IParameter> Action.Parameters(IMethod method, bool includeBodyParameter = true)
 ```
 Returns parameters that receive content sent to a webapi action.    If _includeBodyParameter_ is specified as false, then the Parameter list returned will not include the parameter that is being sent in the body of the request.
-[[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.Parameters.cs#L12)]
+[[source code](/NTypewriter.CodeModel.Functions/ActionFunctions.Parameters.cs#L15)]
 
 #### ReturnType
 
@@ -230,16 +230,16 @@ Returns the url for the Web API action based on route attributes (or the supplie
 ```csharp
 void Debug.Throw(string message)
 ```
-
-[[source code](/NTypewriter/Internals/DebugFunctions.cs#L10)]
+Throws exception and stops rendering
+[[source code](/NTypewriter/Internals/DebugFunctions.cs#L19)]
 
 #### WriteLine
 
 ```csharp
 void Debug.WriteLine(MainTemplateContext context, string text)
 ```
-
-[[source code](/NTypewriter/Internals/DebugFunctions.cs#L5)]
+Write text on NTypewriter output window
+[[source code](/NTypewriter/Internals/DebugFunctions.cs#L11)]
 
 ----
 
@@ -451,7 +451,7 @@ Filters symbols by the beginning of their name
 IEnumerable<IType> Type.AllReferencedTypes(IType type, SearchIn searchIn = SearchIn.All)
 ```
 Returns all types that are used in definition of a given type.
-[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.AllReferencedTypes.cs#L41)]
+[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.AllReferencedTypes.cs#L44)]
 
 #### ToTypeScriptDefault
 
@@ -459,7 +459,7 @@ Returns all types that are used in definition of a given type.
 string Type.ToTypeScriptDefault(IType type)
 ```
 The default value of the type.    (Dictionary types returns {}, enumerable types returns [],    boolean types returns false, numeric types returns 0, void returns void(0),    Guid types return empty guid string, Date types return new Date(0),    all other types return null)
-[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.ToTypeScriptDefault.cs#L17)]
+[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.ToTypeScriptDefault.cs#L20)]
 
 #### ToTypeScriptType
 
@@ -475,7 +475,7 @@ Converts type name to typescript type name
 IType Type.Unwrap(IType type)
 ```
 Returns the first TypeArgument of a generic type or the type itself if it's not generic.
-[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.Unwrap.cs#L13)]
+[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.Unwrap.cs#L16)]
 
 ----
 

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace NTypewriter.CodeModel.Functions
 {
+    /// <summary>
+    /// Set of functions that operates on IType
+    /// </summary>
     public static partial class TypeFunctions
     {
         /// <summary>

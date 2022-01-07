@@ -6,7 +6,7 @@ using System.Text;
 namespace NTypewriter.CodeModel.Functions
 {
     /// <summary>
-    /// Symbol functions
+    /// Set of functions that operates on ISymbolBase
     /// </summary>
     public static partial class SymbolFunctions
     {
