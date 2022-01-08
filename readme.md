@@ -5,6 +5,8 @@
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/NeVeS.NTypewriterEditorForVisualStudio?color=%230429FF&label=NTypewriter%20editor)](https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio)
 [![](https://img.shields.io/visual-studio-marketplace/i/NeVeS.NTypewriterEditorForVisualStudio?color=%230429FF&label=NTypewriter%20editor%20users)](https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio)
 
+![NTypewriter LivePreview](Documentation/LivePreview.gif)
+
 <ins>For those who do not know Typewriter</ins>:
 
 NTypewriter is files generator from text templates populated with meta-data about your C# code. It is like a specialized and more convenient T4 design-time template.
