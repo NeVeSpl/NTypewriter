@@ -28,7 +28,8 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptType_Simple
         dynamic dynamic;
         TimeSpan timeSpan;
         TimeSpan? optionalTimeSpan;
-
+        char character;
+        private char? nullableCharacter;
 
 
 
