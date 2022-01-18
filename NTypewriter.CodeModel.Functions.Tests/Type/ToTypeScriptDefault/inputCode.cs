@@ -26,7 +26,8 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptDefault
         MyEnum? nullableEnumik;
         List<int> list;
         MyGeneric<int> myGen;
-
+        char character;
+        char? nullableCharacter;
 
 
 
@@ -47,4 +48,3 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptDefault
 #pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 #pragma warning restore CS0169
 }
-

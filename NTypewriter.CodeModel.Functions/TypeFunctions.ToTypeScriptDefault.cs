@@ -39,6 +39,7 @@ namespace NTypewriter.CodeModel.Functions
                 case "System.Boolean":
                     return "false";
                 case "System.String":
+                case "System.Char":
                     return "\"\"";
                 case "System.Guid":
                     return "\"00000000-0000-0000-0000-000000000000\"";

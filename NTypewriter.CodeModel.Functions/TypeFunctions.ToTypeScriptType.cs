@@ -88,6 +88,7 @@ namespace NTypewriter.CodeModel.Functions
                     return "boolean";
                 case "System.String":
                 case "System.Guid":
+                case "System.Char":
                     return "string";
                 case "System.Byte":
                 case "System.SByte":

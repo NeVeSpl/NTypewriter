@@ -75,6 +75,8 @@ Promise<number>
 number
 any
 string
+string | null
+string
 string | null";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
@@ -133,6 +135,8 @@ MyEnum | undefined
 Promise<number>
 number
 any
+string
+string | undefined
 string
 string | undefined";
             Assert.AreEqual(expected.Trim(), actual.Trim());
@@ -193,6 +197,8 @@ Promise<number>
 number
 any
 string
+string
+string
 string";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
@@ -252,7 +258,9 @@ null
 0
 null
 []
-{}";
+{}
+""""
+null";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
     }
