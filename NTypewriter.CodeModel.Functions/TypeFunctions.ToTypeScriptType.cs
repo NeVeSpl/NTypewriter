@@ -69,6 +69,14 @@ namespace NTypewriter.CodeModel.Functions
                     if (arguments.Count() == 2)
                     {
                         // Dictionary
+                        var keyType = type.TypeArguments.First();
+                        
+                        // Dictionary has Enum as a key
+                        if (keyType.IsEnum)
+                        {
+                            return $"{{ [key in {arguments[0]}]?: {arguments[1]} }}";
+                        }
+                            
                         return $"{{ [key: {arguments[0]}]: {arguments[1]} }}";
                     }
                 }
