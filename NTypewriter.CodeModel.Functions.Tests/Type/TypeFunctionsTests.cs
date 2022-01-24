@@ -107,7 +107,7 @@ MyGeneric<number | null> | null
 (number | null)[] | null
 (number | null)[] | null
 { [key: string]: number }
-{ [key in MyEnum]?: string }";
+{ [key in keyof typeof MyEnum]?: string }";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
 
@@ -169,7 +169,7 @@ MyGeneric<number | undefined> | undefined
 (number | undefined)[] | undefined
 (number | undefined)[] | undefined
 { [key: string]: number }
-{ [key in MyEnum]?: string }";
+{ [key in keyof typeof MyEnum]?: string }";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
 
@@ -231,7 +231,7 @@ MyGeneric<number>
 number[]
 number[]
 { [key: string]: number }
-{ [key in MyEnum]?: string }";
+{ [key in keyof typeof MyEnum]?: string }";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
 

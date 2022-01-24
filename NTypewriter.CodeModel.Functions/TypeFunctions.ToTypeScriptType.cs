@@ -74,7 +74,7 @@ namespace NTypewriter.CodeModel.Functions
                         // Dictionary has Enum as a key
                         if (keyType.IsEnum)
                         {
-                            return $"{{ [key in {arguments[0]}]?: {arguments[1]} }}";
+                            return $"{{ [key in keyof typeof {arguments[0]}]?: {arguments[1]} }}";
                         }
                             
                         return $"{{ [key: {arguments[0]}]: {arguments[1]} }}";
