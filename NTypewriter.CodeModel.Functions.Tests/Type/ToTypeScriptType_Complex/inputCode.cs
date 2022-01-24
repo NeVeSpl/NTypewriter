@@ -23,6 +23,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptType_Complex
         int?[]? arraynull;
         List<int?>? listnull;
         Dictionary<string, short> dict;
+        Dictionary<MyEnum, string> dictWithEnumKey;
     }
 
 
@@ -30,6 +31,12 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptType_Complex
     class MyGeneric<T>
     {
 
+    }
+
+    enum MyEnum
+    {
+        EnumValue0 = 0,
+        EnumValue1 = 1
     }
 #pragma warning restore IDE0044 // Add readonly modifier
 #pragma warning restore IDE0051 // Remove unused private members
