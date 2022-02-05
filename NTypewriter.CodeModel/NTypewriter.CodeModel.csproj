@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.3.1</Version>
+    <Version>0.3.3</Version>
     <Authors>NeVeSpl</Authors>
     <Copyright>(c) NTypewriter</Copyright>
     <PackageProjectUrl>https://github.com/NeVeSpl/NTypewriter</PackageProjectUrl>
@@ -16,7 +16,7 @@
 
     <PackageIcon>nt.128.128.png</PackageIcon>
 
-    <AssemblyVersion>0.3.1.0</AssemblyVersion>
+    <AssemblyVersion>0.3.3.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
