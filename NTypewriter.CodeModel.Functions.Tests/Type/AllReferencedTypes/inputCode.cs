@@ -23,6 +23,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptDefault
         Func<string> funcType;
         ArrayType[] arrayField;
         PropertyType property { get; set; }
+        NullableReferenceType? nullableReferenceType;
 
         MethodReturnType Method(ParameterType type)
         {
@@ -84,6 +85,10 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptDefault
 
     }
     class ArrayType
+    {
+
+    }
+    class NullableReferenceType
     {
 
     }

@@ -114,7 +114,7 @@ namespace NTypewriter.CodeModel.Functions
                 InspectType(foundTypes, type.ArrayType);
                 return;
             }
-            if (type.IsNullable)
+            if ((type.IsNullable) && (type.IsSimple()))
             {
                 return;
             }            
