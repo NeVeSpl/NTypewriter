@@ -49,6 +49,29 @@ BaseType
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
 
+        [TestMethod]
+        public async Task AllReferencedTypesForInterface()
+        {
+            var template = @"{{- capture output
+                                     for interface in data.Interfaces | Symbols.WhereNameStartsWith ""AllReferencedTypes""
+                                         for type in interface | Type.AllReferencedTypes SearchIn.All
+                                             type.Name + ""\r\n""
+                                         end
+                                      end
+                                  end
+                                  Save output ""Some name"" }}
+                            ";
+            var result = await NTypeWriter.Render(template, data, null);
+            var actual = result.Items.First().Content;
+            var expected = @"
+PropertyType
+IndexerReturnType
+MethodReturnType
+ParameterType
+";
+            Assert.AreEqual(expected.Trim(), actual.Trim());
+        }
+
 
         [TestMethod]
         public async Task ToTypeScriptType_Simple()

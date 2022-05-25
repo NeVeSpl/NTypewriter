@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using NTypewriter.CodeModel.Traits;
+using System.Collections.Generic;
 
 namespace NTypewriter.CodeModel
 {
     /// <summary>
     /// Represents a class.
     /// </summary>
-    public interface IClass : INamedType
+    public interface IClass : INamedType, IHaveFields, IHaveMethods, IHaveProperties
     {
         /// <summary>
         /// The declared base class of this class, or null. Returns null if the class inherits from System.Object.
@@ -25,7 +26,7 @@ namespace NTypewriter.CodeModel
         /// <summary>
         /// All fields defined in the class.
         /// </summary>
-        IEnumerable<IField> Fields { get; }
+        new IEnumerable<IField> Fields { get; }
 
         /// <summary>
         /// Determines if the class has base class other than System.Object.
@@ -35,7 +36,7 @@ namespace NTypewriter.CodeModel
         /// <summary>
         /// All methods defined in the class.
         /// </summary>
-        IEnumerable<IMethod> Methods { get; }
+        new IEnumerable<IMethod> Methods { get; }
 
         /// <summary>
         /// All nested classes defined in the class.
@@ -60,6 +61,6 @@ namespace NTypewriter.CodeModel
         /// <summary>
         /// All properties defined in the class.
         /// </summary>
-        IEnumerable<IProperty> Properties { get; }
+        new IEnumerable<IProperty> Properties { get; }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NTypewriter.CodeModel.Functions.Tests.Type.ToTypeScriptDefault
+namespace NTypewriter.CodeModel.Functions.Tests.Type
 {
 #pragma warning disable IDE0044 // Add readonly modifier
 #pragma warning disable IDE0051 // Remove unused private members

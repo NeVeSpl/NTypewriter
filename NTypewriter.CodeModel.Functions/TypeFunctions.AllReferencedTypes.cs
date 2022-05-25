@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using NTypewriter.CodeModel.Traits;
 
 namespace NTypewriter.CodeModel.Functions
 {
@@ -45,36 +46,23 @@ namespace NTypewriter.CodeModel.Functions
         {
             var foundTypes = new HashSet<IType>(new TypeComparer());
 
+            if (searchIn.HasFlag(SearchIn.Properties) && (type is IHaveProperties typeWithProperties))
+            {
+                InspectProperties(foundTypes, typeWithProperties.Properties);
+            }
+
+            if (searchIn.HasFlag(SearchIn.Methods) && (type is IHaveMethods typeWithtMethods))
+            {
+                InspectMethods(foundTypes, typeWithtMethods.Methods);
+            }
+
+            if (searchIn.HasFlag(SearchIn.Fields) && (type is IHaveFields typeWithFields))
+            {                
+                InspectFields(foundTypes, typeWithFields.Fields);                
+            }
+
             if (type is IClass @class)
             {
-                if (searchIn.HasFlag(SearchIn.Properties))
-                {
-                    foreach (var property in @class.Properties)
-                    {
-                        InspectType(foundTypes, property.Type);
-                    }
-                }
-                if (searchIn.HasFlag(SearchIn.Methods))
-                {
-                    foreach (var method in @class.Methods)
-                    {
-                        InspectType(foundTypes, method.ReturnType);
-                        foreach (var parameter in method.Parameters)
-                        {
-                            if (IsNotFromServices(parameter))
-                            {
-                                InspectType(foundTypes, parameter.Type);
-                            }
-                        }
-                    }
-                }
-                if (searchIn.HasFlag(SearchIn.Fields))
-                {
-                    foreach (var field in @class.Fields)
-                    {
-                        InspectType(foundTypes, field.Type);
-                    }
-                }
                 if (searchIn.HasFlag(SearchIn.BaseClass))
                 {
                     if (@class.HasBaseClass)
@@ -91,6 +79,41 @@ namespace NTypewriter.CodeModel.Functions
 
             return foundTypes.ToList();
         }
+
+        
+
+        private static void InspectProperties(HashSet<IType> foundTypes, IEnumerable<IProperty> properties)
+        {
+            foreach (var property in properties)
+            {
+                InspectType(foundTypes, property.Type);
+            }
+        }
+        private static void InspectMethods(HashSet<IType> foundTypes, IEnumerable<IMethod> methods)
+        {
+            foreach (var method in methods)
+            {
+                InspectType(foundTypes, method.ReturnType);
+                foreach (var parameter in method.Parameters)
+                {
+                    if (IsNotFromServices(parameter))
+                    {
+                        InspectType(foundTypes, parameter.Type);
+                    }
+                }
+            }
+        }
+        private static void InspectFields(HashSet<IType> foundTypes, IEnumerable<IField> fields)
+        {
+            foreach (var field in fields)
+            {
+                InspectType(foundTypes, field.Type);
+            }
+        }
+
+
+
+
 
         private static void InspectType(HashSet<IType> foundTypes, IType type)
         {
