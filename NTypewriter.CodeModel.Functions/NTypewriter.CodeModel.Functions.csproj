@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.3.3</Version>
+    <Version>0.3.4</Version>
     <Authors>NeVeSpl</Authors>
     <Copyright>(c) NTypewriter</Copyright>
     <PackageProjectUrl>https://github.com/NeVeSpl/NTypewriter</PackageProjectUrl>
@@ -14,9 +14,9 @@
   
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   
-    <AssemblyVersion>0.3.3.0</AssemblyVersion>
+    <AssemblyVersion>0.3.4.0</AssemblyVersion>
   
-    <FileVersion>0.3.3.0</FileVersion>
+    <FileVersion>0.3.4.0</FileVersion>
   
     <PackageIcon>nt.128.128.png</PackageIcon>
   </PropertyGroup>
