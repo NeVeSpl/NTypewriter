@@ -96,7 +96,7 @@ Can be shared|separate for every template| shared between templates inside a pro
 Can be debug|no| [yes](Documentation/CustomFunctions.md#How-to-debug) |
 Can be unit tested | no | yes
 **VS Integration** |
-Supported versions of Visual Studio | 2015, 2017, 2019 | 2019 min 16.11.x, 2022
+Supported versions of Visual Studio | 2015, 2017, 2019 | 2019 ([min ver 16.11.x](https://github.com/NeVeSpl/NTypewriter/issues/55)), 2022
 Add generated files to VS project | yes (opt-out is possible) | [yes (opt-out is possible)](Documentation/Configuration.md#addgeneratedfilestovsproject)
 Sync deleted or renamed C# types with generated files | there is a part of the code that should do that  but it does not work anymore | yes 
 
