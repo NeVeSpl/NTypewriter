@@ -84,6 +84,15 @@ namespace NTypewriter.CodeModel.Roslyn
                     case INamedTypeSymbol namedTypeSymbol when namedTypeSymbol.TypeKind == TypeKind.Class && namedTypeSymbol.SpecialType == SpecialType.None:
                         createdType = Class.Create(namedTypeSymbol);
                         break;
+                    case INamedTypeSymbol namedTypeSymbol when namedTypeSymbol.TypeKind == TypeKind.Enum:
+                        createdType = Enum.Create(namedTypeSymbol);
+                        break;
+                    case INamedTypeSymbol namedTypeSymbol when namedTypeSymbol.TypeKind == TypeKind.Interface:
+                        createdType = Interface.Create(namedTypeSymbol);
+                        break;
+                    case INamedTypeSymbol namedTypeSymbol when namedTypeSymbol.TypeKind == TypeKind.Delegate:
+                        createdType = Delegate.Create(namedTypeSymbol);
+                        break;
                     default:
                         createdType = new Type(symbol);
                         break;

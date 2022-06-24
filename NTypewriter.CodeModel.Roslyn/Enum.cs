@@ -16,7 +16,7 @@ namespace NTypewriter.CodeModel.Roslyn
         }
         
 
-        public static new IEnum Create(INamedTypeSymbol symbol)
+        public static new Enum Create(INamedTypeSymbol symbol)
         {
             return new Enum(symbol);
         }

@@ -22,7 +22,7 @@ namespace NTypewriter.CodeModel.Roslyn
         }
 
 
-        public static new IInterface Create(INamedTypeSymbol symbol)
+        public static new Interface Create(INamedTypeSymbol symbol)
         {
             return new Interface(symbol);
         }      

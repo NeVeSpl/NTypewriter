@@ -19,7 +19,7 @@ namespace NTypewriter.CodeModel.Roslyn
         }
 
 
-        public static new IDelegate Create(INamedTypeSymbol symbol)
+        public static new Delegate Create(INamedTypeSymbol symbol)
         {
             return new Delegate(symbol);
         }
