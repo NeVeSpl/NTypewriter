@@ -1,0 +1,6 @@
+﻿SampleClass
+    ClassProp
+SampleRecord
+    RecordProp
+SampleRecordClass
+    RecordClassProp

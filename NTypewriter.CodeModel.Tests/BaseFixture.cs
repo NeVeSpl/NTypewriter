@@ -29,7 +29,7 @@ namespace NTypewriter.CodeModel.Tests
         private (string template, string expectedResult, string inputCode) LoadResources(string typeName, string propertyName)
         {
             var path = $"{typeName}.{propertyName}";
-            string template = LoadResource(path, "inputTemplate.tsnt");
+            string template = LoadResource(path, "inputTemplate.tsnt") ?? LoadResource(path, "inputTemplate.nt");
             template = template.Replace("#TypeName#", typeName);
             template = template.Replace("#PropertyName#", propertyName);
             string expectedResult = LoadResource(path, "expectedResult.txt");
@@ -41,7 +41,7 @@ namespace NTypewriter.CodeModel.Tests
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = $"NTypewriter.CodeModel.Tests.{folderWithData}.{fileName}";
 
-            string result = String.Empty;
+            string result = null;
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             {

@@ -67,7 +67,7 @@ namespace NTypewriter.CodeModel.Roslyn.Internals
         }
 
 
-        [DebuggerDisplay("Node (nodes : {Nodes.Count})")]
+        [DebuggerDisplay("Node (nodes : {nodes.Count})")]
         private sealed class Node
         {
             private readonly Dictionary<string, Node> nodes = new Dictionary<string, Node>();

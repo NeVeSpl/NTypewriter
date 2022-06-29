@@ -9,6 +9,13 @@ namespace NTypewriter.CodeModel.Tests.Class
     public class ClassRenderingTests : BaseFixture
     {
         [TestMethod]
+        public async Task Name()
+        {
+            await RunTestForProperty();
+        }
+
+
+        [TestMethod]
         public async Task BaseClass()
         {
             await RunTestForProperty();
@@ -37,6 +44,12 @@ namespace NTypewriter.CodeModel.Tests.Class
 
         [TestMethod]
         public async Task Methods()
+        {
+            await RunTestForProperty();
+        }
+
+        [TestMethod]
+        public async Task Properties()
         {
             await RunTestForProperty();
         }
