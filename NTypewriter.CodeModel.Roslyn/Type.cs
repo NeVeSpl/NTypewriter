@@ -43,6 +43,8 @@ namespace NTypewriter.CodeModel.Roslyn
                 return false;
             }
         }
+
+        public bool IsRecord => symbol.IsRecord;
         public bool IsReferenceType => symbol.IsReferenceType;
         public bool IsValueType => symbol.IsValueType;
         public IEnumerable<IInterface> Interfaces => InterfaceCollection.Create(symbol.Interfaces);

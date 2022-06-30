@@ -60,6 +60,11 @@ namespace NTypewriter.CodeModel
         bool IsPrimitive { get; }
 
         /// <summary>
+        /// Determines if the type is a record
+        /// </summary>
+        bool IsRecord { get; }
+
+        /// <summary>
         /// Determines if the type is a reference type
         /// </summary>
         bool IsReferenceType { get; }
