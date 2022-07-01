@@ -1,0 +1,5 @@
+﻿Struct
+ReadonlyStruct
+RefStruct
+RecordStruct
+ReadonlyRecordStruct

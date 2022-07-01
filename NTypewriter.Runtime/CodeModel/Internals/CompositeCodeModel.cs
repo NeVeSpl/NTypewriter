@@ -67,6 +67,20 @@ namespace NTypewriter.Runtime.CodeModel.Internals
             }
         }
 
+        public IEnumerable<IStruct> Structs
+        {
+            get
+            {
+                foreach (var codeModel in codeModels)
+                {
+                    foreach (var @struct in codeModel.Structs)
+                    {
+                        yield return @struct;
+                    }
+                }
+            }
+        }
+
 
         public void Add(ICodeModel codeModel)
         {

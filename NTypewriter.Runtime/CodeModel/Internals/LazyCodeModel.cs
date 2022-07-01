@@ -19,6 +19,8 @@ namespace NTypewriter.Runtime.CodeModel.Internals
 
         public IEnumerable<IInterface> Interfaces => codeModel.Value.Interfaces;
 
+        public IEnumerable<IStruct> Structs => codeModel.Value.Structs;
+
 
         public LazyCodeModel(Func<Task<ICodeModel>> valueFactory)
         {

@@ -40,6 +40,7 @@
     <Compile Remove="Method\TypeParameters\inputCode.cs" />
     <Compile Remove="NamedType\TypeParameters\inputCode.cs" />
     <Compile Remove="Property\Type\inputCode.cs" />
+    <Compile Remove="Struct\Name\inputCode.cs" />
     <Compile Remove="SymbolBase\Attributes\inputCode.cs" />
     <Compile Remove="SymbolBase\ContainingType\inputCode.cs" />
     <Compile Remove="SymbolBase\DocComment\inputCode.cs" />
@@ -137,6 +138,8 @@
     <None Remove="NamedType\TypeParameters\inputTemplate.tsnt" />
     <None Remove="Property\Type\expectedResult.txt" />
     <None Remove="Property\Type\inputTemplate.tsnt" />
+    <None Remove="Struct\Name\expectedResult.txt" />
+    <None Remove="Struct\Name\inputTemplate.nt" />
     <None Remove="SymbolBase\Attributes\expectedResult.txt" />
     <None Remove="SymbolBase\Attributes\inputTemplate.tsnt" />
     <None Remove="SymbolBase\ContainingType\expectedResult.txt" />
@@ -299,6 +302,9 @@
     <EmbeddedResource Include="Property\Type\expectedResult.txt" />
     <EmbeddedResource Include="Property\Type\inputCode.cs" />
     <EmbeddedResource Include="Property\Type\inputTemplate.tsnt" />
+    <EmbeddedResource Include="Struct\Name\expectedResult.txt" />
+    <EmbeddedResource Include="Struct\Name\inputCode.cs" />
+    <EmbeddedResource Include="Struct\Name\inputTemplate.nt" />
     <EmbeddedResource Include="SymbolBase\Attributes\expectedResult.txt" />
     <EmbeddedResource Include="SymbolBase\Attributes\inputCode.cs" />
     <EmbeddedResource Include="SymbolBase\Attributes\inputTemplate.tsnt" />

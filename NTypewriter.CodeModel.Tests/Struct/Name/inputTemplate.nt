@@ -1,0 +1,6 @@
+﻿{{- capture captured }}
+{{- for struct in data.Structs | Symbols.WhereNamespaceStartsWith "NTypewriter.Tests.CodeModel" }}
+{{-     struct.Name }}
+{{ end }}
+{{- end }}
+{{- Save captured "result" }}

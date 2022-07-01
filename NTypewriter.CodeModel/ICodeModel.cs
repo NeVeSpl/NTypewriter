@@ -29,5 +29,10 @@ namespace NTypewriter.CodeModel
         /// All interfaces defined in the code
         /// </summary>
         IEnumerable<IInterface> Interfaces { get; }
+
+        /// <summary>
+        /// All structs defined in the code
+        /// </summary>
+        IEnumerable<IStruct> Structs { get; }
     }
 }
