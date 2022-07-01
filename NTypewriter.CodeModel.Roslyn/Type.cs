@@ -45,6 +45,7 @@ namespace NTypewriter.CodeModel.Roslyn
         }
 
         public bool IsRecord => symbol.IsRecord;
+        public bool IsTuple => symbol.IsTupleType;
         public bool IsReferenceType => symbol.IsReferenceType;
         public bool IsValueType => symbol.IsValueType;
         public IEnumerable<IInterface> Interfaces => InterfaceCollection.Create(symbol.Interfaces);

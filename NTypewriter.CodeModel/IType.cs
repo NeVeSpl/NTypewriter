@@ -65,6 +65,11 @@ namespace NTypewriter.CodeModel
         bool IsRecord { get; }
 
         /// <summary>
+        /// Determines if the type is a tuple
+        /// </summary>
+        bool IsTuple { get; }
+
+        /// <summary>
         /// Determines if the type is a reference type
         /// </summary>
         bool IsReferenceType { get; }
