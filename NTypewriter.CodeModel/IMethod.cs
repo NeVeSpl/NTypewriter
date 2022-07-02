@@ -20,6 +20,11 @@ namespace NTypewriter.CodeModel
         bool IsGeneric { get; }
 
         /// <summary>
+        /// Determines if the method is sealed
+        /// </summary>
+        bool IsSealed { get; }
+
+        /// <summary>
         /// All parameters of the method.
         /// </summary>
         IEnumerable<IParameter> Parameters { get; }      

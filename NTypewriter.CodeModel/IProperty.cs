@@ -25,6 +25,11 @@ namespace NTypewriter.CodeModel
         bool IsReadOnly { get; }
 
         /// <summary>
+        /// Determines if the property is sealed
+        /// </summary>
+        bool IsSealed { get; }
+
+        /// <summary>
         /// The type of the property.
         /// </summary>
         IType Type { get; }

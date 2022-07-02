@@ -10,7 +10,8 @@ namespace NTypewriter.CodeModel.Roslyn
         public bool IsIndexer => symbol.IsIndexer;
         public bool IsWriteOnly => symbol.IsWriteOnly;
         public bool IsReadOnly => symbol.IsReadOnly;
-     
+        public bool IsSealed => symbol.IsSealed;
+
 
         private Property(IPropertySymbol symbol) : base (symbol)
         {

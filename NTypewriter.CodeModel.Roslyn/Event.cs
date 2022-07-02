@@ -4,8 +4,9 @@ namespace NTypewriter.CodeModel.Roslyn
 {
     internal sealed class Event : SymbolBase, IEvent
     {
-        private readonly IEventSymbol symbol;      
+        private readonly IEventSymbol symbol;
 
+        public bool IsSealed => symbol.IsSealed;
         public IType Type => NTypewriter.CodeModel.Roslyn.Type.Create(symbol.Type, this);
        
 

@@ -24,6 +24,11 @@ namespace NTypewriter.CodeModel
         IEnumerable<IEvent> Events { get; }
 
         /// <summary>
+        /// Determines if the class is sealed
+        /// </summary>
+        bool IsSealed { get; }
+
+        /// <summary>
         /// All fields defined in the class.
         /// </summary>
         new IEnumerable<IField> Fields { get; }

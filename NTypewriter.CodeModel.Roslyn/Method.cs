@@ -13,6 +13,7 @@ namespace NTypewriter.CodeModel.Roslyn
         public IEnumerable<IParameter> Parameters => ParameterCollection.Create(symbol);
         public IType ReturnType => Type.Create(symbol.ReturnType);
         public bool IsAsync => symbol.IsAsync;
+        public bool IsSealed => symbol.IsSealed;
 
         public override string Name
         {

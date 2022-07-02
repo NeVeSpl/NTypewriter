@@ -15,6 +15,7 @@ namespace NTypewriter.CodeModel.Roslyn
         public IClass BaseClass => Class.Create(symbol.BaseType);        
         public IEnumerable<IMethod> Constructors => MethodCollection.CreateConstructors(members.Value);        
         public IEnumerable<IEvent> Events => EventCollection.Create(members.Value);
+        public bool IsSealed => symbol.IsSealed;
         public IEnumerable<IField> Fields => FieldCollection.Create(members.Value);       
         public bool HasBaseClass => BaseClass != null;            
         public IEnumerable<IMethod> Methods => MethodCollection.Create(members.Value);  
