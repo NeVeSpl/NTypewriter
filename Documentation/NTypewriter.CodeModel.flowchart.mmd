@@ -1,0 +1,49 @@
+flowchart BT;
+
+  subgraph s1 [ ]
+  INamedType --> IType
+  IType --> ISymbolBase
+  end
+
+  subgraph s2 [ ]
+  IEnum       --> INamedType
+  IClass      --> INamedType
+  IDelegate   --> INamedType
+  IInterface  --> INamedType
+  IStruct  --> INamedType
+  end   
+  
+  subgraph s3 [ ]
+  direction RL
+  IProperty   ---->  ISymbolBase  
+  IMethod     ---->  ISymbolBase    
+  IEvent      ---->  ISymbolBase  
+  IField      ---->  ISymbolBase  
+  IParameter  ---->  ISymbolBase 
+  end 
+  
+  ICodeModel -.- IEnum
+  ICodeModel -.- IClass
+  ICodeModel -.- IDelegate
+  ICodeModel -.- IInterface
+  ICodeModel -.- IStruct
+
+style INamedType fill:#F5F5F5,stroke:#666666,stroke-width:1px
+style IType fill:#F5F5F5,stroke:#666666,stroke-width:1px
+style ISymbolBase fill:#F5F5F5,stroke:#666666,stroke-width:1px
+
+style IEnum fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px
+style IClass fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px
+style IDelegate fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px
+style IInterface fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px
+style IStruct fill:#DAE8FC,stroke:#6C8EBF,stroke-width:1px
+
+style IProperty fill:#E1DAE5,stroke:#9673A6,stroke-width:1px
+style IMethod fill:#E1DAE5,stroke:#9673A6,stroke-width:1px
+style IEvent fill:#E1DAE5,stroke:#9673A6,stroke-width:1px
+style IField fill:#E1DAE5,stroke:#9673A6,stroke-width:1px
+style IParameter fill:#E1DAE5,stroke:#9673A6,stroke-width:1px
+
+style s1 fill:transparent,stroke:transparent,stroke-width:0px
+style s2 fill:transparent,stroke:transparent,stroke-width:0px
+style s3 fill:transparent,stroke:transparent,stroke-width:0px

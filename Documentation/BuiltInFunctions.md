@@ -1,7 +1,7 @@
 ﻿
 > This file was auto generated from template : [BuiltInFunctions.nt](https://github.com/NeVeSpl/NTypewriter/blob/master/DocumentationGenerator/BuiltInFunctions.nt)
 
-
+# NTypewriter functions
 
 ActionFunctions
 
@@ -64,6 +64,9 @@ TypesFunctions
 * [ThatInheritFrom](#ThatInheritFrom)
 
 
+# Scriban functions
+
+
 ArrayFunctions
 
 * [Add](#Add)
@@ -87,12 +90,14 @@ ArrayFunctions
 * [Sort](#Sort)
 * [Uniq](#Uniq)
 
+
 HtmlFunctions
 
 * [Escape](#Escape)
 * [Strip](#Strip)
 * [UrlEncode](#UrlEncode)
 * [UrlEscape](#UrlEscape)
+
 
 MathFunctions
 
@@ -110,6 +115,7 @@ MathFunctions
 * [Times](#Times)
 * [Uuid](#Uuid)
 
+
 RegexFunctions
 
 * [Escape](#Escape)
@@ -118,6 +124,7 @@ RegexFunctions
 * [Replace](#Replace)
 * [Split](#Split)
 * [Unescape](#Unescape)
+
 
 StringFunctions
 
@@ -134,6 +141,7 @@ StringFunctions
 * [Handleize](#Handleize)
 * [HmacSha1](#HmacSha1)
 * [HmacSha256](#HmacSha256)
+* [IndexOf](#IndexOf)
 * [Literal](#Literal)
 * [LStrip](#LStrip)
 * [Md5](#Md5)
@@ -165,6 +173,7 @@ StringFunctions
 * [Upcase](#Upcase)
 * [Whitespace](#Whitespace)
 
+
 TimeSpanFunctions
 
 * [FromDays](#FromDays)
@@ -175,8 +184,8 @@ TimeSpanFunctions
 * [Parse](#Parse)
 
 
-# NTypewriter functions
 
+# NTypewriter functions
 
 
 ## ActionFunctions
@@ -451,7 +460,7 @@ Filters symbols by the beginning of their name
 IEnumerable<IType> Type.AllReferencedTypes(IType type, SearchIn searchIn = SearchIn.All)
 ```
 Returns all types that are used in definition of a given type.
-[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.AllReferencedTypes.cs#L44)]
+[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.AllReferencedTypes.cs#L45)]
 
 #### ToTypeScriptDefault
 
@@ -978,6 +987,14 @@ string String.HmacSha256(string text, string secretKey)
 ```
 Converts a string into a SHA-256 hash using a hash message authentication code (HMAC). Pass the secret key for the message as a parameter to the function. 
 [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#stringhmac_sha256)
+
+#### IndexOf
+
+```csharp
+int String.IndexOf(string text, string search, int? startIndex = null, int? count = null, string stringComparison = null)
+```
+Reports the zero-based index of the first occurrence of the specified string in this instance.            The search starts at a specified character position and examines a specified number of character positions. 
+[Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#stringindex_of)
 
 #### Literal
 

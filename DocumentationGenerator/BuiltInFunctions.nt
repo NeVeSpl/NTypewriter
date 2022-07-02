@@ -6,26 +6,27 @@
 }}
 > This file was auto generated from template : [BuiltInFunctions.nt](https://github.com/NeVeSpl/NTypewriter/blob/master/DocumentationGenerator/BuiltInFunctions.nt)
 
+# NTypewriter functions
 {{ for class in ntypewriterClasses}}
-
 {{ class.Name }}
 {{    for function in class.Methods | Symbols.ThatArePublic | Array.Sort "Name" }}
 * [{{function.Name}}](#{{function.BareName}})
-{{-    end
-   end  
+{{-   end }}
+{{  end  
 }}
+
+# Scriban functions
 {{ for class in scribanClasses}}
 
 {{ class.Name }}
 {{    for function in class.Methods | Symbols.ThatArePublic | Array.Sort "Name"}}
 * [{{function.Name}}](#{{function.BareName}})
-{{-    end
-   end  
+{{-   end }}
+{{  end  
 }}
 
 
 # NTypewriter functions
-
 {{ for class in ntypewriterClasses }}
 
 ## {{ class.Name }}
@@ -48,7 +49,7 @@
 
 # Scriban functions
 
-Below functions come from Scriban, and you can read more about them in [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md)
+Following functions come from Scriban, and you can read more about them in [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md)
 
 {{ for class in scribanClasses }}
 
