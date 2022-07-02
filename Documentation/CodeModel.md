@@ -1,7 +1,7 @@
 ﻿> This file was auto generated from template : [CodeModel.nt](https://github.com/NeVeSpl/NTypewriter/blob/master/DocumentationGenerator/CodeModel.nt)
 
 ![NTypewriter CodeModel](NTypewriter.CodeModel.flowchart.png)
-> Above diagram was auto generated from : [NTypewriter.CodeModel.flowchart.mmd](https://github.com/NeVeSpl/NTypewriter/blob/master/DocumentationGenerator/CodeModel.nt)
+> Above diagram was generated from : [NTypewriter.CodeModel.flowchart.mmd](https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/NTypewriter.CodeModel.flowchart.mmd)
 
 
 
