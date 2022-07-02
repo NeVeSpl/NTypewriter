@@ -58,5 +58,21 @@ namespace DocumentationGenerator
             var line = "#L" + location.StartLinePosition;
             return githubPath + line;    
         }
+
+        public static string TypeToLink(IType type)
+        {
+            string linkText = type.Name;
+
+            if (type.IsGeneric && type.IsEnumerable)
+            {
+                type = type.TypeArguments.First();
+            }
+
+            if (type.Namespace.StartsWith("NTypewriter.CodeModel"))
+            {
+                return $"[`{linkText}`](#{type.Name})";
+            }
+            return $"`{linkText}`";
+        }
     }
 }

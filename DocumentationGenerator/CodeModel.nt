@@ -5,7 +5,7 @@ capture output
 
 ![NTypewriter CodeModel](NTypewriter.CodeModel.png)
 
-{{ for item in data.Interfaces | Symbols.WhereNamespaceMatches "NTypewriter.CodeModel" | Array.Sort "Name" }}
+{{ for item in data.Interfaces | Symbols.WhereNamespaceMatches "NTypewriter.CodeModel$" | Array.Sort "Name" }}
       
 #### {{item.Name}}
 
@@ -14,10 +14,10 @@ capture output
 Property | Description | Returns
 --------|---------|-----------
 {{ for prop in item.Properties | Array.Sort "Name" -}}
-   {{prop.Name}} | {{ prop.DocComment.Summary | String.StripNewlines }} | `{{ prop.Type.Name }}`  
+   {{prop.Name}} | {{ prop.DocComment.Summary | String.StripNewlines }} | {{ prop.Type | Custom.TypeToLink }}  
 {{ end }}
 
-Implements : {{for i in item.Interfaces}} [{{ i.Name }}](#{{ i.Name }}) {{end}}
+Implements : {{for i in item.Interfaces | Symbols.WhereNameDoesNotStartWith "IHave"}} {{i | Custom.TypeToLink}} {{end}}
 
 ---
 {{ end }}
