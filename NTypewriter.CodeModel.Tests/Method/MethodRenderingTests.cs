@@ -22,6 +22,18 @@ namespace NTypewriter.CodeModel.Tests.Method
         }
 
         [TestMethod]
+        public async Task IsOverride()
+        {
+            await RunTestForProperty();
+        }
+
+        [TestMethod]
+        public async Task IsVirtual()
+        {
+            await RunTestForProperty();
+        }
+
+        [TestMethod]
         public async Task IsAsync()
         {
             await RunTestForProperty();

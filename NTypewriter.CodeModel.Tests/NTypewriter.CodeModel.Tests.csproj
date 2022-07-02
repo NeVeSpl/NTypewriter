@@ -35,6 +35,8 @@
     <Compile Remove="Location\StartLinePosition\inputCode.cs" />
     <Compile Remove="Method\IsAsync\inputCode.cs" />
     <Compile Remove="Method\IsGeneric\inputCode.cs" />
+    <Compile Remove="Method\IsOverride\inputCode.cs" />
+    <Compile Remove="Method\IsVirtual\inputCode.cs" />
     <Compile Remove="Method\Parameters\inputCode.cs" />
     <Compile Remove="Method\ReturnType\inputCode.cs" />
     <Compile Remove="Method\TypeParameters\inputCode.cs" />
@@ -128,6 +130,10 @@
     <None Remove="Method\IsAsync\inputTemplate.tsnt" />
     <None Remove="Method\IsGeneric\expectedResult.txt" />
     <None Remove="Method\IsGeneric\inputTemplate.tsnt" />
+    <None Remove="Method\IsOverride\expectedResult.txt" />
+    <None Remove="Method\IsOverride\inputTemplate.nt" />
+    <None Remove="Method\IsVirtual\expectedResult.txt" />
+    <None Remove="Method\IsVirtual\inputTemplate.nt" />
     <None Remove="Method\Parameters\expectedResult.txt" />
     <None Remove="Method\Parameters\inputTemplate.tsnt" />
     <None Remove="Method\ReturnType\expectedResult.txt" />
@@ -287,6 +293,12 @@
     <EmbeddedResource Include="Method\IsGeneric\expectedResult.txt" />
     <EmbeddedResource Include="Method\IsGeneric\inputCode.cs" />
     <EmbeddedResource Include="Method\IsGeneric\inputTemplate.tsnt" />
+    <EmbeddedResource Include="Method\IsOverride\expectedResult.txt" />
+    <EmbeddedResource Include="Method\IsOverride\inputCode.cs" />
+    <EmbeddedResource Include="Method\IsOverride\inputTemplate.nt" />
+    <EmbeddedResource Include="Method\IsVirtual\expectedResult.txt" />
+    <EmbeddedResource Include="Method\IsVirtual\inputCode.cs" />
+    <EmbeddedResource Include="Method\IsVirtual\inputTemplate.nt" />
     <EmbeddedResource Include="Method\Parameters\expectedResult.txt" />
     <EmbeddedResource Include="Method\Parameters\inputCode.cs" />
     <EmbeddedResource Include="Method\Parameters\inputTemplate.tsnt" />

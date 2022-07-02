@@ -1,0 +1,8 @@
+﻿{{- capture captured}}
+{{- for class in data.Classes | Symbols.WhereNamespaceStartsWith "NTypewriter.Tests.CodeModel"}}
+{{- for method in class.Methods }}
+{{- method.Name + ": " + method.IsVirtual }}
+{{ end }}
+{{- end }}
+{{- end }}
+{{- Save captured "Some name" }}

@@ -1,0 +1,7 @@
+﻿Foo_Normal: false
+Foo_Virtual: false
+Foo_Abstract: false
+Foo_Virtual: true
+Foo_Abstract: true
+Foo_Virtual: false
+Foo_Abstract: false
