@@ -6,8 +6,7 @@ namespace NTypewriter.Editor.Config
 {
     public interface IEditorConfig : IConstrainSearchedNamespaces,
                                      IConstrainSearchedProjects,
-                                     ISearchInReferencedProjectsAndAssemblies,
-                                     IHaveCustomFunctions
+                                     ISearchInReferencedProjectsAndAssemblies
     {
         bool AddGeneratedFilesToVSProject { get; set; }
         bool RenderWhenTemplateIsSaved { get; set; }

@@ -19,11 +19,6 @@ namespace NTypewriter.Editor.Config
 
         public virtual IEnumerable<string> ProjectsToBeSearched { get; set; } = Enumerable.Empty<string>();
 
-        [Obsolete("This property is obsolete, and will be removed in the future. Classes that contain custom funtions are now detected automaticly, there is no need anymore to list them here, you can remove this property.")]
-        public virtual IEnumerable<Type> TypesThatContainCustomFunctions { get; set; } = Enumerable.Empty<Type>();
-
-        
-
 
         public EditorConfig()
         {
