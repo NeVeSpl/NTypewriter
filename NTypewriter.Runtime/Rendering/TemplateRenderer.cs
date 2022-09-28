@@ -24,7 +24,7 @@ namespace NTypewriter.Runtime.Rendering
         }
 
 
-        public async Task<IEnumerable<RenderingResult>> RenderAsync(string templateFilePath, string template, ICodeModel codeModel, IEnumerable<Type> typesThatContainCustomFunctions, EditorConfig editorConfig)
+        public async Task<IEnumerable<RenderingResult>> RenderAsync(string templateFilePath, string template, ICodeModel codeModel, IEnumerable<Type> typesThatContainCustomFunctions, EditorConfig editorConfig, EnvironmentVariables environmentVariables)
         {
             errorList.Clear();  
             output.Info("Rendering template");
@@ -38,6 +38,7 @@ namespace NTypewriter.Runtime.Rendering
             dataModels[DataScriptObject.DataVariableName] = codeModel;
             dataModels["codeModel"] = codeModel;
             dataModels[DataScriptObject.ConfigVariableName] = configAdapter;
+            dataModels[DataScriptObject.EnvVariableName] = environmentVariables ?? new EnvironmentVariables();
 
             var result = await NTypeWriter.Render(template, dataModels, configuration, new ExternalOutputAdapter(output));
 

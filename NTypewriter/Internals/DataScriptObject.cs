@@ -7,6 +7,7 @@ namespace NTypewriter.Internals
     {
         public static readonly string DataVariableName = "data";
         public static readonly string ConfigVariableName = "config";
+        public static readonly string EnvVariableName = "env";
 
         public DataScriptObject(Dictionary<string, object> dataModels)
         {

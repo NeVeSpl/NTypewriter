@@ -51,7 +51,7 @@ namespace NTypewriter.Runtime
         }
 
 
-        public async Task Execute(Solution solution, IList<TemplateToRender> templates)
+        public async Task Execute(Solution solution, IList<TemplateToRender> templates, EnvironmentVariables environmentVariables = null)
         {
             await status.Update("Rendering", 0, templates.Count);
 
@@ -74,7 +74,7 @@ namespace NTypewriter.Runtime
                 var templateContent = template.Content ?? await fileReaderWriter.Read(template.FilePath).ConfigureAwait(false);
 
                 var templateRenderer = new TemplateRenderer(errorList, output);
-                var renderedItems = await templateRenderer.RenderAsync(template.FilePath, templateContent, codeModel, userCode.TypesThatMayContainCustomFunctions, editorConfig).ConfigureAwait(false);
+                var renderedItems = await templateRenderer.RenderAsync(template.FilePath, templateContent, codeModel, userCode.TypesThatMayContainCustomFunctions, editorConfig, environmentVariables).ConfigureAwait(false);
 
                 var fileSaver = new FileSaver(output, sourceControl, fileReaderWriter);
                 await fileSaver.Save(renderedItems).ConfigureAwait(false);
