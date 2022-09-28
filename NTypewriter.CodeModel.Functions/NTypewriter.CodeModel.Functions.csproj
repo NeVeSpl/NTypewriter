@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.3.6</Version>
+    <Version>0.3.8</Version>
     <Authors>NeVeSpl</Authors>
     <Copyright>(c) NTypewriter</Copyright>
     <PackageProjectUrl>https://github.com/NeVeSpl/NTypewriter</PackageProjectUrl>
@@ -14,11 +14,13 @@
   
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   
-    <AssemblyVersion>0.3.6.0</AssemblyVersion>
+    <AssemblyVersion>0.3.8.0</AssemblyVersion>
   
-    <FileVersion>0.3.6.0</FileVersion>
+    <FileVersion>0.3.8.0</FileVersion>
   
     <PackageIcon>nt.128.128.png</PackageIcon>
+  
+    <Description>Set of functions that operates on abstract C# code model.</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
