@@ -32,7 +32,7 @@ namespace NTypewriter
 
             try
             {
-                await scribanTemplate.RenderAsync(context);
+                result.SetOutput(await scribanTemplate.RenderAsync(context));
             }
             catch (ScriptRuntimeException exception)
             {
