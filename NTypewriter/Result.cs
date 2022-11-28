@@ -7,11 +7,19 @@ namespace NTypewriter
 {
     public class Result
     {
+        private string output;
         private readonly List<MessageItem> messages = new List<MessageItem>();
         private readonly List<RenderedItem> renderedItems = new List<RenderedItem>();
         private bool hasErrors;
        
 
+        public string Output
+        {
+            get
+            {
+                return output;
+            }
+        }
         public bool HasErrors
         {
             get
@@ -34,6 +42,10 @@ namespace NTypewriter
             }
         }
 
+        internal void SetOutput(string value)
+        {
+            output = value;
+        }
 
         internal void AddMsgFromScribanTemplateParsing(LogMessageBag bag)
         {
