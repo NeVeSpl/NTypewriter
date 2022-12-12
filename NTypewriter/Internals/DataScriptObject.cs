@@ -3,12 +3,8 @@ using Scriban.Runtime;
 
 namespace NTypewriter.Internals
 {
-    public sealed class DataScriptObject : ScriptObject
-    {
-        public static readonly string DataVariableName = "data";
-        public static readonly string ConfigVariableName = "config";
-        public static readonly string EnvVariableName = "env";
-
+    internal sealed class DataScriptObject : ScriptObject
+    { 
         public DataScriptObject(Dictionary<string, object> dataModels)
         {
             foreach (var keyValue in dataModels)

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using NTypewriter.Internals;
+using NTypewriter.Ports;
 using Scriban;
 using Scriban.Syntax;
 
@@ -10,7 +11,7 @@ namespace NTypewriter
     {
         public static async Task<Result> Render(string template, object dataModel, Configuration configuration = null, IExternalOutput externalOutput = null)
         {
-            return await Render(template, new Dictionary<string, object>() { [DataScriptObject.DataVariableName] = dataModel }, configuration, externalOutput);
+            return await Render(template, new Dictionary<string, object>() { [VariableNames.Data] = dataModel }, configuration, externalOutput);
         }
 
 

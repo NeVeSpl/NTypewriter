@@ -4,15 +4,15 @@ using Scriban.Runtime;
 
 namespace NTypewriter.Internals
 {
-    public sealed class CustomFunctionsScriptObject : ScriptObject
+    internal sealed class CustomFunctionsScriptObject : ScriptObject
     {
         private readonly MemberRenamerDelegate MemberRenamer = member => member.Name;
-        public static readonly string CustomFunctionsTypeName = "Custom";
+        
 
         public CustomFunctionsScriptObject(IEnumerable<Type> customFunctions)
         {            
             var scriptObject = ImportAllFunctions(customFunctions);
-            Add(CustomFunctionsTypeName, scriptObject);
+            Add(VariableNames.CustomFunctions, scriptObject);
         }
 
         private ScriptObject ImportAllFunctions(IEnumerable<Type> customFunctions)

@@ -35,10 +35,10 @@ namespace NTypewriter.Runtime.Rendering
             var configAdapter = new EditorConfigAdapterForScriban(editorConfig);
 
             var dataModels = new Dictionary<string, object>();
-            dataModels[DataScriptObject.DataVariableName] = codeModel;
+            dataModels[VariableNames.Data] = codeModel;
             dataModels["codeModel"] = codeModel;
-            dataModels[DataScriptObject.ConfigVariableName] = configAdapter;
-            dataModels[DataScriptObject.EnvVariableName] = environmentVariables ?? new EnvironmentVariables();
+            dataModels[VariableNames.Config] = configAdapter;
+            dataModels[VariableNames.Env] = environmentVariables ?? new EnvironmentVariables();
 
             var result = await NTypeWriter.Render(template, dataModels, configuration, new ExternalOutputAdapter(output));
 

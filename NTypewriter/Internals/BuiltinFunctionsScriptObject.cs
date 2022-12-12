@@ -1,4 +1,5 @@
 ﻿using System;
+using NTypewriter.Internals.Functions;
 using Scriban.Functions;
 using Scriban.Runtime;
 
@@ -27,7 +28,7 @@ namespace NTypewriter.Internals
             this["Types"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.TypesFunctions));
             this["Symbol"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.SymbolFunctions));
             this["Symbols"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.SymbolsFunctions));
-            this["Debug"] = CreateScriptObject(typeof(global::NTypewriter.Internals.DebugFunctions));
+            this["Debug"] = CreateScriptObject(typeof(global::NTypewriter.Internals.Functions.DebugFunctions));
             this.Import(typeof(SaveFunction), renamer: MemberRenamer);
         }        
 

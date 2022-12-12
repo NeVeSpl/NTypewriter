@@ -1,4 +1,4 @@
-﻿namespace NTypewriter.Internals
+﻿namespace NTypewriter.Internals.Functions
 {
     /// <summary>
     /// Set of functions that can be helpful during bug hunting 
