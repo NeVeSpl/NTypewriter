@@ -51,10 +51,11 @@ namespace NTypewriter.Runtime.UserCode
 
             await CheckUsedAssemblyVersions(project);           
       
-            var syntaxTreesFromRoslyn = await GetDecoratedSyntaxTreesWithAttribute(project.Documents, nameof(NTEditorFileAttribute));
+            //var syntaxTreesFromRoslyn = await GetDecoratedSyntaxTreesWithAttribute(project.Documents, nameof(NTEditorFileAttribute));
             var userCodeFilePaths = fileSearcher.FindPaths(projectFilePath, ".nt.cs");
             var syntaxTreesFromFileSearch = GetSyntaxTrees(userCodeFilePaths).ToList();
-            var syntaxTreesToCompile = JoinAndRemoveDuplicates(syntaxTreesFromRoslyn, syntaxTreesFromFileSearch);
+            //var syntaxTreesToCompile = JoinAndRemoveDuplicates(syntaxTreesFromRoslyn, syntaxTreesFromFileSearch);
+            var syntaxTreesToCompile = syntaxTreesFromFileSearch;
 
             output.Info("Detected *.nt.cs files  : " + String.Join(",", syntaxTreesToCompile.Select(x => Path.GetFileName(x.FilePath))));
 
