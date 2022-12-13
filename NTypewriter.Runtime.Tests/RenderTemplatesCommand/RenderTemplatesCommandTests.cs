@@ -38,7 +38,7 @@ namespace NTypewriter.Runtime.Tests.RenderTemplatesCommand
 
             var outputContent = output.ToString();
             //var actualOutput = fileReaderWriter.WriteResults[expectedOutputFile];
-            Assert.AreEqual(0, fileReaderWriter.WriteResults.Count);    
+            Assert.AreEqual(1, fileReaderWriter.WriteResults.Count);    
             Assert.AreEqual(0, errorList.errors.Count);
             //actualOutput.ShouldBe(expectedOutput);
         }

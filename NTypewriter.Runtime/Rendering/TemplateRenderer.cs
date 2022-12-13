@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using NTypewriter.CodeModel;
 using NTypewriter.Editor.Config;
-using NTypewriter.Internals;
 using NTypewriter.Runtime.Rendering.Internals;
 
 namespace NTypewriter.Runtime.Rendering

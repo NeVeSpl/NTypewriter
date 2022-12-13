@@ -1,29 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using NTypewriter.Runtime.Rendering.Internals;
 
-namespace NTypewriter.Runtime.Output
+namespace NTypewriter.Runtime.Rendering
 {
-    public class FileSaver
+    public static class GeneratedFileManager
     {
-        private readonly IUserInterfaceOutputWriter output;
-        private readonly ISourceControl sourceControl;
-        private readonly IGeneratedFileReaderWriter fileReaderWriter;
-
-
-        public FileSaver(IUserInterfaceOutputWriter output, ISourceControl sourceControl, IGeneratedFileReaderWriter fileReaderWriter)
-        {
-            this.output = output;
-            this.sourceControl = sourceControl;
-            this.fileReaderWriter = fileReaderWriter;
-        }
-
-
-        public async Task Save(IEnumerable<RenderingResult> renderedItems)
+        public static async Task SaveChanges(IEnumerable<RenderingResult> renderedItems, IGeneratedFileReaderWriter fileReaderWriter, IUserInterfaceOutputWriter output, ISourceControl sourceControl)
         {
             output.Info($"Saving output to disk (items : {renderedItems.Count()})");
 
@@ -40,7 +25,7 @@ namespace NTypewriter.Runtime.Output
                         continue;
                     }
 
-                    var hasContentChanged = await HasContentChanged(item);
+                    var hasContentChanged = await HasContentChanged(item, fileReaderWriter);
 
                     if (hasContentChanged)
                     {
@@ -53,7 +38,7 @@ namespace NTypewriter.Runtime.Output
                         {
                             output.Error(ex.Message);
                         }
-                        await SaveToDisk(item);
+                        await fileReaderWriter.Write(item.FilePath, item.Content);
                     }
                     else
                     {
@@ -65,18 +50,9 @@ namespace NTypewriter.Runtime.Output
             output.Info("Saving output to disk completed");
         }
 
-        private async Task SaveToDisk(RenderingResult file)
+        private static async Task<bool> HasContentChanged(RenderingResult renderingResult, IGeneratedFileReaderWriter fileReaderWriter)
         {
-            var dir = Path.GetDirectoryName(file.FilePath);
-            if (Directory.Exists(dir) == false)
-            {
-                Directory.CreateDirectory(dir);
-            }
-            await fileReaderWriter.Write(file.FilePath, file.Content);
-        }
-        private async Task<bool> HasContentChanged(RenderingResult renderingResult)
-        {
-            if (File.Exists(renderingResult.FilePath))
+            if (fileReaderWriter.Exists(renderingResult.FilePath))
             {
                 var currentContent = await fileReaderWriter.Read(renderingResult.FilePath);
                 if (currentContent == renderingResult.Content)

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NTypewriter.Ports;
+﻿using NTypewriter.Ports;
 
 namespace NTypewriter.Runtime.Rendering.Internals
 {
     internal class ExternalOutputAdapter : IExternalOutput
     {
         private readonly IUserInterfaceOutputWriter output;
+
 
         public ExternalOutputAdapter(IUserInterfaceOutputWriter output)
         {

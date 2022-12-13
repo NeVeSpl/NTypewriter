@@ -7,7 +7,6 @@ using NTypewriter.Editor.Config;
 using NTypewriter.Runtime.CodeModel;
 using NTypewriter.Runtime.CodeModel.Internals;
 using NTypewriter.Runtime.Internals;
-using NTypewriter.Runtime.Output;
 using NTypewriter.Runtime.Rendering;
 using NTypewriter.Runtime.UserCode;
 
@@ -16,14 +15,14 @@ namespace NTypewriter.Runtime
     public class TemplateToRender
     {
         public string Content { get; set; }
-        public string FilePath { get; set; }
-        public string ProjectPath { get; set; }
+        public string FilePath { get;  }
+        public string ContainingProjectPath { get; set; }
 
 
-        public TemplateToRender(string filePath, string projectPath)
+        public TemplateToRender(string filePath, string containingProjectPath)
         {
             FilePath = filePath;
-            ProjectPath = projectPath;
+            ContainingProjectPath = containingProjectPath;
         }
     }  
 
@@ -34,33 +33,43 @@ namespace NTypewriter.Runtime
         private readonly ISolutionItemsManager solutionItemsManager;
         private readonly ISourceControl sourceControl;
         private readonly ITemplateContentLoader templateContentLoader;
-        private readonly IUserCodeSearcher userCodeSearcher;
+        private readonly IUserCodeProvider userCodeProvider;
         private readonly IUserInterfaceErrorListUpdater uiErrorList; 
         private readonly IUserInterfaceOutputWriter uiOutput;        
         private readonly IUserInterfaceStatusUpdater uiStatus;        
 
 
         public RenderTemplatesCommand(ITemplateContentLoader templateContentLoader, 
-                                      IUserCodeSearcher fileSearcher,
+                                      IUserCodeProvider userCodeProvider,
                                       IGeneratedFileReaderWriter generatedFileReaderWriter,
-                                      IUserInterfaceOutputWriter output = null,
+                                      IUserInterfaceOutputWriter uiOutput = null,
                                       ISolutionItemsManager solutionItemsManager = null,
                                       ISourceControl sourceControl = null,
-                                      IUserInterfaceErrorListUpdater errorList = null,
-                                      IUserInterfaceStatusUpdater status = null)
+                                      IUserInterfaceErrorListUpdater uiErrorList = null,
+                                      IUserInterfaceStatusUpdater uiStatus = null)
         {
             this.templateContentLoader = templateContentLoader;
-            this.userCodeSearcher = fileSearcher;
+            this.userCodeProvider = userCodeProvider;
             this.generatedFileReaderWriter = generatedFileReaderWriter;
-            this.uiErrorList = errorList ?? NullObject.Singleton;
-            this.uiOutput = output ?? NullObject.Singleton;
+            this.uiErrorList = uiErrorList ?? NullObject.Singleton;
+            this.uiOutput = uiOutput ?? NullObject.Singleton;
             this.solutionItemsManager = solutionItemsManager;
             this.sourceControl = sourceControl ?? NullObject.Singleton;
-            this.uiStatus = status ?? NullObject.Singleton;
+            this.uiStatus = uiStatus ?? NullObject.Singleton;
         }
 
 
-        public async Task Execute(Solution solution, IList<TemplateToRender> templates, EnvironmentVariables environmentVariables = null)
+        public Task Execute(Solution solution, IList<TemplateToRender> templates, EnvironmentVariables environmentVariables = null)
+        {
+            return Execute(new SolutionOrCompilation(solution), templates, environmentVariables);
+        }
+        public Task Execute(Compilation compilation, IList<TemplateToRender> templates, EnvironmentVariables environmentVariables = null)
+        {
+            return Execute(new SolutionOrCompilation(compilation), templates, environmentVariables);
+        }    
+
+
+        private async Task Execute(SolutionOrCompilation roslynInput, IList<TemplateToRender> templates, EnvironmentVariables environmentVariables = null)
         {
             await uiStatus.Update("Rendering", 0, templates.Count);
 
@@ -72,21 +81,20 @@ namespace NTypewriter.Runtime
                 uiOutput.Info("Rendering started : " + System.IO.Path.GetFileName(template.FilePath));
                 await uiStatus.Update("Rendering", i + 1, templates.Count);
 
-                var userCodeLoader = new UserCodeLoader(uiOutput, userCodeSearcher);
-                var userCode = await userCodeLoader.LoadUserCodeForGivenProject(solution, template.ProjectPath).ConfigureAwait(false);
-                var editorConfig = new EditorConfig(userCode.Config);             
-
-                var codeModelBuilder = new CodeModelBuilder();
-                var codeModel = new LazyCodeModel(() => codeModelBuilder.Build(solution, editorConfig));
+                await UsedAssemblyVersionChecker.Check(roslynInput, template.ContainingProjectPath, uiOutput).ConfigureAwait(false);
+            
+                var userInput = UserCodeLoader.LoadUserCodeFromGivenProject(template.ContainingProjectPath, userCodeProvider, uiOutput);
+                var editorConfig = new EditorConfig(userInput.GlobalConfig);  
+             
+                var codeModel = new LazyCodeModel(() => CodeModelBuilder.Build(roslynInput, editorConfig.ProjectsToBeSearched, editorConfig.NamespacesToBeSearched, editorConfig.SearchInReferencedProjectsAndAssemblies));
 
                 uiOutput.Info($"Loading template : {template.FilePath}");
                 var templateContent = template.Content ?? await templateContentLoader.Read(template.FilePath).ConfigureAwait(false);
 
                 var templateRenderer = new TemplateRenderer(uiErrorList, uiOutput);
-                var renderedItems = await templateRenderer.RenderAsync(template.FilePath, templateContent, codeModel, userCode.TypesThatMayContainCustomFunctions, editorConfig, environmentVariables).ConfigureAwait(false);
-
-                var fileSaver = new FileSaver(uiOutput, sourceControl, generatedFileReaderWriter);
-                await fileSaver.Save(renderedItems).ConfigureAwait(false);
+                var renderedItems = await templateRenderer.RenderAsync(template.FilePath, templateContent, codeModel, userInput.TypesThatMayContainCustomFunctions, editorConfig, environmentVariables).ConfigureAwait(false);
+                
+                await GeneratedFileManager.SaveChanges(renderedItems, generatedFileReaderWriter, uiOutput, sourceControl).ConfigureAwait(false);
 
                 if ((solutionItemsManager != null) && (editorConfig.AddGeneratedFilesToVSProject))
                 {                    

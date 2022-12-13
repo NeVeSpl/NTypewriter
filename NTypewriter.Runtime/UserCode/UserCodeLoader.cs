@@ -16,48 +16,30 @@ using NTypewriter.Editor.Config;
 
 namespace NTypewriter.Runtime.UserCode
 {
-    public class Result
-    {
-        public IEditorConfig Config { get; set; } = new EditorConfig();
-        public IEnumerable<Type> TypesThatMayContainCustomFunctions = new List<Type>();
-    }
-
-    
-
-    public class UserCodeLoader
+    public static class UserCodeLoader
     {
         private static readonly Dictionary<string, CacheItem> cache = new Dictionary<string, CacheItem>();
-        private readonly IUserInterfaceOutputWriter output;
-        private readonly IUserCodeSearcher fileSearcher;
+      
 
-        public UserCodeLoader(IUserInterfaceOutputWriter output, IUserCodeSearcher fileSearcher)
-        {
-            this.output = output;
-            this.fileSearcher = fileSearcher;
-        }
-
-
-        public async Task<Result> LoadUserCodeForGivenProject(Solution solution, string projectFilePath)
+        public static UserInput LoadUserCodeFromGivenProject(string projectFilePath, IUserCodeProvider userCodeProvider, IUserInterfaceOutputWriter output)
         {
             output.Info($"Looking for user code in {Path.GetFileName(projectFilePath)}");
 
-            var result = new Result();
-            var project = solution.Projects.FirstOrDefault(x => x.FilePath == projectFilePath);
+            var result = new UserInput();            
 
-            if (project == null)
+            if (String.IsNullOrEmpty(projectFilePath))
             {
                 return result;
             }
+           
+            var userCodeFilePaths = userCodeProvider.GetUserCodeFilePathsFromProject(projectFilePath);            
 
-            await CheckUsedAssemblyVersions(project);           
-      
-            //var syntaxTreesFromRoslyn = await GetDecoratedSyntaxTreesWithAttribute(project.Documents, nameof(NTEditorFileAttribute));
-            var userCodeFilePaths = fileSearcher.FindPaths(projectFilePath, ".nt.cs");
-            var syntaxTreesFromFileSearch = GetSyntaxTrees(userCodeFilePaths).ToList();
-            //var syntaxTreesToCompile = JoinAndRemoveDuplicates(syntaxTreesFromRoslyn, syntaxTreesFromFileSearch);
-            var syntaxTreesToCompile = syntaxTreesFromFileSearch;
+            output.Info("Detected *.nt.cs files  : " + String.Join(",", userCodeFilePaths.Select(x => Path.GetFileName(x))));
 
-            output.Info("Detected *.nt.cs files  : " + String.Join(",", syntaxTreesToCompile.Select(x => Path.GetFileName(x.FilePath))));
+            if (userCodeFilePaths.Any() == false)
+            {
+                return result;
+            }
 
             if (cache.TryGetValue(projectFilePath, out var cached))
             {                
@@ -68,6 +50,7 @@ namespace NTypewriter.Runtime.UserCode
                 }
             }
 
+            var syntaxTreesToCompile = GetSyntaxTrees(userCodeFilePaths).ToList();
             var compilation = PrepareCompilation(syntaxTreesToCompile, "Configuration");
           
             using (MemoryStream ms = new MemoryStream(), ss = new MemoryStream())
@@ -95,7 +78,7 @@ namespace NTypewriter.Runtime.UserCode
                         }
                         else
                         {
-                            result.Config = config;
+                            result.GlobalConfig = config;
                         }
                     }
 
@@ -121,41 +104,9 @@ namespace NTypewriter.Runtime.UserCode
                 }
             }
         }
+                      
 
-        private IEnumerable<SyntaxTree> JoinAndRemoveDuplicates(IEnumerable<SyntaxTree> syntaxTreesFromRoslyn, IEnumerable<SyntaxTree> syntaxTreesFromFileSearch)
-        {
-            foreach(var syntaxTree in syntaxTreesFromRoslyn)
-            {
-                yield return syntaxTree;
-            }
-            var alreadyLodedPaths = new HashSet<string>(syntaxTreesFromRoslyn.Select(x => x.FilePath));
-            foreach(var syntaxTree in syntaxTreesFromFileSearch)
-            {
-                if(!alreadyLodedPaths.Contains(syntaxTree.FilePath))
-                {
-                    yield return syntaxTree;
-                }
-            }
-        }
-
-        private async Task CheckUsedAssemblyVersions(Project project)
-        {
-            var compilation = await project.GetCompilationAsync();
-            ShowWarningIfAssemblyVersionDoesNotMatch(compilation, typeof(EditorConfig));
-            ShowWarningIfAssemblyVersionDoesNotMatch(compilation, typeof(ICodeModel));
-        }
-        private void ShowWarningIfAssemblyVersionDoesNotMatch(Compilation compilation, Type sampleType)
-        {
-            var runtimeAssemblyName = sampleType.Assembly.GetName();
-            var projectAssembly = compilation?.ReferencedAssemblyNames.Where(x => x.Name == runtimeAssemblyName.Name).FirstOrDefault();
-
-            if ((projectAssembly != null) && (projectAssembly.Version != runtimeAssemblyName.Version))
-            {
-                output.Info($"You are using different version ({projectAssembly.Version}) of {projectAssembly.Name} than version used by runtime ({runtimeAssemblyName.Version})");
-            }
-        }
-
-        private async Task<List<SyntaxTree>> GetDecoratedSyntaxTreesWithAttribute(IEnumerable<Document> documents, string attributeName)
+        private static async Task<List<SyntaxTree>> GetDecoratedSyntaxTreesWithAttribute(IEnumerable<Document> documents, string attributeName)
         {
             var syntaxTrees = new List<SyntaxTree>();
 
@@ -192,7 +143,7 @@ namespace NTypewriter.Runtime.UserCode
 
             return syntaxTrees;
         }       
-        private IEnumerable<SyntaxTree> GetSyntaxTrees(IEnumerable<string> configFiles)
+        private static IEnumerable<SyntaxTree> GetSyntaxTrees(IEnumerable<string> configFiles)
         {           
             foreach (var filePath in configFiles)
             {
@@ -203,7 +154,7 @@ namespace NTypewriter.Runtime.UserCode
                 }
             }
         }
-        private CSharpCompilation PrepareCompilation(IEnumerable<SyntaxTree> syntaxTreesToCompile, string configurationName)
+        private static CSharpCompilation PrepareCompilation(IEnumerable<SyntaxTree> syntaxTreesToCompile, string configurationName)
         {
             var refTypes = new[] {
                 typeof(object),
@@ -231,7 +182,7 @@ namespace NTypewriter.Runtime.UserCode
             return compilation;
         }
 
-        private Type GetFirstTypeThatImplementsGivenInterface(Assembly assembly, string interfaceName)
+        private static Type GetFirstTypeThatImplementsGivenInterface(Assembly assembly, string interfaceName)
         {
             var types = assembly.GetTypes();
             foreach (var type in types)
@@ -246,10 +197,10 @@ namespace NTypewriter.Runtime.UserCode
 
         class CacheItem
         {
-            public readonly Result Result;
+            public readonly UserInput Result;
             public readonly long Hash;
 
-            public CacheItem(IEnumerable<string> paths, Result result)
+            public CacheItem(IEnumerable<string> paths, UserInput result)
             {
                 Result = result;
                 Hash = CalulateHash(paths);

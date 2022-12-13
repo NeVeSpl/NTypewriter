@@ -1,23 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using NTypewriter.CodeModel;
 using NTypewriter.CodeModel.Roslyn;
-using NTypewriter.Editor.Config;
 using NTypewriter.Runtime.CodeModel.Internals;
+using NTypewriter.Runtime.Internals;
 
 namespace NTypewriter.Runtime.CodeModel
 {
-    public class CodeModelBuilder
+    public static class CodeModelBuilder
     {
-        public async Task<ICodeModel> Build(Solution solution, IEditorConfig editorConfig)
+        internal static Task<ICodeModel> Build(SolutionOrCompilation roslynInput, IEnumerable<string> projectsToBeSearchedList, IEnumerable<string> namespacesToBeSearched, bool searchInReferencedProjectsAndAssemblies)
+        {
+            if (roslynInput.Solution != null)
+            {
+                return Build(roslynInput.Solution, projectsToBeSearchedList, namespacesToBeSearched, searchInReferencedProjectsAndAssemblies);
+            }
+
+            return Task.FromResult(Build(roslynInput.Compilation, namespacesToBeSearched, searchInReferencedProjectsAndAssemblies));
+        }
+
+        public static async Task<ICodeModel> Build(Solution solution, IEnumerable<string> projectsToBeSearchedList, IEnumerable<string> namespacesToBeSearched, bool searchInReferencedProjectsAndAssemblies)
         {
             var compositeCodeModel = new CompositeCodeModel();
             var projectGraph = solution.GetProjectDependencyGraph();
-            var projectsToBeSearched = new HashSet<string>(editorConfig.ProjectsToBeSearched);
+            var projectsToBeSearched = new HashSet<string>(projectsToBeSearchedList);
 
             foreach (ProjectId projectId in projectGraph.GetTopologicallySortedProjects())
             {
@@ -30,7 +38,8 @@ namespace NTypewriter.Runtime.CodeModel
 
                 if ((project.SupportsCompilation) && (isProjectOnTheList))
                 {
-                    var codeModel = await CreateCodeModel(project, editorConfig.NamespacesToBeSearched, editorConfig.SearchInReferencedProjectsAndAssemblies).ConfigureAwait(true);
+                    Compilation compilation = await project.GetCompilationAsync().ConfigureAwait(true);
+                    var codeModel = Build(compilation, namespacesToBeSearched, searchInReferencedProjectsAndAssemblies);
                     compositeCodeModel.Add(codeModel);
                 }
             }
@@ -38,7 +47,7 @@ namespace NTypewriter.Runtime.CodeModel
             return compositeCodeModel;
         }
 
-        private async Task<NTypewriter.CodeModel.Roslyn.CodeModel> CreateCodeModel(Project project, IEnumerable<string> namespacesToBeSearched, bool searchInReferencedProjectsAndAssemblies)
+        public static ICodeModel Build(Compilation compilation, IEnumerable<string> namespacesToBeSearched, bool searchInReferencedProjectsAndAssemblies)
         {
             var codeModelConfig = new CodeModelConfiguration();
             codeModelConfig.OmitSymbolsFromReferencedAssemblies = !searchInReferencedProjectsAndAssemblies;
@@ -46,8 +55,7 @@ namespace NTypewriter.Runtime.CodeModel
             {
                 codeModelConfig.FilterByNamespace(namespacesToBeSearched.ToArray());
             }
-
-            var compilation = await project.GetCompilationAsync().ConfigureAwait(true);
+            
             var diagnostics = compilation.GetDiagnostics();
             foreach (var diagnostic in diagnostics)
             {
@@ -58,6 +66,7 @@ namespace NTypewriter.Runtime.CodeModel
             }
 
             var codeModel = new NTypewriter.CodeModel.Roslyn.CodeModel(compilation, codeModelConfig);
+
             return codeModel;
         }
     }

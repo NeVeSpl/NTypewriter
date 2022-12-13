@@ -15,6 +15,11 @@ namespace NTypewriter.Runtime.Tests
 
         public Dictionary<string, string> WriteResults { get; set; } = new Dictionary<string, string>();
 
+        public bool Exists(string path)
+        {
+            return WriteResults.ContainsKey(path);
+        }
+
         public async Task<string> Read(string path)
         {
             using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, DefaultBufferSize, DefaultOptions))
@@ -31,8 +36,5 @@ namespace NTypewriter.Runtime.Tests
             WriteResults[path] = text;
             return Task.CompletedTask;
         }
-
-
-        
     }
 }

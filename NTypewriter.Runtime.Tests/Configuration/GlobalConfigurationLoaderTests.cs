@@ -13,17 +13,16 @@ namespace NTypewriter.Runtime.Tests
     public class GlobalConfigurationLoaderTests
     {
         [TestMethod]
-        public async Task LoadConfigurationForGivenProjectShouldReturnDefinedConfig()
+        public void LoadConfigurationForGivenProjectShouldReturnDefinedConfig()
         {
             AnalyzerManager manager = new AnalyzerManager();
             IProjectAnalyzer analyzer = manager.GetProject(@"..\..\..\..\Tests.Assets.WebApi2022\Tests.Assets.WebApi2022.csproj");
             AdhocWorkspace workspace = analyzer.GetWorkspace(false);
             var project = workspace.CurrentSolution.Projects.Where(x => x.Name == "Tests.Assets.WebApi2022").First();
-            var output = new IOutputMock();
-            var loader = new UserCodeLoader(output, new IFileSearcherMock());
+            var output = new IOutputMock();          
 
-            var userCode = await loader.LoadUserCodeForGivenProject(workspace.CurrentSolution, project.FilePath);
-            var config = userCode.Config;
+            var userCode = UserCodeLoader.LoadUserCodeFromGivenProject(project.FilePath, new IFileSearcherMock(), output);
+            var config = userCode.GlobalConfig;
 
             Assert.AreEqual(false, config.AddGeneratedFilesToVSProject);
             config.ProjectsToBeSearched.ShouldBe(new[] { "Tests.Assets.WebApi2022" });

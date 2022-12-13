@@ -6,5 +6,6 @@ namespace NTypewriter.Runtime
     {
         Task Write(string path, string text);
         Task<string> Read(string path);
+        bool Exists(string path);
     }
 }
