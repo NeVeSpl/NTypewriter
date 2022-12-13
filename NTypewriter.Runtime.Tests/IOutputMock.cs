@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NTypewriter.Runtime.Tests
 {
-    internal class IOutputMock : IOutput
+    internal class IOutputMock : IUserInterfaceOutputWriter
     {
         private readonly StringBuilder stringBuilder = new StringBuilder();  
 

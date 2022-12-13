@@ -27,10 +27,10 @@ namespace NTypewriter.Runtime.UserCode
     public class UserCodeLoader
     {
         private static readonly Dictionary<string, CacheItem> cache = new Dictionary<string, CacheItem>();
-        private readonly IOutput output;
-        private readonly IFileSearcher fileSearcher;
+        private readonly IUserInterfaceOutputWriter output;
+        private readonly IUserCodeSearcher fileSearcher;
 
-        public UserCodeLoader(IOutput output, IFileSearcher fileSearcher)
+        public UserCodeLoader(IUserInterfaceOutputWriter output, IUserCodeSearcher fileSearcher)
         {
             this.output = output;
             this.fileSearcher = fileSearcher;

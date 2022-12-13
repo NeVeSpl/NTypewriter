@@ -29,7 +29,7 @@ namespace NTypewriter.Runtime.Tests.RenderTemplatesCommand
             var sourceControl = new ISourceControlMock();
             var status = new IStatusMock();
 
-            var cmd = new NTypewriter.Runtime.RenderTemplatesCommand(errorList, output, fileReaderWriter, sourceControl, status, solutionItemsManager, new IFileSearcherMock());
+            var cmd = new NTypewriter.Runtime.RenderTemplatesCommand(fileReaderWriter, new IFileSearcherMock(), fileReaderWriter, output, solutionItemsManager, sourceControl, errorList, status);
             var inputTemplate = Path.Combine(Path.GetDirectoryName(project.FilePath)!, "RenderTemplatesCommand_HappyPathTemplate.nt");
             var expectedOutputFile = Path.Combine(Path.GetDirectoryName(project.FilePath)!, "RenderTemplatesCommand_HappyPath.txt");
             var expectedOutput = await fileReaderWriter.Read(expectedOutputFile);

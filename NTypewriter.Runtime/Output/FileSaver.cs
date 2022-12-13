@@ -10,12 +10,12 @@ namespace NTypewriter.Runtime.Output
 {
     public class FileSaver
     {
-        private readonly IOutput output;
+        private readonly IUserInterfaceOutputWriter output;
         private readonly ISourceControl sourceControl;
-        private readonly IFileReaderWriter fileReaderWriter;
+        private readonly IGeneratedFileReaderWriter fileReaderWriter;
 
 
-        public FileSaver(IOutput output, ISourceControl sourceControl, IFileReaderWriter fileReaderWriter)
+        public FileSaver(IUserInterfaceOutputWriter output, ISourceControl sourceControl, IGeneratedFileReaderWriter fileReaderWriter)
         {
             this.output = output;
             this.sourceControl = sourceControl;

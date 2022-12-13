@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using NTypewriter.Editor.Config;
 using NTypewriter.Runtime.CodeModel;
 using NTypewriter.Runtime.CodeModel.Internals;
+using NTypewriter.Runtime.Internals;
 using NTypewriter.Runtime.Output;
 using NTypewriter.Runtime.Rendering;
 using NTypewriter.Runtime.UserCode;
@@ -28,65 +28,74 @@ namespace NTypewriter.Runtime
     }  
 
 
-
     public class RenderTemplatesCommand
     {
-        private readonly IErrorList errorList;
-        private readonly IOutput output;
-        private readonly IFileReaderWriter fileReaderWriter;
-        private readonly ISourceControl sourceControl;
-        private readonly IStatus status;
+        private readonly IGeneratedFileReaderWriter generatedFileReaderWriter;
         private readonly ISolutionItemsManager solutionItemsManager;
-        private readonly IFileSearcher fileSearcher;
+        private readonly ISourceControl sourceControl;
+        private readonly ITemplateContentLoader templateContentLoader;
+        private readonly IUserCodeSearcher userCodeSearcher;
+        private readonly IUserInterfaceErrorListUpdater uiErrorList; 
+        private readonly IUserInterfaceOutputWriter uiOutput;        
+        private readonly IUserInterfaceStatusUpdater uiStatus;        
 
-        public RenderTemplatesCommand(IErrorList errorList, IOutput output, IFileReaderWriter fileReaderWriter, ISourceControl sourceControl, IStatus status, ISolutionItemsManager solutionItemsManager, IFileSearcher fileSearcher)
+
+        public RenderTemplatesCommand(ITemplateContentLoader templateContentLoader, 
+                                      IUserCodeSearcher fileSearcher,
+                                      IGeneratedFileReaderWriter generatedFileReaderWriter,
+                                      IUserInterfaceOutputWriter output = null,
+                                      ISolutionItemsManager solutionItemsManager = null,
+                                      ISourceControl sourceControl = null,
+                                      IUserInterfaceErrorListUpdater errorList = null,
+                                      IUserInterfaceStatusUpdater status = null)
         {
-            this.errorList = errorList;
-            this.output = output;
-            this.fileReaderWriter = fileReaderWriter;
-            this.sourceControl = sourceControl;
-            this.status = status;
+            this.templateContentLoader = templateContentLoader;
+            this.userCodeSearcher = fileSearcher;
+            this.generatedFileReaderWriter = generatedFileReaderWriter;
+            this.uiErrorList = errorList ?? NullObject.Singleton;
+            this.uiOutput = output ?? NullObject.Singleton;
             this.solutionItemsManager = solutionItemsManager;
-            this.fileSearcher = fileSearcher;
+            this.sourceControl = sourceControl ?? NullObject.Singleton;
+            this.uiStatus = status ?? NullObject.Singleton;
         }
 
 
         public async Task Execute(Solution solution, IList<TemplateToRender> templates, EnvironmentVariables environmentVariables = null)
         {
-            await status.Update("Rendering", 0, templates.Count);
+            await uiStatus.Update("Rendering", 0, templates.Count);
 
             for (int i = 0; i < templates.Count; ++i)
             {
                 var template = templates[i];
 
-                output.Info(new String('-', 69));
-                output.Info("Rendering started : " + System.IO.Path.GetFileName(template.FilePath));
-                await status.Update("Rendering", i + 1, templates.Count);
+                uiOutput.Info(new String('-', 69));
+                uiOutput.Info("Rendering started : " + System.IO.Path.GetFileName(template.FilePath));
+                await uiStatus.Update("Rendering", i + 1, templates.Count);
 
-                var userCodeLoader = new UserCodeLoader(output, fileSearcher);
+                var userCodeLoader = new UserCodeLoader(uiOutput, userCodeSearcher);
                 var userCode = await userCodeLoader.LoadUserCodeForGivenProject(solution, template.ProjectPath).ConfigureAwait(false);
                 var editorConfig = new EditorConfig(userCode.Config);             
 
                 var codeModelBuilder = new CodeModelBuilder();
                 var codeModel = new LazyCodeModel(() => codeModelBuilder.Build(solution, editorConfig));
 
-                output.Info($"Loading template : {template.FilePath}");
-                var templateContent = template.Content ?? await fileReaderWriter.Read(template.FilePath).ConfigureAwait(false);
+                uiOutput.Info($"Loading template : {template.FilePath}");
+                var templateContent = template.Content ?? await templateContentLoader.Read(template.FilePath).ConfigureAwait(false);
 
-                var templateRenderer = new TemplateRenderer(errorList, output);
+                var templateRenderer = new TemplateRenderer(uiErrorList, uiOutput);
                 var renderedItems = await templateRenderer.RenderAsync(template.FilePath, templateContent, codeModel, userCode.TypesThatMayContainCustomFunctions, editorConfig, environmentVariables).ConfigureAwait(false);
 
-                var fileSaver = new FileSaver(output, sourceControl, fileReaderWriter);
+                var fileSaver = new FileSaver(uiOutput, sourceControl, generatedFileReaderWriter);
                 await fileSaver.Save(renderedItems).ConfigureAwait(false);
 
-                if (editorConfig.AddGeneratedFilesToVSProject)
+                if ((solutionItemsManager != null) && (editorConfig.AddGeneratedFilesToVSProject))
                 {                    
-                    output.Info("Updating VisualStudio solution");
+                    uiOutput.Info("Updating VisualStudio solution");
                     await solutionItemsManager.UpdateSolution(template.FilePath, renderedItems.Select(x => x.FilePath)).ConfigureAwait(false);
-                    output.Info("VisualStudio solution updated successfully");                   
+                    uiOutput.Info("VisualStudio solution updated successfully");                   
                 }
 
-                await status.Update("Rendering succeed");
+                await uiStatus.Update("Rendering succeed");
             }
         }
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NTypewriter.Runtime.Tests
 {
-    internal class IFileSearcherMock : IFileSearcher
+    internal class IFileSearcherMock : IUserCodeSearcher
     {
         public IEnumerable<string> FindPaths(string projectPath, string extension)
         {

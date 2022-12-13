@@ -7,9 +7,9 @@ namespace NTypewriter.Runtime.Rendering.Internals
 {
     internal class ExternalOutputAdapter : IExternalOutput
     {
-        private readonly IOutput output;
+        private readonly IUserInterfaceOutputWriter output;
 
-        public ExternalOutputAdapter(IOutput output)
+        public ExternalOutputAdapter(IUserInterfaceOutputWriter output)
         {
             this.output = output;
         }

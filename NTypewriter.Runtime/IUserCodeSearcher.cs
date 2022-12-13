@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NTypewriter.Runtime
 {
-    public interface IFileSearcher
+    public interface IUserCodeSearcher
     {
         IEnumerable<string> FindPaths(string projectPath, string extension);
     }

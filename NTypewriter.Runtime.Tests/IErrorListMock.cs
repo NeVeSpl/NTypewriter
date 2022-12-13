@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NTypewriter.Runtime.Tests
 {
-    internal class IErrorListMock : IErrorList
+    internal class IErrorListMock : IUserInterfaceErrorListUpdater
     {
         public List<string> errors = new List<string>();    
 

@@ -13,11 +13,11 @@ namespace NTypewriter.Runtime.Rendering
 {
     public class TemplateRenderer
     {
-        private readonly IErrorList errorList;
-        private readonly IOutput output;
+        private readonly IUserInterfaceErrorListUpdater errorList;
+        private readonly IUserInterfaceOutputWriter output;
 
 
-        public TemplateRenderer(IErrorList errorList, IOutput output)
+        public TemplateRenderer(IUserInterfaceErrorListUpdater errorList, IUserInterfaceOutputWriter output)
         {
             this.errorList = errorList;
             this.output = output;

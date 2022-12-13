@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NTypewriter.Runtime.Tests
 {
-    internal class IFileReaderWriterMock : IFileReaderWriter
+    internal class IFileReaderWriterMock : IGeneratedFileReaderWriter, ITemplateContentLoader
     {
         private const int DefaultBufferSize = 4096;
         private const FileOptions DefaultOptions = FileOptions.Asynchronous | FileOptions.SequentialScan;
