@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<IsRoslynComponent>true</IsRoslynComponent>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<Version>0.1.20</Version>
+		<AssemblyVersion>0.1.20.0</AssemblyVersion>
+	    <PackageIcon>nt.128.128.png</PackageIcon>
+	    <Authors>NeVeSpl</Authors>
+        <Company>NeVeSpl</Company>
+        <Copyright>(c) NTypewriter</Copyright>
+	    <PackageProjectUrl>https://github.com/NeVeSpl/NTypewriter</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/NeVeSpl/NTypewriter</RepositoryUrl>
+        <NeutralLanguage>en</NeutralLanguage>
+	    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.11.0" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Scriban.Signed" Version="5.5.0" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter" Version="0.3.9" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel" Version="0.3.9" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel.Functions" Version="0.3.9" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel.Roslyn" Version="0.3.9.1" PrivateAssets="all" GeneratePathProperty="true" />
+
+		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+	
+	    <None Include="..\Documentation\nt.128.128.png">
+		  <Pack>True</Pack>
+		  <PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<PropertyGroup>
+		<GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
+	</PropertyGroup>
+
+	<Target Name="GetDependencyTargetPaths">
+		<ItemGroup>			
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgScriban_Signed)\lib\netstandard2.0\Scriban.Signed.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgNTypewriter_CodeModel)\lib\netstandard2.0\NTypewriter.CodeModel.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgNTypewriter_CodeModel_Functions)\lib\netstandard2.0\NTypewriter.CodeModel.Functions.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgNTypewriter)\lib\netstandard2.0\NTypewriter.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgNTypewriter_CodeModel_Roslyn)\lib\netstandard2.0\NTypewriter.CodeModel.Roslyn.dll" IncludeRuntimeDependency="false" />
+		</ItemGroup>
+	</Target>
+
+	<!-- Above "official" way does not work sometimes, sooooo, to be sure, let us embedded dependencies -->
+	<ItemGroup>
+		<EmbeddedResource Include="$(PkgScriban_Signed)\lib\netstandard2.0\Scriban.Signed.dll" Visible="false" />
+		<EmbeddedResource Include="$(PkgNTypewriter)\lib\netstandard2.0\NTypewriter.dll" Visible="false" />
+		<EmbeddedResource Include="$(PkgNTypewriter_CodeModel)\lib\netstandard2.0\NTypewriter.CodeModel.dll" Visible="false" />
+		<EmbeddedResource Include="$(PkgNTypewriter_CodeModel_Functions)\lib\netstandard2.0\NTypewriter.CodeModel.Functions.dll" Visible="false" />
+		<EmbeddedResource Include="$(PkgNTypewriter_CodeModel_Roslyn)\lib\netstandard2.0\NTypewriter.CodeModel.Roslyn.dll" Visible="false" />
+	</ItemGroup>	
+
+</Project>

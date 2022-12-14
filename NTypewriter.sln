@@ -48,6 +48,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Assets.WebApi2022", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.Runtime.Tests", "NTypewriter.Runtime.Tests\NTypewriter.Runtime.Tests.csproj", "{0CEEC83F-DF5D-4C44-8EB0-8B0D274F5D21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter.SourceGenerator", "NTypewriter.SourceGenerator\NTypewriter.SourceGenerator.csproj", "{5D16E995-E8BA-401E-B013-2ECD7CA8EE9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +108,10 @@ Global
 		{0CEEC83F-DF5D-4C44-8EB0-8B0D274F5D21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CEEC83F-DF5D-4C44-8EB0-8B0D274F5D21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CEEC83F-DF5D-4C44-8EB0-8B0D274F5D21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D16E995-E8BA-401E-B013-2ECD7CA8EE9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D16E995-E8BA-401E-B013-2ECD7CA8EE9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D16E995-E8BA-401E-B013-2ECD7CA8EE9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D16E995-E8BA-401E-B013-2ECD7CA8EE9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -25,3 +25,5 @@ NTypewriter.Runtime.Tests/bin/
 NTypewriter.Runtime.Tests/obj/
 Tests.Assets.WebApi2022/obj/
 Tests.Assets.WebApi2022/bin/
+NTypewriter.SourceGenerator/obj/
+NTypewriter.SourceGenerator/bin/

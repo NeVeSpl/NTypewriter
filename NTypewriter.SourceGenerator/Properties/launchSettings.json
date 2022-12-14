@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RC:WebApi2022": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\Tests.Assets.WebApi2022\\Tests.Assets.WebApi2022.csproj"
+    }
+  }
+}
