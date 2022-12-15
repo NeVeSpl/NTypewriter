@@ -15,8 +15,8 @@
    
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <AssemblyVersion>0.3.9.0</AssemblyVersion>
-    <FileVersion>0.3.9.0</FileVersion>
+    <AssemblyVersion>0.4.0.0</AssemblyVersion>
+    <FileVersion>0.4.0.0</FileVersion>
     <PackageIcon>nt.128.128.png</PackageIcon>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>obj\Release\netstandard2.0\NTypewriter.Editor.Config.xml</DocumentationFile>

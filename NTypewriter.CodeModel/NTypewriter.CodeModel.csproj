@@ -16,7 +16,7 @@
 
     <PackageIcon>nt.128.128.png</PackageIcon>
 
-    <AssemblyVersion>0.3.9.0</AssemblyVersion>
+    <AssemblyVersion>0.4.0.0</AssemblyVersion>
 
     <Description>Abstract model of the C# code.</Description>
   </PropertyGroup>
