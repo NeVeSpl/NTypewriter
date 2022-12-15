@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.3.9</Version>
+    <Version>0.4.0</Version>
     <Authors>NeVeSpl</Authors>
     <Copyright>(c) NTypewriter</Copyright>
     <PackageProjectUrl>https://github.com/NeVeSpl/NTypewriter</PackageProjectUrl>

@@ -7,19 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="RenderTemplatesCommand_HappyPathTemplate.nt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="RenderTemplatesCommand_HappyPathTemplate.nt">
+      <CustomToolNamespace>ae7ffc24-dddf-4989-aa99-843e19dbeb52</CustomToolNamespace>
+    </AdditionalFiles>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NTypewriter.Editor.Config\NTypewriter.Editor.Config.csproj" />
-    <ProjectReference Include="..\NTypewriter.SourceGenerator\NTypewriter.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+    <ProjectReference Include="..\NTypewriter.SourceGenerator\NTypewriter.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="RenderTemplatesCommand_HappyPath.txt">
-      <CustomToolNamespace>ae7ffc24-dddf-4989-aa99-843e19dbeb52</CustomToolNamespace>
-    </None>
-    <None Update="RenderTemplatesCommand_HappyPathTemplate.nt">
       <CustomToolNamespace>ae7ffc24-dddf-4989-aa99-843e19dbeb52</CustomToolNamespace>
     </None>
   </ItemGroup>

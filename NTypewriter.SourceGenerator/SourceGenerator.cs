@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Immutable;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using Microsoft.CodeAnalysis;
-using NTypewriter.CodeModel.Roslyn;
+using NTypewriter.Runtime;
+using NTypewriter.SourceGenerator.Adapters;
 
 namespace NTypewriter.SourceGenerator
 {
@@ -14,7 +12,10 @@ namespace NTypewriter.SourceGenerator
     public class NTypewriterSourceGenerator : ISourceGenerator
     {
         private static long ExecuteCount = 0;
+        private static long RenderCount = 0;
+        private static string LastRender;
         private static string Version = typeof(NTypewriterSourceGenerator).Assembly.GetName().Version.ToString();
+        private static readonly object Padlock = new Object();
 
         static NTypewriterSourceGenerator()
         {
@@ -23,57 +24,75 @@ namespace NTypewriter.SourceGenerator
 
 
         public void Initialize(GeneratorInitializationContext context)
-        {
+        {            
 
         }
 
         public void Execute(GeneratorExecutionContext context)
         {
             Interlocked.Increment(ref ExecuteCount);
-            context.ReportDiagnostic(Diagnostic.Create(Diagnostics.ExecuteInfo, Location.None, $"version : {Version}, total runs : {ExecuteCount}, last run : {DateTime.Now}"));           
+            var thisRunId = DateTime.Now.ToString();
+
+            string outputPath = GetOutputPath(context);
+            string touchFilePath = Path.Combine(outputPath, ".touch");
+            string logFilePath = Path.Combine(outputPath, context.Compilation.AssemblyName + ".ntsg.log");
+            string lastTouch = File.GetLastWriteTime(touchFilePath).ToString();
+
+            bool doRender = false;
+
+            lock (Padlock)
+            {
+                if (lastTouch != LastRender)
+                {
+                    Interlocked.Increment(ref RenderCount);
+                    doRender = true;
+                    LastRender = lastTouch;
+                }
+            }
+
+            var lines = new string[]
+            {
+                $"NTypewriter.SourceGenerator v{Version}",
+                $"total runs : {ExecuteCount}, total renders : {RenderCount}",
+                $"touch file : {touchFilePath}",
+                $"log file   : {logFilePath}",
+                $"this run   : {thisRunId}",
+                $"last build : {lastTouch}",
+            };
+         
+            context.ReportDiagnostic(Diagnostic.Create(Diagnostics.ExecuteInfo, Location.None, String.Join("\n", lines)));
+
+            if (doRender == false) return;
 
             try
             {
-                ProofOfConcept(context.Compilation, context.AdditionalFiles);
+                var templates = context.AdditionalFiles.Where(x => x.Path.EndsWith(".nt")).Select(x => new TemplateToRender(x.Path, "") { Content = x.GetText().ToString()} ).ToList();
+
+                var userInterfaceOutputWriter = new UserInterfaceOutputWriter();
+                var cmd = new RenderTemplatesCommand(null, new UserCodeProvider(), new GeneratedFileReaderWriter(), userInterfaceOutputWriter, null, null, null, null);
+                cmd.Execute(context.Compilation, templates).GetAwaiter().GetResult();
+                var log = userInterfaceOutputWriter.sb.ToString();
+                context.ReportDiagnostic(Diagnostic.Create(Diagnostics.TouchInfo, Location.None, log));
+                File.WriteAllText(logFilePath, log);
             }
             catch (Exception ex)
             {
                 context.ReportDiagnostic(Diagnostic.Create(Diagnostics.Exception, Location.None, ex.ToString()));
-            }
-
-            //context.AddSource($"NTypewriterSourceGenerator.g.cs", sb.ToString());            
+            }        
         }
 
-        
-        private void ProofOfConcept(Compilation compilation, ImmutableArray<AdditionalText> additionalFiles)
-        {            
-            var codeModelConfiguration = new CodeModelConfiguration() { OmitSymbolsFromReferencedAssemblies = true };
-            var codeModel = new NTypewriter.CodeModel.Roslyn.CodeModel(compilation, codeModelConfiguration);
-
-            var template = additionalFiles.FirstOrDefault(x => x.Path.EndsWith(".nt"));
-            if (template == null) return;
-            
-            var ntypewriterConfig = new Configuration();
-            NTypeWriter.Render(template.GetText().ToString(), codeModel, ntypewriterConfig).ContinueWith(x => ParseResult(x.Result, template.Path));
-
-        }
-
-        private void ParseResult(Result result, string templateFilePath)
+        private static string GetOutputPath(GeneratorExecutionContext context)
         {
-            if (!result.HasErrors)
+            context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.ProjectDir", out var projectDir);
+            context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.OutputPath", out var outputPath);
+            string touchFile = Path.Combine(outputPath);
+            if (Path.IsPathRooted(outputPath) == false)
             {
-                var renderedItem = result.Items.First();
-                var rootDirectory = Path.GetDirectoryName(templateFilePath);
-                var path = Path.Combine(rootDirectory, renderedItem.Name);
-                File.WriteAllText(path, renderedItem.Content);
+                touchFile = Path.Combine(projectDir, touchFile);
             }
-            else
-            {
-                foreach (var msg in result.Messages)
-                {
-                    Trace.WriteLine(msg.Message);
-                }
-            }
+
+            return touchFile;
         }
+
     }
 }

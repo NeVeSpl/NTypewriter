@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>xKey.snk</AssemblyOriginatorKeyFile>
-    <Version>0.3.9</Version>
+    <Version>0.4.0</Version>
     <Authors>NeVeSpl</Authors>
     <Company>NeVeSpl</Company>
     <Copyright>(c) NTypewriter</Copyright>

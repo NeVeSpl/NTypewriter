@@ -21,6 +21,11 @@ namespace NTypewriter.SourceGenerator
             }
 
             string resourceName = $"NTypewriter.SourceGenerator.{asmName.Name}.dll";
+            var manifestResourceNames = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+            if (manifestResourceNames.Contains(resourceName))
+            {
+
+            }
 
             using (Stream resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
             {
