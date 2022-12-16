@@ -36,6 +36,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\CustomFunctions.md = Documentation\CustomFunctions.md
 		Documentation\NameVariants.md = Documentation\NameVariants.md
 		Documentation\NTypewriter.CodeModel.flowchart.mmd = Documentation\NTypewriter.CodeModel.flowchart.mmd
+		Documentation\SourceGenerator.md = Documentation\SourceGenerator.md
 		Documentation\TypewriterIssues.md = Documentation\TypewriterIssues.md
 		Documentation\VisualStudioConfiguration.md = Documentation\VisualStudioConfiguration.md
 	EndProjectSection
@@ -48,7 +49,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Assets.WebApi2022", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.Runtime.Tests", "NTypewriter.Runtime.Tests\NTypewriter.Runtime.Tests.csproj", "{0CEEC83F-DF5D-4C44-8EB0-8B0D274F5D21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter.SourceGenerator", "NTypewriter.SourceGenerator\NTypewriter.SourceGenerator.csproj", "{5D16E995-E8BA-401E-B013-2ECD7CA8EE9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.SourceGenerator", "NTypewriter.SourceGenerator\NTypewriter.SourceGenerator.csproj", "{5D16E995-E8BA-401E-B013-2ECD7CA8EE9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

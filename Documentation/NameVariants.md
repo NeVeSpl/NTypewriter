@@ -1,5 +1,5 @@
 
-You can acquire the name of the symbol in a few ways. Table below shows the differences between them.
+You can acquire the name of the symbol in a few ways. Following table shows the differences between them.
 
 
 

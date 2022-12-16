@@ -71,7 +71,7 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
 
 
 
-### Typewriter vs NTypewriter
+## Typewriter vs NTypewriter
 
 &nbsp;| Typewriter | NTypewriter
 ----------|------------ | -------------
@@ -138,7 +138,7 @@ module App {
 }
 ```
 
-### Examples
+## Examples
 
 All examples available on [Typewriter page](https://frhagn.github.io/Typewriter/pages/examples.html) are also available in NTypewriter version:
 
@@ -152,7 +152,7 @@ AngularWebAPIService | [AngularWebAPIService.nt](https://github.com/NeVeSpl/NTyp
 
 
 
-### Getting started with NTypewriter editor for Visual Studio
+## Getting started with NTypewriter editor for Visual Studio
 
 1) <a name="Install"></a>Install [NTypewriter editor for Visual Studio](https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio)
 2) Add template file with *.nt extension to your project
@@ -188,6 +188,6 @@ AngularWebAPIService | [AngularWebAPIService.nt](https://github.com/NeVeSpl/NTyp
 7) <a name="Error"></a>If something goes wrong you can look at NTypewriter output. NTypewriter is very chatty about what is doing at the moment. Most of the errors also will appear on the VS Error List.
 
 
-### Known issues
+## Known issues
 
 NTypewriter does not have own a lexer/parser as Typewriter has, and uses Scriban instead to do heavy work. Scriban works very well with fully correct templates,  but with incomplete templates during edition not so much. It is the source of the most glitches in the Editor. Scriban language is also typeless, thus doing code completion is challenging.
