@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>xKey.snk</AssemblyOriginatorKeyFile>
-    <Version>0.4.0</Version>
+    <Version>0.4.1</Version>
     <Authors>NeVeSpl</Authors>
     <Company>NeVeSpl</Company>
     <Copyright>(c) NTypewriter</Copyright>
@@ -12,13 +12,13 @@
     <RepositoryUrl>https://github.com/NeVeSpl/NTypewriter</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>0.4.0.0</AssemblyVersion>
+    <AssemblyVersion>0.4.1.0</AssemblyVersion>
     <PackageIcon>nt.128.128.png</PackageIcon>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <FileVersion>0.4.0.0</FileVersion>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression> 
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>obj\Release\netstandard2.0\NTypewriter.xml</DocumentationFile>
-    <Description>NTypewriter</Description>    
+	  
+    <Description>File/code generator from Scriban text templates populated with Roslyn C# code model</Description>    
   </PropertyGroup>
 
   <ItemGroup>

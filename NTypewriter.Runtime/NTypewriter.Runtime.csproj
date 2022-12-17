@@ -4,29 +4,26 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>xKey.snk</AssemblyOriginatorKeyFile>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>0.4.0</Version>
+    <Version>0.4.1</Version>
     <Authors>NeVeSpl</Authors>
+    <Company>NeVeSpl</Company>
     <Copyright>(c) NTypewriter</Copyright>
     <PackageProjectUrl>https://github.com/NeVeSpl/NTypewriter</PackageProjectUrl>
     <RepositoryUrl>https://github.com/NeVeSpl/NTypewriter</RepositoryUrl>
-    <PackageIcon>nt.128.128.png</PackageIcon>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <AssemblyVersion>0.4.0.0</AssemblyVersion>
-    <FileVersion>0.4.0.0</FileVersion>
-    <Description>app-independent code used to run NTypewriter from UI</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>0.4.1.0</AssemblyVersion>
+    <PackageIcon>nt.128.128.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>  
+	
+    <Description>App-independent engine used to run NTypewriter from UI</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="..\Documentation\nt.128.128.png" Link="nt.128.128.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\Documentation\nt.128.128.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+  	<None Include="..\Documentation\nt.128.128.png">
+  	  <Pack>True</Pack>
+  	  <PackagePath></PackagePath>
+  	</None>
   </ItemGroup>
 
   <ItemGroup>
