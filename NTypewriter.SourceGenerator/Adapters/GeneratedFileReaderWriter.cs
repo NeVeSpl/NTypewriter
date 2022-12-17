@@ -18,6 +18,11 @@ namespace NTypewriter.SourceGenerator.Adapters
 
         public Task Write(string path, string text)
         {
+            var dir = Path.GetDirectoryName(path);
+            if (Directory.Exists(dir) == false)
+            {
+                Directory.CreateDirectory(dir);
+            }
             File.WriteAllText(path, text);
             return Task.CompletedTask;
         }

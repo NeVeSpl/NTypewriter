@@ -37,7 +37,7 @@ namespace NTypewriter.SourceGenerator
                 try
                 {
                     var dllName = $"{ asmName.Name }-{ asmName.Version }.dll";
-                    var tempPath = Path.Combine(Path.GetTempPath(), "NTSG\\");
+                    var tempPath = Path.Combine(Path.GetTempPath(), "NTSG");
                     var filePath = Path.Combine(tempPath, dllName);
                     Directory.CreateDirectory(tempPath);
 
