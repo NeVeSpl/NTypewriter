@@ -5,8 +5,8 @@
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<Version>0.1.44</Version>
-		<AssemblyVersion>0.1.44.0</AssemblyVersion>
+		<Version>0.1.66</Version>
+		<AssemblyVersion>0.1.66.0</AssemblyVersion>
 	    <PackageIcon>nt.128.128.png</PackageIcon>
 	    <Authors>NeVeSpl</Authors>
         <Company>NeVeSpl</Company>
@@ -15,7 +15,7 @@
         <RepositoryUrl>https://github.com/NeVeSpl/NTypewriter</RepositoryUrl>
         <NeutralLanguage>en</NeutralLanguage>
 	    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Description></Description>
+		<Description>Source generator that renders *.nt templates during build of C# project</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -25,7 +25,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.11.0" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.11.0" PrivateAssets="all" GeneratePathProperty="true"/>
+		<PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.11.0" PrivateAssets="all" GeneratePathProperty="true" />
 		
 		<PackageReference Include="Scriban.Signed" Version="5.5.0" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="NTypewriter" Version="0.4.0" PrivateAssets="all" GeneratePathProperty="true" />
@@ -34,6 +34,7 @@
 		<PackageReference Include="NTypewriter.CodeModel.Roslyn" Version="0.4.0" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="NTypewriter.Editor.Config" Version="0.4.0" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="NTypewriter.Runtime" Version="0.4.0" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="System.Text.Json" Version="6.0.0" PrivateAssets="all" GeneratePathProperty="true"/>
 
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 		<None Include="$(OutputPath)\$(AssemblyName).targets" Pack="true" PackagePath="build/netstandard2.0" Visible="false" />
@@ -42,6 +43,10 @@
 		  <Pack>True</Pack>
 		  <PackagePath></PackagePath>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="bin\Debug\netstandard2.0\**" Visible="false" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -59,6 +64,7 @@
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgNTypewriter_CodeModel_Roslyn)\lib\netstandard2.0\NTypewriter.CodeModel.Roslyn.dll" IncludeRuntimeDependency="false" />
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgNTypewriter_Editor_Config)\lib\netstandard2.0\NTypewriter.Editor.Config.dll" IncludeRuntimeDependency="false" />
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgNTypewriter_Runtime)\lib\netstandard2.0\NTypewriter.Runtime.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgSystem_Text_Json)\lib\netstandard2.0\System.Text.Json.dll" IncludeRuntimeDependency="false" />
 		</ItemGroup>
 	</Target>
 
@@ -73,6 +79,7 @@
 		<EmbeddedResource Include="$(PkgNTypewriter_CodeModel_Roslyn)\lib\netstandard2.0\NTypewriter.CodeModel.Roslyn.dll" Visible="false" />
 		<EmbeddedResource Include="$(PkgNTypewriter_Editor_Config)\lib\netstandard2.0\NTypewriter.Editor.Config.dll" Visible="false" />
 		<EmbeddedResource Include="$(PkgNTypewriter_Runtime)\lib\netstandard2.0\NTypewriter.Runtime.dll" Visible="false" />
+		<EmbeddedResource Include="$(PkgSystem_Text_Json)\lib\netstandard2.0\System.Text.Json.dll" Visible="false" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="NTypewriter.SourceGenerator.targets">

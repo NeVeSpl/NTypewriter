@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using NTypewriter.Runtime;
 
@@ -7,7 +6,7 @@ namespace NTypewriter.SourceGenerator.Adapters
 {
     internal class UserInterfaceOutputWriter : IUserInterfaceOutputWriter
     {
-        public StringBuilder sb = new StringBuilder();
+        private readonly StringBuilder sb = new StringBuilder();
 
 
         public void Error(string msg)
@@ -24,6 +23,12 @@ namespace NTypewriter.SourceGenerator.Adapters
         {
             var m = $"{DateTime.Now:HH:mm:ss.fff} : {message}";
             sb.AppendLine(m);
+        }
+
+
+        public string GetOutput()
+        { 
+            return sb.ToString();
         }
     }
 }

@@ -34,6 +34,28 @@ namespace NTypewriter.SourceGenerator
                     Trace.WriteLine($"AssemblyResolver.Resolve : failure");
                     return null;
                 }
+                try
+                {
+                    var dllName = $"{ asmName.Name }-{ asmName.Version }.dll";
+                    var tempPath = Path.Combine(Path.GetTempPath(), "NTSG\\");
+                    var filePath = Path.Combine(tempPath, dllName);
+                    Directory.CreateDirectory(tempPath);
+
+                    if (!File.Exists(filePath))
+                    {                        
+                        using (FileStream fileStream = File.Create(filePath))
+                        {
+                            resourceStream.CopyTo(fileStream);                            
+                        }
+                    }       
+
+                    return Assembly.LoadFile(filePath);
+                }
+                catch
+                {
+
+                }                
+
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
                     Trace.WriteLine($"AssemblyResolver.Resolve : resolved from ResourceStream");

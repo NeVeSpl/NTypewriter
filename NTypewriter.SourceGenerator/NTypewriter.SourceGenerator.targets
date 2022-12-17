@@ -5,7 +5,8 @@
 	</ItemGroup>
 
 	<Target Name="test" BeforeTargets="BeforeBuild">
-			<Message Text=">>> NTypewriter.SourceGenerator has touch you : $(OutputPath).touch" Importance="high" />
-			<Touch AlwaysCreate="true" Files="$(OutputPath).touch"  />
+		<Message Text=">>> NTypewriter.SourceGenerator has touch you : $(OutputPath).touch" Importance="high" />
+		<MakeDir Directories="$(OutputPath)" />
+		<Touch AlwaysCreate="true" Files="$(OutputPath).touch"  />
 	</Target>
 </Project>

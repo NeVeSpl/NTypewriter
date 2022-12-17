@@ -31,4 +31,9 @@
     </None>
   </ItemGroup>
 
+	<ItemGroup>
+		<CompilerVisibleProperty Include="ProjectDir" />
+		<CompilerVisibleProperty Include="OutputPath" />
+	</ItemGroup>
+
 </Project>
