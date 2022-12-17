@@ -11,7 +11,7 @@ NTypewriter.SourceGenerator runs in the context of a project to which it is adde
 
 
 &nbsp;| standard SourceGenerator | NTypewriter.SourceGenerator | NTypewriter editor for VS
---|--|
+--|--|--|--
 output | readonly file included in compilation | regular file | regular file
 scope | project | project | solution
 **runs** |
@@ -49,7 +49,7 @@ User code (*.nt.cs) must be added to project with the property `Build action` se
 
 ### Configuration
 
-Option |  
+Option | &nbsp;  
 --|--
 [AddGeneratedFilesToVSProject](Documentation/Configuration.md#AddGeneratedFilesToVSProject) | ignored, source generator does not have access to project file
 [NamespacesToBeSearched](Documentation/Configuration.md#NamespacesToBeSearched) | works as expected
