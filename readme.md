@@ -1,11 +1,18 @@
 # NTypewriter
 
 [![ci](https://github.com/NeVeSpl/NTypewriter/actions/workflows/CI.yml/badge.svg)](https://github.com/NeVeSpl/NTypewriter/actions/workflows/CI.yml)
-[![Nuget](https://img.shields.io/nuget/v/NTypewriter?color=%23004880&label=NTypewriter%20nugets)](https://www.nuget.org/packages?q=NTypewriter)
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/NeVeS.NTypewriterEditorForVisualStudio?color=%230429FF&label=NTypewriter%20editor)](https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio)
-[![](https://img.shields.io/visual-studio-marketplace/i/NeVeS.NTypewriterEditorForVisualStudio?color=%230429FF&label=NTypewriter%20editor%20users)](https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio)
+[![Nuget](https://img.shields.io/nuget/v/NTypewriter.SourceGenerator?color=%23004880&label=NTypewriter.SourceGenerator)](https://www.nuget.org/packages?q=NTypewriter.SourceGenerator)
+[![Nuget](https://img.shields.io/nuget/v/NTypewriter?color=%23004880&label=NTypewriter%20nugets)](https://www.nuget.org/packages?q=NTypewriter)
 
 ![NTypewriter LivePreview](Documentation/LivePreview.gif)
+
+<h3 align="center">
+Scriban templates + Roslyn C# code model => generated files
+</h3>
+<h4 align="center">
+design/compile/run time == any time
+</h4>
 
 <ins>For those who do not know Typewriter</ins>:
 
@@ -15,37 +22,47 @@ With NTypewriter you can:
 - auto-generate documentation for your C# code
 - create a typed TypeScript API client for your ASP.net web API
 
+NTypewriter comes in many flavours, that can be used according to your needs:
+- [NTypewriter editor for Visual Studio](Documentation/EditorForVisualStudio.md) - extension for Visual Studio that adds support for editing *.nt templates, with syntax highlighting, code completion, live preview, design time rendering, [available on vs marketplace](https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio)   
+- [NTypewriter.SourceGenerator](Documentation/SourceGenerator.md) - nuget, Roslyn source generator that renders *.nt templates during compilation, since it is compiler extension, it can be used with any IDE or CI/pipeline that supports source generators
+- NTypewriter - nuget, library that enables you to create run time solution which will be able to render *.nt templates, for example, [your own CLI](Documentation/CLI.md)
+- NTypewriter.CodeModel.Roslyn - nuget, library that exposes C# code model from an instance of `Microsoft.CodeAnalysis.Compilation`, useful if you would like to use different template engine  
+
+more about NTypewriter architecture and all extension points that you can use, you filnd [here](Documentation/Architecture.md)
+
+
 <ins>For those who know Typewriter</ins>:
 
-NTypewriter is a younger and more immature brother of beloved [Typewriter](https://github.com/frhagn/Typewriter). They share the same ideas, but with a completely different implementation. NTypwriter uses [Scriban](https://github.com/scriban/scriban) as a template engine, thus templates files are completely not interchangeable. While code model api is about 95% compatible between them, there are some differences. NTypewriter code model is 100% pure, without any amenities that helps generate TS files. All things that help  generate TypeScript from ASP.NET are located in built-in functions: [Action](https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/BuiltInFunctions.md#actionfunctions), [Type](https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/BuiltInFunctions.md#typefunctions).
+NTypewriter is a younger and more immature brother of beloved [Typewriter](https://github.com/frhagn/Typewriter). They share the same ideas, but with a completely different implementation. NTypwriter uses [Scriban](https://github.com/scriban/scriban) as a template engine, thus templates files are completely not interchangeable. While code model api is about 95% compatible between them, there are some differences. NTypewriter code model is 100% pure, without any amenities that helps generate TS files. All things that help  generate TypeScript from ASP.NET are located in built-in functions: [Action](Documentation/BuiltInFunctions.md#actionfunctions), [Type](Documentation/BuiltInFunctions.md#typefunctions).
 
 Oh, did I forget to mention that NTypewriter also solves most of the awaited issues of the Typewriter that were promised for 2.0 version:
 - support for attribute properties/values, statics, indexers, default parameters, nullable, records, constructors
 - output multiple types to single file
 - include types in CodeModel from referenced assemblies/nugets
 - save generated file only when file content has changed
-- sharable custom functions
+- sharable custom functions between templates
 - full control over whitespaces
-- CLI is possible
-- built-in support for getting all types used in class declaration ([Type.AllReferencedTypes](https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/BuiltInFunctions.md#allreferencedtypes))
+- compile-time rendering, without any IDE needed
+- built-in support for getting all types used in type declaration ([Type.AllReferencedTypes](Documentation/BuiltInFunctions.md#allreferencedtypes))
 - you can debug custom functions
 
  
 ### Index
 
 * [Typewriter vs NTypewriter](#Typewriter-vs-NTypewriter)
-* [Examples](#Examples)
+* [Examples: *.nt templates](#Examples)
 * Getting started
-   * [NTypewriter editor for Visual Studio](#Getting-started-with-NTypewriter-editor-for-Visual-Studio)
-       * [Install](#Install)
-       * [CodeModel](#CodeModel)
-       * [Capture](#Capture)       
-       * [Save](#Save)
-       * [Run](#Run)
-       * [When something goes wrong](#Error)
+   * [NTypewriter editor for Visual Studio](Documentation/EditorForVisualStudio.md#Getting-started-with-NTypewriter-editor-for-Visual-Studio)
+       * [Install](Documentation/EditorForVisualStudio.md#Install)
+       * [CodeModel](Documentation/EditorForVisualStudio.md#CodeModel)
+       * [Capture](Documentation/EditorForVisualStudio.md#Capture)       
+       * [Save](Documentation/EditorForVisualStudio.md#Save)
+       * [Run](Documentation/EditorForVisualStudio.md#Run)
+       * [When something goes wrong](Documentation/EditorForVisualStudio.md#Error)
+   * [NTypewriter.SourceGenerator](Documentation/SourceGenerator.md)
    * [Build your own CLI](Documentation/CLI.md)
 * Documentation
-   * [Language](https://github.com/scriban/scriban/blob/master/doc/language.md)
+   * [Template language](https://github.com/scriban/scriban/blob/master/doc/language.md)
    * [Code model](Documentation/CodeModel.md)
    * [Built-in functions](Documentation/BuiltInFunctions.md)   
    * [Name vs BareName vs FullName](Documentation/NameVariants.md)
@@ -63,12 +80,10 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
            * [SearchInReferencedProjectsAndAssemblies](Documentation/Configuration.md#SearchInReferencedProjectsAndAssemblies)   
            * [RenderWhenTemplateIsSaved](Documentation/Configuration.md#renderwhentemplateissaved)
            * [RenderWhenProjectBuildIsDone](Documentation/Configuration.md#RenderWhenProjectBuildIsDone)
-   * [Visual Studio Configuration](Documentation/VisualStudioConfiguration.md)
-       * [Live preview](Documentation/VisualStudioConfiguration.md)
+   * [Visual Studio Configuration](Documentation/EditorForVisualStudio.md#Configuration)
+       * [Live preview](Documentation/EditorForVisualStudio.md#Live-preview)
         
 * [Known issues](#Known-issues)
-* [Status of typewriter issues](Documentation/TypewriterIssues.md)
-
 
 
 ## Typewriter vs NTypewriter
@@ -79,6 +94,7 @@ Template file extension | *.tst | *.nt
 Syntax   | typewriter syntax | [scriban scripting language](https://github.com/scriban/scriban/blob/master/doc/language.md)
 Lambda filters | present | not available 
 Can be used from CLI | no | yes 
+Can be used in pipeline  | no | yes 
 Full control over whitespaces | nope | [yup](https://github.com/scriban/scriban/blob/master/doc/language.md#14-whitespace-control)
 Mapping | one input always produces one output file | you can generate as many files as you want
 Live preview | no | yes
@@ -98,7 +114,7 @@ Can be unit tested | no | yes
 **VS Integration** |
 Supported versions of Visual Studio | 2015, 2017, 2019 | 2019 ([min ver 16.11.x](https://github.com/NeVeSpl/NTypewriter/issues/55)), 2022
 Add generated files to VS project | yes (opt-out is possible) | [yes (opt-out is possible)](Documentation/Configuration.md#addgeneratedfilestovsproject)
-Sync deleted or renamed C# types with generated files | there is a part of the code that should do that  but it does not work anymore | yes 
+Sync deleted or renamed C# types with generated files | there is a part of the code that should do that  but it does not work anymore | yes (only when above option is enabled)
 
 
 
@@ -149,44 +165,6 @@ Extensions | [Extensions.nt](https://github.com/NeVeSpl/NTypewriter.Examples/blo
 ModelInterfaces | [ModelInterfaces.nt](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/ModelInterfaces/nt/ModelInterfaces.nt) | [ModelInterfaces.tst](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/ModelInterfaces/tst/ModelInterfaces.tst)
 KnockoutModels | [KnockoutModels.nt](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/KnockoutModels/nt/KnockoutModels.nt) | [KnockoutModels.tst](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/KnockoutModels/tst/KnockoutModels.tst)
 AngularWebAPIService | [AngularWebAPIService.nt](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/AngularWebAPIService/nt/AngularWebAPIService.nt) | [AngularWebAPIService.tst](https://github.com/NeVeSpl/NTypewriter.Examples/blob/master/WebApplication/Examples/AngularWebAPIService/tst/AngularWebAPIService.tst)
-
-
-
-## Getting started with NTypewriter editor for Visual Studio
-
-1) <a name="Install"></a>Install [NTypewriter editor for Visual Studio](https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio)
-2) Add template file with *.nt extension to your project
-3) <a name="CodeModel"></a>You gain access to code model from your template by special global variable `data`. So let us iterate over every class defined in solution, and write its name to output.
-```
-{{ for class in data.Classes 
-     class.FullName | String.Append "\r\n"
-  end }}  
-```
-4) <a name="Capture"></a>Now it is time to decide what part of our template will be saved to a file. We do that by using capture statement [`capture variableName; end`](https://github.com/scriban/scriban/blob/master/doc/language.md#96-capture-variable--end). For this example we want to generate one file with list of all classes defined in solution, thus we should use capture statement outside of the for loop.
-```
-{{ capture output
-       for class in data.Classes 
-             class.FullName | String.Append "\r\n"
-       end 
-   end}}
-```
-5) <a name="Save"></a>To create file on disk we use `Save whatToSave filePath` function
-
-```
-{{ capture output
-       for class in data.Classes 
-           class.FullName | String.Append "\r\n"
-      end
-   end
-   Save output "index.txt"
-}}    
-```
-6) <a name="Run"></a>We have completed template, now we can run it and generate file.
-
-![NTypewriter CodeModel](Documentation/GettingStarted.Run.gif)
-
-7) <a name="Error"></a>If something goes wrong you can look at NTypewriter output. NTypewriter is very chatty about what is doing at the moment. Most of the errors also will appear on the VS Error List.
-
 
 ## Known issues
 

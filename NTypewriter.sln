@@ -29,16 +29,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{F24BDC3D-245E-4E4C-B57D-CB6C06E58286}"
 	ProjectSection(SolutionItems) = preProject
+		Documentation\Architecture.md = Documentation\Architecture.md
 		Documentation\BuiltInFunctions.md = Documentation\BuiltInFunctions.md
 		Documentation\CLI.md = Documentation\CLI.md
 		Documentation\CodeModel.md = Documentation\CodeModel.md
 		Documentation\Configuration.md = Documentation\Configuration.md
 		Documentation\CustomFunctions.md = Documentation\CustomFunctions.md
+		Documentation\EditorForVisualStudio.md = Documentation\EditorForVisualStudio.md
 		Documentation\NameVariants.md = Documentation\NameVariants.md
 		Documentation\NTypewriter.CodeModel.flowchart.mmd = Documentation\NTypewriter.CodeModel.flowchart.mmd
 		Documentation\SourceGenerator.md = Documentation\SourceGenerator.md
 		Documentation\TypewriterIssues.md = Documentation\TypewriterIssues.md
-		Documentation\VisualStudioConfiguration.md = Documentation\VisualStudioConfiguration.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentationGenerator", "DocumentationGenerator\DocumentationGenerator.csproj", "{584B0FDD-B073-4223-AA51-D56B6087B59B}"

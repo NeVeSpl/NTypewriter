@@ -1,10 +1,10 @@
-#### Nugets
+### Nugets
 
 To create global configuration for your templates you will need this one:
 
 https://www.nuget.org/packages/NTypewriter.Editor.Config/
 
-#### Local vs Global configuration
+### Local vs Global configuration
 
 All available here options you can set in two ways: 
  - in separate c# file (with *.nt.cs extension) that will be used by all templates in the given project (aka global configuration)
@@ -17,12 +17,7 @@ Files that contain global configuration are detected by file extension : *.nt.cs
 
 How global configuration is discovered and compiled, you can see in [UserCodeLoader.cs](/NTypewriter.Runtime/UserCode/UserCodeLoader.cs)  
 
-***[NTEditorFile] attribute is obsolete, and will be removed in the future. Please change the file extension to .nt.cs instead of using this attribute.***
-
-
-***Property ```TypesThatContainCustomFunctions``` is also obsolete, it is not needed anymore, you can remove it.***
-
-#### AddGeneratedFilesToVSProject
+### AddGeneratedFilesToVSProject
 
 By default, all generated files are added to project in which template is located. 
 
@@ -46,7 +41,7 @@ _Local configuration_
 {{ config.AddGeneratedFilesToVSProject = true }}
 ```
 
-#### NamespacesToBeSearched
+### NamespacesToBeSearched
 
 Only types located inside listed namespaces will be available in code model. If the list is empty, filtering is not applied.
 
@@ -77,7 +72,7 @@ _Local configuration_
 {{ config.NamespacesToBeSearched = ["MediatR", "Scriban", "NetArchTest"] }}
 ```
 
-#### ProjectsToBeSearched
+### ProjectsToBeSearched
 
 By default code model is populated with symbols from all projects in solution. With this option, you can limit the scope to only specified projects. When you have a lot of projects in your solution, using this option can significantly improve performance (see [#29](https://github.com/NeVeSpl/NTypewriter/issues/29#issue-867875186) ).
 
@@ -108,7 +103,7 @@ _Local configuration_
 ```
 
 
-#### SearchInReferencedProjectsAndAssemblies
+### SearchInReferencedProjectsAndAssemblies
 
 This option allows getting access to symbols defined in all referenced assemblies, even System symbols. Thus it should only be used with very limited code model by GetProjectsToBeSearched and/or GetNamespacesToBeSearched options, otherwise, your code model will contain thousands of symbols.
 
@@ -134,7 +129,7 @@ _Local configuration_
 {{ config.SearchInReferencedProjectsAndAssemblies = false }}
 ```
 
-#### RenderWhenTemplateIsSaved
+### RenderWhenTemplateIsSaved
 
 With this option, you can decide if you want to automatically render a template always when it is saved.
 
@@ -158,7 +153,7 @@ _Local configuration_
 {{ config.RenderWhenTemplateIsSaved = false }}
 ```
 
-#### RenderWhenProjectBuildIsDone
+### RenderWhenProjectBuildIsDone
 
 With this option, you can decide if you want to automatically render all templates from a given project, when it is successfully built.
 

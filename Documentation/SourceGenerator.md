@@ -20,14 +20,13 @@ on every change in source code | yes | no | no
 when template (*.nt) is saved | no | no | yes (opt-in)
 on demend | no| no | yes
 
-
-
-
 ### Nuget
 
 https://www.nuget.org/packages/NTypewriter.SourceGenerator
 
+### How to use it?
 
+Just instal nuget to the project that contains *.nt templates.
 
 ### Templates (*.nt) discovery 
 
@@ -51,13 +50,20 @@ User code (*.nt.cs) must be added to project with the property `Build action` se
 
 Option | &nbsp;  
 --|--
-[AddGeneratedFilesToVSProject](Documentation/Configuration.md#AddGeneratedFilesToVSProject) | ignored, source generator does not have access to project file
-[NamespacesToBeSearched](Documentation/Configuration.md#NamespacesToBeSearched) | works as expected
-[ProjectsToBeSearched](Documentation/Configuration.md#ProjectsToBeSearched) | works, but source generator has access only to single project
-[SearchInReferencedProjectsAndAssemblies](Documentation/Configuration.md#SearchInReferencedProjectsAndAssemblies) | works as expected
-[RenderWhenTemplateIsSaved](Documentation/Configuration.md#renderwhentemplateissaved)| ignored, source generator does not render when template is saved
-[RenderWhenProjectBuildIsDone](Documentation/Configuration.md#RenderWhenProjectBuildIsDone)| ignored, source generator always renders during a build
+[AddGeneratedFilesToVSProject](Configuration.md#AddGeneratedFilesToVSProject) | ignored, source generator does not have access to project file
+[NamespacesToBeSearched](Configuration.md#NamespacesToBeSearched) | works as expected
+[ProjectsToBeSearched](Configuration.md#ProjectsToBeSearched) | works, but source generator has access only to single project
+[SearchInReferencedProjectsAndAssemblies](Configuration.md#SearchInReferencedProjectsAndAssemblies) | works as expected
+[RenderWhenTemplateIsSaved](Configuration.md#renderwhentemplateissaved)| ignored, source generator does not render when template is saved
+[RenderWhenProjectBuildIsDone](Configuration.md#RenderWhenProjectBuildIsDone)| ignored, source generator always renders during a build
 
 ### Diagnostics
 
 *.ntsg.log file can be found alongside of generated assemblies in the project `outputPath`.
+
+### Proof of concept
+
+Sample project that generates files during GitHub Actions workflows:
+
+- [ubuntu-latest-net6.0](https://github.com/NeVeSpl/NTypewriter.SourceGenerator.Examples/actions/runs/3720791541)
+- [windows-latest-net6.0](https://github.com/NeVeSpl/NTypewriter.SourceGenerator.Examples/actions/runs/3720791546)
