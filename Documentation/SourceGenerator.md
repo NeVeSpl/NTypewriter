@@ -20,7 +20,7 @@ on every change in source code | yes | no | no
 when template (*.nt) is saved | no | no | yes (opt-in)
 on demend | no| no | yes
 
-### Nuget
+### Nugets
 
 https://www.nuget.org/packages/NTypewriter.SourceGenerator
 

@@ -1,12 +1,14 @@
+## Configuration
+
 ### Nugets
 
-To create global configuration for your templates you will need this one:
+For using global configuration from user code (*.nt.cs), local configuration does not need one.
 
 https://www.nuget.org/packages/NTypewriter.Editor.Config/
 
 ### Local vs Global configuration
 
-All available here options you can set in two ways: 
+All available here options can be set in two ways: 
  - in separate c# file (with *.nt.cs extension) that will be used by all templates in the given project (aka global configuration)
  - inside *.nt template (aka local configuration)
 
@@ -15,7 +17,7 @@ If both configuration options are used, the local configuration will overwrite t
 
 Files that contain global configuration are detected by file extension : *.nt.cs.
 
-How global configuration is discovered and compiled, you can see in [UserCodeLoader.cs](/NTypewriter.Runtime/UserCode/UserCodeLoader.cs)  
+How global configuration is discovered and compiled, you can see in [UserCodeLoader.cs](../NTypewriter.Runtime/UserCode/UserCodeLoader.cs)  
 
 ### AddGeneratedFilesToVSProject
 

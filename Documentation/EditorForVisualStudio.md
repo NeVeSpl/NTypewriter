@@ -1,4 +1,6 @@
-### Getting started with NTypewriter editor for Visual Studio
+## NTypewriter editor for Visual Studio
+
+### Getting started
 
 1) <a name="Install"></a>Install [NTypewriter editor for Visual Studio](https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio)
 2) Add template file with *.nt extension to your project

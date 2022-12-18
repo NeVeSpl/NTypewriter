@@ -31,7 +31,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Architecture.md = Documentation\Architecture.md
 		Documentation\BuiltInFunctions.md = Documentation\BuiltInFunctions.md
-		Documentation\CLI.md = Documentation\CLI.md
 		Documentation\CodeModel.md = Documentation\CodeModel.md
 		Documentation\Configuration.md = Documentation\Configuration.md
 		Documentation\CustomFunctions.md = Documentation\CustomFunctions.md
@@ -39,6 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\NameVariants.md = Documentation\NameVariants.md
 		Documentation\NTypewriter.CodeModel.flowchart.mmd = Documentation\NTypewriter.CodeModel.flowchart.mmd
 		Documentation\SourceGenerator.md = Documentation\SourceGenerator.md
+		Documentation\NTypewriter.md = Documentation\NTypewriter.md
 		Documentation\TypewriterIssues.md = Documentation\TypewriterIssues.md
 	EndProjectSection
 EndProject

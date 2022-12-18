@@ -1,6 +1,8 @@
+## Custom functions
+
 ### Nugets
 
-This nuget gives you access to code model abstractions.
+This nuget gives access to code model abstractions:
 
 https://www.nuget.org/packages/NTypewriter.CodeModel/
 

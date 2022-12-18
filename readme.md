@@ -2,7 +2,7 @@
 
 [![ci](https://github.com/NeVeSpl/NTypewriter/actions/workflows/CI.yml/badge.svg)](https://github.com/NeVeSpl/NTypewriter/actions/workflows/CI.yml)
 [![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/NeVeS.NTypewriterEditorForVisualStudio?color=%230429FF&label=NTypewriter%20editor)](https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio)
-[![Nuget](https://img.shields.io/nuget/v/NTypewriter.SourceGenerator?color=%23004880&label=NTypewriter.SourceGenerator)](https://www.nuget.org/packages?q=NTypewriter.SourceGenerator)
+[![Nuget](https://img.shields.io/nuget/v/NTypewriter.SourceGenerator?color=%23004880&label=NTypewriter.SourceGenerator)](https://www.nuget.org/packages/NTypewriter.SourceGenerator)
 [![Nuget](https://img.shields.io/nuget/v/NTypewriter?color=%23004880&label=NTypewriter%20nugets)](https://www.nuget.org/packages?q=NTypewriter)
 
 ![NTypewriter LivePreview](Documentation/LivePreview.gif)
@@ -23,12 +23,12 @@ With NTypewriter you can:
 - create a typed TypeScript API client for your ASP.net web API
 
 NTypewriter comes in many flavours, that can be used according to your needs:
-- [NTypewriter editor for Visual Studio](Documentation/EditorForVisualStudio.md) - extension for Visual Studio that adds support for editing *.nt templates, with syntax highlighting, code completion, live preview, design time rendering, [available on vs marketplace](https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio)   
-- [NTypewriter.SourceGenerator](Documentation/SourceGenerator.md) - nuget, Roslyn source generator that renders *.nt templates during compilation, since it is compiler extension, it can be used with any IDE or CI/pipeline that supports source generators
-- NTypewriter - nuget, library that enables you to create run time solution which will be able to render *.nt templates, for example, [your own CLI](Documentation/CLI.md)
+- [NTypewriter editor for Visual Studio](Documentation/EditorForVisualStudio.md#NTypewriter-editor-for-Visual-Studio) - extension for Visual Studio that adds support for editing *.nt templates, with syntax highlighting, code completion, live preview, design time rendering, [available on vs marketplace](https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio)   
+- [NTypewriter.SourceGenerator](Documentation/SourceGenerator.md#NTypewriter.SourceGenerator) - nuget, Roslyn source generator that renders *.nt templates during compilation, since it is compiler extension, it can be used with any IDE or CI/pipeline that supports source generators
+- NTypewriter - nuget, library that enables you to create run time solution which will be able to render *.nt templates, for example: [your own CLI](Documentation/NTypewriter.md#Build-your-own-CLI)
 - NTypewriter.CodeModel.Roslyn - nuget, library that exposes C# code model from an instance of `Microsoft.CodeAnalysis.Compilation`, useful if you would like to use different template engine  
 
-more about NTypewriter architecture and all extension points that you can use, you filnd [here](Documentation/Architecture.md)
+more about NTypewriter architecture and all extension points that can be used, you will find [here](Documentation/Architecture.md#NTypewriter-architecture)
 
 
 <ins>For those who know Typewriter</ins>:
@@ -52,7 +52,7 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
 * [Typewriter vs NTypewriter](#Typewriter-vs-NTypewriter)
 * [Examples: *.nt templates](#Examples)
 * Getting started
-   * [NTypewriter editor for Visual Studio](Documentation/EditorForVisualStudio.md#Getting-started-with-NTypewriter-editor-for-Visual-Studio)
+   * [NTypewriter editor for Visual Studio](Documentation/EditorForVisualStudio.md#Getting-started)
        * [Install](Documentation/EditorForVisualStudio.md#Install)
        * [CodeModel](Documentation/EditorForVisualStudio.md#CodeModel)
        * [Capture](Documentation/EditorForVisualStudio.md#Capture)       
@@ -60,7 +60,7 @@ Oh, did I forget to mention that NTypewriter also solves most of the awaited iss
        * [Run](Documentation/EditorForVisualStudio.md#Run)
        * [When something goes wrong](Documentation/EditorForVisualStudio.md#Error)
    * [NTypewriter.SourceGenerator](Documentation/SourceGenerator.md)
-   * [Build your own CLI](Documentation/CLI.md)
+   * [Build your own CLI](Documentation/NTypewriter.md#Build-your-own-CLI)
 * Documentation
    * [Template language](https://github.com/scriban/scriban/blob/master/doc/language.md)
    * [Code model](Documentation/CodeModel.md)
