@@ -49,7 +49,7 @@ namespace NTypewriter.SourceGenerator
             };
             
             var allPaths = String.Join("\r\n", paths);
-            context.AddSource("d.g.cs", allPaths);
+            context.AddSource("Diagnostics.g.cs", allPaths);
         }
         
 
