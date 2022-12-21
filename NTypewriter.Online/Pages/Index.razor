@@ -6,3 +6,20 @@
 
 <h2>C# to TypeScript</h2>
 
+<div class="editors">
+    <div class="editor">
+        <h4>Input : C# code</h4>
+        <MonacoEditor Id="codeEditor" @ref="codeEditor" ConstructionOptions="CodeEditorConstructionOptions" OnKeyUp="OnKeyUp" />
+    </div>
+    <div class="editor">
+        <h4>Input : .nt template</h4>
+        <MonacoEditor Id="templateEditor" @ref="templateEditor" ConstructionOptions="TemplateEditorConstructionOptions" OnKeyUp="OnKeyUp" />
+    </div>
+    <div class="editor">
+        <h4>output</h4>
+        <MonacoEditor Id="outputEditor" ConstructionOptions="OutputEditorConstructionOptions" />
+    </div>
+</div>
+
+
+
