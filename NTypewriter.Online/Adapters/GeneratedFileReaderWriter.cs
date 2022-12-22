@@ -1,4 +1,5 @@
-﻿using NTypewriter.Runtime;
+﻿using System.Threading.Tasks;
+using NTypewriter.Runtime;
 
 namespace NTypewriter.Online.Adapters
 {
