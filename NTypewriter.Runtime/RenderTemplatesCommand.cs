@@ -71,39 +71,47 @@ namespace NTypewriter.Runtime
 
         private async Task Execute(SolutionOrCompilation roslynInput, IList<TemplateToRender> templates, EnvironmentVariables environmentVariables = null)
         {
-            await uiStatus.Update("Rendering", 0, templates.Count);
-
-            for (int i = 0; i < templates.Count; ++i)
+            try
             {
-                var template = templates[i];
+                await uiStatus.Update("Rendering", 0, templates.Count);
 
-                uiOutput.Info(new String('-', 69));
-                uiOutput.Info("Rendering started : " + System.IO.Path.GetFileName(template.FilePath));
-                await uiStatus.Update("Rendering", i + 1, templates.Count);
+                for (int i = 0; i < templates.Count; ++i)
+                {
+                    var template = templates[i];
 
-                await UsedAssemblyVersionChecker.Check(roslynInput, template.ContainingProjectPath, uiOutput).ConfigureAwait(false);
-            
-                var userInput = UserCodeLoader.LoadUserCodeFromGivenProject(template.ContainingProjectPath, userCodeProvider, uiOutput);
-                var editorConfig = new EditorConfig(userInput.GlobalConfig);  
-             
-                var codeModel = new LazyCodeModel(() => CodeModelBuilder.Build(roslynInput, editorConfig.ProjectsToBeSearched, editorConfig.NamespacesToBeSearched, editorConfig.SearchInReferencedProjectsAndAssemblies));
+                    uiOutput.Info(new String('-', 69));
+                    uiOutput.Info("Rendering started : " + System.IO.Path.GetFileName(template.FilePath));
+                    await uiStatus.Update("Rendering", i + 1, templates.Count);
 
-                uiOutput.Info($"Loading template : {template.FilePath}");
-                var templateContent = template.Content ?? await templateContentLoader.Read(template.FilePath).ConfigureAwait(false);
+                    await UsedAssemblyVersionChecker.Check(roslynInput, template.ContainingProjectPath, uiOutput).ConfigureAwait(false);
 
-                var templateRenderer = new TemplateRenderer(uiErrorList, uiOutput);
-                var renderedItems = await templateRenderer.RenderAsync(template.FilePath, templateContent, codeModel, userInput.TypesThatMayContainCustomFunctions, editorConfig, environmentVariables).ConfigureAwait(false);
-                
-                await GeneratedFileManager.SaveChanges(renderedItems, generatedFileReaderWriter, uiOutput, sourceControl).ConfigureAwait(false);
+                    var userInput = UserCodeLoader.LoadUserCodeFromGivenProject(template.ContainingProjectPath, userCodeProvider, uiOutput);
+                    var editorConfig = new EditorConfig(userInput.GlobalConfig);
 
-                if ((solutionItemsManager != null) && (editorConfig.AddGeneratedFilesToVSProject))
-                {                    
-                    uiOutput.Info("Updating VisualStudio solution");
-                    await solutionItemsManager.UpdateSolution(template.FilePath, renderedItems.Select(x => x.FilePath)).ConfigureAwait(false);
-                    uiOutput.Info("VisualStudio solution updated successfully");                   
+                    var codeModel = new LazyCodeModel(() => CodeModelBuilder.Build(roslynInput, editorConfig.ProjectsToBeSearched, editorConfig.NamespacesToBeSearched, editorConfig.SearchInReferencedProjectsAndAssemblies));
+
+                    uiOutput.Info($"Loading template : {template.FilePath}");
+                    var templateContent = template.Content ?? await templateContentLoader.Read(template.FilePath).ConfigureAwait(false);
+
+                    var templateRenderer = new TemplateRenderer(uiErrorList, uiOutput);
+                    var renderedItems = await templateRenderer.RenderAsync(template.FilePath, templateContent, codeModel, userInput.TypesThatMayContainCustomFunctions, editorConfig, environmentVariables).ConfigureAwait(false);
+
+                    await GeneratedFileManager.SaveChanges(renderedItems, generatedFileReaderWriter, uiOutput, sourceControl).ConfigureAwait(false);
+
+                    if ((solutionItemsManager != null) && (editorConfig.AddGeneratedFilesToVSProject))
+                    {
+                        uiOutput.Info("Updating VisualStudio solution");
+                        await solutionItemsManager.UpdateSolution(template.FilePath, renderedItems.Select(x => x.FilePath)).ConfigureAwait(false);
+                        uiOutput.Info("VisualStudio solution updated successfully");
+                    }
+
+                    await uiStatus.Update("Rendering succeed");
                 }
-
-                await uiStatus.Update("Rendering succeed");
+            }
+            catch (RuntimeException ex)
+            {
+                await uiStatus.Update("Rendering failed");
+                uiOutput.Error(ex.Message);
             }
         }
     }

@@ -1,10 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Text;
+using System.Threading.Tasks;
 using NTypewriter.Runtime;
 
 namespace NTypewriter.Online.Adapters
 {
     public class GeneratedFileReaderWriter : IGeneratedFileReaderWriter
     {
+        private readonly StringBuilder stringBuilder = new StringBuilder();
+
         public bool Exists(string path)
         {
             return false;
@@ -17,7 +21,15 @@ namespace NTypewriter.Online.Adapters
 
         public Task Write(string path, string text)
         {
+            stringBuilder.AppendLine($"============= {path} =============");
+            stringBuilder.Append(text);
             return Task.CompletedTask;
+        }
+
+
+        public string GetOutput()
+        {
+            return stringBuilder.ToString();
         }
     }
 }

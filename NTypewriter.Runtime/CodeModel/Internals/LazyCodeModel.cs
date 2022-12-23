@@ -23,7 +23,7 @@ namespace NTypewriter.Runtime.CodeModel.Internals
 
         public LazyCodeModel(Func<Task<ICodeModel>> valueFactory)
         {
-            codeModel = new Lazy<ICodeModel>(() => Task.Run(() => valueFactory()).GetAwaiter().GetResult());
+            codeModel = new Lazy<ICodeModel>(() => valueFactory().GetAwaiter().GetResult());
         }
     }
 }

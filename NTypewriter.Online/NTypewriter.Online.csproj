@@ -17,6 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\NTypewriter.Editor.Config\NTypewriter.Editor.Config.csproj" />
 		<ProjectReference Include="..\NTypewriter.Runtime\NTypewriter.Runtime.csproj" />
 	</ItemGroup>
 
