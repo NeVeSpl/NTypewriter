@@ -40,7 +40,7 @@ jobs:
       run: dotnet publish NTypewriter.Online/NTypewriter.Online.csproj -c Release -o publish --nologo
       
     - name: Deploy publish/wwwroot to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@4.4.1
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
       with:       
         branch: gh-pages
         folder: publish/wwwroot
