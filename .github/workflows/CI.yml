@@ -39,11 +39,28 @@ jobs:
     - name: Publish NTypewriter.Online
       run: dotnet publish NTypewriter.Online/NTypewriter.Online.csproj -c Release -o publish --nologo
       
+    - name: Upload artifact NTypewriterOnlinePublished
+      uses: actions/upload-artifact@v3.1.1
+      with:
+        name: NTypewriterOnlinePublished
+        path: publish
+      
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Download artifact NTypewriterOnlinePublished
+      uses: actions/download-artifact@v3.0.1
+      with:
+        name: NTypewriterOnlinePublished
+    
     - name: Deploy publish/wwwroot to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4.4.1
       with:       
         branch: gh-pages
-        folder: publish/wwwroot
+        folder: NTypewriterOnline/wwwroot
       
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
