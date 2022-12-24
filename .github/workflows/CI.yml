@@ -60,6 +60,10 @@ jobs:
       uses: actions/download-artifact@v3.0.1
       with:
         name: NTypewriterOnlinePublished
+        
+    # changes the base-tag in index.html from '/' to 'NTypewriter' to match GitHub Pages repository subdirectory
+    - name: Change base-tag in index.html from / to NTypewriter
+      run: sed -i 's/<base href="\/" \/>/<base href="\/NTypewriter\/" \/>/g' wwwroot/index.html
     
     - name: Deploy publish/wwwroot to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4.4.1
