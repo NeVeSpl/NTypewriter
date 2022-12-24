@@ -34,7 +34,16 @@ jobs:
       run: dotnet restore
       
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore      
+        
+    - name: Publish NTypewriter.Online
+      run: dotnet publish NTypewriter.Online/NTypewriter.Online.csproj -c Release -o publish --nologo
+      
+    - name: Deploy publish/wwwroot to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@4.4.1
+      with:       
+        branch: gh-pages
+        folder: publish/wwwroot
       
     - name: Test
       run: dotnet test --no-build --verbosity normal
