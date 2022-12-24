@@ -1,24 +1,44 @@
 ﻿@page "/"
 
-<h1>NTypewriter.Online</h1>
+<header>
+    <h1>NTypewriter.Online</h1>
 
-<h2>C# to TypeScript</h2>
+    <h2>C# to TypeScript</h2>
+</header>
 
-<div class="editors">
-    <div class="editor">
-        <h4>Input : C# code</h4>
-        <MonacoEditor Id="codeEditor" @ref="codeEditor" ConstructionOptions="GetEditorConstructionOptions" OnKeyUp="OnKeyUp" />
+<main>
+    <div class="editors">
+        <div class="editor">
+            <div class="editorHeader">InputCode.cs</div>
+            <div class="editorContainer">
+                <MonacoEditor Id="codeEditor" @ref="codeEditor" ConstructionOptions="GetEditorConstructionOptions" OnKeyUp="OnKeyUp" />
+            </div>
+        </div>
+        <div class="editor">
+            <div class="editorHeader">template.nt</div>
+            <div class="editorContainer">
+                <MonacoEditor Id="templateEditor" @ref="templateEditor" ConstructionOptions="GetTemplateEditorConstructionOptions" OnKeyUp="OnKeyUp" />
+            </div>
+        </div>
+        <div class="editor">
+            <div class="editorHeader">output.ts</div>
+            <div class="editorContainer">
+                <MonacoEditor Id="generatedFilesEditor" @ref="generatedFilesEditor"  ConstructionOptions="GetGeneratedFilesEditorConstructionOptions" />
+            </div>
+        </div>
     </div>
-    <div class="editor">
-        <h4>Input : .nt template</h4>
-        <MonacoEditor Id="templateEditor" @ref="templateEditor" ConstructionOptions="GetTemplateEditorConstructionOptions" OnKeyUp="OnKeyUp" />
-    </div>
-    <div class="editor">
-        <h4>output</h4>
-        <MonacoEditor Id="generatedFilesEditor" @ref="generatedFilesEditor"  ConstructionOptions="GetGeneratedFilesEditorConstructionOptions" />
-    </div>
-</div>
 
-<div>
-    <p role="status">@((MarkupString)UIOutput)</p>
-</div>
+    <div class="panes">
+        <div class="paneHeaders">
+            <div class="paneHeader enabled" >OUTPUT</div>
+            <div class="paneHeader disabled">PROBLEMS</div>
+        </div>
+        <div class="pane">
+            <p>@((MarkupString)UIOutput)</p>
+        </div>
+       
+    </div>
+</main>
+<footer>
+    &nbsp;
+</footer>

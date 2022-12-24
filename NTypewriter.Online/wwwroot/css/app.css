@@ -1,7 +1,44 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F3F3F3;
+    overflow-x: hidden;
 }
 
+.forkMe{
+    position : absolute;
+    right :0;
+}
+
+.page {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;    
+}
+
+header {
+    background-color: #2C2C2C;
+    color: #737273;
+    overflow: auto;
+    padding-left : 2em;
+    
+}
+
+main{
+    flex : 1;
+    height: 100%;
+}
+
+footer {
+    background-color: #007ACC;
+    flex: 0 0 22px;
+}
+
+h1
+{
+    color : #FFF;
+}
 
 
 #blazor-error-ui {
@@ -66,18 +103,140 @@ html, body {
         content: var(--blazor-load-percentage-text, "Loading");
     }
 
-.editors
-{
+.editors {
+    height: 70%;
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    height: 60vh;
-}
-.editor
-{
-     
+    gap: 5px;
 }
 
+.editor {
+    height: 100%;   
+}
+.editorHeader {
+    background-color: #fff;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 10px 23px 10px 23px;
+    height: 40px;
+    font-size: 0.9rem;
+    font-family: Segoe WPC,Segoe UI,sans-serif;
+}
+.editorContainer {
+    position: relative;  
+    height: calc(100% - 40px);
+}
 .monaco-editor-container {
-    height: 80%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom :0;
+    right: 0;
+    height: auto;
     border: 0;
 }
+
+.panes {
+    height : 30%;
+    box-sizing:border-box;
+    border-top: 1px solid #D3D3D3;
+    background: #FFF;
+    
+}
+.paneHeaders {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+    box-sizing: border-box;
+    height: 40px;
+}
+
+.paneHeader {
+    color: #424242;
+    border-bottom: solid 1px #424242;
+    display: inline-block;
+    padding: 5px 4px 4px 4px;
+    font-size: 0.85rem;
+    font-family: Segoe WPC,Segoe UI,sans-serif;
+    margin: 4px 0 6px 20px;
+
+}
+
+    .paneHeader.disabled {
+        color: #717171;
+        border: 0;
+    }
+.pane {
+    overflow: scroll;
+    height: calc(100% - 40px);
+    padding-left: 20px;
+}
+
+    .pane p {
+        white-space: nowrap;
+        font-size: 0.9rem;
+    }
+
+
+
+
+#forkongithub a {
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    font-family: arial,sans-serif;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 40px;
+    font-size: 1rem;
+    line-height: 2rem;
+    position: relative;
+    transition: 0.5s;
+}
+
+#forkongithub a:hover {
+    background: #0026FF;
+    color: #000;
+}
+
+#forkongithub a::before, #forkongithub a::after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    height: 1px;
+    background: #000;
+}
+
+#forkongithub a::after {
+    bottom: 1px;
+    top: auto;
+}
+
+@media screen and (min-width:800px) {
+    #forkongithub {
+        position: fixed;
+        display: block;
+        top: 0;
+        right: 0;
+        width: 200px;
+        overflow: hidden;
+        height: 200px;
+        z-index: 9999;
+    }
+
+        #forkongithub a {
+            width: 200px;
+            position: absolute;
+            top: 60px;
+            right: -60px;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.8);
+        }
+}
+

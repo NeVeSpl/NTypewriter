@@ -37,6 +37,7 @@ namespace NTypewriter.Online.Pages
                 Language = "csharp",
                 Minimap = new EditorMinimapOptions() { Enabled = false },
                 Folding = false,
+                FontSize = 13,
             };
 
             return options;
@@ -49,6 +50,8 @@ namespace NTypewriter.Online.Pages
                 Language = "handlebars",
                 Minimap = new EditorMinimapOptions() { Enabled = false },
                 Folding = false,
+                RenderLineHighlightOnlyWhenFocus = true,
+                FontSize = 13,
             };
 
             return options;
@@ -61,7 +64,9 @@ namespace NTypewriter.Online.Pages
                 Language = "typescript",
                 Minimap = new EditorMinimapOptions() { Enabled = false },
                 Folding = false,
-                ReadOnly = true
+                FontSize = 13,
+                ReadOnly = true,
+                RenderLineHighlightOnlyWhenFocus = true,
             };
 
             return options;
@@ -78,7 +83,7 @@ namespace NTypewriter.Online.Pages
             var sampleTemplate = await HttpClient.GetStringAsync("sample-nt/dto.nt");
             await templateEditor.SetValue(sampleTemplate);
 
-            RequestUpdate();
+            RequestUpdate(false);
         }        
         
 
@@ -100,20 +105,21 @@ namespace NTypewriter.Online.Pages
 
 
         private CancellationTokenSource debouncingTokenSource = new CancellationTokenSource();
-        public void RequestUpdate()
+        public void RequestUpdate(bool debaunce = true)
         {
             debouncingTokenSource.Cancel();
             debouncingTokenSource = new CancellationTokenSource();
-            _ = Update(debouncingTokenSource.Token);
+            _ = Update(debouncingTokenSource.Token, debaunce);
         }
 
-        private DateTime lastUpdate = DateTime.MinValue;
-        private async Task Update(CancellationToken cancellationToken)
+        //private DateTime lastUpdate = DateTime.MinValue;
+        private async Task Update(CancellationToken cancellationToken, bool debaunce = true)
         {
             Debug.WriteLine($"=> {DateTime.Now} - Update requested");
-            var diff = DateTime.Now - lastUpdate;
-            lastUpdate = DateTime.Now;
-            if (diff < TimeSpan.FromSeconds(1))
+            //var diff = DateTime.Now - lastUpdate;
+            //lastUpdate = DateTime.Now;
+            //if (diff < TimeSpan.FromSeconds(1))
+            if (debaunce)
             {
                 Debug.WriteLine($"=> {DateTime.Now} - Update debounced");
                 await Task.Delay(474, cancellationToken);                

@@ -56,7 +56,7 @@ namespace NTypewriter.Runtime.Rendering
             output.Info("Template rendered successfully");
 
             var rootDirectory = Path.GetDirectoryName(templateFilePath);
-            output.Info($"Root directory : {rootDirectory})");
+            output.Info($"Root directory : {rootDirectory}");
             var renderedItems = result.Items.Select(x => new RenderingResult(x, rootDirectory)).ToList();
 
             return renderedItems;

@@ -21,7 +21,7 @@ namespace NTypewriter.Online.Adapters
 
         public Task Write(string path, string text)
         {
-            stringBuilder.AppendLine($"============= {path} =============");
+            stringBuilder.AppendLine($"//== File: {path}");
             stringBuilder.Append(text);
             return Task.CompletedTask;
         }
