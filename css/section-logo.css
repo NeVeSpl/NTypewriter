@@ -1,0 +1,16 @@
+﻿.logo {
+    
+    padding: 0px 0 20px 0;
+    background-color: #FFF;
+    font-family: Consolas, Arial, sans-serif;   
+}
+
+.logo pre {
+    margin: 0;    
+    text-align : left;
+    display : inline-block;
+}
+
+.logo h5 {
+    margin: 3px 0 3px 0;
+}

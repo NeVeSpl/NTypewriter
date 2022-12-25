@@ -6,26 +6,194 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>NTypewriter.Online - C# to TypeScript</title>
     <base href="/NTypewriter/" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="favicon.png" />   
+
+    <link href="css/blazor.css" rel="stylesheet" />
+    <link href="css/forkongithub.css" rel="stylesheet" />
+    <link href="css/generic.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+
+    <link href="css/section-alternativeSolutions.css" rel="stylesheet" />
+    <link href="css/section-app.css" rel="stylesheet" />
+    <link href="css/section-editor.css" rel="stylesheet" />
+    <link href="css/section-family.css" rel="stylesheet" />
+    <link href="css/section-features.css" rel="stylesheet" />
+    <link href="css/section-logo.css" rel="stylesheet" />
+
+    <link rel="icon" type="image/png" href="favicon.png" />
     <link href="_content/BlazorMonaco/lib/monaco-editor/min/vs/editor/editor.main.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
+    <span id="forkongithub"><a href="https://github.com/NeVeSpl/NTypewriter">Fork me on GitHub</a></span>
+
+    <div class="page" id="Page">
+
+        <header>
+            <h1>NTypewriter - C# to TypeScript converter</h1>
+            <h2>Generate strongly typed clients and models, the way you like it</h2>
+        </header>
+
+        <section class="app" id="app">
+            <svg class="loading-progress">
+                <circle r="40%" cx="50%" cy="50%" />
+                <circle r="40%" cx="50%" cy="50%" />
+            </svg>
+            <div class="loading-progress-text"></div>
+        </section>
+
+        <div id="blazor-error-ui">
+            An unhandled error has occurred.
+            <a href="" class="reload">Reload</a>
+            <a class="dismiss">🗙</a>
+        </div>
+
+        <footer>
+            <span>
+                <a href="#" onclick="BlazorScrollToId(event, 'LandingPage')">NTypewriter editor for Visual Studio</a> |
+                <a href="#" onclick="BlazorScrollToId(event, 'LandingPage')">NTypewriter.SourceGenerator</a>
+            </span>
+        </footer>
     </div>
 
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
+    <div class="page center" id="LandingPage">
+        <section class="logo">            
+<pre>
+  _   _ _____                               _ _            
+ | \ | |_   _|   _ _ __   _____      ___ __(_) |_ ___ _ __ 
+ |  \| | | || | | | '_ \ / _ \ \ /\ / / '__| | __/ _ \ '__|
+ | |\  | | || |_| | |_) |  __/\ V  V /| |  | | ||  __/ |   
+ |_| \_| |_| \__, | .__/ \___| \_/\_/ |_|  |_|\__\___|_|   
+             |___/|_| v@(EditorVersion)           Scriban v@(ScribanVersion)  
+</pre>
+            <h5>Scriban templates + Roslyn C# code model => generated files</h5>            
+        </section>
+
+        <section class="family alternative">
+            <div class="container">
+                <div class="items">
+                    <div class="vs">
+                        <h4>extension for Visual Studio</h4>
+
+                        <div class="center">
+                            <a href="https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/EditorForVisualStudio.md#Getting-started" class="button">Getting started</a>
+                            <a href="https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio" class="button">Download</a>
+                        </div>
+
+                        <ul>
+                            <li>design and build time rendering</li>
+                            <li>.nt template editor</li>
+                        </ul>
+                    </div>
+
+                    <div class="roslyn">
+                        <h4>Roslyn source generator</h4>
+
+                        <div class="center">
+                            <a href="https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/SourceGenerator.md#ntypewritersourcegenerator" class="button">Getting started</a>
+                            <a href="https://www.nuget.org/packages/NTypewriter.SourceGenerator" class="button">Download</a>
+                        </div>
+
+                        <ul>
+                            <li>build time rendering</li>
+                            <li>best for CI/CD/pipeline</li>
+                        </ul>
+                    </div>
+
+                    <div class="blazor">
+                        <h4>Blazor client side</h4>
+
+                        <div class="center">
+                            <a href="#" onclick="BlazorScrollToId(event, 'Page')" class="button">Try it</a>
+                        </div>
+
+                        <ul>
+                            <li>online rendering</li>
+                            <li>heavy, slow and limited</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h3>Features</h3>
+
+                <div class="items">
+                    <div class="item">
+                        <span></span>
+                        <div class="details">
+                            <h4>Editor</h4>
+                            <p>.nt template editor provides: syntax highlighting, code completion, quick info, live preview.  Available only for Visual Studio.</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <span></span>
+                        <div class="details">
+                            <h4>Extensible</h4>
+                            <p>You can extend .nt templates with <a href="https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/CustomFunctions.md">custom functions</a> written in C# that have full access to code model and can be debug.</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <span></span>
+                        <div class="details">
+                            <h4>100+ Built-in functions</h4>
+                            <p>NTypewriter comes with rich set of <a href="https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/BuiltInFunctions.md">built-in functions</a> to aid writing templates.</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <span></span>
+                        <div class="details">
+                            <h4>Scriban</h4>
+                            <p>.nt templates are based on <a href="https://github.com/scriban/scriban">Scriban</a>, well-know template engine with easy to learn syntax.</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <span></span>
+                        <div class="details">
+                            <h4>Roslyn</h4>
+                            <p><a href="https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/CodeModel.md">Code model</a> exposes data from Roslyn API. If you are familiar with Roslyn, you should feel at home.</p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <span></span>
+                        <div class="details">
+                            <h4>Free and Open Source</h4>
+                            <p>NTypewriter is available for free. Most of its code is open source and based on <a href="https://tldrlegal.com/license/mit-license">MIT license.</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="editor alternative">
+            <div class="container">
+                <img src="/img/LivePreview.gif" />
+            </div>
+        </section>
     </div>
 
+    <div class="">
+        <section class="alternativeSolutions">
+            <div class="container">
+                <h3>Alternative solutions</h3>
+                <ul>
+                    <li><a href="https://frhagn.github.io/Typewriter/">Typewriter</a></li>
+                    <li><a href="http://type.litesolutions.net/">TypeLITE</a></li>
+                    <li><a href="http://jburzynski.net/TypeGen/">TypeGen</a></li>
+                    <li><a href="https://github.com/reinforced/Reinforced.Typings">Reinforced.Typings</a></li>
+                    <li><a href="https://github.com/AdrianWilczynski/CSharpToTypeScript">CSharpToTypeScript</a></li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/main.js"></script>
     <script src="_content/BlazorMonaco/lib/monaco-editor/min/vs/loader.js"></script>
     <script>require.config({ paths: { 'vs': '_content/BlazorMonaco/lib/monaco-editor/min/vs' } });</script>
     <script src="_content/BlazorMonaco/lib/monaco-editor/min/vs/editor/editor.main.js"></script>
