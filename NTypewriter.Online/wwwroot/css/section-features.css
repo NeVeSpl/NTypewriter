@@ -1,0 +1,30 @@
+﻿.features {
+    background-color: #FFF;
+    flex: 1;
+}
+.features .items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px 21px;
+}
+
+.features .item {
+    flex: 1 1 30%;
+    text-align: left;
+    columns: 2 auto;
+    display: grid;
+    color: #4C5667;
+    grid-template-columns: 40px 1fr;
+}
+
+
+.features .item h4 {
+    font-size: 1rem;
+    margin: 0 0 4px 0;
+}
+
+
+.features .item p {
+    margin-top: 0;
+    text-align: justify;
+}

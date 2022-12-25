@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading;
@@ -6,11 +7,13 @@ using System.Threading.Tasks;
 using System.Web;
 using BlazorMonaco;
 using Microsoft.AspNetCore.Components;
+using NTypewriter.Online.Models;
 
 namespace NTypewriter.Online.Pages
 {
-    partial class Index
+    partial class Index : ComponentBase
     {
+        private string exampleId;
         private MonacoEditor codeEditor;
         private MonacoEditor templateEditor;
         private MonacoEditor generatedFilesEditor;
@@ -22,15 +25,24 @@ namespace NTypewriter.Online.Pages
         [Inject]
         private Runner Runner { get; set; }
 
-        public string UIOutput 
+        public string ExampleId
+        { 
+            get => exampleId;
+            set 
+            { 
+                exampleId = value; 
+            }
+        }
+        public List<Example> Examples { get; set; } = new List<Example>();
+        public string UIOutput
         {
             get;
             set;
         }
-        
+
 
         private StandaloneEditorConstructionOptions GetEditorConstructionOptions(MonacoEditor editor)
-        {           
+        {
             var options = new StandaloneEditorConstructionOptions
             {
                 AutomaticLayout = true,
@@ -75,6 +87,10 @@ namespace NTypewriter.Online.Pages
 
         protected async override Task OnInitializedAsync()
         {
+            Examples = new List<Example>() { new Example("sampe", "Basic sample"), new Example("nsbe", "Typewriter : Hello world") };
+            ExampleId = "sampe";
+
+
             await Runner.Initialize(NavigationManager.BaseUri);
 
             var sampleCode = await HttpClient.GetStringAsync("sample-cs/dto.cs");
@@ -84,12 +100,14 @@ namespace NTypewriter.Online.Pages
             await templateEditor.SetValue(sampleTemplate);
 
             RequestUpdate(false);
-        }        
-        
+
+            await base.OnInitializedAsync();
+        }
+
 
         private void OnKeyUp(KeyboardEvent keyboardEvent)
         {
-            
+
             if (keyboardEvent.KeyCode == KeyCode.LeftArrow ||
                 keyboardEvent.KeyCode == KeyCode.RightArrow ||
                 keyboardEvent.KeyCode == KeyCode.UpArrow ||
@@ -105,6 +123,8 @@ namespace NTypewriter.Online.Pages
 
 
         private CancellationTokenSource debouncingTokenSource = new CancellationTokenSource();
+        
+
         public void RequestUpdate(bool debaunce = true)
         {
             debouncingTokenSource.Cancel();
@@ -122,8 +142,8 @@ namespace NTypewriter.Online.Pages
             if (debaunce)
             {
                 Debug.WriteLine($"=> {DateTime.Now} - Update debounced");
-                await Task.Delay(474, cancellationToken);                
-            }            
+                await Task.Delay(474, cancellationToken);
+            }
 
             if (cancellationToken.IsCancellationRequested)
             {

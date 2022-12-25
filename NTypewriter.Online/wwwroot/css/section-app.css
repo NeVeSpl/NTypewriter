@@ -1,0 +1,113 @@
+﻿.app {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    background-color: #DDDDDD;
+    flex: 0 0 30px;
+    text-align: center;
+    display: flex;
+    height: 30px;
+    font-size: 0.8rem;
+    color: #333;
+}
+
+nav > * {
+    display: inline-block;
+    margin: auto;
+    width: 600px;
+}
+
+nav select {
+    width: 400px;
+}
+
+.editors {
+    height: 70%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+}
+
+.editor {
+    height: 100%;
+}
+
+.editorHeader {
+    background-color: #fff;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 10px 23px 10px 23px;
+    height: 40px;
+    font-size: 0.9rem;
+    font-family: Segoe WPC,Segoe UI,sans-serif;
+}
+
+.editorContainer {
+    position: relative;
+    height: calc(100% - 40px);
+}
+
+.monaco-editor-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: auto;
+    border: 0;
+}
+
+.templateHelp {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 2px;
+    font-size: 0.85rem;
+}
+
+.templateHelp a {
+    margin: 0 3px;
+}
+
+.panes {
+    height: 30%;
+    box-sizing: border-box;
+    border-top: 1px solid #D3D3D3;
+    background: #FFF;
+}
+
+.paneHeaders {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+    box-sizing: border-box;
+    height: 40px;
+}
+
+.paneHeader {
+    color: #424242;
+    border-bottom: solid 1px #424242;
+    display: inline-block;
+    padding: 5px 4px 4px 4px;
+    font-size: 0.85rem;
+    font-family: Segoe WPC,Segoe UI,sans-serif;
+    margin: 4px 0 6px 20px;
+}
+
+.paneHeader.disabled {
+    color: #717171;
+    border: 0;
+}
+
+.pane {
+    overflow: scroll;
+    height: calc(100% - 40px);
+    padding-left: 20px;
+}
+
+.pane p {
+    white-space: nowrap;
+    font-size: 0.9rem;
+}

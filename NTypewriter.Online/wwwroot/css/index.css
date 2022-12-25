@@ -1,0 +1,66 @@
+﻿html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F3F3F3;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.page {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+header {
+    background-color: #2C2C2C;
+    padding-left: 2em;   
+}
+
+header h1 {
+    color: #FFF;
+    margin-bottom: 0;
+}
+
+header h2 {
+    color: #737273;
+    font-size: 1.3rem;
+    margin-top: 0;
+}
+
+
+footer {
+    background-color: #007ACC;
+    flex: 0 0 22px;
+    height: 22px;
+    display: flex;
+    text-align: center;
+    color: white;
+    font-family: Consolas;
+}
+
+footer > * {
+    font-size: 0.8rem;
+    margin: auto;
+    display: inline-block;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+h3 {
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    color: #4C5667;
+    margin: 23px 0;
+}

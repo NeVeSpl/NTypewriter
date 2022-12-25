@@ -1,0 +1,14 @@
+﻿.alternativeSolutions {
+    background-color: #fff;
+}
+
+
+
+.alternativeSolutions ul {
+    columns: 2;
+}
+
+.alternativeSolutions li {
+    list-style-type: none;
+    margin: 7px;
+}

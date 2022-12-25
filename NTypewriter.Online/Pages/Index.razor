@@ -1,44 +1,53 @@
 ﻿@page "/"
 
-<header>
-    <h1>NTypewriter.Online</h1>
+<nav>
+    <div>
+        <label for="examples">Load example:</label>
 
-    <h2>C# to TypeScript</h2>
-</header>
+        <select id="department" @bind="ExampleId">
+            @foreach (var exmp in Examples)
+            {
+                <option value="@exmp.ExampleId">@exmp.Title</option>
+            }
+        </select>
+    </div>
+</nav>
 
-<main>
-    <div class="editors">
-        <div class="editor">
-            <div class="editorHeader">InputCode.cs</div>
-            <div class="editorContainer">
-                <MonacoEditor Id="codeEditor" @ref="codeEditor" ConstructionOptions="GetEditorConstructionOptions" OnKeyUp="OnKeyUp" />
-            </div>
+<div class="editors">
+    <div class="editor">
+        <div class="editorHeader">InputCode.cs</div>
+        <div class="editorContainer">
+            <MonacoEditor Id="codeEditor" @ref="codeEditor" ConstructionOptions="GetEditorConstructionOptions" OnKeyUp="OnKeyUp" />
         </div>
-        <div class="editor">
-            <div class="editorHeader">template.nt</div>
-            <div class="editorContainer">
-                <MonacoEditor Id="templateEditor" @ref="templateEditor" ConstructionOptions="GetTemplateEditorConstructionOptions" OnKeyUp="OnKeyUp" />
-            </div>
+    </div>
+    <div class="editor">
+        <div class="editorHeader">template.nt</div>
+        <div class="editorContainer">
+            <MonacoEditor Id="templateEditor" @ref="templateEditor" ConstructionOptions="GetTemplateEditorConstructionOptions" OnKeyUp="OnKeyUp" />
         </div>
-        <div class="editor">
-            <div class="editorHeader">output.ts</div>
-            <div class="editorContainer">
-                <MonacoEditor Id="generatedFilesEditor" @ref="generatedFilesEditor"  ConstructionOptions="GetGeneratedFilesEditorConstructionOptions" />
+        <div class="relative">
+            <div class="templateHelp">
+                <a href="https://github.com/scriban/scriban/blob/master/doc/language.md">Template language</a>
+                <a href="https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/CodeModel.md">Code model</a>
+                <a href="https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/BuiltInFunctions.md">Built-in functions</a>
             </div>
         </div>
     </div>
+    <div class="editor">
+        <div class="editorHeader">output.ts</div>
+        <div class="editorContainer">
+            <MonacoEditor Id="generatedFilesEditor" @ref="generatedFilesEditor"  ConstructionOptions="GetGeneratedFilesEditorConstructionOptions" />
+        </div>
+    </div>
+</div>
 
-    <div class="panes">
-        <div class="paneHeaders">
-            <div class="paneHeader enabled" >OUTPUT</div>
-            <div class="paneHeader disabled">PROBLEMS</div>
-        </div>
-        <div class="pane">
-            <p>@((MarkupString)UIOutput)</p>
-        </div>
+<div class="panes">
+    <div class="paneHeaders">
+        <div class="paneHeader enabled" >OUTPUT</div>
+        <div class="paneHeader disabled">PROBLEMS</div>
+    </div>
+    <div class="pane">
+        <p>@((MarkupString)UIOutput)</p>
+    </div>
        
-    </div>
-</main>
-<footer>
-    &nbsp;
-</footer>
+</div>

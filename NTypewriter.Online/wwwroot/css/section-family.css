@@ -1,0 +1,56 @@
+﻿.family .items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.family .container > div {
+   /* padding: 20px 0;*/
+}
+
+.family h4 {
+    text-align: center;
+    width: 100%;
+    font-size : 1.3rem;
+    margin : 23px 0 17px 0;
+}
+
+.vs {
+    background-color: #B887F299;
+}
+
+.roslyn {
+    background-color: #C1272D70;
+}
+
+.blazor {
+    background-color: #5C2D9170;
+}
+
+a.button {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px;
+    background-color: #007ACC;
+    color: white;
+    min-width: 120px;
+}
+
+a.button:hover {
+    background-color: #0062A3;
+}
+
+.vs a.button {
+    background-color: #652394;
+}
+
+.roslyn a.button {
+    background-color: #C1272D;
+}
+
+.blazor a.button {
+    background-color: #5C2D91;
+}
+
+.family ul {
+    text-align: left;
+}
