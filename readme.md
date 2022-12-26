@@ -25,6 +25,7 @@ With NTypewriter you can:
 NTypewriter comes in many flavours, that can be used according to your needs:
 - [NTypewriter editor for Visual Studio](Documentation/EditorForVisualStudio.md#NTypewriter-editor-for-Visual-Studio) - extension for Visual Studio that adds support for editing *.nt templates, with syntax highlighting, code completion, live preview, design time rendering, [available on vs marketplace](https://marketplace.visualstudio.com/items?itemName=NeVeS.NTypewriterEditorForVisualStudio)   
 - [NTypewriter.SourceGenerator](Documentation/SourceGenerator.md#NTypewriterSourceGenerator) - nuget, Roslyn source generator that renders *.nt templates during compilation, since it is compiler extension, it can be used with any IDE or CI/pipeline that supports source generators
+- [NTypewriter.Online](https://github.com/NeVeSpl/NTypewriter) - blazor client side, online demo of NTypewriter capabilities
 - NTypewriter - nuget, library that enables you to create run time solution which will be able to render *.nt templates, for example: [your own CLI](Documentation/NTypewriter.md#Build-your-own-CLI)
 - NTypewriter.CodeModel.Roslyn - nuget, library that exposes C# code model from an instance of `Microsoft.CodeAnalysis.Compilation`, useful if you would like to use different template engine  
 

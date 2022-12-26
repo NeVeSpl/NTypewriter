@@ -1,11 +1,15 @@
 ﻿.features {
     background-color: #FFF;
-    flex: 1;
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding : 13px 0 10px 0;
 }
 .features .items {
     display: flex;
     flex-wrap: wrap;
-    gap: 13px 21px;
+    gap: 55px;
 }
 
 .features .item {
@@ -14,7 +18,7 @@
     columns: 2 auto;
     display: grid;
     color: #4C5667;
-    grid-template-columns: 40px 1fr;
+    grid-template-columns: 0px 1fr;
 }
 
 

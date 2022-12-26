@@ -1,8 +1,12 @@
 ﻿.logo {
-    
+    flex: 0.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction : column;
     padding: 0px 0 20px 0;
     background-color: #FFF;
-    font-family: Consolas, Arial, sans-serif;   
+    font-family: Consolas, Arial, sans-serif;
 }
 
 .logo pre {
@@ -12,5 +16,5 @@
 }
 
 .logo h5 {
-    margin: 3px 0 3px 0;
+    margin: 5px 0 3px 0;
 }

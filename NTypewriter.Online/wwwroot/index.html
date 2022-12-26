@@ -14,7 +14,7 @@
 
     <link href="css/section-alternativeSolutions.css" rel="stylesheet" />
     <link href="css/section-app.css" rel="stylesheet" />
-    <link href="css/section-editor.css" rel="stylesheet" />
+    <link href="css/section-demo.css" rel="stylesheet" />
     <link href="css/section-family.css" rel="stylesheet" />
     <link href="css/section-features.css" rel="stylesheet" />
     <link href="css/section-logo.css" rel="stylesheet" />
@@ -63,7 +63,7 @@
  |  \| | | || | | | '_ \ / _ \ \ /\ / / '__| | __/ _ \ '__|
  | |\  | | || |_| | |_) |  __/\ V  V /| |  | | ||  __/ |   
  |_| \_| |_| \__, | .__/ \___| \_/\_/ |_|  |_|\__\___|_|   
-             |___/|_| v@(EditorVersion)           Scriban v@(ScribanVersion)  
+             |___/|_| v<span id="EditorVersion"></span>          Scriban v<span id="ScribanVersion"></span>  
 </pre>
             <h5>Scriban templates + Roslyn C# code model => generated files</h5>            
         </section>
@@ -117,7 +117,7 @@
 
         <section class="features">
             <div class="container">
-                <h3>Features</h3>
+                <!--<h3>Features</h3>-->
 
                 <div class="items">
                     <div class="item">
@@ -171,9 +171,9 @@
             </div>
         </section>
 
-        <section class="editor alternative">
+        <section class="demo alternative">            
             <div class="container">
-                <img src="/img/LivePreview.gif" />
+                <img src="img/LivePreview.gif" />
             </div>
         </section>
     </div>
@@ -193,6 +193,16 @@
         </section>
     </div>
 
+    <script>
+        function updateVer(editorVersion, scribanVersion)
+        {
+            let editorVerElement = document.querySelector("#EditorVersion");
+            editorVerElement.textContent = editorVersion;
+            let scribanVerElement = document.querySelector("#ScribanVersion");
+            scribanVerElement.textContent = scribanVersion;
+        }
+
+    </script>
     <script src="js/main.js"></script>
     <script src="_content/BlazorMonaco/lib/monaco-editor/min/vs/loader.js"></script>
     <script>require.config({ paths: { 'vs': '_content/BlazorMonaco/lib/monaco-editor/min/vs' } });</script>

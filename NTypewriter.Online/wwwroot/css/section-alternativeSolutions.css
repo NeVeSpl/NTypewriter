@@ -1,11 +1,12 @@
 ﻿.alternativeSolutions {
     background-color: #fff;
+    padding : 20px 0 0 0;
 }
 
 
 
 .alternativeSolutions ul {
-    columns: 2;
+    columns: 1;
 }
 
 .alternativeSolutions li {
