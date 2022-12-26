@@ -1,10 +1,20 @@
-﻿.family .items {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+﻿.family
+{
+    flex : 0.4;
 }
 
-.family .container > div {
-   /* padding: 20px 0;*/
+.family .container {
+    height: 100%;
+}
+
+.family .items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height : 100%;   
+}
+
+.family .items > div {  
+   
 }
 
 .family h4 {
@@ -15,15 +25,15 @@
 }
 
 .vs {
-    background-color: #B887F299;
+    background-color: #B887F280;
 }
 
 .roslyn {
-    background-color: #C1272D70;
+    background-color: #C1272D60;
 }
 
 .blazor {
-    background-color: #5C2D9170;
+    background-color: #5C2D9160;
 }
 
 a.button {
@@ -42,15 +52,35 @@ a.button:hover {
 .vs a.button {
     background-color: #652394;
 }
+.vs ul {
+    color: #652394;
+    filter: brightness(0.65);
+}
 
 .roslyn a.button {
     background-color: #C1272D;
 }
 
+.roslyn ul {
+    color: #C1272D;
+    filter: brightness(0.55);
+}
+
 .blazor a.button {
     background-color: #5C2D91;
+}
+.blazor ul {
+    color: #5C2D91;
+    filter: brightness(0.65);
 }
 
 .family ul {
     text-align: left;
+}
+.family li {
+    margin: 5px 0;
+}
+
+.family a:hover {
+    filter: brightness(1.50);
 }

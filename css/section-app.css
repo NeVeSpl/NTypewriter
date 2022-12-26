@@ -25,7 +25,7 @@ nav select {
 }
 
 .editors {
-    height: 70%;
+    height: 75%;
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -65,7 +65,7 @@ nav select {
     position: absolute;
     text-align: center;
     width: 100%;
-    top: 2px;
+    top: 4px;
     font-size: 0.85rem;
 }
 
@@ -74,7 +74,7 @@ nav select {
 }
 
 .panes {
-    height: 30%;
+    height: 25%;
     box-sizing: border-box;
     border-top: 1px solid #D3D3D3;
     background: #FFF;

@@ -1,0 +1,18 @@
+﻿.demo{
+    flex: 1.2;
+}
+
+.demo .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height : 100%;
+}
+
+.demo .container img {
+    
+    object-fit: scale-down;
+    
+    max-height:360px;
+
+}
