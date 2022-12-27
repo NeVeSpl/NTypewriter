@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using System.Xml.Linq;
 using BlazorMonaco;
 using Microsoft.AspNetCore.Components;
 using NTypewriter.Online.Models;
@@ -27,7 +28,7 @@ namespace NTypewriter.Online.Pages
         [Inject]
         private Runner Runner { get; set; }
 
-        [Parameter]
+        [Parameter]        
         public string ExampleId
         { 
             get => exampleId;
@@ -100,8 +101,12 @@ namespace NTypewriter.Online.Pages
 
         protected async override Task OnInitializedAsync()
         {
+            var query = new Uri(NavigationManager.Uri).Query;
+            var parsed = HttpUtility.ParseQueryString(query);
+            var exampleId = parsed["exampleId"];
+
             Examples = ExampleRepository.Get();
-            ExampleId ??= Examples.FirstOrDefault().ExampleId;
+            ExampleId = exampleId ?? Examples.FirstOrDefault().ExampleId;
             
             await Runner.Initialize(NavigationManager.BaseUri);
             await LoadData(ExampleId);
