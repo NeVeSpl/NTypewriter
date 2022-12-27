@@ -24,12 +24,43 @@ nav select {
     width: 400px;
 }
 
-.editors {
+.editorsWrap {
     height: 75%;
     box-sizing: border-box;
+   
+    position: relative;
+}
+
+.editors {   
+    height : 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 5px;
+    gap: 5px;  
+}
+
+.busyIndicator {
+    position: absolute;
+    z-index: 1000;    
+    background-color: #CCCCCCAA;   
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.busyIndicator > *{
+    display : inline-block;
+    height : 100px;
+    font-family : Arial;
+    font-size : 1.9rem;
+    text-align : center;
+    padding : 10px;
+    font-weight : bold;
 }
 
 .editor {

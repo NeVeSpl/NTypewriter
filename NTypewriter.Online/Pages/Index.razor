@@ -1,4 +1,5 @@
 ﻿@page "/"
+@page "/example/{ExampleId}"
 
 <nav>
     <div>
@@ -13,30 +14,36 @@
     </div>
 </nav>
 
-<div class="editors">
-    <div class="editor">
-        <div class="editorHeader">InputCode.cs</div>
-        <div class="editorContainer">
-            <MonacoEditor Id="codeEditor" @ref="codeEditor" ConstructionOptions="GetEditorConstructionOptions" OnKeyUp="OnKeyUp" />
-        </div>
-    </div>
-    <div class="editor">
-        <div class="editorHeader">template.nt</div>
-        <div class="editorContainer">
-            <MonacoEditor Id="templateEditor" @ref="templateEditor" ConstructionOptions="GetTemplateEditorConstructionOptions" OnKeyUp="OnKeyUp" />
-        </div>
-        <div class="relative">
-            <div class="templateHelp">
-                <a href="https://github.com/scriban/scriban/blob/master/doc/language.md">Template language</a>
-                <a href="https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/CodeModel.md">Code model</a>
-                <a href="https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/BuiltInFunctions.md">Built-in functions</a>
+<div class="editorsWrap">
+    @if (isReady == false)
+    {
+        <div class="busyIndicator"><p>loading, please wait<br/> be mindful, C# compiler Roslyn is running in your browser through Blazor WASM, it is slow by design</p></div>
+    }
+    <div class="editors">
+        <div class="editor">
+            <div class="editorHeader">InputCode.cs</div>
+            <div class="editorContainer">
+                <MonacoEditor Id="codeEditor" @ref="codeEditor" ConstructionOptions="GetEditorConstructionOptions"  OnKeyUp="OnKeyUp" />
             </div>
         </div>
-    </div>
-    <div class="editor">
-        <div class="editorHeader">output.ts</div>
-        <div class="editorContainer">
-            <MonacoEditor Id="generatedFilesEditor" @ref="generatedFilesEditor"  ConstructionOptions="GetGeneratedFilesEditorConstructionOptions" />
+        <div class="editor">
+            <div class="editorHeader">template.nt</div>
+            <div class="editorContainer">
+                <MonacoEditor Id="templateEditor" @ref="templateEditor" ConstructionOptions="GetTemplateEditorConstructionOptions" OnKeyUp="OnKeyUp" />
+            </div>
+            <div class="relative">
+                <div class="templateHelp">
+                    <a href="https://github.com/scriban/scriban/blob/master/doc/language.md">Template language</a>
+                    <a href="https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/CodeModel.md">Code model</a>
+                    <a href="https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/BuiltInFunctions.md">Built-in functions</a>
+                </div>
+            </div>
+        </div>
+        <div class="editor">
+            <div class="editorHeader">output.ts</div>
+            <div class="editorContainer">
+                <MonacoEditor Id="generatedFilesEditor" @ref="generatedFilesEditor"  ConstructionOptions="GetGeneratedFilesEditorConstructionOptions" />
+            </div>
         </div>
     </div>
 </div>

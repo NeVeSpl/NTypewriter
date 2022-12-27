@@ -1,0 +1,18 @@
+﻿{{ for class in data.Classes | Types.ThatInheritFrom "ControllerBase"
+       capture output }}
+module App { 
+    export class {{ class.Name }} {
+        constructor(private $http: ng.IHttpService) {
+        } 
+    {{  for method in class.Methods | Symbols.ThatArePublic 
+            parameters = method | Action.Parameters | Parameters.ToTypeScript | Array.Join ", "; 
+            bodyParameterName = (method | Action.BodyParameter)?.Name ?? "null" }}
+        public {{ method.Name | String.ToCamelCase }} = ({{ parameters }}) => {
+            return this.$http({ url: `{{ method | Action.Url }}`, method: "{{ method | Action.HttpMethod }}", data: {{ bodyParameterName }} });
+        }
+    {{- end}}
+    }
+}
+{{-    end
+   Save output class.BareName + ".ts"
+   end }}

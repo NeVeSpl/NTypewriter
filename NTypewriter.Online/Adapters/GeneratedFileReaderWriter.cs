@@ -23,6 +23,7 @@ namespace NTypewriter.Online.Adapters
         {
             stringBuilder.AppendLine($"//== File: {path}");
             stringBuilder.Append(text);
+            stringBuilder.AppendLine("");
             return Task.CompletedTask;
         }
 

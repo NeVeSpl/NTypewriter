@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace NTypewriter.Online.Pages
         private MonacoEditor codeEditor;
         private MonacoEditor templateEditor;
         private MonacoEditor generatedFilesEditor;
+        private bool isReady = false;
 
         [Inject]
         NavigationManager NavigationManager { get; set; }
@@ -25,15 +27,26 @@ namespace NTypewriter.Online.Pages
         [Inject]
         private Runner Runner { get; set; }
 
+        [Parameter]
         public string ExampleId
         { 
             get => exampleId;
             set 
-            { 
-                exampleId = value; 
+            {
+                if (exampleId != value)
+                {
+                    exampleId = value;
+                    if (isReady)
+                    {
+                        _ = OnExampleHasChanged();
+                    }
+                }
             }
         }
-        public List<Example> Examples { get; set; } = new List<Example>();
+
+       
+
+        public IReadOnlyList<Example> Examples { get; set; }
         public string UIOutput
         {
             get;
@@ -87,21 +100,40 @@ namespace NTypewriter.Online.Pages
 
         protected async override Task OnInitializedAsync()
         {
-            Examples = new List<Example>() { new Example("sampe", "Basic sample"), new Example("nsbe", "Typewriter : Hello world") };
-            ExampleId = "sampe";
-
-
+            Examples = ExampleRepository.Get();
+            ExampleId ??= Examples.FirstOrDefault().ExampleId;
+            
             await Runner.Initialize(NavigationManager.BaseUri);
-
-            var sampleCode = await HttpClient.GetStringAsync("sample-cs/dto.cs");
-            await codeEditor.SetValue(sampleCode);
-
-            var sampleTemplate = await HttpClient.GetStringAsync("sample-nt/dto.nt");
-            await templateEditor.SetValue(sampleTemplate);
-
+            await LoadData(ExampleId);
             RequestUpdate(false);
+            isReady = true;
 
             await base.OnInitializedAsync();
+        }
+
+        private async Task OnExampleHasChanged()
+        {
+            isReady = false;
+            await codeEditor.SetValue("");
+            await templateEditor.SetValue("");
+            await generatedFilesEditor.SetValue("");
+
+            await LoadData(ExampleId);
+            RequestUpdate(false);
+
+            isReady = true;
+        }
+        private async Task LoadData(string id)
+        {
+            var selectedExample = Examples.FirstOrDefault(x => x.ExampleId == id);
+            if (selectedExample != null)
+            {
+                var sampleCode = await HttpClient.GetStringAsync($"sample-cs/{selectedExample.CSPath}");
+                await codeEditor.SetValue(sampleCode);
+
+                var sampleTemplate = await HttpClient.GetStringAsync($"sample-nt/{selectedExample.TSPath}");
+                await templateEditor.SetValue(sampleTemplate);
+            }
         }
 
 
