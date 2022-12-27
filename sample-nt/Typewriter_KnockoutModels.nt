@@ -1,0 +1,33 @@
+﻿{{ for class in data.Classes | Symbols.WhereNameEndsWith "Model"
+       capture output }}
+module App { 
+
+    export class {{ class.BareName }} { 
+    {{  for property in class.Properties | Symbols.ThatArePublic 
+            name = property.Name | String.ToCamelCase;            
+            tsType = property.Type| Type.ToTypeScriptType | String.RemoveLast "[]";
+            arrayPostfix = property.Type.IsCollection ? "Array" : "";
+            default = property.Type | Type.ToTypeScriptDefault;
+    }}
+        public {{name}}: KnockoutObservable{{arrayPostfix}}<{{tsType}}> = ko.observable{{arrayPostfix}}<{{tsType}}>({{default}});
+    {{- end}}
+
+        constructor(data: any = null) {
+
+            if (data !== null) {
+             {{- for property in class.Properties | Symbols.ThatArePublic 
+                     name = property.Name | String.ToCamelCase; 
+                     tsType = property.Type| Type.ToTypeScriptType | String.RemoveLast "[]"
+                     nameWithPrefix = "data." + name;
+                     initializer = property.Type.IsPrimitive ? nameWithPrefix : "new " + tsType + "(" + nameWithPrefix + ")";
+                     initializer = property.Type.IsCollection ? (nameWithPrefix + ".map(i => new " + tsType + "(i))") : initializer;
+             }}
+                this.{{name}}({{initializer}});
+             {{- end }}
+            }
+        }
+    }
+}
+{{-    end
+   Save output class.BareName + ".ts"
+   end }}

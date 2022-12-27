@@ -1,0 +1,12 @@
+﻿{{ for class in data.Classes | Symbols.WhereNameEndsWith "Model"
+       capture output -}}
+module App { 
+    export class {{ class.BareName }} { 
+    {{- for property in class.Properties | Symbols.ThatArePublic }}
+        public {{ property.Name | String.ToCamelCase }}: {{ property.Type | Type.ToTypeScriptType }};
+    {{- end}}
+    }
+}
+{{-    end
+   Save output class.BareName + ".ts"
+   end }}
