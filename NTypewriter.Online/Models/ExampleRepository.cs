@@ -6,7 +6,9 @@ namespace NTypewriter.Online.Models
     {
         private static readonly List<Example> Examples = new List<Example>()
         {
-            new Example("full01", "Model/DTO sample", "NTypewriter.Examples.cs", "dto.nt" ),
+            new Example("full01", "Model/DTO sample", "NTypewriter.Examples.cs", "DTOTemplate.nt" ),
+            new Example("full02", "Enum sample", "NTypewriter.Examples.cs", "EnumTemplate.nt" ),
+            new Example("full03", "Service sample", "NTypewriter.Examples.cs", "ServiceTemplate.nt" ),
             new Example("type01", "Typewriter : Create your first template",  "NTypewriter.Examples.cs", "Typewriter_CreateYourFirstTemplate.nt"),
             new Example("type02", "Typewriter : Model interfaces",  "NTypewriter.Examples.cs", "Typewriter_ModelInterfaces.nt"),
             new Example("type03", "Typewriter : Knockout models",  "NTypewriter.Examples.cs", "Typewriter_KnockoutModels.nt"),

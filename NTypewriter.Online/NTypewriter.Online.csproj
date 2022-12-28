@@ -6,6 +6,7 @@
 		<Nullable>disable</Nullable>
 		<LangVersion>preview</LangVersion>
 		<BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
+		<InvariantGlobalization>true</InvariantGlobalization>
 	</PropertyGroup>
 
 	<ItemGroup>

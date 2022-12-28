@@ -1,0 +1,29 @@
+﻿{{- for controller in data.Classes |  Symbols.ThatHaveAttribute "ApiController"
+        capture output
+        serviceName = controller.BareName | String.Replace "Controller" "Service"
+-}}
+
+{{- for dependency in controller | Type.AllReferencedTypes }}
+import { {{ dependency.BareName }} } from "{{ dependency.FullName }}";
+{{- end }}
+
+export class {{ serviceName }}
+{
+    static Type = "{{ serviceName }}";
+{{ for method in controller.Methods
+       returnType = method | Action.ReturnType | Type.ToTypeScriptType;
+       bodyParameterName = (method | Action.BodyParameter)?.Name ?? "null";
+       parameters = method | Action.Parameters | Parameters.ToTypeScript | Array.Join ", ";
+       url = method | Action.Url;
+       httpMethod = method | Action.HttpMethod;  
+}}
+    {{ method.Name | String.ToCamelCase }}({{ parameters }}){{ returnType ?! " : Promise<" + returnType + ">"  }}
+    {
+        // makeRequest ("{{ httpMethod }}", `{{ url }}`, {{ bodyParameterName }});
+    }
+{{- end }}
+}
+
+{{      end; 
+   Save output serviceName + ".tsx"
+   end; }}

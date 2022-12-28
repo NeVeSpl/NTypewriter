@@ -40,10 +40,10 @@ namespace NTypewriter.Online
         public async Task<Result> RunAsync(string inputCode, string template, CancellationToken cancellationToken)
         { 
             var userCodeProvider = new UserCodeProvider();
-            var templateToRender = new TemplateToRender("template.nt", "NTypewriter.Online") { Content = template };
+            var templateToRender = new TemplateToRender("template.nt", "NTypewriter.Online.Demo") { Content = template };
 
             var generatorTree = CSharpSyntaxTree.ParseText(inputCode, new CSharpParseOptions(kind: SourceCodeKind.Regular), "InputCode.cs", cancellationToken: cancellationToken);
-            var generatorCompilation = CSharpCompilation.Create("NTypewriter.Online", new[] { generatorTree }, References, new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+            var generatorCompilation = CSharpCompilation.Create("NTypewriter.Online.Demo", new[] { generatorTree }, References, new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
                    
             foreach (var diagnostic in generatorCompilation.GetDiagnostics())
             {
