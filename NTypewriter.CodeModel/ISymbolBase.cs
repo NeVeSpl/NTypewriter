@@ -40,6 +40,11 @@ namespace NTypewriter.CodeModel
         bool IsEvent { get; }
 
         /// <summary>
+        /// Determines if the symbol represents an error in syntax;
+        /// </summary>
+        bool IsErrorType { get; }
+
+        /// <summary>
         /// Determines if the symbol is a field
         /// </summary>
         bool IsField { get; }

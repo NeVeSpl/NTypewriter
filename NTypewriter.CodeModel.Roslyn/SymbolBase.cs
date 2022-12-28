@@ -15,6 +15,7 @@ namespace NTypewriter.CodeModel.Roslyn
         public bool IsVirtual => symbol.IsVirtual;
         public bool IsArray => symbol.Kind == SymbolKind.ArrayType;
         public bool IsEvent => symbol.Kind == SymbolKind.Event;
+        public bool IsErrorType => symbol.Kind == SymbolKind.ErrorType;
         public bool IsField => symbol.Kind == SymbolKind.Field;
         public bool IsMethod => symbol.Kind == SymbolKind.Method;
         public bool IsProperty => symbol.Kind == SymbolKind.Property;

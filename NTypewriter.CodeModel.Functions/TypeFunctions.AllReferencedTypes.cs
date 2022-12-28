@@ -117,6 +117,11 @@ namespace NTypewriter.CodeModel.Functions
 
         private static void InspectType(HashSet<IType> foundTypes, IType type)
         {
+            if (type.IsErrorType)
+            {
+                return;
+            }
+
             if (foundTypes.Contains(type))
             {
                 return;
