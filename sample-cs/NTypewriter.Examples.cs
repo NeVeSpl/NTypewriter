@@ -8,7 +8,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Models
 {
-    public class WeatherForecast
+    public class WeatherForecast : BaseModel
     {
         public DateOnly Date { get; set; }
         public int TemperatureC { get; set; }
@@ -23,13 +23,23 @@ namespace WebApplication1.Models
         public ICollection<OrderModel> Orders { get; set; }
     }
 
+    public class BaseModel { };
+
     public class GenericModel<T>
     {
         public T GenericProp { get; set; }
     }
 
-    public record OrderModel(string orderId);
+    public record OrderModel(string orderId, Numbers number);
 
+    public enum Numbers { One, Two, Three, Seven = 7 };
+
+    public class OffsetPagination
+    {
+        public int Offset { get; set; } = 0;
+        [Range(0, 100)]
+        public int Limit { get; set; } = 10;
+    }
 }
 namespace WebApplication1.Controllers
 {
@@ -50,9 +60,21 @@ namespace WebApplication1.Controllers
     {
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<long>> CreateCustomer(CustomerModel customer)
+        public async Task<ActionResult<long>> CreateCustomer([FromServices] UsersService userService, CustomerModel customer)
         {
             return Ok();
+        }
+
+        [HttpGet("EmailAddress/IsTaken")]
+        public async Task<ActionResult<bool>> IsEmailAddressTaken(string emailAddress)
+        {
+            return Ok(true);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<CursorPagedResults<UserDTO>>> GetCustomers([FromQuery] OffsetPagination pagination)
+        {
+            yield break;
         }
     }
 }
