@@ -97,7 +97,8 @@ namespace NTypewriter.SourceGenerator
                 var userCodeProvider = new UserCodeProvider(userCodePaths);
                 var userInterfaceOutputWriter = new UserInterfaceOutputWriter();
 
-                var cmd = new RenderTemplatesCommand(null, userCodeProvider, new GeneratedFileReaderWriter(), userInterfaceOutputWriter, null, null, null, null);
+                context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.ProjectDir", out var projectDir);
+                var cmd = new RenderTemplatesCommand(null, userCodeProvider, new GeneratedFileReaderWriter(context, projectDir), userInterfaceOutputWriter, null, null, null, null);
                 cmd.Execute(context.Compilation, templates).GetAwaiter().GetResult();
 
                 var log = userInterfaceOutputWriter.GetOutput();
