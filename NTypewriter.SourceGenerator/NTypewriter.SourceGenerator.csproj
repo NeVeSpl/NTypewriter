@@ -5,8 +5,8 @@
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<Version>0.1.70</Version>
-		<AssemblyVersion>0.1.70.0</AssemblyVersion>
+		<Version>0.2.1</Version>
+		<AssemblyVersion></AssemblyVersion>
 	    <PackageIcon>nt.128.128.png</PackageIcon>
 	    <Authors>NeVeSpl</Authors>
         <Company>NeVeSpl</Company>
