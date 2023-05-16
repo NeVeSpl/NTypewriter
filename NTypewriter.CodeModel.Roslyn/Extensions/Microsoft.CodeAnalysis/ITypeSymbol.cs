@@ -20,7 +20,7 @@ namespace Microsoft.CodeAnalysis
             {
                 return NamedType.Create(namedTypeSymbol);
             }
-            return defaultConstantValue?.ToString();
+            return defaultConstantValue;
         }
     }
 }
