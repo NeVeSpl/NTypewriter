@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>xKey.snk</AssemblyOriginatorKeyFile>
-    <Version>0.4.1</Version>
+    <Version>0.4.2</Version>
     <Authors>NeVeSpl</Authors>
     <Company>NeVeSpl</Company>
     <Copyright>(c) NTypewriter</Copyright>
@@ -12,7 +12,7 @@
     <RepositoryUrl>https://github.com/NeVeSpl/NTypewriter</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>0.4.1.0</AssemblyVersion>
+    <AssemblyVersion>0.4.2.0</AssemblyVersion>
     <PackageIcon>nt.128.128.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression> 
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
