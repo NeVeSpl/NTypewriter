@@ -17,7 +17,7 @@ namespace NTypewriter.SourceGenerator
     [Generator]
     public class NTypewriterSourceGenerator : ISourceGenerator
     {
-        private static readonly ConcurrentDictionary<string, GeneratorInfo> AssemblyGeneratorInfo = new ConcurrentDictionary<string, GeneratorInfo>();
+        private static readonly ConcurrentDictionary<(string AssemblyName, string OutputDir), GeneratorInfo> AssemblyGeneratorInfo = new ConcurrentDictionary<(string, string), GeneratorInfo>();
         private static readonly string Version = typeof(NTypewriterSourceGenerator).Assembly.GetName().Version.ToString();
         private static readonly object Padlock = new Object();
 
@@ -51,9 +51,7 @@ namespace NTypewriter.SourceGenerator
 
         public void Execute(GeneratorExecutionContext context)
         {
-            var assemblyName = context.Compilation.AssemblyName;
-
-            var info = AssemblyGeneratorInfo.GetOrAdd(assemblyName, key => NewGeneratorInfo(key, context));
+            var info = GetGeneratorInfo(context);
 
             Interlocked.Increment(ref info.ExecuteCount);
             info.LastTouch = File.GetLastWriteTime(info.TouchFilePath);
@@ -106,12 +104,14 @@ namespace NTypewriter.SourceGenerator
             }
         }
 
-        private GeneratorInfo NewGeneratorInfo(string assemplyName, GeneratorExecutionContext context)
+        private static GeneratorInfo GetGeneratorInfo(GeneratorExecutionContext context)
         {
             context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.OutputPath", out var outputPath);
             context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.ProjectDir", out var projectDir);
+            var assemblyName = context.Compilation.AssemblyName;
+            var outputDir = GetOutputDir(outputPath, projectDir);
 
-            return new GeneratorInfo(assemplyName, projectDir, GetOutputDir(outputPath, projectDir));
+            return AssemblyGeneratorInfo.GetOrAdd((assemblyName, outputDir), _ => new GeneratorInfo(assemblyName, projectDir, outputDir));
         }
 
         private static string GetOutputDir(string outputPath, string projectDir)
@@ -125,7 +125,7 @@ namespace NTypewriter.SourceGenerator
             return fullOutputPath;
         }
 
-        class GeneratorInfo
+        private sealed class GeneratorInfo
         {
             public GeneratorInfo(string assemblyName, string projectDir, string outputDir)
             {
