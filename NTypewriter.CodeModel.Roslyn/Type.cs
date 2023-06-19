@@ -15,6 +15,7 @@ namespace NTypewriter.CodeModel.Roslyn
         public bool IsDelegate => symbol.TypeKind == TypeKind.Delegate;
         public bool IsEnum => symbol.TypeKind == TypeKind.Enum;
         public bool IsCollection => symbol.AllInterfaces.Any(x => x.ToString() == "System.Collections.ICollection" || x.ToString().StartsWith("System.Collections.Generic.ICollection")) || this.FullName.StartsWith("System.Collections.Generic.ICollection") || this.FullName == "System.Collections.ICollection";
+        public bool IsDynamic => symbol.TypeKind == TypeKind.Dynamic;
         public bool IsGeneric => (symbol is INamedTypeSymbol x) && x.IsGenericType;
         public bool IsInterface => symbol.TypeKind == TypeKind.Interface;
         public bool IsNullable => symbol.NullableAnnotation == NullableAnnotation.Annotated;      

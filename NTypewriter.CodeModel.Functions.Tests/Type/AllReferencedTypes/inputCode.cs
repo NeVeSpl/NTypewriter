@@ -24,6 +24,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type
         ArrayType[] arrayField;
         PropertyType property { get; set; }
         NullableReferenceType? nullableReferenceType;
+        dynamic dynamicType;
 
         MethodReturnType Method(ParameterType type)
         {

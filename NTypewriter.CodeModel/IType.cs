@@ -25,6 +25,11 @@ namespace NTypewriter.CodeModel
         bool IsCollection { get; }
 
         /// <summary>
+        /// Determines if the type is a dynamic
+        /// </summary>
+        bool IsDynamic { get; }
+
+        /// <summary>
         /// Determines if the type is a delegate
         /// </summary>
         bool IsDelegate { get; }

@@ -145,12 +145,21 @@ namespace NTypewriter.CodeModel.Functions
             if ((type.IsNullable) && (type.IsSimple()))
             {
                 return;
-            }            
-            if (type.Namespace.StartsWith("System.") || type.Namespace.StartsWith("Microsoft.") ||
-                type.Namespace.Equals("System") || type.Namespace.Equals("Microsoft")
-                )
+            }
+
+            if (type.IsDynamic)
             {
                 return;
+            }
+
+            if (!string.IsNullOrEmpty(type.Namespace))
+            {
+                if (type.Namespace.StartsWith("System.") || type.Namespace.StartsWith("Microsoft.") ||
+                    type.Namespace.Equals("System") || type.Namespace.Equals("Microsoft")
+                    )
+                {
+                    return;
+                }
             }
 
             foundTypes.Add(type);
