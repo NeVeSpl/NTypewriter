@@ -1,3 +1,7 @@
-﻿Tests.Assets.WebApi2022.Controllers.WeatherForecastController
+Tests.Assets.WebApi2022.Controllers.WeatherForecastController
+Tests.Assets.WebApi2022.CustomFunctions
+Tests.Assets.WebApi2022.NonPublicStaticClass
+Tests.Assets.WebApi2022.PublicNonStaticClass
 Tests.Assets.WebApi2022.SampleConfig
+Tests.Assets.WebApi2022.SomeGenericPublicStaticClass<T>
 Tests.Assets.WebApi2022.WeatherForecast

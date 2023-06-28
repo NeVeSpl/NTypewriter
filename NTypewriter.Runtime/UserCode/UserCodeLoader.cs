@@ -82,7 +82,10 @@ namespace NTypewriter.Runtime.UserCode
                         }
                     }
 
-                    result.TypesThatMayContainCustomFunctions = configAssembly.GetTypes().Where(x => x.IsClass).Where(x => x.CustomAttributes.All(y => y.AttributeType.Name != "CompilerGeneratedAttribute")).ToList();
+                    result.TypesThatMayContainCustomFunctions = configAssembly.GetTypes()
+                        .Where(x => !x.ContainsGenericParameters) // Class with generic parameters won't be able to be compiled as custom functions.
+                        .Where(x => x.IsPublic && x.IsClass && x.IsAbstract && x.IsSealed) // public static class only (static == abstract+sealed)
+                        .Where(x => x.CustomAttributes.All(y => y.AttributeType.Name != "CompilerGeneratedAttribute")).ToList();
 
                     output.Info("User code loaded successfully");
                     cache[projectFilePath] = new CacheItem(userCodeFilePaths, result);

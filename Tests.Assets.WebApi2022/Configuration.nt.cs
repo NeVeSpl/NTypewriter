@@ -16,4 +16,12 @@ namespace Tests.Assets.WebApi2022
             ProjectsToBeSearched = new[] { "Tests.Assets.WebApi2022" };           
         }
     }
+
+    public static class CustomFunctions { }
+
+    #region Non valid custom function type (only non generic public static class)
+    public class PublicNonStaticClass { }
+    static class NonPublicStaticClass { }
+    public static class SomeGenericPublicStaticClass<T> { }
+    #endregion
 }

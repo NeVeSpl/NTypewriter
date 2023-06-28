@@ -11,6 +11,7 @@ https://www.nuget.org/packages/NTypewriter.CodeModel/
 You can extend your template with custom functions. Custom functions are defined in separate **.nt.cs** file that should be located in the same project as *.nt template file. It does not have to be csharp project though, since this file will be compiled outside of the project. This imposes  some constraints on the file:  
 
 - no external dependencies are allowed 
+- custom functions need to be defined as methods in a public static non-generic class.
 - the file will be compiled with **.net Standard 2.0** regardless of the project settings in which it is placed
 
 Sample file (*.nt.cs) with custom function and all necessary boilerplate code:
@@ -22,7 +23,7 @@ using NTypewriter.CodeModel;
 
 namespace ConsoleApp
 {    
-    class NameIsNotImportant 
+    public static class NameIsNotImportant 
     { 
         public static string MyCustomFunction(IClass @class)
         {

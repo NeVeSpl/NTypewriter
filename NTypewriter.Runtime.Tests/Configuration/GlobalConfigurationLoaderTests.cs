@@ -22,10 +22,10 @@ namespace NTypewriter.Runtime.Tests
             var output = new IOutputMock();          
 
             var userCode = UserCodeLoader.LoadUserCodeFromGivenProject(project.FilePath, new IFileSearcherMock(), output);
-            var config = userCode.GlobalConfig;
-
-            Assert.AreEqual(false, config.AddGeneratedFilesToVSProject);
-            config.ProjectsToBeSearched.ShouldBe(new[] { "Tests.Assets.WebApi2022" });
+            
+            userCode.GlobalConfig.AddGeneratedFilesToVSProject.ShouldBeFalse();
+            userCode.GlobalConfig.ProjectsToBeSearched.ShouldBe(new[] { "Tests.Assets.WebApi2022" });
+            userCode.TypesThatMayContainCustomFunctions.Select(x => x.FullName).ShouldBe(new[] { "Tests.Assets.WebApi2022.CustomFunctions" }, ignoreOrder: true);
         }
     }
 }
