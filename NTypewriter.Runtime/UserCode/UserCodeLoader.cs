@@ -163,8 +163,8 @@ namespace NTypewriter.Runtime.UserCode
                 typeof(ICodeModel),
                 typeof(ActionFunctions),
                 typeof(ISet<>),
-                typeof(System.Text.Json.JsonSerializer)
-
+                typeof(System.Text.Json.JsonSerializer),
+                typeof(System.Text.RegularExpressions.Regex)
             };
             var references = refTypes.Select(x => MetadataReference.CreateFromFile(x.Assembly.Location)).ToList();
 
