@@ -6,7 +6,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
-      "NTypewriter.Online.dll": "sha256-U0s6H8ONSiibh\/nxTRexuug9MYa8lIhJQ3UmjM40ytk=",
+      "NTypewriter.Online.dll": "sha256-fL9hmGNc9VbTu30NX3EqScXPudIsnqZeC65EhmyXp4E=",
       "Microsoft.Extensions.DependencyInjection.Abstractions.dll": "sha256-O+AClmxYmKcKCv\/PvQk4tx2T7TlTwypImRCpMNwiwms=",
       "netstandard.dll": "sha256-\/zcPVM75OAY+joGVM8yIC1gO1SFYWP1CFERgQ8PJkfA=",
       "System.Xml.Linq.dll": "sha256-IPbQMdJxZXdk8HTlaPyXdQ6Zb82iZLphnM74yO4EURQ=",
@@ -55,8 +55,8 @@
       "System.Reflection.Metadata.dll": "sha256-HrR2KzTVJLcS2SItvDR1SnMdtXV62kPc0bdHDnusgVU=",
       "Microsoft.CodeAnalysis.dll": "sha256-FZ9ZXjE\/jMCbrBRYjiRmwxL1EqR3jZ+iNS\/MzypTqj0=",
       "System.Text.Encoding.CodePages.dll": "sha256-A4+6\/yKbXS2vs7Vr1quzSX26JTW4l3sDC1EazeKyye0=",
-      "NTypewriter.Runtime.dll": "sha256-y8Ph6JcjDhqDKPHeLlThhMV8qtFxlecHdjZJ0d+G0C0=",
-      "NTypewriter.CodeModel.Roslyn.dll": "sha256-0ErgXxPueBg5HQC66wfHJ0HWw0ZZVg\/q4cYHsKYbfwM=",
+      "NTypewriter.Runtime.dll": "sha256-Fi84PSey7IfoqfbbdbfZi+8JQoV8fLZYRxW\/e6iqJ48=",
+      "NTypewriter.CodeModel.Roslyn.dll": "sha256-zymWLAj2J1TRfQwmgqmgObOmPKCE2PiR1yVCmnzNeGA=",
       "NTypewriter.Editor.Config.dll": "sha256-wpWbqqE9fdo9+nH5bjnkmilgrihUu5clBWilyAEEuSY=",
       "Microsoft.CodeAnalysis.Workspaces.dll": "sha256-T97Ay9dYPSyPDcTnk3HWupxwsBVdpnKz9DFNN2U9qp4=",
       "System.Composition.Hosting.dll": "sha256-eibpXg916AOttVXs\/QK8pZpTOkhV22yGGj3vthnc6BM=",
