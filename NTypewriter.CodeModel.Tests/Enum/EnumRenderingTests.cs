@@ -9,6 +9,12 @@ namespace NTypewriter.CodeModel.Tests.Enum
     public class EnumRenderingTests : BaseFixture
     {
         [TestMethod]
+        public async Task UnderlyingType()
+        {
+            await RunTestForProperty();
+        }
+
+        [TestMethod]
         public async Task Values()
         {
             await RunTestForProperty();

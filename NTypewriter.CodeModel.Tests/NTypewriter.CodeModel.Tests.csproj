@@ -23,6 +23,7 @@
     <Compile Remove="DocumentationCommentXml\Returns\inputCode.cs" />
     <Compile Remove="DocumentationCommentXml\Summary\inputCode.cs" />
     <Compile Remove="EnumValue\Attributes\inputCode.cs" />
+    <Compile Remove="Enum\UnderlyingType\inputCode.cs" />
     <Compile Remove="Enum\Values\inputCode.cs" />
     <Compile Remove="Event\Type\inputCode.cs" />
     <Compile Remove="Field\ConstantValue\inputCode.cs" />
@@ -106,6 +107,8 @@
     <None Remove="DocumentationCommentXml\Summary\inputTemplate.tsnt" />
     <None Remove="EnumValue\Attributes\expectedResult.txt" />
     <None Remove="EnumValue\Attributes\inputTemplate.tsnt" />
+    <None Remove="Enum\UnderlyingType\expectedResult.txt" />
+    <None Remove="Enum\UnderlyingType\inputTemplate.tsnt" />
     <None Remove="Enum\Values\expectedResult.txt" />
     <None Remove="Enum\Values\inputTemplate.tsnt" />
     <None Remove="Event\Type\expectedResult.txt" />
@@ -253,6 +256,9 @@
     <EmbeddedResource Include="EnumValue\Attributes\expectedResult.txt" />
     <EmbeddedResource Include="EnumValue\Attributes\inputCode.cs" />
     <EmbeddedResource Include="EnumValue\Attributes\inputTemplate.tsnt" />
+    <EmbeddedResource Include="Enum\UnderlyingType\expectedResult.txt" />
+    <EmbeddedResource Include="Enum\UnderlyingType\inputCode.cs" />
+    <EmbeddedResource Include="Enum\UnderlyingType\inputTemplate.tsnt" />
     <EmbeddedResource Include="Enum\Values\expectedResult.txt" />
     <EmbeddedResource Include="Enum\Values\inputCode.cs" />
     <EmbeddedResource Include="Enum\Values\inputTemplate.tsnt" />

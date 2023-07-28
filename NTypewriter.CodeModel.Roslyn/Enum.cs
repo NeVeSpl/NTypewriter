@@ -8,6 +8,7 @@ namespace NTypewriter.CodeModel.Roslyn
         private readonly INamedTypeSymbol symbol;
 
         public IEnumerable<IEnumValue> Values => EnumValueCollection.Create(symbol);
+        public IType UnderlyingType => Type.Create(symbol.EnumUnderlyingType);
 
 
         private Enum(INamedTypeSymbol symbol) : base(symbol)

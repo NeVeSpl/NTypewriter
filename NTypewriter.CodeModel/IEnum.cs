@@ -13,5 +13,10 @@ namespace NTypewriter.CodeModel
         /// All values defined in the enum.
         /// </summary>
         IEnumerable<IEnumValue> Values { get; }
-    }
+
+        /// <summary>
+        /// Gets the underlying type
+        /// </summary>
+        IType UnderlyingType { get; }
+     }
 }

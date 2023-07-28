@@ -1,0 +1,4 @@
+﻿IntEnum
+    int 
+LongEnum
+    long 
