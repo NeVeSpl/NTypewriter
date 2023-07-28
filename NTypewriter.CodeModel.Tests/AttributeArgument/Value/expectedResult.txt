@@ -1,0 +1,23 @@
+﻿AuctionContractCount44
+[StatisticsGroup]
+             name : type 
+             type : StatisticsGroupTypeEnum
+             value : StatisticsGroupTypeEnum.Restriction
+             -------------
+
+             name : values 
+             type : FederalLawEnum[]
+             value : [44]
+             -------------
+ContractSum
+[StatisticsGroup]
+             name : type 
+             type : StatisticsGroupTypeEnum
+             value : StatisticsGroupTypeEnum.Variation
+             -------------
+
+             name : values 
+             type : object[]
+             value : [2, 3]
+             -------------
+

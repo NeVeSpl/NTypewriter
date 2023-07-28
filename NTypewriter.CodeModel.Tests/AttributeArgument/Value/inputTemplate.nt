@@ -1,0 +1,17 @@
+﻿{{- capture captured}}
+{{- for enum in data.Enums | Symbols.WhereNamespaceStartsWith "NTypewriter.Tests.CodeModel" | Symbols.WhereNameEndsWith "RegionStatTypeEnum"}}
+    {{- for enum_item in enum.Values }} 
+    {{-  enum_item.Name}}
+         {{- for attr in enum_item.Attributes }}
+[{{ attr.Name }}] 
+         {{- for arg in attr.Arguments }}
+             name : {{ arg.Name }} 
+             type : {{ arg.Type }}
+             value : {{ arg.Value }}
+             -------------
+         {{~ end}}
+         {{- end }}
+    {{- end}}
+{{ end }}
+{{- end }}
+{{- Save captured "result" }}
