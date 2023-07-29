@@ -5,7 +5,7 @@
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<Version>0.2.1</Version>
+		<Version>0.2.4</Version>
 		<AssemblyVersion></AssemblyVersion>
 	    <PackageIcon>nt.128.128.png</PackageIcon>
 	    <Authors>NeVeSpl</Authors>
@@ -28,12 +28,12 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.11.0" PrivateAssets="all" GeneratePathProperty="true" />
 		
 		<PackageReference Include="Scriban.Signed" Version="5.7.0" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter" Version="0.4.1" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.CodeModel" Version="0.4.1" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.CodeModel.Functions" Version="0.4.1" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.CodeModel.Roslyn" Version="0.4.1" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.Editor.Config" Version="0.4.1" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.Runtime" Version="0.4.1" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter" Version="0.4.4" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel" Version="0.4.4" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel.Functions" Version="0.4.4" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel.Roslyn" Version="0.4.4" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.Editor.Config" Version="0.4.4" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.Runtime" Version="0.4.4" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="System.Text.Json" Version="6.0.0" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" PrivateAssets="all" GeneratePathProperty="true" />
 
