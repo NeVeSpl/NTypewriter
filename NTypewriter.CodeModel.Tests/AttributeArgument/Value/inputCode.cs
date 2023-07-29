@@ -12,7 +12,7 @@ namespace NTypewriter.Tests.CodeModel
         [StatisticsGroup(StatisticsGroupTypeEnum.Restriction, FederalLawEnum.FZ44)]
         AuctionContractCount44,
         
-        [StatisticsGroup(StatisticsGroupTypeEnum.Variation, 2, 3)]
+        [StatisticsGroup(StatisticsGroupTypeEnum.Variation, 2, FederalLawEnum.FZ69)]
         ContractSum,
     }
 

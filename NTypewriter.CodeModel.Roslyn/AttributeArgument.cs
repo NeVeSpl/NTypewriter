@@ -5,27 +5,14 @@ namespace NTypewriter.CodeModel.Roslyn
 {
     internal sealed class AttributeArgument : IAttributeArgument
     {
-        private readonly TypedConstant typedConstant;    
+        private readonly Microsoft.CodeAnalysis.TypedConstant typedConstant;    
 
         public bool IsFromConstructor { get; private set; }
         public string Name { get; private set; }
         public IType Type => NTypewriter.CodeModel.Roslyn.Type.Create(typedConstant.Type);
-        public object Value
-        {
-            get
-            {
-                if (typedConstant.Kind == TypedConstantKind.Array)
-                {
-                    return typedConstant.Values.Select(prop => prop.Value).ToArray();
-                }
-                else
-                {
-                    return typedConstant.Type.GetDefaultConstantValueAsString(typedConstant.Value);
-                }
-            }
-        }
+        public object Value => TypedConstant.Create(typedConstant);
 
-        public AttributeArgument(TypedConstant typedConstant, bool isFromConstructor, string name)
+        public AttributeArgument(Microsoft.CodeAnalysis.TypedConstant typedConstant, bool isFromConstructor, string name)
         {
             this.typedConstant = typedConstant;
             this.IsFromConstructor = isFromConstructor;

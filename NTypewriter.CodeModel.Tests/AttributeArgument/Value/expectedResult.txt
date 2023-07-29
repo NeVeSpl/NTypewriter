@@ -7,7 +7,7 @@
 
              name : values 
              type : FederalLawEnum[]
-             value : [44]
+             value : [FederalLawEnum.FZ44]
              -------------
 ContractSum
 [StatisticsGroup]
@@ -18,6 +18,6 @@ ContractSum
 
              name : values 
              type : object[]
-             value : [2, 3]
+             value : [2, FederalLawEnum.FZ69]
              -------------
 
