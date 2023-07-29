@@ -240,7 +240,7 @@ Returns the url for the Web API action based on route attributes (or the supplie
 void Debug.Throw(string message)
 ```
 Throws exception and stops rendering
-[[source code](/NTypewriter/Internals/DebugFunctions.cs#L19)]
+[[source code](/NTypewriter/Internals/Functions/DebugFunctions.cs#L19)]
 
 #### WriteLine
 
@@ -248,7 +248,7 @@ Throws exception and stops rendering
 void Debug.WriteLine(MainTemplateContext context, string text)
 ```
 Write text on NTypewriter output window
-[[source code](/NTypewriter/Internals/DebugFunctions.cs#L11)]
+[[source code](/NTypewriter/Internals/Functions/DebugFunctions.cs#L11)]
 
 ----
 
@@ -510,7 +510,7 @@ Filters types based on if a type inherits directly from given type
 
 # Scriban functions
 
-Below functions come from Scriban, and you can read more about them in [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md)
+Following functions come from Scriban, and you can read more about them in [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md)
 
 
 

@@ -4,7 +4,6 @@
 > Above diagram was generated from : [NTypewriter.CodeModel.flowchart.mmd](https://github.com/NeVeSpl/NTypewriter/blob/master/Documentation/NTypewriter.CodeModel.flowchart.mmd)
 
 
-
       
 #### IAttribute
 
@@ -32,7 +31,7 @@ Property | Description | Returns
 IsFromConstructor | Determines if arguments is present in the attribute constructor | `bool`  
 Name | The name of the argument. | `string`  
 Type | The type of the argument. | [`IType`](#IType)  
-Value | The value of the argument. | `object`  
+Value | The value of the argument represented by ITypedConstant or ITypedConstant[] | `object`  
 
 
 Implements : 
@@ -136,6 +135,7 @@ Represents an enum.
 
 Property | Description | Returns
 --------|---------|-----------
+UnderlyingType | Gets the underlying type | [`IType`](#IType)  
 Values | All values defined in the enum. | [`IEnumerable<IEnumValue>`](#IEnumValue)  
 
 
@@ -330,6 +330,7 @@ DocComment | The XML documentation for the comment associated with the symbol. |
 FullName | The Namespace + the name of the symbol | `string`  
 IsAbstract | Determines if the symbol is abstract | `bool`  
 IsArray | Determines if the symbol is an array | `bool`  
+IsErrorType | Determines if the symbol represents an error in syntax; | `bool`  
 IsEvent | Determines if the symbol is an event | `bool`  
 IsField | Determines if the symbol is a field | `bool`  
 IsMethod | Determines if the symbol is a method | `bool`  
@@ -361,6 +362,7 @@ Interfaces | The set of interfaces that this type directly implements. This set 
 IsAnonymousType | Determines if the type is anonymous | `bool`  
 IsCollection | Determines if the type is a collection | `bool`  
 IsDelegate | Determines if the type is a delegate | `bool`  
+IsDynamic | Determines if the type is a dynamic | `bool`  
 IsEnum | Determines if the type is an enum | `bool`  
 IsEnumerable | Determines if the type is enumerable | `bool`  
 IsGeneric | Determines if the type is generic | `bool`  
@@ -375,6 +377,21 @@ TypeArguments | The type arguments that have been substituted for the type param
 
 
 Implements :  [`ISymbolBase`](#ISymbolBase) 
+
+---
+
+      
+#### ITypedConstant
+
+Represents a typed constant.
+
+Property | Description | Returns
+--------|---------|-----------
+Type | The type of the constant. | [`IType`](#IType)  
+Value | The value for a non-array constant. | `object`  
+
+
+Implements : 
 
 ---
 
