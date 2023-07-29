@@ -537,7 +537,7 @@ Concatenates two lists.
 ```csharp
 IEnumerable Array.Compact(IEnumerable list)
 ```
-Removes any non-null values from the input list. 
+Removes any null values from the input list. 
 [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#arraycompact)
 
 #### Concat
@@ -553,7 +553,7 @@ Concatenates two lists.
 ```csharp
 bool Array.Contains(IEnumerable list, object item)
 ```
-Returns if an `list` contains an specifique element 
+Returns if a `list` contains a specific `item`. 
 [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#arraycontains)
 
 #### Cycle
