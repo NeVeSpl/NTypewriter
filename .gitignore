@@ -30,3 +30,5 @@ NTypewriter.SourceGenerator/bin/
 NTypewriter.Online/bin/
 NTypewriter.Online/obj/
 publish/
+nugets/
+publish_nuget.bat

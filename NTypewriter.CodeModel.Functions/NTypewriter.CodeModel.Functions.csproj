@@ -15,9 +15,8 @@
     <AssemblyVersion>0.4.4.0</AssemblyVersion>
     <PackageIcon>nt.128.128.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-	
-    
     <Description>Set of functions that operates on abstract C# code model.</Description>
+	<PackageOutputPath>..\nugets\</PackageOutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -16,9 +16,9 @@
     <PackageIcon>nt.128.128.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>obj\Release\netstandard2.0\NTypewriter.Editor.Config.xml</DocumentationFile>
-	  
+    <DocumentationFile>obj\Release\netstandard2.0\NTypewriter.Editor.Config.xml</DocumentationFile>	  
     <Description>Configuration for NTypewriter editor for Visual Studio</Description>
+	<PackageOutputPath>..\nugets\</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>

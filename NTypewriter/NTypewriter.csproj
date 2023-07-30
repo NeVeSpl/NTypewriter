@@ -16,9 +16,9 @@
     <PackageIcon>nt.128.128.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression> 
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>obj\Release\netstandard2.0\NTypewriter.xml</DocumentationFile>
-	  
-    <Description>File/code generator from Scriban text templates populated with Roslyn C# code model</Description>    
+    <DocumentationFile>obj\Release\netstandard2.0\NTypewriter.xml</DocumentationFile>	  
+    <Description>File/code generator from Scriban text templates populated with Roslyn C# code model</Description>
+	<PackageOutputPath>..\nugets\</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>

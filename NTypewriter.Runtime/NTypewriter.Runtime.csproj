@@ -14,9 +14,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>0.4.4.0</AssemblyVersion>
     <PackageIcon>nt.128.128.png</PackageIcon>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>  
-	
+    <PackageLicenseExpression>MIT</PackageLicenseExpression> 
     <Description>App-independent engine used to run NTypewriter from UI</Description>
+	<PackageOutputPath>..\nugets\</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
