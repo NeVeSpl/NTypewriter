@@ -2,6 +2,6 @@
     DebuggerDisplay : [value : Test]
     Sample : []
 SampleClass2
-    Sample : [arrayOfInts : NTypewriter.CodeModel.Roslyn.TypedConstant[]]
+    Sample : [arrayOfInts : System.Object[]]
 SampleAttribute
     AttributeUsage : [validOn : AttributeTargets.All, Inherited : False]

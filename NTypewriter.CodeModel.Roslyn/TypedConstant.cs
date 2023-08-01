@@ -22,13 +22,25 @@ namespace NTypewriter.CodeModel.Roslyn
         {
             if (typedConstant.Kind == TypedConstantKind.Array)
             { 
-                return typedConstant.Values.Select(x => new TypedConstant(x)).ToArray();
+                return typedConstant.Values.Select(x => CreateSingle(x)).ToArray();
             }
-            else
+            return CreateSingle(typedConstant);            
+        }
+
+        private static object CreateSingle(Microsoft.CodeAnalysis.TypedConstant typedConstant)
+        {
+            if (typedConstant.Kind == TypedConstantKind.Enum)
             {
                 return new TypedConstant(typedConstant);
             }
+            if (typedConstant.Value is INamedTypeSymbol namedTypeSymbol)
+            {
+                return NamedType.Create(namedTypeSymbol);
+            }
+            return typedConstant.Value;
         }
+     
+
 
         public override string ToString()
         {
