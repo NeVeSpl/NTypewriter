@@ -1,4 +1,10 @@
-﻿AuctionContractCount44
+﻿NullOne
+[StatisticsGroup]
+             name : object 
+             type : object
+             value : 
+             -------------
+AuctionContractCount44
 [StatisticsGroup]
              name : type 
              type : StatisticsGroupTypeEnum

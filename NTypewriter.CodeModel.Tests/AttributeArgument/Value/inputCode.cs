@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 namespace NTypewriter.Tests.CodeModel
 {
     public enum RegionStatTypeEnum
-    {        
+    {
+        [StatisticsGroup(null)]
+        NullOne,
+
         [StatisticsGroup(StatisticsGroupTypeEnum.Restriction, FederalLawEnum.FZ44)]
         AuctionContractCount44,
         
@@ -19,6 +22,11 @@ namespace NTypewriter.Tests.CodeModel
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
     public class StatisticsGroupAttribute : Attribute
     {
+        public StatisticsGroupAttribute(object @object)
+        {
+
+        }
+
         public StatisticsGroupAttribute(StatisticsGroupTypeEnum type, params object[] values)
         {
            

@@ -32,7 +32,7 @@ namespace NTypewriter.CodeModel.Roslyn
 
         public override string ToString()
         {
-            string valueAsString = typedConstant.Type.GetDefaultConstantValueAsString(typedConstant.Value).ToString();
+            string valueAsString = typedConstant.Type.GetDefaultConstantValueAsString(typedConstant.Value)?.ToString();
 
             return valueAsString;
         }
