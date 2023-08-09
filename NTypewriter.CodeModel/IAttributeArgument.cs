@@ -25,7 +25,7 @@ namespace NTypewriter.CodeModel
         IType Type { get; }      
 
         /// <summary>
-        /// The value of the argument represented by ITypedConstant or ITypedConstant[]
+        /// The value of the argument
         /// </summary>
         object Value { get; }
     }
