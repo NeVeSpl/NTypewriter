@@ -31,7 +31,7 @@ Property | Description | Returns
 IsFromConstructor | Determines if arguments is present in the attribute constructor | `bool`  
 Name | The name of the argument. | `string`  
 Type | The type of the argument. | [`IType`](#IType)  
-Value | The value of the argument represented by ITypedConstant or ITypedConstant[] | `object`  
+Value | The value of the argument | `object`  
 
 
 Implements : 
