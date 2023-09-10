@@ -27,7 +27,7 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.11.0" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.11.0" PrivateAssets="all" GeneratePathProperty="true" />
 		
-		<PackageReference Include="Scriban.Signed" Version="5.7.0" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="Scriban.Signed" Version="5.9.0" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="NTypewriter" Version="0.4.4.3" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="NTypewriter.CodeModel" Version="0.4.4.3" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="NTypewriter.CodeModel.Functions" Version="0.4.4.3" PrivateAssets="all" GeneratePathProperty="true" />
