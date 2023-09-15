@@ -137,6 +137,7 @@ StringFunctions
 * [Downcase](#Downcase)
 * [Empty](#Empty)
 * [EndsWith](#EndsWith)
+* [EqualsIgnoreCase](#EqualsIgnoreCase)
 * [Escape](#Escape)
 * [Handleize](#Handleize)
 * [HmacSha1](#HmacSha1)
@@ -955,6 +956,14 @@ bool String.EndsWith(string text, string value)
 ```
 Returns a boolean indicating whether the input string ends with the specified string `value`. 
 [Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#stringends_with)
+
+#### EqualsIgnoreCase
+
+```csharp
+bool String.EqualsIgnoreCase(string text, string value)
+```
+Returns a boolean indicating whether the input string is equal to specified string 'value'. Comparison is case insensitive. 
+[Scriban documentation](https://github.com/scriban/scriban/blob/master/doc/builtins.md#stringequals_ignore_case)
 
 #### Escape
 
