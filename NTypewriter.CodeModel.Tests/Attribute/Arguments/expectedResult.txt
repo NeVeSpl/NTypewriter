@@ -3,5 +3,7 @@
     Sample : []
 SampleClass2
     Sample : [arrayOfInts : System.Object[]]
+SampleClass3
+    Sample : [par1 : 7, par2 : def_value]
 SampleAttribute
     AttributeUsage : [validOn : AttributeTargets.All, Inherited : False]

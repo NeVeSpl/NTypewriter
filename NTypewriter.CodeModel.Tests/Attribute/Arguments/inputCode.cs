@@ -20,6 +20,12 @@ namespace NTypewriter.Tests.CodeModel
 
     }
 
+    [SampleAttribute(7)]
+    class SampleClass3
+    {
+
+    }
+
     [AttributeUsage(AttributeTargets.All, Inherited = false)]
     internal class SampleAttribute : System.Attribute
     {
@@ -35,6 +41,10 @@ namespace NTypewriter.Tests.CodeModel
 
         }
         public SampleAttribute(string par1, int par2)
+        {
+
+        }
+        public SampleAttribute(int par1, string par2 = "def_value")
         {
 
         }
