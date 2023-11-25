@@ -82,14 +82,23 @@ namespace NTypewriter.CodeModel.Roslyn
         }
 
         private static string RemoveLeadingSpaces(string input)
-        {
-            char[] delimiters = { '\r', '\n' };
-            string[] lines = input.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-            int[] counter = new int[lines.Length];
+        {            
+            string[] delimiters = { "\r\n", "\n", "\r" };
+            string[] allLines = input.TrimEnd().Split(delimiters, StringSplitOptions.None );
+            string[] clearedLines = RemoveLeadinEmptyLines(allLines).ToArray();
 
-            for (int i = 0; i < lines.Length; i++)
+
+            int[] counter = new int[clearedLines.Length];
+            for (int i = 0; i < clearedLines.Length; i++)
             {
-                var line = lines[i];
+                var line = clearedLines[i];
+
+                if (string.IsNullOrWhiteSpace(line) == true)
+                {
+                    counter[i] = int.MaxValue;
+                    continue;
+                }
+
                 for (int j = 0; j < line.Length; ++j)
                 {
                     if (line[j] == ' ')
@@ -104,8 +113,35 @@ namespace NTypewriter.CodeModel.Roslyn
             }
 
             int min = counter.Min();
-            var result = String.Join(Environment.NewLine, lines.Select(x => x.Substring(min)));
+            var result = String.Join(Environment.NewLine, SubstringLines(clearedLines, min));
             return result;
+
+            IEnumerable<string> RemoveLeadinEmptyLines(string[] lines)
+            {
+                bool startYielding = false;
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    if (string.IsNullOrWhiteSpace(lines[i]) == false) startYielding = true;
+                    if (startYielding)
+                    {
+                        yield return lines[i];
+                    }
+                }
+            }
+
+            IEnumerable<string> SubstringLines(string[] lines, int startIndex)
+            {
+                foreach (var line in lines)
+                {
+                    if (line.Length > startIndex)
+                    {
+                        yield return line.Substring(startIndex);
+                    }else
+                    {
+                        yield return String.Empty;
+                    }
+                }
+            }
         }
     }
 }

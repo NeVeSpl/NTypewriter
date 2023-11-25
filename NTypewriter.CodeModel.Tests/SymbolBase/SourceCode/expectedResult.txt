@@ -1,8 +1,10 @@
 ﻿public void Foo(string par)
 {
     // void
+
 }
 public int Foo2(string par)
 {
     return 1; 
+
 }

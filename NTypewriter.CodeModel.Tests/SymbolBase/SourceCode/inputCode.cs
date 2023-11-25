@@ -18,6 +18,7 @@ namespace NTypewriter.Tests.CodeModel
         public void Foo(string par)
         {
             // void
+        
         }
     }
     class SampleGenericClass<T>
