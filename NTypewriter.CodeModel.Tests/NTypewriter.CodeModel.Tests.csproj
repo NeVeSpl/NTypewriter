@@ -59,6 +59,7 @@
     <Compile Remove="SymbolBase\IsStatic\inputCode.cs" />
     <Compile Remove="SymbolBase\Namespace\inputCode.cs" />
     <Compile Remove="SymbolBase\Name\inputCode.cs" />
+    <Compile Remove="SymbolBase\SourceCode\inputCode.cs" />
     <Compile Remove="Type\AllInterfaces\inputCode.cs" />
     <Compile Remove="Type\BareName\inputCode.cs" />
     <Compile Remove="Type\BaseType\inputCode.cs" />
@@ -180,6 +181,8 @@
     <None Remove="SymbolBase\Namespace\inputTemplate.tsnt" />
     <None Remove="SymbolBase\Name\expectedResult.txt" />
     <None Remove="SymbolBase\Name\inputTemplate.tsnt" />
+    <None Remove="SymbolBase\SourceCode\expectedResult.txt" />
+    <None Remove="SymbolBase\SourceCode\inputTemplate.nt" />
     <None Remove="Type\AllInterfaces\expectedResult.txt" />
     <None Remove="Type\AllInterfaces\inputTemplate.tsnt" />
     <None Remove="Type\BareName\expectedResult.txt" />
@@ -371,6 +374,9 @@
     <EmbeddedResource Include="SymbolBase\Name\expectedResult.txt" />
     <EmbeddedResource Include="SymbolBase\Name\inputCode.cs" />
     <EmbeddedResource Include="SymbolBase\Name\inputTemplate.tsnt" />
+    <EmbeddedResource Include="SymbolBase\SourceCode\expectedResult.txt" />
+    <EmbeddedResource Include="SymbolBase\SourceCode\inputCode.cs" />
+    <EmbeddedResource Include="SymbolBase\SourceCode\inputTemplate.nt" />
     <EmbeddedResource Include="Type\AllInterfaces\expectedResult.txt" />
     <EmbeddedResource Include="Type\AllInterfaces\inputCode.cs" />
     <EmbeddedResource Include="Type\AllInterfaces\inputTemplate.tsnt" />

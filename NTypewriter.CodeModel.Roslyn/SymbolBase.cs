@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 
 namespace NTypewriter.CodeModel.Roslyn
@@ -55,6 +57,7 @@ namespace NTypewriter.CodeModel.Roslyn
         public string Namespace => symbol.ContainingNamespace?.ToString();
 
         public IEnumerable<ILocation> Locations => LocationCollection.Create(symbol.Locations);
+        public string SourceCode => GetSourceCode();
 
         private protected SymbolBase(ISymbol symbol)
         {
@@ -65,6 +68,44 @@ namespace NTypewriter.CodeModel.Roslyn
         public override string ToString()
         {
             return FullName;
+        }
+
+
+        private string GetSourceCode()
+        {
+            var sytaxRef = symbol.DeclaringSyntaxReferences.FirstOrDefault();           
+            var syntaxNode = sytaxRef.GetSyntax();
+            var syntax = syntaxNode.ToFullString();
+            var cleanedSyntax  = RemoveLeadingSpaces(syntax);
+
+            return cleanedSyntax;
+        }
+
+        private static string RemoveLeadingSpaces(string input)
+        {
+            char[] delimiters = { '\r', '\n' };
+            string[] lines = input.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+            int[] counter = new int[lines.Length];
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                var line = lines[i];
+                for (int j = 0; j < line.Length; ++j)
+                {
+                    if (line[j] == ' ')
+                    {
+                        counter[i]++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+
+            int min = counter.Min();
+            var result = String.Join(Environment.NewLine, lines.Select(x => x.Substring(min)));
+            return result;
         }
     }
 }

@@ -95,5 +95,11 @@ namespace NTypewriter.CodeModel.Tests.SymbolBase
         {
             await RunTestForProperty();
         }
+
+        [TestMethod]
+        public async Task SourceCode()
+        {
+            await RunTestForProperty();
+        }
     }
 }
