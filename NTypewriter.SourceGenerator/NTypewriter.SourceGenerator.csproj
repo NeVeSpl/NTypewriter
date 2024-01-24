@@ -5,7 +5,7 @@
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<Version>0.3.1</Version>
+		<Version>0.3.2</Version>
 		<AssemblyVersion></AssemblyVersion>
 	    <PackageIcon>nt.128.128.png</PackageIcon>
 	    <Authors>NeVeSpl</Authors>
@@ -19,6 +19,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.11.0" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
 			<PrivateAssets>all</PrivateAssets>
@@ -28,13 +29,14 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.11.0" PrivateAssets="all" GeneratePathProperty="true" />
 		
 		<PackageReference Include="Scriban.Signed" Version="5.9.0" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter" Version="0.4.5" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.CodeModel" Version="0.4.5" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.CodeModel.Functions" Version="0.4.5" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.CodeModel.Roslyn" Version="0.4.5" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.Editor.Config" Version="0.4.5" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.Runtime" Version="0.5.0" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter" Version="0.5.1" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel" Version="0.5.1" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel.Functions" Version="0.5.1" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel.Roslyn" Version="0.5.1" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.Editor.Config" Version="0.5.1" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.Runtime" Version="0.5.1" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="System.Text.Json" Version="6.0.0" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="Basic.Reference.Assemblies.NetStandard20" PrivateAssets="all" Version="1.4.5" GeneratePathProperty="true" />
 
@@ -67,6 +69,7 @@
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgNTypewriter_Editor_Config)\lib\netstandard2.0\NTypewriter.Editor.Config.dll" IncludeRuntimeDependency="false" />
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgNTypewriter_Runtime)\lib\netstandard2.0\NTypewriter.Runtime.dll" IncludeRuntimeDependency="false" />
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgSystem_Text_Json)\lib\netstandard2.0\System.Text.Json.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Bcl_AsyncInterfaces)\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll" IncludeRuntimeDependency="false" />
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgSystem_Text_RegularExpressions)\lib\netstandard1.6\System.Text.RegularExpressions.dll" IncludeRuntimeDependency="false" />
 			<TargetPathWithTargetPlatformMoniker Include="$(Pkgbasic_reference_assemblies_netstandard20)\lib\netstandard2.0\Basic.Reference.Assemblies.NetStandard20.dll" IncludeRuntimeDependency="false" />
 		</ItemGroup>
@@ -84,6 +87,7 @@
 		<EmbeddedResource Include="$(PkgNTypewriter_Editor_Config)\lib\netstandard2.0\NTypewriter.Editor.Config.dll" Visible="false" />
 		<EmbeddedResource Include="$(PkgNTypewriter_Runtime)\lib\netstandard2.0\NTypewriter.Runtime.dll" Visible="false" />
 		<EmbeddedResource Include="$(PkgSystem_Text_Json)\lib\netstandard2.0\System.Text.Json.dll" Visible="false" />
+		<EmbeddedResource Include="$(PkgMicrosoft_Bcl_AsyncInterfaces)\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll" Visible="false" />
 		<EmbeddedResource Include="$(PkgSystem_Text_RegularExpressions)\lib\netstandard1.6\System.Text.RegularExpressions.dll" Visible="false" />
 		<EmbeddedResource Include="$(Pkgbasic_reference_assemblies_netstandard20)\lib\netstandard2.0\Basic.Reference.Assemblies.NetStandard20.dll" Visible="false" />
 	</ItemGroup>
