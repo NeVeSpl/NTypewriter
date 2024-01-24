@@ -4,8 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>xKey.snk</AssemblyOriginatorKeyFile>
-	<Version>0.4.5</Version>
-	<AssemblyVersion>0.4.5</AssemblyVersion>
+	<Version>0.5.0</Version>
+	<AssemblyVersion>0.5.0</AssemblyVersion>
     <Authors>NeVeSpl</Authors>
     <Company>NeVeSpl</Company>
     <Copyright>(c) NTypewriter</Copyright>
@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Basic.Reference.Assemblies.NetStandard20" Version="1.4.5" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.11.0" />
     <PackageReference Include="Scriban.Signed" Version="5.9.0" />
     <PackageReference Include="System.Text.Json" Version="6.0.0" />

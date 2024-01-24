@@ -5,7 +5,7 @@
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<Version>0.2.6</Version>
+		<Version>0.3.1</Version>
 		<AssemblyVersion></AssemblyVersion>
 	    <PackageIcon>nt.128.128.png</PackageIcon>
 	    <Authors>NeVeSpl</Authors>
@@ -33,9 +33,10 @@
 		<PackageReference Include="NTypewriter.CodeModel.Functions" Version="0.4.5" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="NTypewriter.CodeModel.Roslyn" Version="0.4.5" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="NTypewriter.Editor.Config" Version="0.4.5" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.Runtime" Version="0.4.5" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.Runtime" Version="0.5.0" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="System.Text.Json" Version="6.0.0" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="Basic.Reference.Assemblies.NetStandard20" Version="1.4.5" GeneratePathProperty="true" />
 
 		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 		<None Include="$(OutputPath)\$(AssemblyName).targets" Pack="true" PackagePath="build/netstandard2.0" Visible="false" />
@@ -67,6 +68,7 @@
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgNTypewriter_Runtime)\lib\netstandard2.0\NTypewriter.Runtime.dll" IncludeRuntimeDependency="false" />
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgSystem_Text_Json)\lib\netstandard2.0\System.Text.Json.dll" IncludeRuntimeDependency="false" />
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgSystem_Text_RegularExpressions)\lib\netstandard1.6\System.Text.RegularExpressions.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(Pkgbasic_reference_assemblies_netstandard20)\lib\netstandard2.0\Basic.Reference.Assemblies.NetStandard20.dll" IncludeRuntimeDependency="false" />
 		</ItemGroup>
 	</Target>
 
@@ -83,6 +85,7 @@
 		<EmbeddedResource Include="$(PkgNTypewriter_Runtime)\lib\netstandard2.0\NTypewriter.Runtime.dll" Visible="false" />
 		<EmbeddedResource Include="$(PkgSystem_Text_Json)\lib\netstandard2.0\System.Text.Json.dll" Visible="false" />
 		<EmbeddedResource Include="$(PkgSystem_Text_RegularExpressions)\lib\netstandard1.6\System.Text.RegularExpressions.dll" Visible="false" />
+		<EmbeddedResource Include="$(Pkgbasic_reference_assemblies_netstandard20)\lib\netstandard2.0\Basic.Reference.Assemblies.NetStandard20.dll" Visible="false" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="NTypewriter.SourceGenerator.targets">

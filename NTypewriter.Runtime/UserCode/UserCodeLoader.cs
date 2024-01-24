@@ -156,28 +156,21 @@ namespace NTypewriter.Runtime.UserCode
         }
         private static CSharpCompilation PrepareCompilation(IEnumerable<SyntaxTree> syntaxTreesToCompile, string configurationName)
         {
-            var refTypes = new[] {
-                typeof(object),
-                typeof(Enumerable),
+            var refTypes = new[] 
+            {
                 typeof(IEditorConfig),
                 typeof(ICodeModel),
                 typeof(ActionFunctions),
-                typeof(ISet<>),
                 typeof(System.Text.Json.JsonSerializer),
-                typeof(System.Text.RegularExpressions.Regex)
+                //typeof(System.Text.RegularExpressions.Regex)
             };
-            var references = refTypes.Select(x => MetadataReference.CreateFromFile(x.Assembly.Location)).ToList();
+            var additionalReferences = refTypes.Select(x => MetadataReference.CreateFromFile(x.Assembly.Location)).ToList();
 
-            var netstandardAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.GetName().Name == "netstandard");
-            var netstandardAssembly = netstandardAssemblies.OrderByDescending(x => x.GetName().Version).FirstOrDefault();
-            references.Add(MetadataReference.CreateFromFile(netstandardAssembly.Location));
-
-            var runtimeDir = System.Runtime.InteropServices.RuntimeEnvironment.GetRuntimeDirectory();
-            var runtimeDllPath = Path.Combine(runtimeDir, "System.Runtime.dll");
-            references.Add(MetadataReference.CreateFromFile(runtimeDllPath));
+            var references = new List<MetadataReference>(Basic.Reference.Assemblies.NetStandard20.References.All);
+            references.AddRange(additionalReferences);         
 
             var compilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary).WithOptimizationLevel(OptimizationLevel.Debug);
-            var compilation = CSharpCompilation.Create($"NTDynamic{configurationName}Assembly", syntaxTrees: syntaxTreesToCompile, references: references, compilationOptions);
+            var compilation = CSharpCompilation.Create($"NTDynamic{configurationName}Assembly", syntaxTrees: syntaxTreesToCompile, references: references, compilationOptions);            
 
             return compilation;
         }
