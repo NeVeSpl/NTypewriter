@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Immutable;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -61,16 +63,17 @@ namespace NTypewriter.SourceGenerator
             var projectContext = GetProjectContext(context);
 
             Interlocked.Increment(ref projectContext.ExecuteCount);
-            projectContext.LastTouchTime = File.GetLastWriteTime(projectContext.TouchFilePath);            
+            projectContext.LastTouchTime = File.GetLastWriteTime(projectContext.TouchFilePath);
+            projectContext.LastNTFileEditTime = GetLastEditTime(context.AdditionalFiles);
 
             bool doRender = false;
 
             lock (Padlock)
-            {
-                if (DateTime.Compare(projectContext.LastTouchTime, projectContext.LastRenderTime) != 0)
+            { 
+                if ((projectContext.LastTouchTime > projectContext.LastRenderTime) || (projectContext.LastNTFileEditTime > projectContext.LastRenderTime))
                 {
                     Interlocked.Increment(ref projectContext.RenderCount);
-                    projectContext.LastRenderTime = projectContext.LastTouchTime;                    
+                    projectContext.LastRenderTime = new DateTime(Math.Max(projectContext.LastTouchTime.Ticks, projectContext.LastNTFileEditTime.Ticks));                    
                     doRender = true;                    
                 }
             }
@@ -133,6 +136,18 @@ namespace NTypewriter.SourceGenerator
 
             return projectDir;
         }
+        private static DateTime GetLastEditTime(ImmutableArray<AdditionalText> additionalFiles)
+        {
+            try
+            {
+                var lastEdit = additionalFiles.Max(x => File.GetLastWriteTime(x.Path));
+                return lastEdit;
+            }
+            catch 
+            {
+            }
+            return DateTime.MinValue;
+        }
 
 
         private sealed class ProjectContext(string assemblyName, string projectDir, string buildOutputDir)
@@ -146,6 +161,7 @@ namespace NTypewriter.SourceGenerator
             public DateTime LastRenderTime { get; set; }
             public string TouchFilePath => Path.Combine(buildOutputDir, ".touch");
             public DateTime LastTouchTime { get; set; }
+            public DateTime LastNTFileEditTime { get; set; }
             public string LogFilePath => Path.Combine(buildOutputDir, assemblyName + ".ntsg.log");
 
 
@@ -154,11 +170,12 @@ namespace NTypewriter.SourceGenerator
                 var raport =
                 $"""
                     // NTypewriter.SourceGenerator v{typeof(ProjectContext).Assembly.GetName().Version.ToString()}
-                    // total runs  : {ExecuteCount}, total renders : {RenderCount}
-                    // touch file  : {TouchFilePath}
-                    // log file    : {LogFilePath}                    
-                    // last build  : {LastTouchTime}
-                    // last render : {LastRenderTime}
+                    // total runs     : {ExecuteCount}, total renders : {RenderCount}
+                    // touch file     : {TouchFilePath}
+                    // log file       : {LogFilePath}                    
+                    // last build     : {LastTouchTime}
+                    // last *.nt edit : {LastNTFileEditTime}
+                    // last render    : {LastRenderTime}
                 """;
                 return raport;
             }
