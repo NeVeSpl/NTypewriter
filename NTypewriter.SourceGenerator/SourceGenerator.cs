@@ -92,7 +92,8 @@ namespace NTypewriter.SourceGenerator
             if (doRender == false) return;
 
             try
-            {var templates = context.AdditionalFiles.Where(x => x.Path.EndsWith(".nt")).Select(x => new TemplateToRender(x.Path, context.Compilation.AssemblyName) {Content = x.GetText().ToString()}).ToList();
+            {
+                var templates = context.AdditionalFiles.Where(x => x.Path.EndsWith(".nt")).Select(x => new TemplateToRender(x.Path, context.Compilation.AssemblyName) {Content = x.GetText().ToString()}).ToList();
                 var userCodePaths = context.Compilation.SyntaxTrees.Where(x => x.FilePath?.EndsWith(".nt.cs") == true).Select(x => x.FilePath).ToList();
 
                 var userCodeProvider = new UserCodeProvider(userCodePaths);
@@ -106,7 +107,8 @@ namespace NTypewriter.SourceGenerator
                 File.WriteAllText(projectContext.LogFilePath, log);
             }
             catch (Exception ex)
-            {context.ReportDiagnostic(Diagnostic.Create(Diagnostics.Exception, Location.None, ex.ToString()));
+            {
+                context.ReportDiagnostic(Diagnostic.Create(Diagnostics.Exception, Location.None, ex.ToString()));
             }
         }
 
