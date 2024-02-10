@@ -65,5 +65,5 @@ Option | &nbsp;
 
 Sample project that generates files during GitHub Actions workflows:
 
-- [ubuntu-latest-net6.0](https://github.com/NeVeSpl/NTypewriter.SourceGenerator.Examples/actions/runs/3720791541)
-- [windows-latest-net6.0](https://github.com/NeVeSpl/NTypewriter.SourceGenerator.Examples/actions/runs/3720791546)
+- [ubuntu-latest-net6.0](https://github.com/NeVeSpl/NTypewriter.SourceGenerator.Examples/actions/workflows/ubuntu.6.0.yml)
+- [windows-latest-net6.0](https://github.com/NeVeSpl/NTypewriter.SourceGenerator.Examples/actions/workflows/windows.6.0.yml)
