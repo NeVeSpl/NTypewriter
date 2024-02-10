@@ -19,8 +19,7 @@ namespace NTypewriter.SourceGenerator
     [Generator]
     public class NTypewriterSourceGenerator : ISourceGenerator
     {
-        private static readonly ConcurrentDictionary<string, ProjectContext> ProjectContexts = new();
-        private static readonly string Version = typeof(NTypewriterSourceGenerator).Assembly.GetName().Version.ToString();
+        private static readonly ConcurrentDictionary<string, ProjectContext> ProjectContexts = new();      
         private static readonly object Padlock = new();
 
 
@@ -62,32 +61,23 @@ namespace NTypewriter.SourceGenerator
             var projectContext = GetProjectContext(context);
 
             Interlocked.Increment(ref projectContext.ExecuteCount);
-            projectContext.LastTouch = File.GetLastWriteTime(projectContext.TouchFilePath);
-            var thisRunId = DateTime.Now.ToString();
+            projectContext.LastTouchTime = File.GetLastWriteTime(projectContext.TouchFilePath);            
 
             bool doRender = false;
 
             lock (Padlock)
             {
-                if (DateTime.Compare(projectContext.LastTouch, projectContext.LastRender) != 0)
+                if (DateTime.Compare(projectContext.LastTouchTime, projectContext.LastRenderTime) != 0)
                 {
                     Interlocked.Increment(ref projectContext.RenderCount);
-                    doRender = true;
-                    projectContext.LastRender = projectContext.LastTouch;
+                    projectContext.LastRenderTime = projectContext.LastTouchTime;                    
+                    doRender = true;                    
                 }
             }
 
-            var lines = new string[]
-            {
-                $"NTypewriter.SourceGenerator v{Version}",
-                $"total runs : {projectContext.ExecuteCount}, total renders : {projectContext.RenderCount}",
-                $"touch file : {projectContext.TouchFilePath}",
-                $"log file   : {projectContext.LogFilePath}",
-                $"this run   : {thisRunId}",
-                $"last build : {projectContext.LastTouch}"
-            };
-
-            context.ReportDiagnostic(Diagnostic.Create(Diagnostics.ExecuteInfo, Location.None, String.Join("\n", lines)));
+            var report = projectContext.PrepareRaport();
+            context.ReportDiagnostic(Diagnostic.Create(Diagnostics.ExecuteInfo, Location.None, report));
+            context.AddSource("diagnostics-sg-last-run.g.cs", report);
 
             if (doRender == false) return;
 
@@ -112,7 +102,7 @@ namespace NTypewriter.SourceGenerator
             }
         }
 
-        private static ProjectContext GetProjectContext(GeneratorExecutionContext context)        
+        private static ProjectContext GetProjectContext(GeneratorExecutionContext context)
         {
             context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.ProjectDir", out var projectDir);
             context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.OutputPath", out var buildOutputPath);
@@ -129,7 +119,6 @@ namespace NTypewriter.SourceGenerator
 
             return ProjectContexts.GetOrAdd(id, _ => new ProjectContext(assemblyName, projectDir, outputDir));
         }
-
         private static string GetOutputDir(string projectDir, string buildOutputPath)
         {             
             if (Path.IsPathRooted(buildOutputPath))
@@ -145,22 +134,34 @@ namespace NTypewriter.SourceGenerator
             return projectDir;
         }
 
-        private sealed class ProjectContext
-        {
-            public ProjectContext(string assemblyName, string projectDir, string outputDir)
-            {
-                (AssemblyName, ProjectDir, OutputDir) = (assemblyName, projectDir, outputDir);
-            }
 
-            public string AssemblyName;
-            public string ProjectDir;
-            public string OutputDir;
+        private sealed class ProjectContext(string assemblyName, string projectDir, string buildOutputDir)
+        {
             public long ExecuteCount;
             public long RenderCount;
-            public DateTime LastRender;
-            public string TouchFilePath => Path.Combine(OutputDir, ".touch");
-            public DateTime LastTouch;
-            public string LogFilePath => Path.Combine(OutputDir, AssemblyName + ".ntsg.log");
+
+            public string AssemblyName => assemblyName;
+            public string ProjectDir => projectDir;
+            public string BuildOutputDir => buildOutputDir;            
+            public DateTime LastRenderTime { get; set; }
+            public string TouchFilePath => Path.Combine(buildOutputDir, ".touch");
+            public DateTime LastTouchTime { get; set; }
+            public string LogFilePath => Path.Combine(buildOutputDir, assemblyName + ".ntsg.log");
+
+
+            public string PrepareRaport()
+            {
+                var raport =
+                $"""
+                    // NTypewriter.SourceGenerator v{typeof(ProjectContext).Assembly.GetName().Version.ToString()}
+                    // total runs  : {ExecuteCount}, total renders : {RenderCount}
+                    // touch file  : {TouchFilePath}
+                    // log file    : {LogFilePath}                    
+                    // last build  : {LastTouchTime}
+                    // last render : {LastRenderTime}
+                """;
+                return raport;
+            }
         }
     }
 }
