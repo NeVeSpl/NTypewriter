@@ -2,6 +2,8 @@
 using System.Collections.Concurrent;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading;
 using Microsoft.CodeAnalysis;
 using NTypewriter.CodeModel;
@@ -17,66 +19,72 @@ namespace NTypewriter.SourceGenerator
     [Generator]
     public class NTypewriterSourceGenerator : ISourceGenerator
     {
-        private static readonly ConcurrentDictionary<(string AssemblyName, string OutputDir), GeneratorInfo> AssemblyGeneratorInfo = new ConcurrentDictionary<(string, string), GeneratorInfo>();
+        private static readonly ConcurrentDictionary<string, ProjectContext> ProjectContexts = new();
         private static readonly string Version = typeof(NTypewriterSourceGenerator).Assembly.GetName().Version.ToString();
-        private static readonly object Padlock = new Object();
+        private static readonly object Padlock = new();
+
 
         static NTypewriterSourceGenerator()
         {
             AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolver.Resolve;
         }
 
+
         public void Initialize(GeneratorInitializationContext context)
         {
-            context.RegisterForPostInitialization(PostInitializationContext);
+            context.RegisterForPostInitialization(PostInitialization);
         }
-
-        public void PostInitializationContext(GeneratorPostInitializationContext context)
+        private void PostInitialization(GeneratorPostInitializationContext context)
         {
-            var paths = new string[]
-            {
-                 $"// NTypewriterSourceGenerator : {typeof(NTypewriterSourceGenerator).Assembly.Location}",
-                 $"// NTypewriter : {typeof(NTypeWriter).Assembly.Location}",
-                 $"// NTypewriter.CodeModel : {typeof(ICodeModel).Assembly.Location}",
-                 $"// NTypewriter.CodeModel.Functions : {typeof(ActionFunctions).Assembly.Location}",
-                 $"// NTypewriter.CodeModel.Roslyn : {typeof(CodeModelConfiguration).Assembly.Location}",
-                 $"// NTypewriter.Editor.Config : {typeof(EditorConfig).Assembly.Location}",
-                 $"// NTypewriter.Runtime : {typeof(RenderTemplatesCommand).Assembly.Location}",
-                 $"// Scriban.Signed : {typeof(Template).Assembly.Location}"
-            };
+            Type[] markingTypes =
+            [
+                typeof(NTypewriterSourceGenerator),
+                typeof(NTypeWriter),
+                typeof(ICodeModel),
+                typeof(ActionFunctions),
+                typeof(CodeModelConfiguration),
+                typeof(EditorConfig),
+                typeof(RenderTemplatesCommand),
+                typeof(Template),
+                typeof(JsonSerializer),
+                typeof(Regex),
+            ];
 
-            var allPaths = String.Join("\r\n", paths);
-            context.AddSource("Diagnostics.g.cs", allPaths);
+            var assembliesInfoLines = markingTypes.Select(x => $"// {x.Assembly.GetName().Name, -32} {x.Assembly.GetName().Version}  {x.Assembly.Location}");   
+            var output = String.Join("\r\n", assembliesInfoLines);
+
+            context.AddSource("diagnostics-initialization.g.cs", output);            
         }
+
 
         public void Execute(GeneratorExecutionContext context)
         {
-            var info = GetGeneratorInfo(context);
+            var projectContext = GetProjectContext(context);
 
-            Interlocked.Increment(ref info.ExecuteCount);
-            info.LastTouch = File.GetLastWriteTime(info.TouchFilePath);
+            Interlocked.Increment(ref projectContext.ExecuteCount);
+            projectContext.LastTouch = File.GetLastWriteTime(projectContext.TouchFilePath);
             var thisRunId = DateTime.Now.ToString();
 
             bool doRender = false;
 
             lock (Padlock)
             {
-                if (DateTime.Compare(info.LastTouch, info.LastRender) != 0)
+                if (DateTime.Compare(projectContext.LastTouch, projectContext.LastRender) != 0)
                 {
-                    Interlocked.Increment(ref info.RenderCount);
+                    Interlocked.Increment(ref projectContext.RenderCount);
                     doRender = true;
-                    info.LastRender = info.LastTouch;
+                    projectContext.LastRender = projectContext.LastTouch;
                 }
             }
 
             var lines = new string[]
             {
                 $"NTypewriter.SourceGenerator v{Version}",
-                $"total runs : {info.ExecuteCount}, total renders : {info.RenderCount}",
-                $"touch file : {info.TouchFilePath}",
-                $"log file   : {info.LogFilePath}",
+                $"total runs : {projectContext.ExecuteCount}, total renders : {projectContext.RenderCount}",
+                $"touch file : {projectContext.TouchFilePath}",
+                $"log file   : {projectContext.LogFilePath}",
                 $"this run   : {thisRunId}",
-                $"last build : {info.LastTouch}"
+                $"last build : {projectContext.LastTouch}"
             };
 
             context.ReportDiagnostic(Diagnostic.Create(Diagnostics.ExecuteInfo, Location.None, String.Join("\n", lines)));
@@ -84,50 +92,60 @@ namespace NTypewriter.SourceGenerator
             if (doRender == false) return;
 
             try
-            {
-                var templates = context.AdditionalFiles.Where(x => x.Path.EndsWith(".nt")).Select(x => new TemplateToRender(x.Path, context.Compilation.AssemblyName) { Content = x.GetText().ToString() }).ToList();
+            {var templates = context.AdditionalFiles.Where(x => x.Path.EndsWith(".nt")).Select(x => new TemplateToRender(x.Path, context.Compilation.AssemblyName) {Content = x.GetText().ToString()}).ToList();
                 var userCodePaths = context.Compilation.SyntaxTrees.Where(x => x.FilePath?.EndsWith(".nt.cs") == true).Select(x => x.FilePath).ToList();
 
                 var userCodeProvider = new UserCodeProvider(userCodePaths);
                 var userInterfaceOutputWriter = new UserInterfaceOutputWriter();
 
-                var cmd = new RenderTemplatesCommand(null, userCodeProvider, new GeneratedFileReaderWriter(context, info.ProjectDir), userInterfaceOutputWriter, null, null, null, null);
+                var cmd = new RenderTemplatesCommand(null, userCodeProvider, new GeneratedFileReaderWriter(context, projectContext.ProjectDir), userInterfaceOutputWriter, null, null, null, null);
                 cmd.Execute(context.Compilation, templates).GetAwaiter().GetResult();
 
                 var log = userInterfaceOutputWriter.GetOutput();
                 context.ReportDiagnostic(Diagnostic.Create(Diagnostics.RenderInfo, Location.None, log));
-                File.WriteAllText(info.LogFilePath, log);
+                File.WriteAllText(projectContext.LogFilePath, log);
             }
             catch (Exception ex)
-            {
-                context.ReportDiagnostic(Diagnostic.Create(Diagnostics.Exception, Location.None, ex.ToString()));
+            {context.ReportDiagnostic(Diagnostic.Create(Diagnostics.Exception, Location.None, ex.ToString()));
             }
         }
 
-        private static GeneratorInfo GetGeneratorInfo(GeneratorExecutionContext context)
+        private static ProjectContext GetProjectContext(GeneratorExecutionContext context)        
         {
-            context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.OutputPath", out var outputPath);
             context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.ProjectDir", out var projectDir);
+            context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.OutputPath", out var buildOutputPath);
+                     
             var assemblyName = context.Compilation.AssemblyName;
-            var outputDir = GetOutputDir(outputPath, projectDir);
+            var outputDir = GetOutputDir(projectDir, buildOutputPath);
 
-            return AssemblyGeneratorInfo.GetOrAdd((assemblyName, outputDir), _ => new GeneratorInfo(assemblyName, projectDir, outputDir));
-        }
-
-        private static string GetOutputDir(string outputPath, string projectDir)
-        {
-            string fullOutputPath = Path.Combine(outputPath);
-            if (Path.IsPathRooted(outputPath) == false)
+            if (string.IsNullOrEmpty(outputDir))
             {
-                fullOutputPath = Path.Combine(projectDir, fullOutputPath);
+                throw new ArgumentException($"Could not determine output directory for {assemblyName} from parameters : build_property.ProjectDir = {projectDir}, build_property.OutputPath = {buildOutputPath}");
             }
 
-            return fullOutputPath;
+            var id = Path.Combine(outputDir, assemblyName);
+
+            return ProjectContexts.GetOrAdd(id, _ => new ProjectContext(assemblyName, projectDir, outputDir));
         }
 
-        private sealed class GeneratorInfo
+        private static string GetOutputDir(string projectDir, string buildOutputPath)
+        {             
+            if (Path.IsPathRooted(buildOutputPath))
+            {
+                return buildOutputPath;
+            }
+
+            if (!string.IsNullOrEmpty(projectDir) && !string.IsNullOrEmpty(buildOutputPath))
+            {
+                return Path.Combine(projectDir, buildOutputPath);
+            }
+
+            return projectDir;
+        }
+
+        private sealed class ProjectContext
         {
-            public GeneratorInfo(string assemblyName, string projectDir, string outputDir)
+            public ProjectContext(string assemblyName, string projectDir, string outputDir)
             {
                 (AssemblyName, ProjectDir, OutputDir) = (assemblyName, projectDir, outputDir);
             }

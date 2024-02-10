@@ -38,7 +38,7 @@ namespace NTypewriter.Runtime.CodeModel
 
                 if ((project.SupportsCompilation) && (isProjectOnTheList))
                 {
-                    Compilation compilation = await project.GetCompilationAsync().ConfigureAwait(true);
+                    Compilation compilation = await project.GetCompilationAsync().ConfigureAwait(false);
                     var codeModel = Build(compilation, namespacesToBeSearched, searchInReferencedProjectsAndAssemblies);
                     compositeCodeModel.Add(codeModel);
                 }
