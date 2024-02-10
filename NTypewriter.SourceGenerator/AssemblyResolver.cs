@@ -19,15 +19,24 @@ namespace NTypewriter.SourceGenerator
                 Trace.WriteLine($"AssemblyResolver.Resolve : resolved from AppDomain.CurrentDomain");
                 return loadedAssembly;
             }
-
-            string resourceName = $"NTypewriter.SourceGenerator.{asmName.Name}.dll";
+          
             var manifestResourceNames = Assembly.GetExecutingAssembly().GetManifestResourceNames();
-            if (manifestResourceNames.Contains(resourceName))
-            {
 
+            var version = asmName.Version;
+
+            if (asmName.Name == "Scriban.Signed" && version == new Version(5, 0, 0, 0))
+            {
+                version = new Version(5, 9, 0, 0);
+            }
+            if (asmName.Name == "Basic.Reference.Assemblies.NetStandard20" && version == new Version(1, 0, 0, 0))
+            {
+                version = new Version(1, 4, 5, 0);
             }
 
-            using (Stream resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+
+            var dllName = $"{asmName.Name}.v{version}.dll";           
+
+            using (Stream resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(dllName))
             {
                 if (resourceStream == null)
                 {
@@ -36,7 +45,7 @@ namespace NTypewriter.SourceGenerator
                 }
                 try
                 {
-                    var dllName = $"{ asmName.Name }-{ asmName.Version }.dll";
+                   
                     var tempPath = Path.Combine(Path.GetTempPath(), "NTSG");
                     var filePath = Path.Combine(tempPath, dllName);
                     Directory.CreateDirectory(tempPath);
