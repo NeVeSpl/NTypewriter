@@ -1,5 +1,6 @@
 ﻿using System;
 using NTypewriter.Internals.Functions;
+using Scriban;
 using Scriban.Functions;
 using Scriban.Runtime;
 
@@ -30,7 +31,22 @@ namespace NTypewriter.Internals
             this["Symbols"] = CreateScriptObject(typeof(global::NTypewriter.CodeModel.Functions.SymbolsFunctions));
             this["Debug"] = CreateScriptObject(typeof(global::NTypewriter.Internals.Functions.DebugFunctions));
             this.Import(typeof(SaveFunction), renamer: MemberRenamer);
-        }        
+            this.Import(typeof(LINQFunctions), renamer: MemberRenamer);
+        }
+
+        public override bool TryGetValue(TemplateContext context, Scriban.Parsing.SourceSpan span, string member, out object value)
+        {
+            return base.TryGetValue(context, span, member, out value);
+        }
+
+        public override bool TrySetValue(TemplateContext context, Scriban.Parsing.SourceSpan span, string member, object value, bool readOnly)
+        {
+            return base.TrySetValue(context, span, member, value, readOnly);
+        }
+
+
+
+
 
         private ScriptObject CreateScriptObject(params Type[] types)
         {

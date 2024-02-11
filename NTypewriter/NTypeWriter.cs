@@ -9,13 +9,13 @@ namespace NTypewriter
 {
     public class NTypeWriter
     {
-        public static async Task<Result> Render(string template, object dataModel, Configuration configuration = null, IExternalOutput externalOutput = null)
+        public static async Task<Result> Render(string template, object dataModel, Configuration configuration = null, IExternalOutput externalOutput = null, IExpressionCompiler expressionCompiler = null)
         {
-            return await Render(template, new Dictionary<string, object>() { [VariableNames.Data] = dataModel }, configuration, externalOutput);
+            return await Render(template, new Dictionary<string, object>() { [VariableNames.Data] = dataModel }, configuration, externalOutput, expressionCompiler);
         }
 
 
-        public static async Task<Result> Render(string template, Dictionary<string, object> dataModels, Configuration configuration = null, IExternalOutput externalOutput = null)
+        public static async Task<Result> Render(string template, Dictionary<string, object> dataModels, Configuration configuration = null, IExternalOutput externalOutput = null, IExpressionCompiler expressionCompiler = null)
         {
             var result = new Result();
             var scribanTemplate = Template.Parse(template);
@@ -29,11 +29,11 @@ namespace NTypewriter
            
             var dataScriptObject = new DataScriptObject(dataModels);
             var userScriptObject = new CustomFunctionsScriptObject(configuration?.GetTypesWithCustomFuntions());
-            var context = new MainTemplateContext(dataScriptObject, userScriptObject, externalOutput);
+            var context = new MainTemplateContext(dataScriptObject, userScriptObject, externalOutput, expressionCompiler);
 
             try
             {
-                result.SetOutput(await scribanTemplate.RenderAsync(context));
+                result.SetOutput(scribanTemplate.Render(context));
             }
             catch (ScriptRuntimeException exception)
             {

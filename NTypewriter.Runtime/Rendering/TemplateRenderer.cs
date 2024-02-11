@@ -5,7 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using NTypewriter.CodeModel;
 using NTypewriter.Editor.Config;
+using NTypewriter.Ports;
 using NTypewriter.Runtime.Rendering.Internals;
+using NTypewriter.Runtime.Scripting;
 
 namespace NTypewriter.Runtime.Rendering
 {
@@ -38,7 +40,7 @@ namespace NTypewriter.Runtime.Rendering
             dataModels[VariableNames.Config] = configAdapter;
             dataModels[VariableNames.Env] = environmentVariables ?? new EnvironmentVariables();
 
-            var result = await NTypeWriter.Render(template, dataModels, configuration, new ExternalOutputAdapter(output));
+            var result = await NTypeWriter.Render(template, dataModels, configuration, new ExternalOutputAdapter(output), new ExpressionCompiler());
 
             output.Info("Used configuration : " + editorConfig.ToString());
 
