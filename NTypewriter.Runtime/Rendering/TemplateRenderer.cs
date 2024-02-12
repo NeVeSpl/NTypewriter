@@ -7,7 +7,6 @@ using NTypewriter.CodeModel;
 using NTypewriter.Editor.Config;
 using NTypewriter.Ports;
 using NTypewriter.Runtime.Rendering.Internals;
-using NTypewriter.Runtime.Scripting;
 
 namespace NTypewriter.Runtime.Rendering
 {
@@ -15,12 +14,13 @@ namespace NTypewriter.Runtime.Rendering
     {
         private readonly IUserInterfaceErrorListUpdater errorList;
         private readonly IUserInterfaceOutputWriter output;
+        private readonly IExpressionCompiler expressionCompiler;
 
-
-        public TemplateRenderer(IUserInterfaceErrorListUpdater errorList, IUserInterfaceOutputWriter output)
+        public TemplateRenderer(IUserInterfaceErrorListUpdater errorList, IUserInterfaceOutputWriter output, IExpressionCompiler expressionCompiler)
         {
             this.errorList = errorList;
             this.output = output;
+            this.expressionCompiler = expressionCompiler;
         }
 
 
@@ -40,7 +40,7 @@ namespace NTypewriter.Runtime.Rendering
             dataModels[VariableNames.Config] = configAdapter;
             dataModels[VariableNames.Env] = environmentVariables ?? new EnvironmentVariables();
 
-            var result = await NTypeWriter.Render(template, dataModels, configuration, new ExternalOutputAdapter(output), new ExpressionCompiler());
+            var result = await NTypeWriter.Render(template, dataModels, configuration, new ExternalOutputAdapter(output), expressionCompiler);
 
             output.Info("Used configuration : " + editorConfig.ToString());
 

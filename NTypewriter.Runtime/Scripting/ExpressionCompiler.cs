@@ -11,8 +11,9 @@ using NTypewriter.Ports;
 
 namespace NTypewriter.Runtime.Scripting
 {
-    internal class ExpressionCompiler : IExpressionCompiler
+    public class ExpressionCompiler : IExpressionCompiler
     {
+        private static readonly Lazy<ExpressionCompiler> defaultSingleton = new Lazy<ExpressionCompiler>(() => new ExpressionCompiler());
         private static readonly Type[] RefTypeMarkers = 
         [            
             typeof(NTypewriter.CodeModel.ICodeModel),
@@ -24,10 +25,12 @@ namespace NTypewriter.Runtime.Scripting
             "System",
             "NTypewriter.CodeModel",            
         ];
-        private static readonly IEnumerable<MetadataReference> MetadataReferences;
+        private readonly IEnumerable<MetadataReference> MetadataReferences;
+
+        public static ExpressionCompiler Default => defaultSingleton.Value;
 
 
-        static ExpressionCompiler()
+        public ExpressionCompiler()
         {
             var additionalReferences = RefTypeMarkers.Select(x => MetadataReference.CreateFromFile(x.Assembly.Location)).ToList();
 
@@ -35,6 +38,10 @@ namespace NTypewriter.Runtime.Scripting
             //references.AddRange(Basic.Reference.Assemblies.NetStandard20.References.All);
             references.AddRange(additionalReferences);
 
+            MetadataReferences = references;
+        }
+        public ExpressionCompiler(IEnumerable<MetadataReference> references)
+        {
             MetadataReferences = references;
         }
 

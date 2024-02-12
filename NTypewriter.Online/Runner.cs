@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using NTypewriter.Online.Adapters;
+using NTypewriter.Ports;
 using NTypewriter.Runtime;
+using NTypewriter.Runtime.Scripting;
 
 namespace NTypewriter.Online
 {
@@ -58,7 +60,7 @@ namespace NTypewriter.Online
 
             try
             {
-                var cmd = new RenderTemplatesCommand(null, userCodeProvider, generatedFileReaderWriter, userIO, null, null, null, null);
+                var cmd = new RenderTemplatesCommand(null, userCodeProvider, generatedFileReaderWriter, userIO, null, null, null, null, new ExpressionCompiler(References));
                 await cmd.Execute(generatorCompilation, new[] { templateToRender });
             } 
             catch (Exception ex)

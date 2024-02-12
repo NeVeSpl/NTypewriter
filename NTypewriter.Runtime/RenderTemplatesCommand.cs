@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using NTypewriter.Editor.Config;
+using NTypewriter.Ports;
 using NTypewriter.Runtime.CodeModel;
 using NTypewriter.Runtime.CodeModel.Internals;
 using NTypewriter.Runtime.Internals;
 using NTypewriter.Runtime.Rendering;
+using NTypewriter.Runtime.Scripting;
 using NTypewriter.Runtime.UserCode;
 
 namespace NTypewriter.Runtime
@@ -36,7 +38,8 @@ namespace NTypewriter.Runtime
         private readonly IUserCodeProvider userCodeProvider;
         private readonly IUserInterfaceErrorListUpdater uiErrorList; 
         private readonly IUserInterfaceOutputWriter uiOutput;        
-        private readonly IUserInterfaceStatusUpdater uiStatus;        
+        private readonly IUserInterfaceStatusUpdater uiStatus;
+        private readonly IExpressionCompiler expressionCompiler;
 
 
         public RenderTemplatesCommand(ITemplateContentLoader templateContentLoader, 
@@ -46,7 +49,9 @@ namespace NTypewriter.Runtime
                                       ISolutionItemsManager solutionItemsManager = null,
                                       ISourceControl sourceControl = null,
                                       IUserInterfaceErrorListUpdater uiErrorList = null,
-                                      IUserInterfaceStatusUpdater uiStatus = null)
+                                      IUserInterfaceStatusUpdater uiStatus = null,
+                                      IExpressionCompiler expressionCompiler = null
+                                      )
         {
             this.templateContentLoader = templateContentLoader;
             this.userCodeProvider = userCodeProvider;
@@ -56,6 +61,7 @@ namespace NTypewriter.Runtime
             this.solutionItemsManager = solutionItemsManager;
             this.sourceControl = sourceControl ?? NullObject.Singleton;
             this.uiStatus = uiStatus ?? NullObject.Singleton;
+            this.expressionCompiler = expressionCompiler ?? ExpressionCompiler.Default;
         }
 
 
@@ -93,7 +99,7 @@ namespace NTypewriter.Runtime
                     uiOutput.Info($"Loading template : {template.FilePath}");
                     var templateContent = template.Content ?? await templateContentLoader.Read(template.FilePath).ConfigureAwait(false);
 
-                    var templateRenderer = new TemplateRenderer(uiErrorList, uiOutput);
+                    var templateRenderer = new TemplateRenderer(uiErrorList, uiOutput, expressionCompiler);
                     var renderedItems = await templateRenderer.RenderAsync(template.FilePath, templateContent, codeModel, userInput.TypesThatMayContainCustomFunctions, editorConfig, environmentVariables).ConfigureAwait(false);
 
                     await GeneratedFileManager.SaveChanges(renderedItems, generatedFileReaderWriter, uiOutput, sourceControl).ConfigureAwait(false);
