@@ -6,6 +6,6 @@ namespace NTypewriter.Ports
 {
     public interface IExpressionCompiler
     {
-        Func<object, bool> CompilePredicate(string predicate);
+        Func<object, bool> CompilePredicate(string predicate, Type type);
     }
 }

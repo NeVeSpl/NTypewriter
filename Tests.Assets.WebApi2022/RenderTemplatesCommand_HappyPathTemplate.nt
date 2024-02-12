@@ -1,5 +1,5 @@
 ﻿{{ capture output
-       for class in data.Classes | Where "x => true" | Array.Sort "FullName"
+       for class in data.Classes | Where "x => x.BareName.StartsWith(\"We\")" | Array.Sort "FullName"
            class.FullName | String.Append "\r\n"
       end
    end

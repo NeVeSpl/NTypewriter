@@ -51,13 +51,13 @@ namespace NTypewriter.Internals
         {
             externalOutput?.Write(text);
         }
-        public Func<object, bool> CompileExpression(string predicate)
+        public Func<object, bool> CompilePredicate(string predicate, Type type)
         {
             if (expressionCompiler == null)
             {
                 throw new Exception("Expression compiler is unavailable");
             }
-            return expressionCompiler.CompilePredicate(predicate);
+            return expressionCompiler.CompilePredicate(predicate, type);
         }
 
 
