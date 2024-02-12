@@ -4,8 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>xKey.snk</AssemblyOriginatorKeyFile>
-    <Version>0.5.1</Version>
-    <AssemblyVersion>0.5.1</AssemblyVersion>
+    <Version>0.5.5</Version>
+    <AssemblyVersion>0.5.5</AssemblyVersion>
     <Authors>NeVeSpl</Authors>
     <Company>NeVeSpl</Company>
     <Copyright>(c) NTypewriter</Copyright>
