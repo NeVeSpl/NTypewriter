@@ -342,6 +342,7 @@ IsVirtual | Determines if the symbol is virtual | `bool`
 Locations | Gets the locations where the symbol was originally defined, either in source or metadata. Some symbols (for example, partial classes) may be defined in more than one location. | [`IEnumerable<ILocation>`](#ILocation)  
 Name | The name of the symbol | `string`  
 Namespace | The nearest enclosing namespace for the symbol. | `string`  
+SourceCode |  | `string`  
 
 
 Implements : 

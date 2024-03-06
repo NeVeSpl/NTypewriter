@@ -16,6 +16,10 @@ DebugFunctions
 * [Throw](#Throw)
 * [WriteLine](#WriteLine)
 
+LINQFunctions
+
+* [Where](#Where)
+
 ParametersFunctions
 
 * [ToTypeScript](#ToTypeScript)
@@ -250,6 +254,18 @@ void Debug.WriteLine(MainTemplateContext context, string text)
 ```
 Write text on NTypewriter output window
 [[source code](/NTypewriter/Internals/Functions/DebugFunctions.cs#L11)]
+
+----
+
+## LINQFunctions
+
+#### Where
+
+```csharp
+IEnumerable<object> LINQ.Where(MainTemplateContext context, IEnumerable<object> source, string predicate)
+```
+Filters a sequence of values based on a predicate.    Predicate uses C# lambda syntax, the same one that is used by LINQ Where method
+[[source code](/NTypewriter/Internals/Functions/LINQFunctions.cs#L16)]
 
 ----
 
