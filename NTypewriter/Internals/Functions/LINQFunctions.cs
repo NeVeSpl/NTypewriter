@@ -11,7 +11,7 @@ namespace NTypewriter.Internals.Functions
     {
         /// <summary>
         /// Filters a sequence of values based on a predicate.
-        /// Predicate uses C# lambda syntax, the same one that used by LINQ Where method 
+        /// Predicate uses C# lambda syntax, the same one that is used by LINQ Where method 
         /// </summary>        
         public static IEnumerable<object> Where(MainTemplateContext context, IEnumerable<object> source, string predicate)
         {

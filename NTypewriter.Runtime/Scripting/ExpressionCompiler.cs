@@ -23,7 +23,8 @@ namespace NTypewriter.Runtime.Scripting
         private static readonly string[] Imports =
         [
             "System",
-            "NTypewriter.CodeModel",            
+            "NTypewriter.CodeModel",
+            "NTypewriter.CodeModel.Functions",
         ];
         private readonly IEnumerable<MetadataReference> MetadataReferences;
 
