@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using Microsoft.CodeAnalysis;
@@ -49,12 +51,24 @@ namespace NTypewriter.Runtime.Scripting
 
         public Func<object, bool> CompilePredicate(string predicate, Type type)
         {
-            //Func<object, bool> func =  x => { return new Func<object, bool>(x => true)(x as object); };
+            try
+            {
+                return CompilePredicateInternal(predicate, type);
+            }
+            catch (Exception ex) when (ex is not Microsoft.CodeAnalysis.Scripting.CompilationErrorException)
+            {
+                Trace.TraceError(ex.ToString());
+            }
+            return null;
+        }
 
+        private Func<object, bool> CompilePredicateInternal(string predicate, Type type)
+        {
             var lambda = $"x => {{ return new Func<{type.Name}, bool>({predicate})(({type.Name})x); }}";
 
             var options = ScriptOptions.Default.AddReferences(MetadataReferences).AddImports(Imports);
-            var func = CSharpScript.EvaluateAsync<Func<object, bool>>(lambda, options).Result;
+           
+            var func = CSharpScript.EvaluateAsync<Func<object, bool>>(lambda, options).GetAwaiter().GetResult();
             return func;
         }
     }

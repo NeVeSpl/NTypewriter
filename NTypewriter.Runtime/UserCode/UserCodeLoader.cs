@@ -226,9 +226,10 @@ namespace NTypewriter.Runtime.UserCode
         }
         private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
+            var asmName = new AssemblyName(args.Name);
             var currentDomain = sender as AppDomain;
             var assemblies = currentDomain.GetAssemblies();
-            var assembly = assemblies.FirstOrDefault(x => x.FullName == args.Name);
+            var assembly = assemblies.FirstOrDefault(x => x.GetName().FullName == asmName.FullName);
             return assembly;
         }
         #endregion
