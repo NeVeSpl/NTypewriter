@@ -4,10 +4,15 @@ using System.Collections.Immutable;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
+using Microsoft.CodeAnalysis.Options;
+using Microsoft.CodeAnalysis.Scripting;
 using NTypewriter.CodeModel;
 using NTypewriter.CodeModel.Functions;
 using NTypewriter.CodeModel.Roslyn;
@@ -27,7 +32,7 @@ namespace NTypewriter.SourceGenerator
 
         static NTypewriterSourceGenerator()
         {
-            AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolver.Resolve;
+            AssemblyResolver.Register();
         }
 
 
@@ -49,12 +54,17 @@ namespace NTypewriter.SourceGenerator
                 typeof(Template),
                 typeof(JsonSerializer),
                 typeof(Regex),
+                typeof(MetadataReference),
+                typeof(CSharpCompilationOptions),
+                typeof(ScriptOptions),
+                typeof(CSharpScript),
+                typeof(Solution),
             ];
 
-            var assembliesInfoLines = markingTypes.Select(x => $"// {x.Assembly.GetName().Name, -32} {x.Assembly.GetName().Version}  {x.Assembly.Location}");   
-            var output = String.Join("\r\n", assembliesInfoLines);
+            var assembliesInfoLines = markingTypes.Select(x => $"// {x.Assembly.GetLogEntry()}");
+            var postInitializationRaport = String.Join("\r\n", assembliesInfoLines);
 
-            context.AddSource("diagnostics-initialization.g.cs", output);            
+            context.AddSource("diagnostics-initialization.g.cs", postInitializationRaport);            
         }
 
 
@@ -86,24 +96,31 @@ namespace NTypewriter.SourceGenerator
 
             try
             {
-                var templates = context.AdditionalFiles.Where(x => x.Path.EndsWith(".nt")).Select(x => new TemplateToRender(x.Path, context.Compilation.AssemblyName) {Content = x.GetText().ToString()}).ToList();
-                var userCodePaths = context.Compilation.SyntaxTrees.Where(x => x.FilePath?.EndsWith(".nt.cs") == true).Select(x => x.FilePath).ToList();
-
-                var userCodeProvider = new UserCodeProvider(userCodePaths);
-                var userInterfaceOutputWriter = new UserInterfaceOutputWriter();
-
-                var cmd = new RenderTemplatesCommand(null, userCodeProvider, new GeneratedFileReaderWriter(context, projectContext.ProjectDir), userInterfaceOutputWriter, null, null, null, null);
-                cmd.Execute(context.Compilation, templates).GetAwaiter().GetResult();
-
-                var log = userInterfaceOutputWriter.GetOutput();
-                context.ReportDiagnostic(Diagnostic.Create(Diagnostics.RenderInfo, Location.None, log));
-                File.WriteAllText(projectContext.LogFilePath, log);
+                DoRender(context, projectContext);
             }
             catch (Exception ex)
             {
                 context.ReportDiagnostic(Diagnostic.Create(Diagnostics.Exception, Location.None, ex.ToString()));
             }
+            AssemblyResolver.DumpLodedAssemblies();            
         }
+        private void DoRender(GeneratorExecutionContext context, ProjectContext projectContext)
+        {
+            var templates = context.AdditionalFiles.Where(x => x.Path.EndsWith(".nt")).Select(x => new TemplateToRender(x.Path, context.Compilation.AssemblyName) { Content = x.GetText().ToString() }).ToList();
+            var userCodePaths = context.Compilation.SyntaxTrees.Where(x => x.FilePath?.EndsWith(".nt.cs") == true).Select(x => x.FilePath).ToList();
+
+            var userCodeProvider = new UserCodeProvider(userCodePaths);
+            var userInterfaceOutputWriter = new UserInterfaceOutputWriter();
+
+            var cmd = new RenderTemplatesCommand(null, userCodeProvider, new GeneratedFileReaderWriter(context, projectContext.ProjectDir), userInterfaceOutputWriter, null, null, null, null);
+            cmd.Execute(context.Compilation, templates).GetAwaiter().GetResult();
+
+            var log = userInterfaceOutputWriter.GetOutput();
+            context.ReportDiagnostic(Diagnostic.Create(Diagnostics.RenderInfo, Location.None, log));
+            File.WriteAllText(projectContext.LogFilePath, log);
+        }
+
+
 
         private static ProjectContext GetProjectContext(GeneratorExecutionContext context)
         {

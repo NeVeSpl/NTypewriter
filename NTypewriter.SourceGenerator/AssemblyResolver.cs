@@ -8,70 +8,173 @@ namespace NTypewriter.SourceGenerator
 {
     internal static class AssemblyResolver
     { 
-        public static Assembly Resolve(object sender, ResolveEventArgs args)
-        {
-            var asmName = new AssemblyName(args.Name);
-            Trace.WriteLine($"AssemblyResolver.Resolve : {asmName.FullName}");
+        private static readonly string TempPath = Path.Combine(Path.GetTempPath(), "NTSG");  
 
-            var loadedAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(a => a.GetName().FullName == asmName.FullName);
+
+        public static void Register()
+        {
+            Directory.CreateDirectory(TempPath);
+            Log(DateTime.Now.ToString());
+
+            AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolver.Resolve;            
+           
+            PreLoadAssemblies();
+        }
+        private static void PreLoadAssemblies()
+        {
+            ResolveFromAssemblyName(new AssemblyName("Microsoft.CodeAnalysis, Version=3.11.0.0"));
+            ResolveFromAssemblyName(new AssemblyName("Microsoft.CodeAnalysis.CSharp, Version=3.11.0.0"));
+            ResolveFromAssemblyName(new AssemblyName("Microsoft.CodeAnalysis.CSharp.Workspaces, Version=3.11.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"));
+            ResolveFromAssemblyName(new AssemblyName("Microsoft.CodeAnalysis.Workspaces, Version=3.11.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"));
+            ResolveFromAssemblyName(new AssemblyName("Microsoft.CodeAnalysis.CSharp.Scripting, Version=3.11.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"));
+            ResolveFromAssemblyName(new AssemblyName("Microsoft.CodeAnalysis.Scripting, Version=3.11.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"));
+            ResolveFromAssemblyName(new AssemblyName("System.Text.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51"));
+            ResolveFromAssemblyName(new AssemblyName("Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51"));
+            ResolveFromAssemblyName(new AssemblyName("Basic.Reference.Assemblies.NetStandard20, Version=1.0.0.0, Culture=neutral, PublicKeyToken=00aeae93c2ffe759"));
+        }
+
+
+        private static void Log(string message)
+        {
+            var enrichedMessage = $"AssemblyResolver: {message}";
+            Trace.WriteLine(enrichedMessage);
+
+            try
+            {
+                var path = Path.Combine(TempPath, $"AppDomain_{AppDomain.CurrentDomain.FriendlyName}_AssemblyResolver.log");
+                File.AppendAllText(path, enrichedMessage + "\r\n");
+            }
+            catch (Exception ex)
+            { 
+            }
+        }
+        public static void DumpLodedAssemblies()
+        {
+            try
+            {
+                var lodedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+                var path = Path.Combine(TempPath, $"AppDomain_{AppDomain.CurrentDomain.FriendlyName}_LodedAssemblies.log");
+                var entries = lodedAssemblies.Select(x => x.GetLogEntry());
+               
+                File.WriteAllLines(path, entries);
+            }
+            catch (Exception ex)
+            {
+                Log(ex.ToString());
+            }
+        }
+
+
+        private static Assembly Resolve(object sender, ResolveEventArgs args)
+        {   
+            var asmName = new AssemblyName(args.Name);
+            if (asmName.Name.EndsWith(".resources")) return null;
+
+            return ResolveFromAssemblyName(asmName);
+        }
+        private static Assembly ResolveFromAssemblyName(AssemblyName asmName)
+        {
+            DumpLodedAssemblies();
+
+            Log($"requested {asmName.Name}, {asmName.Version}");
+
+            var lodedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+            //          
+
+            var loadedAssembly = lodedAssemblies.FirstOrDefault(a => a.GetName().FullName == asmName.FullName);
             if (loadedAssembly != null)
             {
-                Trace.WriteLine($"AssemblyResolver.Resolve : resolved from AppDomain.CurrentDomain");
+                Log($"resolved from AppDomain.CurrentDomain - {loadedAssembly.GetName().Version}");
                 return loadedAssembly;
             }
-          
+
+            //
+
+            var loadedAssemblyRedirected = lodedAssemblies.Where(a => a.GetName().Name == asmName.Name).OrderByDescending(x => x.GetName().Version).FirstOrDefault();
+            if (loadedAssemblyRedirected != null)
+            {
+                Log($"resolved from AppDomain.CurrentDomain -> redirect - {loadedAssemblyRedirected.GetName().Version}");
+                return loadedAssemblyRedirected;
+            }
+
+            //
+
+            if (asmName.Name.StartsWith("Microsoft.CodeAnalysis"))
+            {
+                var microsoftCodeAnalysisAssembly = lodedAssemblies.FirstOrDefault(x => x.GetName().Name == "Microsoft.CodeAnalysis");
+                var microsoftCodeAnalysisPath = microsoftCodeAnalysisAssembly != null ? Path.GetDirectoryName(microsoftCodeAnalysisAssembly.Location) : null;
+
+                if (!string.IsNullOrEmpty(microsoftCodeAnalysisPath))
+                {
+                    var roslynAsmPath = Path.Combine(microsoftCodeAnalysisPath, asmName.Name + ".dll");
+                    if (File.Exists(roslynAsmPath))
+                    {
+                        var roslynAsm = LoadAssembly(roslynAsmPath);
+                        if (roslynAsm != null)
+                        {
+                            Log($"resolved from Roslyn - {roslynAsm.GetName().Version}");
+                            return roslynAsm;
+                        }                        
+                    }
+                }
+            }
+
+            //
+
             var manifestResourceNames = Assembly.GetExecutingAssembly().GetManifestResourceNames();
 
             var version = asmName.Version;
+            var dllNameWithVer = manifestResourceNames.FirstOrDefault(x => x.StartsWith(asmName.Name+".v"));
 
-            if (asmName.Name == "Scriban.Signed" && version == new Version(5, 0, 0, 0))
+            if (!string.IsNullOrEmpty(dllNameWithVer))
             {
-                version = new Version(5, 9, 0, 0);
-            }
-            if (asmName.Name == "Basic.Reference.Assemblies.NetStandard20" && version == new Version(1, 0, 0, 0))
-            {
-                version = new Version(1, 4, 5, 0);
-            }
-
-
-            var dllName = $"{asmName.Name}.v{version}.dll";           
-
-            using (Stream resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(dllName))
-            {
-                if (resourceStream == null)
+                using (Stream resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(dllNameWithVer))
                 {
-                    Trace.WriteLine($"AssemblyResolver.Resolve : failure");
-                    return null;
-                }
-                try
-                {
-                   
-                    var tempPath = Path.Combine(Path.GetTempPath(), "NTSG");
-                    var filePath = Path.Combine(tempPath, dllName);
-                    Directory.CreateDirectory(tempPath);
-
-                    if (!File.Exists(filePath))
-                    {                        
-                        using (FileStream fileStream = File.Create(filePath))
+                    if (resourceStream != null)
+                    {
+                        try
                         {
-                            resourceStream.CopyTo(fileStream);                            
+                            var filePath = Path.Combine(TempPath, dllNameWithVer);
+
+                            if (!File.Exists(filePath))
+                            {
+                                using (FileStream fileStream = File.Create(filePath))
+                                {
+                                    resourceStream.CopyTo(fileStream);
+                                }
+                            }
+                            var tempASM = LoadAssembly(filePath);
+                            Log($"resolved from TEMP - {tempASM.GetName().Version}");
+                            return tempASM;
                         }
-                    }       
+                        catch
+                        {
 
-                    return Assembly.LoadFile(filePath);
+                        }
+
+                        using (MemoryStream memoryStream = new MemoryStream())
+                        {                            
+                            resourceStream.CopyTo(memoryStream);
+                            var streamAsm = Assembly.Load(memoryStream.ToArray());
+                            Log($"resolved from ResourceStream - {streamAsm.GetName().Version}");
+                            return streamAsm;
+                        }
+                    }
                 }
-                catch
-                {
+            }            
 
-                }                
+            Log($"failure");
+            return null;
+        }
 
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    Trace.WriteLine($"AssemblyResolver.Resolve : resolved from ResourceStream");
-                    resourceStream.CopyTo(memoryStream);
-                    return Assembly.Load(memoryStream.ToArray());
-                }
-            }
+
+        private static Assembly LoadAssembly(string filePath)
+        {
+            //var b = File.ReadAllBytes(filePath);  
+            var assembly = Assembly.LoadFile(filePath);
+
+            return assembly;
         }
     }
 }

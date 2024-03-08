@@ -5,7 +5,7 @@
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<Version>0.3.5</Version>		
+		<Version>0.4.1</Version>		
 	    <PackageIcon>nt.128.128.png</PackageIcon>
 	    <Authors>NeVeSpl</Authors>
         <Company>NeVeSpl</Company>
@@ -20,21 +20,27 @@
 
 	<ItemGroup>
 
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.11.0" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.11.0" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.11.0" PrivateAssets="all" GeneratePathProperty="true" />
+
+		<PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.0.1" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" PrivateAssets="all" GeneratePathProperty="true" />		
+		
+		<PackageReference Include="Microsoft.CodeAnalysis.Scripting" Version="4.0.1" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Scripting.Common" Version="4.0.1" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.0.1" PrivateAssets="all" GeneratePathProperty="true" />		
 		
 		<PackageReference Include="Scriban.Signed" Version="5.9.0" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter" Version="0.5.1" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.CodeModel" Version="0.5.1" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.CodeModel.Functions" Version="0.5.1" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.CodeModel.Roslyn" Version="0.5.1" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.Editor.Config" Version="0.5.1" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.Runtime" Version="0.5.1" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter" Version="0.5.5" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel" Version="0.5.5" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel.Functions" Version="0.5.5" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel.Roslyn" Version="0.5.5" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.Editor.Config" Version="0.5.5" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.Runtime" Version="0.5.5.7" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="System.Text.Json" Version="6.0.0" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" PrivateAssets="all" GeneratePathProperty="true" />		
 		<PackageReference Include="Basic.Reference.Assemblies.NetStandard20" PrivateAssets="all" Version="1.4.5" GeneratePathProperty="true" />
@@ -58,8 +64,12 @@
 
 	<Target Name="GetDependencyTargetPaths">
 		<ItemGroup>
-			<TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_CodeAnalysis_CSharp_Workspaces)\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll" IncludeRuntimeDependency="false" />
-			<TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_CodeAnalysis_Workspaces_Common)\lib\netstandard2.0\Microsoft.CodeAnalysis.Workspaces.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_CodeAnalysis_Common)\lib\netstandard2.0\Microsoft.CodeAnalysis.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_CodeAnalysis_CSharp)\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_CodeAnalysis_CSharp_Workspaces)\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll" IncludeRuntimeDependency="false" />			
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_CodeAnalysis_Workspaces_Common)\lib\netstandard2.0\Microsoft.CodeAnalysis.Workspaces.dll" IncludeRuntimeDependency="false" />	
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_CodeAnalysis_CSharp_Scripting)\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.Scripting.dll" IncludeRuntimeDependency="false" />
+			<TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_CodeAnalysis_Scripting_Common)\lib\netstandard2.0\Microsoft.CodeAnalysis.Scripting.dll" IncludeRuntimeDependency="false" />			
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgScriban_Signed)\lib\netstandard2.0\Scriban.Signed.dll" IncludeRuntimeDependency="false" />
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgNTypewriter_CodeModel)\lib\netstandard2.0\NTypewriter.CodeModel.dll" IncludeRuntimeDependency="false" />
 			<TargetPathWithTargetPlatformMoniker Include="$(PkgNTypewriter_CodeModel_Functions)\lib\netstandard2.0\NTypewriter.CodeModel.Functions.dll" IncludeRuntimeDependency="false" />
@@ -73,30 +83,30 @@
 		</ItemGroup>
 	</Target>
 
-	<!-- Above "official" way does not work sometimes, sooooo, to be sure, let us embedded dependencies -->
+	<!-- Above "official" way does not work sometimes, sooooo, to be sure, let us embed dependencies -->
 	<ItemGroup>
-		<EmbeddedResource Logicalname="Microsoft.CodeAnalysis.CSharp.Workspaces.v3.11.0.0.dll" Include="$(PkgMicrosoft_CodeAnalysis_CSharp_Workspaces)\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll" Visible="false" />
-		<EmbeddedResource Logicalname="Microsoft.CodeAnalysis.Workspaces.v3.11.0.0.dll"        Include="$(PkgMicrosoft_CodeAnalysis_Workspaces_Common)\lib\netstandard2.0\Microsoft.CodeAnalysis.Workspaces.dll" Visible="false" />
-		<EmbeddedResource Logicalname="Scriban.Signed.v5.9.0.0.dll"                            Include="$(PkgScriban_Signed)\lib\netstandard2.0\Scriban.Signed.dll" Visible="false" />
-		<EmbeddedResource Logicalname="NTypewriter.v0.5.1.0.dll"                               Include="$(PkgNTypewriter)\lib\netstandard2.0\NTypewriter.dll" Visible="false" />
-		<EmbeddedResource Logicalname="NTypewriter.CodeModel.v0.5.1.0.dll"                     Include="$(PkgNTypewriter_CodeModel)\lib\netstandard2.0\NTypewriter.CodeModel.dll" Visible="false" />
-		<EmbeddedResource Logicalname="NTypewriter.CodeModel.Functions.v0.5.1.0.dll"            Include="$(PkgNTypewriter_CodeModel_Functions)\lib\netstandard2.0\NTypewriter.CodeModel.Functions.dll" Visible="false" />
-		<EmbeddedResource Logicalname="NTypewriter.CodeModel.Roslyn.v0.5.1.0.dll"               Include="$(PkgNTypewriter_CodeModel_Roslyn)\lib\netstandard2.0\NTypewriter.CodeModel.Roslyn.dll" Visible="false" />
-		<EmbeddedResource Logicalname="NTypewriter.Editor.Config.v0.5.1.0.dll"                 Include="$(PkgNTypewriter_Editor_Config)\lib\netstandard2.0\NTypewriter.Editor.Config.dll" Visible="false" />
-		<EmbeddedResource Logicalname="NTypewriter.Runtime.v0.5.1.0.dll"                       Include="$(PkgNTypewriter_Runtime)\lib\netstandard2.0\NTypewriter.Runtime.dll" Visible="false" />
-		<EmbeddedResource Logicalname="System.Text.Json.v6.0.0.0.dll"                          Include="$(PkgSystem_Text_Json)\lib\netstandard2.0\System.Text.Json.dll" Visible="false" />
-		<EmbeddedResource Logicalname="Microsoft.Bcl.AsyncInterfaces.v6.0.0.0.dll"             Include="$(PkgMicrosoft_Bcl_AsyncInterfaces)\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll" Visible="false" />
-		<EmbeddedResource Logicalname="Basic.Reference.Assemblies.NetStandard20.v1.4.5.0.dll"  Include="$(Pkgbasic_reference_assemblies_netstandard20)\lib\netstandard2.0\Basic.Reference.Assemblies.NetStandard20.dll" Visible="false" />
+		<EmbeddedResource Logicalname="Microsoft.CodeAnalysis.v4.0.1.0.dll" Include="$(PkgMicrosoft_CodeAnalysis_Common)\lib\netstandard2.0\Microsoft.CodeAnalysis.dll" Visible="false" />
+		<EmbeddedResource Logicalname="Microsoft.CodeAnalysis.CSharp.v4.0.1.0.dll" Include="$(PkgMicrosoft_CodeAnalysis_CSharp)\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.dll" Visible="false" />
+		<EmbeddedResource Logicalname="Microsoft.CodeAnalysis.CSharp.Workspaces.v4.0.1.0.dll" Include="$(PkgMicrosoft_CodeAnalysis_CSharp_Workspaces)\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll" Visible="false" />
+		<EmbeddedResource Logicalname="Microsoft.CodeAnalysis.Workspaces.v4.0.1.0.dll" Include="$(PkgMicrosoft_CodeAnalysis_Workspaces_Common)\lib\netstandard2.0\Microsoft.CodeAnalysis.Workspaces.dll" Visible="false" />
+		<EmbeddedResource Logicalname="Microsoft.CodeAnalysis.CSharp.Scripting.v4.0.1.0.dll" Include="$(PkgMicrosoft_CodeAnalysis_CSharp_Scripting)\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.Scripting.dll" Visible="false" />
+		<EmbeddedResource Logicalname="Microsoft.CodeAnalysis.Scripting.v4.0.1.0.dll" Include="$(PkgMicrosoft_CodeAnalysis_Scripting_Common)\lib\netstandard2.0\Microsoft.CodeAnalysis.Scripting.dll" Visible="false" />		
+		<EmbeddedResource Logicalname="Scriban.Signed.v5.9.0.0.dll" Include="$(PkgScriban_Signed)\lib\netstandard2.0\Scriban.Signed.dll" Visible="false" />
+		<EmbeddedResource Logicalname="NTypewriter.v0.5.5.0.dll" Include="$(PkgNTypewriter)\lib\netstandard2.0\NTypewriter.dll" Visible="false" />
+		<EmbeddedResource Logicalname="NTypewriter.CodeModel.v0.5.5.0.dll" Include="$(PkgNTypewriter_CodeModel)\lib\netstandard2.0\NTypewriter.CodeModel.dll" Visible="false" />
+		<EmbeddedResource Logicalname="NTypewriter.CodeModel.Functions.v0.5.5.0.dll" Include="$(PkgNTypewriter_CodeModel_Functions)\lib\netstandard2.0\NTypewriter.CodeModel.Functions.dll" Visible="false" />
+		<EmbeddedResource Logicalname="NTypewriter.CodeModel.Roslyn.v0.5.5.0.dll" Include="$(PkgNTypewriter_CodeModel_Roslyn)\lib\netstandard2.0\NTypewriter.CodeModel.Roslyn.dll" Visible="false" />
+		<EmbeddedResource Logicalname="NTypewriter.Editor.Config.v0.5.5.0.dll" Include="$(PkgNTypewriter_Editor_Config)\lib\netstandard2.0\NTypewriter.Editor.Config.dll" Visible="false" />
+		<EmbeddedResource Logicalname="NTypewriter.Runtime.v0.5.5.7.dll" Include="$(PkgNTypewriter_Runtime)\lib\netstandard2.0\NTypewriter.Runtime.dll" Visible="false" />
+		<EmbeddedResource Logicalname="System.Text.Json.v6.0.0.0.dll" Include="$(PkgSystem_Text_Json)\lib\netstandard2.0\System.Text.Json.dll" Visible="false" />
+		<EmbeddedResource Logicalname="Microsoft.Bcl.AsyncInterfaces.v6.0.0.0.dll" Include="$(PkgMicrosoft_Bcl_AsyncInterfaces)\lib\netstandard2.0\Microsoft.Bcl.AsyncInterfaces.dll" Visible="false" />
+		<EmbeddedResource Logicalname="Basic.Reference.Assemblies.NetStandard20.v1.4.5.0.dll" Include="$(Pkgbasic_reference_assemblies_netstandard20)\lib\netstandard2.0\Basic.Reference.Assemblies.NetStandard20.dll" Visible="false" />
 	</ItemGroup>
 	
 	<ItemGroup>
 	  <None Update="NTypewriter.SourceGenerator.targets">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="Extensions\System\" />
 	</ItemGroup>	
 
 </Project>
