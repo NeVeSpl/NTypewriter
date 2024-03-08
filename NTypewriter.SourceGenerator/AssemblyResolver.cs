@@ -70,13 +70,13 @@ namespace NTypewriter.SourceGenerator
             var asmName = new AssemblyName(args.Name);
             if (asmName.Name.EndsWith(".resources")) return null;
 
-            return ResolveFromAssemblyName(asmName);
+            return ResolveFromAssemblyName(asmName, args.RequestingAssembly);
         }
-        private static Assembly ResolveFromAssemblyName(AssemblyName asmName)
+        private static Assembly ResolveFromAssemblyName(AssemblyName asmName, Assembly requestingAssembly = null)
         {
             DumpLodedAssemblies();
 
-            Log($"requested {asmName.Name}, {asmName.Version}");
+            Log($"requested {asmName.Name}, {asmName.Version} by {requestingAssembly?.GetName()?.Name}");
 
             var lodedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
 
@@ -110,12 +110,12 @@ namespace NTypewriter.SourceGenerator
                     var roslynAsmPath = Path.Combine(microsoftCodeAnalysisPath, asmName.Name + ".dll");
                     if (File.Exists(roslynAsmPath))
                     {
-                        var roslynAsm = LoadAssembly(roslynAsmPath);
-                        if (roslynAsm != null)
-                        {
-                            Log($"resolved from Roslyn - {roslynAsm.GetName().Version}");
-                            return roslynAsm;
-                        }                        
+                        //var roslynAsm = LoadAssembly(roslynAsmPath);
+                        //if (roslynAsm != null)
+                        //{
+                            //Log($"resolved from Roslyn - {roslynAsm.GetName().Version}");
+                            //return roslynAsm;
+                        //}                        
                     }
                 }
             }
@@ -172,9 +172,16 @@ namespace NTypewriter.SourceGenerator
         private static Assembly LoadAssembly(string filePath)
         {
             //var b = File.ReadAllBytes(filePath);  
-            var assembly = Assembly.LoadFile(filePath);
-
-            return assembly;
+            try
+            {
+                var assembly = Assembly.LoadFile(filePath);
+                return assembly;
+            }
+            catch (Exception ex)
+            {
+                Log(ex.ToString());
+            }
+            return null;
         }
     }
 }

@@ -19,6 +19,7 @@ using NTypewriter.CodeModel.Roslyn;
 using NTypewriter.Editor.Config;
 using NTypewriter.Runtime;
 using NTypewriter.SourceGenerator.Adapters;
+using NTypewriter.SourceGenerator.Extensions.System;
 using Scriban;
 
 namespace NTypewriter.SourceGenerator
@@ -26,7 +27,7 @@ namespace NTypewriter.SourceGenerator
     [Generator]
     public class NTypewriterSourceGenerator : ISourceGenerator
     {
-        private static readonly ConcurrentDictionary<string, ProjectContext> ProjectContexts = new();      
+        private static readonly ConcurrentDictionary<string, ProjectContext> ProjectContexts = new();
         private static readonly object Padlock = new();
 
 
@@ -62,9 +63,10 @@ namespace NTypewriter.SourceGenerator
             ];
 
             var assembliesInfoLines = markingTypes.Select(x => $"// {x.Assembly.GetLogEntry()}");
-            var postInitializationRaport = String.Join("\r\n", assembliesInfoLines);
+            var postInitializationRaport = String.Join("\r\n", assembliesInfoLines) + $"\r\n// CurrentDomain: {AppDomain.CurrentDomain.FriendlyName}";
 
-            context.AddSource("diagnostics-initialization.g.cs", postInitializationRaport);            
+            context.AddSource("diagnostics-initialization.g.cs", postInitializationRaport);
+            postInitializationRaport.WriteItDownAndForget("diagnostics-initialization.g.cs");
         }
 
 
@@ -73,24 +75,25 @@ namespace NTypewriter.SourceGenerator
             var projectContext = GetProjectContext(context);
 
             Interlocked.Increment(ref projectContext.ExecuteCount);
-            projectContext.LastTouchTime = File.GetLastWriteTime(projectContext.TouchFilePath);
+            projectContext.LastTouchTime = GetLastBuildTime(projectContext.TouchFilePath);
             projectContext.LastNTFileEditTime = GetLastEditTime(context.AdditionalFiles);
 
             bool doRender = false;
 
             lock (Padlock)
-            { 
+            {
                 if ((projectContext.LastTouchTime > projectContext.LastRenderTime) || (projectContext.LastNTFileEditTime > projectContext.LastRenderTime))
                 {
                     Interlocked.Increment(ref projectContext.RenderCount);
-                    projectContext.LastRenderTime = new DateTime(Math.Max(projectContext.LastTouchTime.Ticks, projectContext.LastNTFileEditTime.Ticks));                    
-                    doRender = true;                    
+                    projectContext.LastRenderTime = new DateTime(Math.Max(projectContext.LastTouchTime.Ticks, projectContext.LastNTFileEditTime.Ticks));
+                    doRender = true;
                 }
             }
 
             var report = projectContext.PrepareRaport();
             context.ReportDiagnostic(Diagnostic.Create(Diagnostics.ExecuteInfo, Location.None, report));
             context.AddSource("diagnostics-sg-last-run.g.cs", report);
+            report.WriteItDownAndForget("diagnostics-sg-last-run.g.cs");
 
             if (doRender == false) return;
 
@@ -102,7 +105,7 @@ namespace NTypewriter.SourceGenerator
             {
                 context.ReportDiagnostic(Diagnostic.Create(Diagnostics.Exception, Location.None, ex.ToString()));
             }
-            AssemblyResolver.DumpLodedAssemblies();            
+            AssemblyResolver.DumpLodedAssemblies();
         }
         private void DoRender(GeneratorExecutionContext context, ProjectContext projectContext)
         {
@@ -126,7 +129,7 @@ namespace NTypewriter.SourceGenerator
         {
             context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.ProjectDir", out var projectDir);
             context.AnalyzerConfigOptions.GlobalOptions.TryGetValue("build_property.OutputPath", out var buildOutputPath);
-                     
+
             var assemblyName = context.Compilation.AssemblyName;
             var outputDir = GetOutputDir(projectDir, buildOutputPath);
 
@@ -140,7 +143,7 @@ namespace NTypewriter.SourceGenerator
             return ProjectContexts.GetOrAdd(id, _ => new ProjectContext(assemblyName, projectDir, outputDir));
         }
         private static string GetOutputDir(string projectDir, string buildOutputPath)
-        {             
+        {
             if (Path.IsPathRooted(buildOutputPath))
             {
                 return buildOutputPath;
@@ -160,10 +163,18 @@ namespace NTypewriter.SourceGenerator
                 var lastEdit = additionalFiles.Max(x => File.GetLastWriteTime(x.Path));
                 return lastEdit;
             }
-            catch 
+            catch
             {
             }
             return DateTime.MinValue;
+        }
+        private static DateTime GetLastBuildTime(string touchFilePath)
+        {
+            if (File.Exists(touchFilePath))
+            {
+                return File.GetLastWriteTime(touchFilePath);
+            }
+            return DateTime.Now;
         }
 
 
