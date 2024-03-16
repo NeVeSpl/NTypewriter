@@ -32,3 +32,5 @@ NTypewriter.Online/obj/
 publish/
 nugets/
 publish_nuget.bat
+NTypewriter.SourceGenerator-Incremental/obj/
+NTypewriter.SourceGenerator-Incremental/bin/

@@ -52,7 +52,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.Runtime.Tests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.SourceGenerator", "NTypewriter.SourceGenerator\NTypewriter.SourceGenerator.csproj", "{5D16E995-E8BA-401E-B013-2ECD7CA8EE9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter.Online", "NTypewriter.Online\NTypewriter.Online.csproj", "{92221C39-F896-4C8C-B26B-7B448FCC971E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.Online", "NTypewriter.Online\NTypewriter.Online.csproj", "{92221C39-F896-4C8C-B26B-7B448FCC971E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter.SourceGenerator-Incremental", "NTypewriter.SourceGenerator-Incremental\NTypewriter.SourceGenerator-Incremental.csproj", "{5C7D713F-87C2-420A-A423-E4D79F56DE65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -120,6 +122,10 @@ Global
 		{92221C39-F896-4C8C-B26B-7B448FCC971E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92221C39-F896-4C8C-B26B-7B448FCC971E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92221C39-F896-4C8C-B26B-7B448FCC971E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C7D713F-87C2-420A-A423-E4D79F56DE65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C7D713F-87C2-420A-A423-E4D79F56DE65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C7D713F-87C2-420A-A423-E4D79F56DE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C7D713F-87C2-420A-A423-E4D79F56DE65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
