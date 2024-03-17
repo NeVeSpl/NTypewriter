@@ -54,7 +54,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.SourceGenerator
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NTypewriter.Online", "NTypewriter.Online\NTypewriter.Online.csproj", "{92221C39-F896-4C8C-B26B-7B448FCC971E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter.SourceGenerator-Incremental", "NTypewriter.SourceGenerator-Incremental\NTypewriter.SourceGenerator-Incremental.csproj", "{5C7D713F-87C2-420A-A423-E4D79F56DE65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTypewriter.SourceGenerator.Incremental", "NTypewriter.SourceGenerator.Incremental\NTypewriter.SourceGenerator.Incremental.csproj", "{5C7D713F-87C2-420A-A423-E4D79F56DE65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
