@@ -43,6 +43,8 @@
     <Compile Remove="Method\ReturnType\inputCode.cs" />
     <Compile Remove="Method\TypeParameters\inputCode.cs" />
     <Compile Remove="NamedType\TypeParameters\inputCode.cs" />
+    <Compile Remove="Property\IsWriteOnly\inputCode.cs" />
+    <Compile Remove="Property\IsReadOnly\inputCode.cs" />
     <Compile Remove="Property\Type\inputCode.cs" />
     <Compile Remove="Struct\Name\inputCode.cs" />
     <Compile Remove="SymbolBase\Attributes\inputCode.cs" />
@@ -149,6 +151,10 @@
     <None Remove="Method\TypeParameters\inputTemplate.tsnt" />
     <None Remove="NamedType\TypeParameters\expectedResult.txt" />
     <None Remove="NamedType\TypeParameters\inputTemplate.tsnt" />
+    <None Remove="Property\IsWriteOnly\expectedResult.txt" />
+    <None Remove="Property\IsReadOnly\expectedResult.txt" />
+    <None Remove="Property\IsReadOnly\inputTemplate.tsnt" />
+    <None Remove="Property\IsWriteOnly\inputTemplate.tsnt" />
     <None Remove="Property\Type\expectedResult.txt" />
     <None Remove="Property\Type\inputTemplate.tsnt" />
     <None Remove="Struct\Name\expectedResult.txt" />
@@ -326,6 +332,12 @@
     <EmbeddedResource Include="NamedType\TypeParameters\expectedResult.txt" />
     <EmbeddedResource Include="NamedType\TypeParameters\inputCode.cs" />
     <EmbeddedResource Include="NamedType\TypeParameters\inputTemplate.tsnt" />
+    <EmbeddedResource Include="Property\IsWriteOnly\expectedResult.txt" />
+    <EmbeddedResource Include="Property\IsWriteOnly\inputCode.cs" />
+    <EmbeddedResource Include="Property\IsWriteOnly\inputTemplate.tsnt" />
+    <EmbeddedResource Include="Property\IsReadOnly\expectedResult.txt" />
+    <EmbeddedResource Include="Property\IsReadOnly\inputCode.cs" />
+    <EmbeddedResource Include="Property\IsReadOnly\inputTemplate.tsnt" />
     <EmbeddedResource Include="Property\Type\expectedResult.txt" />
     <EmbeddedResource Include="Property\Type\inputCode.cs" />
     <EmbeddedResource Include="Property\Type\inputTemplate.tsnt" />

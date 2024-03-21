@@ -25,6 +25,7 @@
     <ProjectReference Include="..\NTypewriter.CodeModel\NTypewriter.CodeModel.csproj" />
     <ProjectReference Include="..\NTypewriter.Editor.Config\NTypewriter.Editor.Config.csproj" />
     <ProjectReference Include="..\NTypewriter.SourceGenerator\NTypewriter.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\NTypewriter.SourceGenerator.Incremental\NTypewriter.SourceGenerator.Incremental.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
   <ItemGroup>

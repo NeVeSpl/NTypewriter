@@ -1,0 +1,10 @@
+﻿PropGetSet           false
+PropGet              true
+PropGetInternalSet   false
+PropGetPrivateSet    false
+PropGetProtectedSet  false
+PropGetInit          false
+PropRequiredGetSet   false
+PropRequiredGetInit  false
+ProtectedPropGetSet  false
+InternalPropGetSet   false

@@ -8,6 +8,18 @@ namespace NTypewriter.CodeModel.Tests.Property
     [TestClass]
     public class PropertyRenderingTests : BaseFixture
     {
+        [TestMethod]
+        public async Task IsReadOnly()
+        {
+            await RunTestForProperty();
+        }
+
+        [TestMethod]
+        public async Task IsWriteOnly()
+        {
+            await RunTestForProperty();
+        }
+
 
         [TestMethod]
         public async Task Type()

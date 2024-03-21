@@ -1,0 +1,8 @@
+﻿{{- capture captured}}
+{{- for class in data.Classes | Symbols.WhereNamespaceStartsWith "NTypewriter.Tests.CodeModel"}}
+{{- for property in class.Properties }}
+{{- property.Name | String.PadRight 21 }}{{ $"{property.IsReadOnly}" }}
+{{ end }}
+{{- end }}
+{{- end }}
+{{- Save captured "Some name" }}
