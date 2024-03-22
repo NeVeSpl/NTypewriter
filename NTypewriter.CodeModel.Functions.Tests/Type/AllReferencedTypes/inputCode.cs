@@ -11,7 +11,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type
 #pragma warning disable IDE0051 // Remove unused private members
 #pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 #pragma warning disable CS0169
-    class AllReferencedTypes : BaseType
+    class AllReferencedTypes : BaseType, IInterfaceType, IGenericInterface<GenericInterfaceArgumentType>
     {
         FieldType field;
         int intField;
@@ -37,6 +37,21 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type
         }
 
 
+
+    }
+
+    interface IInterfaceType
+    {
+
+    } 
+
+    interface IGenericInterface<TypeOnGenericInterfaceType>
+    {
+
+    }
+
+    class GenericInterfaceArgumentType
+    {
 
     }
 

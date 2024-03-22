@@ -17,8 +17,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type
             var config = new CodeModelConfiguration().FilterByNamespace("NTypewriter.CodeModel.Functions.Tests.Type");
             data = await CreateCodeModelFromProject(config, "NTypewriter.CodeModel.Functions.Tests");
         }
-
-
+        
         [TestMethod]
         public async Task AllReferencedTypes()
         {
@@ -45,6 +44,9 @@ GenericType<int>
 ArrayType
 NullableReferenceType?
 BaseType
+IInterfaceType
+GenericInterfaceArgumentType
+IGenericInterface<GenericInterfaceArgumentType>
 ";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }
@@ -68,6 +70,9 @@ PropertyType
 IndexerReturnType
 MethodReturnType
 ParameterType
+IInterfaceType
+GenericInterfaceArgumentType
+IGenericInterface<GenericInterfaceArgumentType>
 ";
             Assert.AreEqual(expected.Trim(), actual.Trim());
         }

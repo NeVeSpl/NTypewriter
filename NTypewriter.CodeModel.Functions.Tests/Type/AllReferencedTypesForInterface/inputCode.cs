@@ -11,7 +11,7 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.AllReferencedTypesForInterf
 #pragma warning disable IDE0051 // Remove unused private members
 #pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 #pragma warning disable CS0169
-    interface AllReferencedTypesForInterface
+    interface AllReferencedTypesForInterface : IInterfaceType, IGenericInterface<GenericInterfaceArgumentType>
     {
 
         PropertyType property { get; set; }
@@ -25,10 +25,20 @@ namespace NTypewriter.CodeModel.Functions.Tests.Type.AllReferencedTypesForInterf
             get;
         }
     }
+    interface IInterfaceType
+    {
 
-  
+    }
 
-  
+    interface IGenericInterface<TypeOnGenericInterfaceType>
+    {
+
+    }
+
+    class GenericInterfaceArgumentType
+    {
+
+    }
 
     class PropertyType
     {
