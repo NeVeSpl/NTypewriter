@@ -14,6 +14,11 @@ namespace NTypewriter.CodeModel
         /// </summary>
         bool IsAsync { get; }
 
+        /// <summary>        
+        /// Returns true for 'init' set accessors, and false otherwise.
+        /// </summary>
+        bool IsInitOnly { get; }
+
         /// <summary>
         /// Determines if the method is generic (it has any type parameters)
         /// </summary>
