@@ -29,6 +29,10 @@ namespace NTypewriter.CodeModel.Functions
         /// </summary>
         BaseClass = 8,
         /// <summary>
+        /// Interfaces
+        /// </summary>
+        Interfaces = 16,
+        /// <summary>
         /// All
         /// </summary>
         All = 127
@@ -60,7 +64,7 @@ namespace NTypewriter.CodeModel.Functions
             {                
                 InspectFields(foundTypes, typeWithFields.Fields);                
             }
-
+                                        
             if (type is IClass @class)
             {
                 if (searchIn.HasFlag(SearchIn.BaseClass))
@@ -70,8 +74,27 @@ namespace NTypewriter.CodeModel.Functions
                         InspectType(foundTypes, @class.BaseClass);
                     }
                 }
+
+                if (searchIn.HasFlag(SearchIn.Interfaces))
+                {
+                    foreach (var @interface in @class.Interfaces)
+                    {
+                        InspectType(foundTypes, @interface);
+                    }
+                }
             }
 
+            if (type is IInterface)
+            {
+                if (searchIn.HasFlag(SearchIn.Interfaces))
+                {                    
+                    foreach (var @interface in type.Interfaces)
+                    {
+                        InspectType(foundTypes, @interface);
+                    }
+                }
+            }
+            
             if (foundTypes.Contains(type))
             {
                 foundTypes.Remove(type);

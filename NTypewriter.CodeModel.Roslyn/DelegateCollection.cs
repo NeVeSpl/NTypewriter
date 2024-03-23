@@ -7,8 +7,8 @@ namespace NTypewriter.CodeModel.Roslyn
     internal sealed class DelegateCollection : List<IDelegate>
     {
         private DelegateCollection(IEnumerable<IDelegate> items) : base(items)
-        {
 
+        {
         }
 
 
