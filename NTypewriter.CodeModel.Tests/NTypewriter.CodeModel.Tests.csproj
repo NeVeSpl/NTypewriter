@@ -59,6 +59,8 @@
     <Compile Remove="SymbolBase\IsField\inputCode.cs" />
     <Compile Remove="SymbolBase\IsMethod\inputCode.cs" />
     <Compile Remove="SymbolBase\IsProperty\inputCode.cs" />
+    <Compile Remove="SymbolBase\IsPrivateProtected\inputCode.cs" />
+    <Compile Remove="SymbolBase\IsProtectedInternal\inputCode.cs" />
     <Compile Remove="SymbolBase\IsPublic\inputCode.cs" />
     <Compile Remove="SymbolBase\IsStatic\inputCode.cs" />
     <Compile Remove="SymbolBase\Namespace\inputCode.cs" />
@@ -185,6 +187,10 @@
     <None Remove="SymbolBase\IsMethod\inputTemplate.tsnt" />
     <None Remove="SymbolBase\IsProperty\expectedResult.txt" />
     <None Remove="SymbolBase\IsProperty\inputTemplate.tsnt" />
+    <None Remove="SymbolBase\IsPrivateProtected\expectedResult.txt" />
+    <None Remove="SymbolBase\IsPrivateProtected\inputTemplate.tsnt" />
+    <None Remove="SymbolBase\IsProtectedInternal\expectedResult.txt" />
+    <None Remove="SymbolBase\IsProtectedInternal\inputTemplate.tsnt" />
     <None Remove="SymbolBase\IsPublic\expectedResult.txt" />
     <None Remove="SymbolBase\IsPublic\inputTemplate.tsnt" />
     <None Remove="SymbolBase\IsStatic\expectedResult.txt" />
@@ -386,6 +392,12 @@
     <EmbeddedResource Include="SymbolBase\IsProperty\expectedResult.txt" />
     <EmbeddedResource Include="SymbolBase\IsProperty\inputCode.cs" />
     <EmbeddedResource Include="SymbolBase\IsProperty\inputTemplate.tsnt" />
+    <EmbeddedResource Include="SymbolBase\IsPrivateProtected\expectedResult.txt" />
+    <EmbeddedResource Include="SymbolBase\IsPrivateProtected\inputCode.cs" />
+    <EmbeddedResource Include="SymbolBase\IsPrivateProtected\inputTemplate.tsnt" />
+    <EmbeddedResource Include="SymbolBase\IsProtectedInternal\expectedResult.txt" />
+    <EmbeddedResource Include="SymbolBase\IsProtectedInternal\inputCode.cs" />
+    <EmbeddedResource Include="SymbolBase\IsProtectedInternal\inputTemplate.tsnt" />
     <EmbeddedResource Include="SymbolBase\IsPublic\expectedResult.txt" />
     <EmbeddedResource Include="SymbolBase\IsPublic\inputCode.cs" />
     <EmbeddedResource Include="SymbolBase\IsPublic\inputTemplate.tsnt" />

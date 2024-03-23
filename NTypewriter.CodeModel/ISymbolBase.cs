@@ -65,6 +65,31 @@ namespace NTypewriter.CodeModel
         bool IsPublic { get; }
 
         /// <summary>
+        /// Determines if the symbol is private
+        /// </summary>
+        bool IsPrivate { get; }
+
+        /// <summary>
+        /// Determines if the symbol is protected
+        /// </summary>
+        bool IsProtected { get; }
+
+        /// <summary>
+        /// Determines if the symbol is internal
+        /// </summary>
+        bool IsInternal { get; }
+
+        /// <summary>
+        /// Determines if the symbol is protected internal
+        /// </summary>
+        bool IsProtectedInternal { get; }
+
+        /// <summary>
+        /// Determines if the symbol is private protected 
+        /// </summary>
+        bool IsPrivateProtected { get; }
+
+        /// <summary>
         /// Determines if the symbol is static
         /// </summary>
         bool IsStatic { get; }

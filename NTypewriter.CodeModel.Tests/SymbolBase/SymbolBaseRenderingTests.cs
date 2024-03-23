@@ -21,6 +21,18 @@ namespace NTypewriter.CodeModel.Tests.SymbolBase
         }
 
         [TestMethod]
+        public async Task IsPrivateProtected()
+        {
+            await RunTestForProperty();
+        }
+
+        [TestMethod]
+        public async Task IsProtectedInternal()
+        {
+            await RunTestForProperty();
+        }
+
+        [TestMethod]
         public async Task IsPublic()
         {
             await RunTestForProperty();

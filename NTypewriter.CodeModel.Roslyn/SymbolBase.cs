@@ -22,6 +22,13 @@ namespace NTypewriter.CodeModel.Roslyn
         public bool IsMethod => symbol.Kind == SymbolKind.Method;
         public bool IsProperty => symbol.Kind == SymbolKind.Property;
         public bool IsPublic => symbol.DeclaredAccessibility == Accessibility.Public;
+        public bool IsPrivate => symbol.DeclaredAccessibility == Accessibility.Private;
+        public bool IsProtected => symbol.DeclaredAccessibility == Accessibility.Protected;
+        public bool IsInternal => symbol.DeclaredAccessibility == Accessibility.Internal;
+        public bool IsProtectedInternal => symbol.DeclaredAccessibility == Accessibility.ProtectedOrInternal;
+        public bool IsPrivateProtected => symbol.DeclaredAccessibility == Accessibility.ProtectedAndInternal;
+
+
         public bool IsStatic => symbol.IsStatic;
         public bool IsTypeParameter => symbol.Kind == SymbolKind.TypeParameter;      
         
