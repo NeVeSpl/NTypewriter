@@ -20,6 +20,18 @@ namespace NTypewriter.CodeModel.Tests.Property
             await RunTestForProperty();
         }
 
+        [TestMethod]
+        public async Task GetMethod_IsPublic()
+        {
+            await RunTestForProperty();
+        }
+
+        [TestMethod]
+        public async Task SetMethod_IsPublic()
+        {
+            await RunTestForProperty();
+        }
+
 
         [TestMethod]
         public async Task Type()

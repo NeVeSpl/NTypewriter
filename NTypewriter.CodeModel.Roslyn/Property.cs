@@ -12,6 +12,9 @@ namespace NTypewriter.CodeModel.Roslyn
         public bool IsReadOnly => symbol.IsReadOnly;
         public bool IsSealed => symbol.IsSealed;
 
+        public IMethod GetMethod => symbol.GetMethod != null ? Method.Create(symbol.GetMethod) : null;
+        public IMethod SetMethod => symbol.SetMethod != null ? Method.Create(symbol.SetMethod) : null;
+
 
         private Property(IPropertySymbol symbol) : base (symbol)
         {

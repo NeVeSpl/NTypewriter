@@ -43,6 +43,8 @@
     <Compile Remove="Method\ReturnType\inputCode.cs" />
     <Compile Remove="Method\TypeParameters\inputCode.cs" />
     <Compile Remove="NamedType\TypeParameters\inputCode.cs" />
+    <Compile Remove="Property\GetMethod_IsPublic\inputCode.cs" />
+    <Compile Remove="Property\SetMethod_IsPublic\inputCode.cs" />
     <Compile Remove="Property\IsWriteOnly\inputCode.cs" />
     <Compile Remove="Property\IsReadOnly\inputCode.cs" />
     <Compile Remove="Property\Type\inputCode.cs" />
@@ -151,6 +153,10 @@
     <None Remove="Method\TypeParameters\inputTemplate.tsnt" />
     <None Remove="NamedType\TypeParameters\expectedResult.txt" />
     <None Remove="NamedType\TypeParameters\inputTemplate.tsnt" />
+    <None Remove="Property\GetMethod_IsPublic\expectedResult.txt" />
+    <None Remove="Property\GetMethod_IsPublic\inputTemplate.tsnt" />
+    <None Remove="Property\SetMethod_IsPublic\expectedResult.txt" />
+    <None Remove="Property\SetMethod_IsPublic\inputTemplate.tsnt" />
     <None Remove="Property\IsWriteOnly\expectedResult.txt" />
     <None Remove="Property\IsReadOnly\expectedResult.txt" />
     <None Remove="Property\IsReadOnly\inputTemplate.tsnt" />
@@ -332,6 +338,12 @@
     <EmbeddedResource Include="NamedType\TypeParameters\expectedResult.txt" />
     <EmbeddedResource Include="NamedType\TypeParameters\inputCode.cs" />
     <EmbeddedResource Include="NamedType\TypeParameters\inputTemplate.tsnt" />
+    <EmbeddedResource Include="Property\GetMethod_IsPublic\expectedResult.txt" />
+    <EmbeddedResource Include="Property\GetMethod_IsPublic\inputCode.cs" />
+    <EmbeddedResource Include="Property\GetMethod_IsPublic\inputTemplate.tsnt" />
+    <EmbeddedResource Include="Property\SetMethod_IsPublic\expectedResult.txt" />
+    <EmbeddedResource Include="Property\SetMethod_IsPublic\inputCode.cs" />
+    <EmbeddedResource Include="Property\SetMethod_IsPublic\inputTemplate.tsnt" />
     <EmbeddedResource Include="Property\IsWriteOnly\expectedResult.txt" />
     <EmbeddedResource Include="Property\IsWriteOnly\inputCode.cs" />
     <EmbeddedResource Include="Property\IsWriteOnly\inputTemplate.tsnt" />

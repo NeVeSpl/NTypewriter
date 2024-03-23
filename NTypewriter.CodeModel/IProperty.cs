@@ -33,5 +33,15 @@ namespace NTypewriter.CodeModel
         /// The type of the property.
         /// </summary>
         IType Type { get; }
+
+        /// <summary>
+        /// Getter
+        /// </summary>
+        IMethod GetMethod { get; }
+
+        /// <summary>
+        /// Setter
+        /// </summary>
+        IMethod SetMethod { get; }
     }
 }
