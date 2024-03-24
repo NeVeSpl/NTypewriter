@@ -234,6 +234,7 @@ Property | Description | Returns
 --------|---------|-----------
 IsAsync | Determines if the method is an async method | `bool`  
 IsGeneric | Determines if the method is generic (it has any type parameters) | `bool`  
+IsInitOnly | Returns true for 'init' set accessors, and false otherwise. | `bool`  
 IsOverride | Determines if the method is override | `bool`  
 IsSealed | Determines if the method is sealed | `bool`  
 Parameters | All parameters of the method. | [`IEnumerable<IParameter>`](#IParameter)  
@@ -283,10 +284,12 @@ Represents a property.
 
 Property | Description | Returns
 --------|---------|-----------
+GetMethod | Getter | [`IMethod`](#IMethod)  
 IsIndexer | Determines if the property is really an indexer. | `bool`  
 IsReadOnly | Determines if the property is a read-only property | `bool`  
 IsSealed | Determines if the property is sealed | `bool`  
 IsWriteOnly | Determines if the property is a write-only property | `bool`  
+SetMethod | Setter | [`IMethod`](#IMethod)  
 Type | The type of the property. | [`IType`](#IType)  
 
 
@@ -333,8 +336,13 @@ IsArray | Determines if the symbol is an array | `bool`
 IsErrorType | Determines if the symbol represents an error in syntax; | `bool`  
 IsEvent | Determines if the symbol is an event | `bool`  
 IsField | Determines if the symbol is a field | `bool`  
+IsInternal | Determines if the symbol is internal | `bool`  
 IsMethod | Determines if the symbol is a method | `bool`  
+IsPrivate | Determines if the symbol is private | `bool`  
+IsPrivateProtected | Determines if the symbol is private protected | `bool`  
 IsProperty | Determines if the symbol is a property | `bool`  
+IsProtected | Determines if the symbol is protected | `bool`  
+IsProtectedInternal | Determines if the symbol is protected internal | `bool`  
 IsPublic | Determines if the symbol is public | `bool`  
 IsStatic | Determines if the symbol is static | `bool`  
 IsTypeParameter | Determines if the symbol is a type parameter | `bool`  

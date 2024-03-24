@@ -477,7 +477,7 @@ Filters symbols by the beginning of their name
 IEnumerable<IType> Type.AllReferencedTypes(IType type, SearchIn searchIn = SearchIn.All)
 ```
 Returns all types that are used in definition of a given type.
-[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.AllReferencedTypes.cs#L45)]
+[[source code](/NTypewriter.CodeModel.Functions/TypeFunctions.AllReferencedTypes.cs#L49)]
 
 #### ToTypeScriptDefault
 
