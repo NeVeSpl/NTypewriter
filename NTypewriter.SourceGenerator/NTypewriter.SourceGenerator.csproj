@@ -5,7 +5,7 @@
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<Version>0.4.3</Version>		
+		<Version>0.5.8</Version>		
 	    <PackageIcon>nt.128.128.png</PackageIcon>
 	    <Authors>NeVeSpl</Authors>
         <Company>NeVeSpl</Company>
@@ -30,17 +30,17 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.0.1" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" PrivateAssets="all" GeneratePathProperty="true" />		
 		
-		<PackageReference Include="Microsoft.CodeAnalysis.Scripting" Version="4.0.1" PrivateAssets="all"/>
+		<PackageReference Include="Microsoft.CodeAnalysis.Scripting" Version="4.0.1" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Scripting.Common" Version="4.0.1" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.0.1" PrivateAssets="all" GeneratePathProperty="true" />		
 		
 		<PackageReference Include="Scriban.Signed" Version="5.9.0" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter" Version="0.5.5" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.CodeModel" Version="0.5.5" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.CodeModel.Functions" Version="0.5.5" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.CodeModel.Roslyn" Version="0.5.5" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.Editor.Config" Version="0.5.5" PrivateAssets="all" GeneratePathProperty="true" />
-		<PackageReference Include="NTypewriter.Runtime" Version="0.5.5.7" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter" Version="0.5.8" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel" Version="0.5.8" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel.Functions" Version="0.5.8" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.CodeModel.Roslyn" Version="0.5.8" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.Editor.Config" Version="0.5.8" PrivateAssets="all" GeneratePathProperty="true" />
+		<PackageReference Include="NTypewriter.Runtime" Version="0.5.8" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="System.Text.Json" Version="6.0.0" PrivateAssets="all" GeneratePathProperty="true" />
 		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" PrivateAssets="all" GeneratePathProperty="true" />		
 		<PackageReference Include="Basic.Reference.Assemblies.NetStandard20" PrivateAssets="all" Version="1.4.5" GeneratePathProperty="true" />
