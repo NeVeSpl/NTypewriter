@@ -1,0 +1,11 @@
+﻿{{- capture captured
+    for enum in data.Enums | Symbols.WhereNamespaceStartsWith "NTypewriter.Tests.CodeModel" 
+       for enumValue in enum.Values }}
+{{- if enumValue.DocComment && enumValue.DocComment.Summary }}
+    {{- enumValue.DocComment.Summary }}
+{{- end }}
+{{- enumValue.Name }}
+{{     end 
+    end 
+    end 
+    Save captured "result" }}

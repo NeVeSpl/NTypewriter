@@ -23,5 +23,10 @@ namespace NTypewriter.CodeModel
         /// All attributes declared on the enum value.
         /// </summary>
         IEnumerable<IAttribute> Attributes { get; }
+
+        /// <summary>
+        /// The XML documentation for the comment associated with the symbol.
+        /// </summary>
+        IDocumentationCommentXml DocComment { get; }
     }
 }

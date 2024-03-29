@@ -13,5 +13,11 @@ namespace NTypewriter.CodeModel.Tests.Enum
         {
             await RunTestForProperty();
         }
+
+        [TestMethod]
+        public async Task DocComments()
+        {
+            await RunTestForProperty();
+        }
     }
 }
