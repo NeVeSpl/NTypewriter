@@ -10,7 +10,7 @@ namespace NTypewriter.CodeModel.Roslyn
         public object Value => symbol.ConstantValue;
         public string Name => symbol.Name;
         public IEnumerable<IAttribute> Attributes => AttributeCollection.Create(symbol);
-
+        public IDocumentationCommentXml DocComment => DocumentationCommentXml.Create(symbol);
 
         private EnumValue(IFieldSymbol symbol)
         {
