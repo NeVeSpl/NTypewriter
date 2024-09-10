@@ -44,7 +44,6 @@ namespace NTypewriter.CodeModel.Functions
             return route;
         }
 
-
         private static string GetRouteFromTypeAttributes(IType type)
         {
             var routeAttribute = type.Attributes.FirstOrDefault(a => a.Name == "RoutePrefix" || a.Name == "Route");
@@ -63,6 +62,7 @@ namespace NTypewriter.CodeModel.Functions
             var route = routeAttributes.SelectMany(x => x.Arguments).Where(x => x.Name == "template").Select(x => x.Value).Where(x => x != null).FirstOrDefault()?.ToString();
             return route;
         }
+
         private static string ReplaceSpecialParameters(IMethod method, string route)
         {
             string controllerName = method.ContainingType.BareName;
@@ -77,10 +77,12 @@ namespace NTypewriter.CodeModel.Functions
         }
 
         private static readonly Regex RouteParameterRegex = new Regex(@"\{(\w+).*?\}", RegexOptions.Singleline | RegexOptions.Compiled);
+
         private static string ConvertRouteParameters(string route)
         {
             return RouteParameterRegex.Replace(route, m => $"${{{m.Groups[1].Value}}}");
         }
+
         private static string AppendQueryString(IMethod method, string route)
         {
             var parameterAttributeBlackList = new[] { "FromHeader", "FromBody", "FromRoute", "FromServices" };
@@ -98,7 +100,7 @@ namespace NTypewriter.CodeModel.Functions
                     {
                         queryParameters.Add($"{parameter.BareName}=${{{parameter.BareName}}}");
                     }
-                    
+
                 }
             }
             if (queryParameters.Any())
@@ -109,8 +111,6 @@ namespace NTypewriter.CodeModel.Functions
             return route;
         }
 
-
-
         private static string AppendFromQuery(IMethod method, string route)
         {
             string connector = route.Contains("?") ? "&" : "?";
@@ -120,25 +120,52 @@ namespace NTypewriter.CodeModel.Functions
                 if ((!parameter.Type.IsSimple()) && parameter.Attributes.Any(x => x.Name == "FromQuery"))
                 {
                     if (parameter.Type is IClass @class)
-                    {                   
+                    {
                         foreach (var prop in @class.Properties)
                         {
+                            string urlParam = prop.BareName.ToLowerFirst();
+                            string memberAccessOperator = IsNullable(parameter) ? "?." : ".";
+                            string propertyAccess = string.Concat(parameter.BareName, memberAccessOperator, prop.BareName.ToLowerFirst());
+
                             builder.Append(connector);
-                            if (parameter.Type.Name == "string")
+                            if (prop.Type.IsEnumerable && !prop.Type.IsSimple())
                             {
-                                builder.Append($"{prop.BareName.ToLowerFirst()}=${{encodeURIComponent({parameter.BareName}.{prop.BareName.ToLowerFirst()})}}");
+                                string itemValue = GetEnumerableType(prop.Type)?.Name == "string" ? "${encodeURIComponent(item)}" : "${item}";
+                                builder.Append($"${{{propertyAccess}.map(item => `{urlParam}={itemValue}`).join('&')}}");
                             }
                             else
                             {
-                                builder.Append($"{prop.BareName.ToLowerFirst()}=${{{parameter.BareName}.{prop.BareName.ToLowerFirst()}}}");
+                                string urlValue = parameter.Type.Name == "string" ? $"${{encodeURIComponent({propertyAccess})}}" : $"${{{propertyAccess}}}";
+                                builder.Append($"{urlParam}={urlValue}");
                             }
                             connector = "&";
                         }
+                    }
+                    else if (parameter.Type.IsEnumerable)
+                    {
+                        string urlParam = parameter.BareName.ToLowerFirst();
+                        string memberAccessOperator = IsNullable(parameter) ? "?." : ".";
+                        string itemValue = GetEnumerableType(parameter.Type)?.Name == "string" ? "${encodeURIComponent(item)}" : "${item}";
+
+                        builder.Append(connector).Append($"${{{parameter.BareName}{memberAccessOperator}map(item => `{urlParam}={itemValue}`).join('&')}}");
+                        connector = "&";
                     }
                 }
             }
             var postfix = builder.ToString();
             return route + postfix;
+        }
+
+        private static IType GetEnumerableType(IType enumerableType)
+        {
+            if (!enumerableType.IsEnumerable)
+                return null;
+            return enumerableType.ArrayType ?? enumerableType.TypeArguments.FirstOrDefault();
+        }
+
+        private static bool IsNullable(IParameter parameter)
+        {
+            return parameter.Type.IsNullable || (parameter.HasDefaultValue && parameter.DefaultValue == null);
         }
     }
 }
