@@ -86,5 +86,11 @@ namespace Tests.Assets.WebApi.Controllers
         {
             return null;
         }
+
+        [HttpGet("nullable-array-in-object-param")]
+        public IActionResult WithNullableArrayInObjectParam([FromQuery] NullableArrayDTO optional = null)
+        {
+            return null;
+        }
     }
 }

@@ -10,12 +10,11 @@ namespace NTypewriter.CodeModel.Functions
         // https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-5.0#simple-types
         public static bool IsSimple(this IType type)
         {
-            if (type.IsNullable) 
+            if (type.IsNullable)
             {
-                if (type.TypeArguments.Any())
-                {
-                    return IsSimple(type.TypeArguments.First());
-                }
+                var nonNullableType = type.NonNullableType;
+                if (nonNullableType != null)
+                    return IsSimple(nonNullableType);
             }
             switch (type.FullName)
             {

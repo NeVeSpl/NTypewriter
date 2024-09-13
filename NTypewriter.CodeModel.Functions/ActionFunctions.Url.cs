@@ -131,7 +131,7 @@ namespace NTypewriter.CodeModel.Functions
                             if (prop.Type.IsEnumerable && !prop.Type.IsSimple())
                             {
                                 string itemValue = GetEnumerableType(prop.Type)?.Name == "string" ? "${encodeURIComponent(item)}" : "${item}";
-                                builder.Append($"${{{propertyAccess}.map(item => `{urlParam}={itemValue}`).join('&')}}");
+                                builder.Append($"${{{propertyAccess}{(prop.Type.IsNullable ? "?." : ".")}map(item => `{urlParam}={itemValue}`).join('&')}}");
                             }
                             else
                             {

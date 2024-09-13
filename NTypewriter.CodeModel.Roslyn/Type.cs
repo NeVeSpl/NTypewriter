@@ -18,12 +18,12 @@ namespace NTypewriter.CodeModel.Roslyn
         public bool IsDynamic => symbol.TypeKind == TypeKind.Dynamic;
         public bool IsGeneric => (symbol is INamedTypeSymbol x) && x.IsGenericType;
         public bool IsInterface => symbol.TypeKind == TypeKind.Interface;
-        public bool IsNullable => symbol.NullableAnnotation == NullableAnnotation.Annotated;      
+        public bool IsNullable => symbol.NullableAnnotation == NullableAnnotation.Annotated;
         public bool IsPrimitive
         {
             get
             {
-                switch(symbol.SpecialType)
+                switch (symbol.SpecialType)
                 {
                     case SpecialType.System_Boolean:
                     case SpecialType.System_SByte:
@@ -52,6 +52,17 @@ namespace NTypewriter.CodeModel.Roslyn
         public IEnumerable<IInterface> Interfaces => InterfaceCollection.Create(symbol.Interfaces);
         public IEnumerable<IInterface> AllInterfaces => InterfaceCollection.Create(symbol.AllInterfaces);
         public IType ArrayType => symbol is IArrayTypeSymbol arraySymbol ? NTypewriter.CodeModel.Roslyn.Type.Create(arraySymbol.ElementType) : null;
+        public IType NonNullableType
+        {
+            get
+            {
+                if (!IsNullable)
+                    return null;
+                if (symbol.IsReferenceType)
+                    return NTypewriter.CodeModel.Roslyn.Type.Create(symbol.OriginalDefinition);
+                return TypeArguments.FirstOrDefault();
+            }
+        }
         public IEnumerable<IType> TypeArguments => TypeCollection.CreateTypeArguments(symbol);
         public override string Name
         {
@@ -66,7 +77,7 @@ namespace NTypewriter.CodeModel.Roslyn
         private protected Type(ITypeSymbol symbol) : base(symbol)
         {
             this.symbol = symbol;
-        }    
+        }
 
 
         public static Type CreateBaseType(ITypeSymbol symbol)
