@@ -5,3 +5,7 @@ WithRouteAttribute:sd
 SomeComplexTest:Url/akacja/${par1}/${par2}/${par3}?par4=${par4}&par5=${par5}
 WithEnumParam:Url?numbers=${numbers}
 WithOptionalParam:Url?optional=${optional}
+WithOptionalObjectParam:Url/object-param?date=${optional?.date}&temperatureC=${optional?.temperatureC}&temperatureF=${optional?.temperatureF}&summary=${optional?.summary}
+WithArrayParam:Url/array-param?${array.map(item => `array=${encodeURIComponent(item)}`).join('&')}
+WithArrayInObjectParam:Url/array-in-object-param?${optional?.arrayStr.map(item => `arrayStr=${encodeURIComponent(item)}`).join('&')}&${optional?.listStr.map(item => `listStr=${encodeURIComponent(item)}`).join('&')}&${optional?.arrayEnum.map(item => `arrayEnum=${item}`).join('&')}&${optional?.listEnum.map(item => `listEnum=${item}`).join('&')}
+WithNullableArrayInObjectParam:Url/nullable-array-in-object-param?${optional?.arrayStr?.map(item => `arrayStr=${encodeURIComponent(item)}`).join('&')}&${optional?.listStr?.map(item => `listStr=${encodeURIComponent(item)}`).join('&')}&${optional?.arrayEnum?.map(item => `arrayEnum=${item}`).join('&')}&${optional?.listEnum?.map(item => `listEnum=${item}`).join('&')}

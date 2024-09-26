@@ -68,5 +68,29 @@ namespace Tests.Assets.WebApi.Controllers
         {
             return null;
         }
+
+        [HttpGet("object-param")]
+        public IActionResult WithOptionalObjectParam([FromQuery] WeatherForecast optional = null)
+        {
+            return null;
+        }
+
+        [HttpGet("array-param")]
+        public IActionResult WithArrayParam([FromQuery] string[] array)
+        {
+            return null;
+        }
+
+        [HttpGet("array-in-object-param")]
+        public IActionResult WithArrayInObjectParam([FromQuery] ArrayDTO optional = null)
+        {
+            return null;
+        }
+
+        [HttpGet("nullable-array-in-object-param")]
+        public IActionResult WithNullableArrayInObjectParam([FromQuery] NullableArrayDTO optional = null)
+        {
+            return null;
+        }
     }
 }
