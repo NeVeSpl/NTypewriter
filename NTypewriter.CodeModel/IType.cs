@@ -90,9 +90,9 @@ namespace NTypewriter.CodeModel
         IType ArrayType { get; }
 
         /// <summary>
-        /// The underlying non-nullable type. <see langword="null"/> if the current type is not nullable.
+        /// The original definition of the type, or the type itself if not generic.
         /// </summary>
-        IType NonNullableType { get; }
+        IType OriginalDefinition { get; }
 
         /// <summary>
         /// The set of interfaces that this type directly implements. This set does not include interfaces that are base interfaces of directly implemented interfaces.

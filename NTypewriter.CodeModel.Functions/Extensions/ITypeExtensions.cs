@@ -12,7 +12,7 @@ namespace NTypewriter.CodeModel.Functions
         {
             if (type.IsNullable)
             {
-                var nonNullableType = type.NonNullableType;
+                var nonNullableType = GetUnderlyingNonNullableType(type);
                 if (nonNullableType != null)
                     return IsSimple(nonNullableType);
             }
@@ -29,6 +29,15 @@ namespace NTypewriter.CodeModel.Functions
             }
 
             return type.IsPrimitive || type.IsEnum;
+        }
+
+        public static IType GetUnderlyingNonNullableType(this IType type)
+        {
+            if (!type.IsNullable)
+                return null;
+            if (type.IsReferenceType)
+                return type.OriginalDefinition;
+            return type.TypeArguments.FirstOrDefault();
         }
     }
 }
