@@ -10,12 +10,11 @@ namespace NTypewriter.CodeModel.Functions
         // https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-5.0#simple-types
         public static bool IsSimple(this IType type)
         {
-            if (type.IsNullable) 
+            if (type.IsNullable)
             {
-                if (type.TypeArguments.Any())
-                {
-                    return IsSimple(type.TypeArguments.First());
-                }
+                var nonNullableType = GetUnderlyingNonNullableType(type);
+                if (nonNullableType != null)
+                    return IsSimple(nonNullableType);
             }
             switch (type.FullName)
             {
@@ -30,6 +29,15 @@ namespace NTypewriter.CodeModel.Functions
             }
 
             return type.IsPrimitive || type.IsEnum;
+        }
+
+        public static IType GetUnderlyingNonNullableType(this IType type)
+        {
+            if (!type.IsNullable)
+                return null;
+            if (type.IsReferenceType)
+                return type.OriginalDefinition;
+            return type.TypeArguments.FirstOrDefault();
         }
     }
 }

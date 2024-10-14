@@ -52,6 +52,7 @@ namespace NTypewriter.CodeModel.Roslyn
         public IEnumerable<IInterface> Interfaces => InterfaceCollection.Create(symbol.Interfaces);
         public IEnumerable<IInterface> AllInterfaces => InterfaceCollection.Create(symbol.AllInterfaces);
         public IType ArrayType => symbol is IArrayTypeSymbol arraySymbol ? NTypewriter.CodeModel.Roslyn.Type.Create(arraySymbol.ElementType) : null;
+        public IType OriginalDefinition => NTypewriter.CodeModel.Roslyn.Type.Create(symbol.OriginalDefinition);
         public IEnumerable<IType> TypeArguments => TypeCollection.CreateTypeArguments(symbol);
         public override string Name
         {
