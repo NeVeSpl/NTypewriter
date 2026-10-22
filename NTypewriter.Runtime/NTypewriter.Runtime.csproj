@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>xKey.snk</AssemblyOriginatorKeyFile>
-	<Version>0.5.9</Version>
-	<AssemblyVersion>0.5.9</AssemblyVersion>
+	<Version>0.6.0</Version>
+	<AssemblyVersion>0.6.0</AssemblyVersion>
     <Authors>NeVeSpl</Authors>
     <Company>NeVeSpl</Company>
     <Copyright>(c) NTypewriter</Copyright>
@@ -31,8 +31,8 @@
     <PackageReference Include="Basic.Reference.Assemblies.NetStandard20" Version="1.4.5" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.11.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Scripting" Version="3.11.0" />
-    <PackageReference Include="Scriban.Signed" Version="5.10.0" />
-    <PackageReference Include="System.Text.Json" Version="6.0.0" />
+    <PackageReference Include="Scriban.Signed" Version="7.5.1" />
+    <PackageReference Include="System.Text.Json" Version="10.0.8" />
     <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
   </ItemGroup>
 
